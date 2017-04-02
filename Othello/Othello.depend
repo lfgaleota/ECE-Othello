@@ -52,3 +52,24 @@
 1491132158 source:c:\users\romai\documents\github\ece-othello\othello\game.cpp
 	"game.h"
 
+1491132426 source:c:\users\romai\documents\github\ece-othello\othello\board.cpp
+	"board.h"
+
+1491132838 source:c:\users\romai\documents\github\ece-othello\othello\artificial.cpp
+	"artificial.h"
+
+1491132537 source:c:\users\romai\documents\github\ece-othello\othello\human.cpp
+
+1491132516 source:c:\users\romai\documents\github\ece-othello\othello\player.cpp
+
+1491133001 c:\users\romai\documents\github\ece-othello\othello\artificial.h
+	<iostream>
+	<string>
+	<vector>
+	"player.h"
+
+1491133096 c:\users\romai\documents\github\ece-othello\othello\player.h
+	<iostream>
+	<string>
+	<vector>
+
