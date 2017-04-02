@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    : m_turn(0)
+    : m_turn(false)
 {
     Board plateau ;
     m_board = plateau ;

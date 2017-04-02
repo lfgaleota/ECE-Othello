@@ -27,3 +27,28 @@
 	<vector>
 	"board.h"
 
+1491132279 source:c:\users\romai\documents\github\ece-othello\othello\main.cpp
+	"othello.h"
+	"board.h"
+	"game.h"
+
+1491052422 c:\users\romai\documents\github\ece-othello\othello\othello.h
+	<iostream>
+	<string>
+	<vector>
+
+1491132397 c:\users\romai\documents\github\ece-othello\othello\board.h
+	<iostream>
+	<string>
+	<vector>
+	"othello.h"
+
+1491132158 c:\users\romai\documents\github\ece-othello\othello\game.h
+	<iostream>
+	<string>
+	<vector>
+	"board.h"
+
+1491132158 source:c:\users\romai\documents\github\ece-othello\othello\game.cpp
+	"game.h"
+

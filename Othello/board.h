@@ -21,9 +21,9 @@ public :
 
     vector<vector<Pun>> getBoard();
 
-    pair<int,int> find_move(); // méthode qui renvoie une paire de coordonnées.
-    void play(); //reçoit des coordonnées et ajoute un pion du joueur correspondant à l'endroit voulu ?
-    void make_changes(); // fait les changements nécéssaires après un coup
+    vector<pair<int,int>> find_possible_moves(); // méthode qui renvoie une paire de coordonnées.
+    void play(pair<int,int> _move,vector<pair<int,int>> possible_moves, bool turn); //reçoit des coordonnées et ajoute un pion du joueur correspondant à l'endroit voulu ?
+    void make_changes(pair<int,int> _move); // fait les changements nécéssaires après un coup
 };
 
 

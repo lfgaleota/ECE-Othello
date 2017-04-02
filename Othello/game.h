@@ -10,7 +10,7 @@ class Game
 {
 private :
 
-    int m_turn ; //player turn ?
+    bool m_turn ; //player turn ?
     Board m_board ; //game board
 
 public :
