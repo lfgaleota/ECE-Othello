@@ -37,10 +37,11 @@
 	<string>
 	<vector>
 
-1491132397 c:\users\romai\documents\github\ece-othello\othello\board.h
+1491641710 c:\users\romai\documents\github\ece-othello\othello\board.h
 	<iostream>
 	<string>
 	<vector>
+	<set>
 	"othello.h"
 
 1491132158 c:\users\romai\documents\github\ece-othello\othello\game.h
@@ -58,9 +59,11 @@
 1491132838 source:c:\users\romai\documents\github\ece-othello\othello\artificial.cpp
 	"artificial.h"
 
-1491132537 source:c:\users\romai\documents\github\ece-othello\othello\human.cpp
+1491132838 source:c:\users\romai\documents\github\ece-othello\othello\human.cpp
+	"human.h"
 
-1491132516 source:c:\users\romai\documents\github\ece-othello\othello\player.cpp
+1491132838 source:c:\users\romai\documents\github\ece-othello\othello\player.cpp
+	"player.h"
 
 1491133001 c:\users\romai\documents\github\ece-othello\othello\artificial.h
 	<iostream>
@@ -72,4 +75,10 @@
 	<iostream>
 	<string>
 	<vector>
+
+1491133001 c:\users\romai\documents\github\ece-othello\othello\human.h
+	<iostream>
+	<string>
+	<vector>
+	"player.h"
 

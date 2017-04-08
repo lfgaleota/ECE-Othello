@@ -23,6 +23,21 @@ Board::Board()
             }
         }
     }
+
+    //toutes les cases ayant un voisin à l'initialisation
+
+    m_empty_spots.insert(make_pair(2,2));
+    m_empty_spots.insert(make_pair(2,3));
+    m_empty_spots.insert(make_pair(2,4));
+    m_empty_spots.insert(make_pair(2,5));
+    m_empty_spots.insert(make_pair(3,2));
+    m_empty_spots.insert(make_pair(4,2));
+    m_empty_spots.insert(make_pair(5,2));
+    m_empty_spots.insert(make_pair(5,3));
+    m_empty_spots.insert(make_pair(5,4));
+    m_empty_spots.insert(make_pair(5,5));
+    m_empty_spots.insert(make_pair(4,5));
+    m_empty_spots.insert(make_pair(3,5));
 }
 
 
@@ -37,45 +52,199 @@ vector<vector<Pun>> Board::getBoard()
     return m_game_board ;
 }
 
-void Board::play(pair<int,int> _move,vector<pair<int,int>> possible_moves, bool turn)
+void Board::play(pair<int,int> _move, bool turn)
 {
-    //je ne sais pas si on fera cette partie ici ou au moment de la sélection du coup, on en reparlera.
+    if(turn)
+        m_game_board[_move.first][_move.second] = black ;
+    else
+        m_game_board[_move.first][_move.second] = white ;
 
-    //on vérifie que le mouvement est autorisé
-    bool _continue = false ;
+    //ICI on appelle le changement de couleur nananana
+    //make_changes(_move);
+}
 
-    for(unsigned int i=0;i<possible_moves.size();i++)
+void Board::find_empty_spots(pair<int,int> _move)
+{
+    for(unsigned int i=0;i<8;i++)
     {
-        if(possible_moves[i]==_move)
+        switch(i)
         {
-            _continue = true ;
+
+        case 0 :
+
+            //en haut
+            break;
+
+        case 1 :
+
+            //en bas
+            break;
+
+        case 2 :
+
+            //a gauche
+            break;
+
+        case 3 :
+
+            //à droite
+            break;
+
+        case 4 :
+
+            //diago haut gauche
+            break;
+
+
+        case 5 :
+
+            //diago haut droite
+            break;
+
+        case 6 :
+
+            //diago bas gauche
+            break;
+
+        case 7 :
+
+            //diago bas droite
+            break;
+
+        default :
+
+            break ;
+        }
+    }
+}
+
+bool Board::test_a_move(bool turn, pair<int,int> spot)
+{
+    for(unsigned int i=0;i<8;i++)
+    {
+        switch(i)
+        {
+
+        case 0 :
+
+            //en haut
+            //if(possible) return true, else continue
+            break;
+
+        case 1 :
+
+            //en bas
+            break;
+
+        case 2 :
+
+            //a gauche
+            break;
+
+        case 3 :
+
+            //à droite
+            break;
+
+        case 4 :
+
+            //diago haut gauche
+            break;
+
+
+        case 5 :
+
+            //diago haut droite
+            break;
+
+        case 6 :
+
+            //diago bas gauche
+            break;
+
+        case 7 :
+
+            //diago bas droite
+            //if(possible) return true, else return false
+            break;
+
+        default :
+
+            break ;
         }
     }
 
-    if(_continue) //ICI c'est le bout important, c'est l'assignation d'une nouvelle case
-    {
-        if(turn)
-            m_game_board[_move.first][_move.second] = black ;
-        else
-            m_game_board[_move.first][_move.second] = white ;
+}
 
-    }else
+void Board::find_possible_moves(bool turn)
+{
+    bool possibility = false ;
+    //il faut commencer par vider le vector des "anciens" coups possibles !
+    m_possible_moves.erase(m_possible_moves.begin(),m_possible_moves.end());
+
+    for(auto elem : m_empty_spots)
     {
-        //une exception qui renvoie au choix de mouvement ?
+        possibility = test_a_move(turn,elem) ;
+        if(possibility)
+        {
+            m_possible_moves.push_back(elem);
+        }
     }
-
-    //ICI on appelle le changement de couleur nananana
-    make_changes(_move);
-
-
-
 }
 
 void Board::make_changes(pair<int,int> _move)
 {
-    //on parcourt dans toutes les directions pour voir si il y a des pièces à changer. Je sais juste pas trop comment faire encore. je réfléchis.
+    for(unsigned int i=0;i<8;i++)
+    {
+        switch(i)
+        {
+
+        case 0 :
+
+            //en haut
+            break;
+
+        case 1 :
+
+            //en bas
+            break;
+
+        case 2 :
+
+            //a gauche
+            break;
+
+        case 3 :
+
+            //à droite
+            break;
+
+        case 4 :
+
+            //diago haut gauche
+            break;
 
 
+        case 5 :
 
+            //diago haut droite
+            break;
+
+        case 6 :
+
+            //diago bas gauche
+            break;
+
+        case 7 :
+
+            //diago bas droite
+            break;
+
+        default :
+
+            break ;
+        }
+    }
 
 }
+
