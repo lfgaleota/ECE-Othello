@@ -1,5 +1,5 @@
-#ifndef ARTIFICIAL_H_INCLUDED
-#define ARTIFICIAL_H_INCLUDED
+#ifndef ARTIFICIAL_HPP_INCLUDED
+#define ARTIFICIAL_HPP_INCLUDED
 
 #include <iostream>
 #include <string>
@@ -17,4 +17,4 @@ class IA : public Player {
 };
 
 
-#endif // ARTIFICIAL_H_INCLUDED
+#endif // ARTIFICIAL_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef HUMAN_H_INCLUDED
-#define HUMAN_H_INCLUDED
+#ifndef HUMAN_HPP_INCLUDED
+#define HUMAN_HPP_INCLUDED
 
 #include <iostream>
 #include <string>
@@ -17,4 +17,4 @@ class Human : public Player {
 };
 
 
-#endif // HUMAN_H_INCLUDED
+#endif // HUMAN_HPP_INCLUDED

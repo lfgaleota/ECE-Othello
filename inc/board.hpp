@@ -1,5 +1,5 @@
-#ifndef BOARD_H_INCLUDED
-#define BOARD_H_INCLUDED
+#ifndef BOARD_HPP_INCLUDED
+#define BOARD_HPP_INCLUDED
 
 #include <iostream>
 #include <string>
@@ -34,4 +34,4 @@ class Board {
 };
 
 
-#endif // BOARD_H_INCLUDED
+#endif // BOARD_HPP_INCLUDED
