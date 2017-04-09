@@ -1,4 +1,4 @@
-#include "inc/othello.hpp"
+#include "inc/pun.hpp"
 #include "inc/board.hpp"
 #include "inc/game.hpp"
 

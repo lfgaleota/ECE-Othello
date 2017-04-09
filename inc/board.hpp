@@ -5,18 +5,16 @@
 #include <string>
 #include <vector>
 #include <set>
-#include "othello.hpp"
+#include "pun.hpp"
 
 class Board {
-	private :
-		std::vector<std::vector<Pun>> m_game_board; //plateau de jeu
-		std::pair<int, int> _move; //euuuh ca on va voir si on le met vraiment là, pas sur
-		std::set<std::pair<int, int>> m_empty_spots;
-		std::vector<std::pair<int, int>> m_possible_moves;
+	private:
+		std::vector<std::vector<Pun>> board; //plateau de jeu
+		std::set<std::pair<int, int>> emptySlots;
+		std::vector<std::pair<int, int>> validMoves;
 
 
-	public :
-
+	public:
 		Board();
 
 		~Board();
@@ -28,9 +26,7 @@ class Board {
 
 		void find_possible_moves( bool turn );
 
-		void play( std::pair<int, int> _move,
-				   bool turn ); //reçoit des coordonnées et ajoute un pion du joueur correspondant à l'endroit voulu ?
-		void make_changes( std::pair<int, int> _move );
+		void play( std::pair<int, int> move );
 };
 
 

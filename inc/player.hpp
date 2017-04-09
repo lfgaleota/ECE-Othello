@@ -5,20 +5,15 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 
 class Player {
-	protected :
+	protected:
+		std::string name;
 
-		string m_name;
+	public:
+		Player( std::string name );
 
-	public :
-
-		Player();
-
-		~Player();
-
-		virtual pair<int, int> ask_for_move();
+		virtual std::pair<int, int> ask_for_move();
 };
 
 

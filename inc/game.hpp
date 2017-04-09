@@ -7,12 +7,10 @@
 #include "board.hpp"
 
 class Game {
-	private :
+	private:
+		Board board; //game board
 
-		bool m_turn; //player turn ?
-		Board m_board; //game board
-
-	public :
+	public:
 
 		Game();
 

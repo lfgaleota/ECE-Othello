@@ -7,11 +7,11 @@
 #include "player.hpp"
 
 class Human : public Player {
-	private :
+	private:
 
 		//dunno yet
 
-	public :
+	public:
 
 		std::pair<int, int> ask_for_move();
 };

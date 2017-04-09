@@ -1,5 +1,5 @@
-#ifndef OTHELLO_HPP_INCLUDED
-#define OTHELLO_HPP_INCLUDED
+#ifndef ECE_OTHELLO_PUN_HPP
+#define ECE_OTHELLO_PUN_HPP
 
 #include <iostream>
 #include <string>
@@ -13,4 +13,4 @@ enum Pun {
 };
 
 
-#endif // OTHELLO_HPP_INCLUDED
+#endif //ECE_OTHELLO_PUN_HPP

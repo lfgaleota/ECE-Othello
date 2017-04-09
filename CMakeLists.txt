@@ -8,7 +8,7 @@ set(SOURCE_FILES
         inc/board.hpp
         inc/game.hpp
         inc/human.hpp
-        inc/othello.hpp
+        inc/pun.hpp
         inc/player.hpp
         artificial.cpp
         board.cpp
