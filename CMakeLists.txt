@@ -15,6 +15,6 @@ set(SOURCE_FILES
         game.cpp
         human.cpp
         main.cpp
-        player.cpp)
+        player.cpp move.cpp inc/move.hpp valid_move.cpp inc/valid_move.hpp direction_vector.cpp inc/direction_vector.hpp)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
