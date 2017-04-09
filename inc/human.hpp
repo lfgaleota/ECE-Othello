@@ -4,19 +4,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "player.h"
+#include "player.hpp"
 
-using namespace std ;
+using namespace std;
 
-class Human : public Player
-{
-private :
+class Human : public Player {
+	private :
 
-    //dunno yet
+		//dunno yet
 
-public :
+	public :
 
-    pair<int,int> ask_for_move() ;
+		pair<int, int> ask_for_move();
 };
 
 

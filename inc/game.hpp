@@ -4,25 +4,24 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "board.h"
+#include "board.hpp"
 
-class Game
-{
-private :
+class Game {
+	private :
 
-    bool m_turn ; //player turn ?
-    Board m_board ; //game board
+		bool m_turn; //player turn ?
+		Board m_board; //game board
 
-public :
+	public :
 
-    Game();
-    ~Game();
+		Game();
 
-    void display();
+		~Game();
+
+		void display();
 
 
 };
-
 
 
 #endif // GAME_H_INCLUDED

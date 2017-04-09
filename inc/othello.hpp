@@ -7,9 +7,9 @@
 
 enum Pun //enumeration qui permet de savoir si une case est blanche noire ou vide !
 {
-    blank = 0,
-    black = 1,
-    white = 2
+	blank = 0,
+	black = 1,
+	white = 2
 };
 
 

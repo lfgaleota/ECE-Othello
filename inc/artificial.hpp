@@ -4,21 +4,19 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "player.h"
+#include "player.hpp"
 
-using namespace std ;
+using namespace std;
 
-class IA : public Player
-{
-private :
+class IA : public Player {
+	private :
 
-    //dunno yet
+		//dunno yet
 
-public :
+	public :
 
-    pair<int,int> ask_for_move();
+		pair<int, int> ask_for_move();
 };
-
 
 
 #endif // ARTIFICIAL_H_INCLUDED

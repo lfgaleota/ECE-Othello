@@ -5,22 +5,21 @@
 #include <string>
 #include <vector>
 
-using namespace std ;
+using namespace std;
 
-class Player
-{
-protected :
+class Player {
+	protected :
 
-    string m_name ;
+		string m_name;
 
-public :
+	public :
 
-    Player();
-    ~Player();
+		Player();
 
-    virtual pair<int,int> ask_for_move();
+		~Player();
+
+		virtual pair<int, int> ask_for_move();
 };
-
 
 
 #endif // PLAYER_H_INCLUDED
