@@ -6,8 +6,6 @@
 #include <vector>
 #include "player.hpp"
 
-using namespace std;
-
 class IA : public Player {
 	private :
 
@@ -15,7 +13,7 @@ class IA : public Player {
 
 	public :
 
-		pair<int, int> ask_for_move();
+		std::pair<int, int> ask_for_move();
 };
 
 

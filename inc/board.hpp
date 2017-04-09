@@ -7,15 +7,12 @@
 #include <set>
 #include "othello.hpp"
 
-using namespace std;
-
 class Board {
 	private :
-
-		vector<vector<Pun>> m_game_board; //plateau de jeu
-		pair<int, int> _move; //euuuh ca on va voir si on le met vraiment là, pas sur
-		set<pair<int, int>> m_empty_spots;
-		vector<pair<int, int>> m_possible_moves;
+		std::vector<std::vector<Pun>> m_game_board; //plateau de jeu
+		std::pair<int, int> _move; //euuuh ca on va voir si on le met vraiment là, pas sur
+		std::set<std::pair<int, int>> m_empty_spots;
+		std::vector<std::pair<int, int>> m_possible_moves;
 
 
 	public :
@@ -24,16 +21,16 @@ class Board {
 
 		~Board();
 
-		vector<vector<Pun>> getBoard();
+		std::vector<std::vector<Pun>> getBoard();
 
-		void find_empty_spots( pair<int, int> _move ); //fonction de recherche des cases vides ayant un voisin.
-		bool test_a_move( bool turn, pair<int, int> spot );
+		void find_empty_spots( std::pair<int, int> _move ); //fonction de recherche des cases vides ayant un voisin.
+		bool test_a_move( bool turn, std::pair<int, int> spot );
 
 		void find_possible_moves( bool turn );
 
-		void play( pair<int, int> _move,
+		void play( std::pair<int, int> _move,
 				   bool turn ); //reçoit des coordonnées et ajoute un pion du joueur correspondant à l'endroit voulu ?
-		void make_changes( pair<int, int> _move );
+		void make_changes( std::pair<int, int> _move );
 };
 
 
