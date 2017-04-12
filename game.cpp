@@ -1,35 +1,59 @@
 #include "inc/game.hpp"
 
-Game::Game()
-		: m_turn( false ) {
-	Board plateau;
-	m_board = plateau;
+using namespace std;
+using namespace Othello;
 
-}
+void Game::playerTurn() { //unfolding of a turn
+	if( m_currentPlayer == m_players.end() )
+		m_currentPlayer = m_players.begin();
 
-Game::~Game() {
+	m_ui->playerTurnBegin( **m_currentPlayer );
 
-}
+	m_board.computeValidMoves(( *m_currentPlayer )->getColor());
 
-void Game::display() {
+	for( bool loop = true; loop; ) {
+		loop = false;
 
-	for( unsigned int i = 0; i < m_board.getBoard().size(); i++ ) {
-		for( unsigned int j = 0; j < m_board.getBoard()[ i ].size(); j++ ) {
-
-			if( m_board.getBoard()[ i ][ j ] == black ) {
-				cout << "1";
-			} else {
-				if( m_board.getBoard()[ i ][ j ] == white ) {
-					cout << "2";
-				} else {
-					cout << "0";
-				}
-
-			}
-
-
+		try {
+			Move move = (*m_currentPlayer)->getMove();
+			m_board.play( move );
+		} catch( exceptions::invalid_move& e ) { //shielding
+			m_ui->showError( e.what() );
+			loop = true;
 		}
-
-		cout << endl;
 	}
+
+	m_ui->playerTurnEnd( **m_currentPlayer ); //ends the turn
+
+	m_currentPlayer = next( m_currentPlayer ); //changes the players
+}
+
+void Game::victory() { //WIN
+	vector<Player*>::iterator winingPlayer = m_currentPlayer;
+
+	m_ui->victory( **winingPlayer );
+}
+
+void Game::preparePlayers() {
+	for( Player*& player : m_players ) {
+		if( Human* human = dynamic_cast<Human*>( player ) ) {
+			human->setUI( m_ui );
+		}
+	}
+}
+
+Game::Game( std::vector<Player*>& players ): m_players( players ) { //that's how it goes down
+	m_currentPlayer = m_players.begin(); //first player "selected"
+
+	m_ui = new UI::Games::CLI( m_board, m_board.getBoard(), m_players, m_currentPlayer );
+
+	preparePlayers();
+
+	try {
+		while( !won ) //while nobody won
+			playerTurn(); //turns
+		victory(); //if you won -> victory
+	} catch( exceptions::exit_game e ) {}
+
+	delete m_ui;
 }
