@@ -5,13 +5,13 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
         inc/players/simpleia.hpp
-        inc/board/board.hpp
+        inc/board/gameboard.hpp
         inc/game.hpp
         inc/players/human.hpp
         inc/board/pun.hpp
         inc/players/player.hpp
         othello/players/simpleia.cpp
-        othello/board/board.cpp
+        othello/board/gameboard.cpp
         othello/game.cpp
         othello/players/human.cpp
         main.cpp

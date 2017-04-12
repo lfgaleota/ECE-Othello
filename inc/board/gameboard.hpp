@@ -1,5 +1,5 @@
-#ifndef _ECE_OTHELLO_BOARD_HPP_
-	#define _ECE_OTHELLO_BOARD_HPP_
+#ifndef _ECE_OTHELLO_BOARD_GAMEBOARD_HPP_
+	#define _ECE_OTHELLO_BOARD_GAMEBOARD_HPP_
 
 	#include <iostream>
 	#include <string>

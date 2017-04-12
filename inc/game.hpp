@@ -4,7 +4,7 @@
 	#include <iostream>
 	#include <string>
 	#include <vector>
-	#include "board/board.hpp"
+	#include "board/gameboard.hpp"
 	#include "players/player.hpp"
 	#include "players/human.hpp"
 	#include "ui/games/gameui.hpp"

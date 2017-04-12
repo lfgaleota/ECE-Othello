@@ -1,5 +1,5 @@
-#ifndef _ECE_OTHELLO_VALIDMOVE_HPP_
-	#define _ECE_OTHELLO_VALIDMOVE_HPP_
+#ifndef _ECE_OTHELLO_BOARD_VALIDMOVE_HPP_
+	#define _ECE_OTHELLO_BOARD_VALIDMOVE_HPP_
 
 	#include <list>
 	#include "move.hpp"

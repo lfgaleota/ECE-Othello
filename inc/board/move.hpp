@@ -1,5 +1,5 @@
-#ifndef _ECE_OTHELLO_MOVE_HPP_
-	#define _ECE_OTHELLO_MOVE_HPP_
+#ifndef _ECE_OTHELLO_BOARD_MOVE_HPP_
+	#define _ECE_OTHELLO_BOARD_MOVE_HPP_
 
 	#include "pun.hpp"
 

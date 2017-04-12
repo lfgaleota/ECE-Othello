@@ -1,5 +1,5 @@
-#ifndef _ECE_OTHELLO_PLAYER_HPP_
-	#define _ECE_OTHELLO_PLAYER_HPP_
+#ifndef _ECE_OTHELLO_PLAYERS_PLAYER_HPP_
+	#define _ECE_OTHELLO_PLAYERS_PLAYER_HPP_
 
 	#include <iostream>
 	#include <string>

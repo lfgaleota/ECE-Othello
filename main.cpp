@@ -1,5 +1,5 @@
 #include "inc/board/pun.hpp"
-#include "inc/board/board.hpp"
+#include "inc/board/gameboard.hpp"
 #include "inc/game.hpp"
 #include "inc/players/human.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef _ECE_OTHELLO_PUN_HPP_
-#define _ECE_OTHELLO_PUN_HPP_
+#ifndef _ECE_OTHELLO_BOARD_PUN_HPP_
+	#define _ECE_OTHELLO_BOARD_PUN_HPP_
 
 	namespace Othello {
 		namespace Board {
