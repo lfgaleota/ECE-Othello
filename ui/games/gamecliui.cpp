@@ -185,7 +185,7 @@ void CLI::displayPlayers() {
 
 /**
  * \brief	Évènement demande de coup
- * \details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain.
+ * \details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Propose également au joueur de quitter la partie, étant donné que cet écran est celui sur lequel le joueur sera la plupart du temps.
  * \return	Coup joué/demandé par le joueur
  */
 Move CLI::getMove() {
@@ -226,7 +226,7 @@ Move CLI::getMove() {
 
 			case Functions::Keys::Key::N0:
 			case Functions::Keys::Key::Escape:
-				display();
+				pauseMenu();
 
 			default:
 				break;
@@ -332,5 +332,21 @@ void CLI::loadDisplayMatrix() {
 			tmp2 << "____|";
 		}
 		this->m_displayMatrix.push_back( tmp2.str() );
+	}
+}
+
+/**
+ * \brief Écran de pause
+ * \details Demande au joueur s'il souahite arrếter la partie. Lance une exception exit_game (cf #Exceptions) lorsque le joueur souhaite quitter le jeu.
+ */
+void CLI::pauseMenu() {
+	vector<string> choices( { "Continuer", "Quitter" } );
+	Functions::CLIs::Menu menu = Functions::CLIs::Menu( "Pause", choices, BACKGROUND_GREEN | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY, BACKGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY );
+	switch( menu.getChoice() ) {
+		case 2:
+			// Quitter
+			throw exceptions::exit_game();
+		default:
+			break;
 	}
 }

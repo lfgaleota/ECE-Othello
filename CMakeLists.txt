@@ -26,6 +26,8 @@ set(SOURCE_FILES
         ui/games/gamecliui.cpp
         cli/cli.hpp
         cli/cli.cpp
+        cli/menu/menu.hpp
+        cli/menu/menu.cpp
 )
 
 add_executable(ECE_Othello ${SOURCE_FILES})

@@ -10,6 +10,7 @@
 	#include "../../players/player.hpp"
 	#include "gameui.hpp"
 	#include "../../../cli/cli.hpp"
+	#include "../../../cli/menu/menu.hpp"
 
 	namespace Othello {
 		namespace UI {
@@ -26,6 +27,7 @@
 						void loadDisplayMatrix();
 						void showPiece( Othello::Board::Pun::Colors color, unsigned int offsetX, unsigned int offsetY );
 						void highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color );
+						void pauseMenu();
 
 					public:
 						CLI( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer );
