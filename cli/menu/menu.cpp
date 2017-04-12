@@ -64,7 +64,7 @@ CLIs::Menu::Menu( string header, vector<string> choices, unsigned char back_colo
 
 		for( unsigned int i = 0; i < this->m_choices.size() ; i++ ) {
 			// Display the choices
-			if( this->m_choice == i + 1) {
+			if( this->m_choice == i + 1 ) {
 				// If it matches the text put the appropriate color
 				cli.setColor( selection_color );
 			} else {
