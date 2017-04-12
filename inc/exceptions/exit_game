@@ -1,0 +1,5 @@
+class exit_game: public std::exception {
+		virtual const char* what() const throw() {
+			return "Player wants to exit the game";
+		}
+};
