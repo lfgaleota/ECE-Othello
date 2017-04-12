@@ -6,27 +6,49 @@
 #include <vector>
 #include <set>
 #include "pun.hpp"
+#include "move.hpp"
+#include "valid_move.hpp"
+#include "exceptions/exceptions.hpp"
 
 class Board {
-	private:
-		std::vector<std::vector<Pun>> board; //plateau de jeu
-		std::set<std::pair<int, int>> emptySlots;
-		std::vector<std::pair<int, int>> validMoves;
+	public:
+		const static unsigned char sizeEdge = 8;
+		const static unsigned char size = sizeEdge * sizeEdge;
 
+		typedef Pun::Colors (*punArray)[ Board::sizeEdge ];
+
+	private:
+		Pun::Colors m_board[ sizeEdge ][ sizeEdge ];
+		std::list<ValidMove> m_validMoves;
+		uint64_t m_emptyNeighbors = 0;
+
+		void turnOverPuns( Move position, DirectionVector dvec );
+		bool isValidDirection( Move position, DirectionVector dvec, Pun::Colors color );
+
+		inline void addEmptyNeighbors( Move position );
+		inline void addEmptyNeighbors( unsigned char x, unsigned char y );
+		inline uint64_t quickEmptyNeighborsGet( const unsigned char index );
+		void emptyNeighborsSet( const unsigned char x, const unsigned char y );
+		inline void quickEmptyNeighborsSet( const unsigned char x, const unsigned char y );
+		void emptyNeighborsUnset( const unsigned char x, const unsigned char y );
+		inline void quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y );
 
 	public:
 		Board();
-
 		~Board();
 
-		std::vector<std::vector<Pun>> getBoard();
+		const punArray getBoard();
+		const std::list<ValidMove>& getValidMoves();
 
-		void find_empty_spots( std::pair<int, int> _move ); //fonction de recherche des cases vides ayant un voisin.
-		bool test_a_move( bool turn, std::pair<int, int> spot );
+		void computeValidMoves( Pun::Colors color );
 
-		void find_possible_moves( bool turn );
+		void play( Move move );
 
-		void play( std::pair<int, int> move );
+		const Pun::Colors at( const unsigned char x, const unsigned char y );
+		inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
+
+		void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
+		inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
 };
 
 
