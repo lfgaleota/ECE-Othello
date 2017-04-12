@@ -5,6 +5,7 @@
 	#include <string>
 	#include <vector>
 	#include <set>
+	#include <cstring>
 	#include "pun.hpp"
 	#include "move.hpp"
 	#include "valid_move.hpp"
@@ -44,7 +45,7 @@
 
 				public:
 					GameBoard();
-
+					GameBoard( GameBoard& ref );
 					~GameBoard();
 
 					const punArray getBoard();

@@ -34,6 +34,10 @@ GameBoard::GameBoard() { // : m_board( 8, vector<Pun>( 8 ) )
 	quickEmptyNeighborsSet( 3, 5 );
 }
 
+GameBoard::GameBoard( GameBoard& ref ) {
+	m_emptyNeighbors = ref.m_emptyNeighbors;
+	std::memcpy( m_board, ref.m_board, sizeof( Pun ) * GameBoard::size );
+}
 
 GameBoard::~GameBoard() {
 
