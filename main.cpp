@@ -1,6 +1,7 @@
 #include "inc/pun.hpp"
 #include "inc/board.hpp"
 #include "inc/game.hpp"
+#include "inc/human.hpp"
 
 //ENORME idée, si on a le temps on fait un undo, on annule le coup qui vient d'être joué et on propose de le rejouer !
 
@@ -8,8 +9,10 @@
 using namespace std;
 
 int main() {
-	Game othello;
+	std::vector<Player*> players;
+	players.push_back( new Human( "Player1", Pun::black ) );
+	players.push_back( new Human( "Player2", Pun::white ) );
 
-	othello.display();
+	Game othello( players );
 	return 0;
 }
