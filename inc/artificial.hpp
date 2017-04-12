@@ -1,20 +1,19 @@
-#ifndef ARTIFICIAL_HPP_INCLUDED
-#define ARTIFICIAL_HPP_INCLUDED
+#ifndef _ECE_OTHELLO_ARTIFICIAL_HPP_
+	#define _ECE_OTHELLO_ARTIFICIAL_HPP_
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "player.hpp"
+	#include <iostream>
+	#include <string>
+	#include <vector>
+	#include "player.hpp"
 
-class IA : public Player {
-	private:
+	class IA : public Player {
+		private:
 
-		//dunno yet
+			//dunno yet
 
-	public:
+		public:
 
-		std::pair<int, int> ask_for_move();
-};
+			std::pair<int, int> ask_for_move();
+	};
 
-
-#endif // ARTIFICIAL_HPP_INCLUDED
+#endif
