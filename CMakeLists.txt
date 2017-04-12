@@ -4,23 +4,23 @@ project(ECE_Othello)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        inc/artificial.hpp
-        inc/board.hpp
+        inc/players/ia.hpp
+        inc/board/board.hpp
         inc/game.hpp
-        inc/human.hpp
-        inc/pun.hpp
-        inc/player.hpp
-        artificial.cpp
-        board.cpp
-        game.cpp
-        human.cpp
+        inc/players/human.hpp
+        inc/board/pun.hpp
+        inc/players/player.hpp
+        othello/players/ia.cpp
+        othello/board/board.cpp
+        othello/game.cpp
+        othello/players/human.cpp
         main.cpp
-        player.cpp move.cpp
-        inc/move.hpp
-        valid_move.cpp
-        inc/valid_move.hpp
-        direction_vector.cpp
-        inc/direction_vector.hpp
+        othello/players/player.cpp othello/board/move.cpp
+        inc/board/move.hpp
+        othello/board/valid_move.cpp
+        inc/board/valid_move.hpp
+        othello/board/direction_vector.cpp
+        inc/board/direction_vector.hpp
         inc/ui/games/gameui.hpp
         inc/ui/games/gamecliui.hpp
         ui/games/gamecliui.cpp

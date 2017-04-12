@@ -4,8 +4,8 @@
 	#include <iostream>
 	#include <string>
 	#include <vector>
-	#include "pun.hpp"
-	#include "move.hpp"
+	#include "../board/pun.hpp"
+	#include "../board/move.hpp"
 
 
 	class Player {

@@ -1,4 +1,4 @@
-#include "inc/game.hpp"
+#include "../inc/game.hpp"
 
 using namespace std;
 using namespace Othello;

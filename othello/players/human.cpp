@@ -1,4 +1,4 @@
-#include "inc/human.hpp"
+#include "../../inc/players/human.hpp"
 
 Human::Human( std::string name, Pun::Colors color ) : Player( name, color ) {}
 

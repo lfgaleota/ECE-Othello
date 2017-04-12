@@ -1,8 +1,8 @@
 #ifndef _ECE_OTHELLO_UI_GAME_HPP_
 	#define _ECE_OTHELLO_UI_GAME_HPP_
 
-	#include "../../board.hpp"
-	#include "../../player.hpp"
+	#include "../../board/board.hpp"
+	#include "../../players/player.hpp"
 
 	namespace Othello {
 		namespace UI {

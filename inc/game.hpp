@@ -4,9 +4,9 @@
 	#include <iostream>
 	#include <string>
 	#include <vector>
-	#include "board.hpp"
-	#include "player.hpp"
-	#include "human.hpp"
+	#include "board/board.hpp"
+	#include "players/player.hpp"
+	#include "players/human.hpp"
 	#include "ui/games/gameui.hpp"
 	#include "ui/games/gamecliui.hpp"
 

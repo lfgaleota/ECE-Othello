@@ -1,4 +1,4 @@
-#include "inc/direction_vector.hpp"
+#include "../../inc/board/direction_vector.hpp"
 
 DirectionVector::DirectionVector( char direction_x, char direction_y ) : x( direction_x ), y( direction_y ) {}
 

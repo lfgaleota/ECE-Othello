@@ -6,8 +6,8 @@
 	#include <iostream>
 	#include <fstream>
 	#include <sstream>
-	#include "../../board.hpp"
-	#include "../../player.hpp"
+	#include "../../board/board.hpp"
+	#include "../../players/player.hpp"
 	#include "gameui.hpp"
 	#include "../../../cli/cli.hpp"
 

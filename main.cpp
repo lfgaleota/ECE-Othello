@@ -1,7 +1,7 @@
-#include "inc/pun.hpp"
-#include "inc/board.hpp"
+#include "inc/board/pun.hpp"
+#include "inc/board/board.hpp"
 #include "inc/game.hpp"
-#include "inc/human.hpp"
+#include "inc/players/human.hpp"
 
 //ENORME idée, si on a le temps on fait un undo, on annule le coup qui vient d'être joué et on propose de le rejouer !
 

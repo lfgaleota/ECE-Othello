@@ -5,7 +5,7 @@
 	#include <string>
 	#include <vector>
 	#include "player.hpp"
-	#include "ui/games/gameui.hpp"
+	#include "../ui/games/gameui.hpp"
 
 	class Human : public Player {
 		private:

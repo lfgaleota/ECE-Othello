@@ -8,7 +8,7 @@
 	#include "pun.hpp"
 	#include "move.hpp"
 	#include "valid_move.hpp"
-	#include "exceptions/exceptions.hpp"
+	#include "../exceptions/exceptions.hpp"
 
 	class Board {
 		public:

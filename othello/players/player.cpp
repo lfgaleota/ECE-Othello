@@ -1,4 +1,4 @@
-#include "inc/player.hpp"
+#include "../../inc/players/player.hpp"
 
 Player::Player( std::string name, Pun::Colors color ) : m_name( name ), m_color( color ) {}
 

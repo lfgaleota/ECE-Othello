@@ -1,4 +1,4 @@
-#include "inc/move.hpp"
+#include "../../inc/board/move.hpp"
 
 Move::Move( unsigned char x, unsigned char y ) : x ( x ), y( y ), color( Pun::blank ) {}
 
