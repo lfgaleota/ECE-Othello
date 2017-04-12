@@ -34,40 +34,34 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="CMakeLists.txt" />
-		<Unit filename="artificial.cpp" />
-		<Unit filename="artificial.h" />
-		<Unit filename="board.cpp" />
-		<Unit filename="board.h" />
 		<Unit filename="cli/cli.cpp" />
 		<Unit filename="cli/cli.hpp" />
 		<Unit filename="cli/menu/menu.cpp" />
 		<Unit filename="cli/menu/menu.hpp" />
-		<Unit filename="direction_vector.cpp" />
-		<Unit filename="game.cpp" />
-		<Unit filename="game.h" />
-		<Unit filename="human.cpp" />
-		<Unit filename="human.h" />
-		<Unit filename="inc/artificial.hpp" />
-		<Unit filename="inc/board.hpp" />
-		<Unit filename="inc/direction_vector.hpp" />
+		<Unit filename="inc/board/direction_vector.hpp" />
+		<Unit filename="inc/board/gameboard.hpp" />
+		<Unit filename="inc/board/move.hpp" />
+		<Unit filename="inc/board/pun.hpp" />
+		<Unit filename="inc/board/valid_move.hpp" />
 		<Unit filename="inc/exceptions/exceptions.hpp" />
 		<Unit filename="inc/exceptions/exit_game" />
 		<Unit filename="inc/exceptions/invalid_move" />
 		<Unit filename="inc/game.hpp" />
-		<Unit filename="inc/human.hpp" />
-		<Unit filename="inc/move.hpp" />
-		<Unit filename="inc/player.hpp" />
-		<Unit filename="inc/pun.hpp" />
+		<Unit filename="inc/players/human.hpp" />
+		<Unit filename="inc/players/player.hpp" />
+		<Unit filename="inc/players/simpleia.hpp" />
 		<Unit filename="inc/ui/games/gamecliui.hpp" />
 		<Unit filename="inc/ui/games/gameui.hpp" />
-		<Unit filename="inc/valid_move.hpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="move.cpp" />
-		<Unit filename="othello.h" />
-		<Unit filename="player.cpp" />
-		<Unit filename="player.h" />
+		<Unit filename="othello/board/direction_vector.cpp" />
+		<Unit filename="othello/board/gameboard.cpp" />
+		<Unit filename="othello/board/move.cpp" />
+		<Unit filename="othello/board/valid_move.cpp" />
+		<Unit filename="othello/game.cpp" />
+		<Unit filename="othello/players/human.cpp" />
+		<Unit filename="othello/players/player.cpp" />
+		<Unit filename="othello/players/simpleia.cpp" />
 		<Unit filename="ui/games/gamecliui.cpp" />
-		<Unit filename="valid_move.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
