@@ -5,15 +5,18 @@
 #include <string>
 #include <vector>
 #include "player.hpp"
+#include "ui/games/gameui.hpp"
 
 class Human : public Player {
 	private:
-
-		//dunno yet
+		Othello::UI::Game* m_ui;
 
 	public:
+		Human( std::string name, Pun::Colors color );
 
-		std::pair<int, int> ask_for_move();
+		Move getMove();
+
+		void setUI( Othello::UI::Game *m_ui );
 };
 
 
