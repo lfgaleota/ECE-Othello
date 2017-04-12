@@ -15,6 +15,21 @@ set(SOURCE_FILES
         game.cpp
         human.cpp
         main.cpp
-        player.cpp move.cpp inc/move.hpp valid_move.cpp inc/valid_move.hpp direction_vector.cpp inc/direction_vector.hpp)
+        player.cpp move.cpp
+        inc/move.hpp
+        valid_move.cpp
+        inc/valid_move.hpp
+        direction_vector.cpp
+        inc/direction_vector.hpp
+        inc/ui/games/gameui.hpp
+        inc/ui/games/gamecliui.hpp
+        ui/games/gamecliui.cpp
+        cli/cli.hpp
+        cli/cli.cpp
+)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
+
+if(UNIX)
+    target_link_libraries(ECE_Othello ncurses)
+endif(UNIX)
