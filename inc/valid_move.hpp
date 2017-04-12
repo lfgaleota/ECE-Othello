@@ -9,8 +9,11 @@ struct ValidMove : public Move {
 	std::list<DirectionVector> directions;
 
 	ValidMove( unsigned char x, unsigned char y );
-	inline void addDirection( DirectionVector dvec );
-	inline void addDirection( char x, char y );
+	ValidMove( const Move& move );
+
+	inline void addDirection( DirectionVector dvec ) {
+		directions.push_back( dvec );
+	}
 };
 
 #endif //ECE_OTHELLO_VALIDMOVE_HPP
