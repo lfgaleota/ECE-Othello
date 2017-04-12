@@ -3,18 +3,25 @@
 
 	#include "pun.hpp"
 
-	struct Move {
-		const unsigned char x;
-		const unsigned char y;
-		const Pun::Colors color;
 
-		Move( unsigned char x, unsigned char y );
-		Move( unsigned char x, unsigned char y, Pun::Colors color );
-		Move( const Move& move );
-	};
+	namespace Othello {
+		namespace Board {
+			struct Move {
+				const unsigned char x;
+				const unsigned char y;
+				const Pun::Colors color;
 
-	bool operator==( const Move& lhs, const Move& rhs );
+				Move( unsigned char x, unsigned char y );
 
-	bool operator<( const Move& lhs, const Move& rhs );
+				Move( unsigned char x, unsigned char y, Pun::Colors color );
+
+				Move( const Move &move );
+			};
+		}
+	}
+
+	bool operator==( const Othello::Board::Move& lhs, const Othello::Board::Move& rhs );
+
+	bool operator<( const Othello::Board::Move& lhs, const Othello::Board::Move& rhs );
 
 #endif

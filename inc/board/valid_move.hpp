@@ -5,15 +5,20 @@
 	#include "move.hpp"
 	#include "direction_vector.hpp"
 
-	struct ValidMove : public Move {
-		std::list<DirectionVector> directions;
+	namespace Othello {
+		namespace Board {
+			struct ValidMove : public Move {
+				std::list<DirectionVector> directions;
 
-		ValidMove( unsigned char x, unsigned char y );
-		ValidMove( const Move& move );
+				ValidMove( unsigned char x, unsigned char y );
 
-		inline void addDirection( DirectionVector dvec ) {
-			directions.push_back( dvec );
+				ValidMove( const Move &move );
+
+				inline void addDirection( DirectionVector dvec ) {
+					directions.push_back( dvec );
+				}
+			};
 		}
-	};
+	}
 
 #endif

@@ -10,45 +10,60 @@
 	#include "valid_move.hpp"
 	#include "../exceptions/exceptions.hpp"
 
-	class Board {
-		public:
-			const static unsigned char sizeEdge = 8;
-			const static unsigned char size = sizeEdge * sizeEdge;
+	namespace Othello {
+		namespace Board {
+			class GameBoard {
+				public:
+					const static unsigned char sizeEdge = 8;
+					const static unsigned char size = sizeEdge * sizeEdge;
 
-			typedef Pun::Colors (*punArray)[ Board::sizeEdge ];
+					typedef Pun::Colors (*punArray)[GameBoard::sizeEdge];
 
-		private:
-			Pun::Colors m_board[ sizeEdge ][ sizeEdge ];
-			std::list<ValidMove> m_validMoves;
-			uint64_t m_emptyNeighbors = 0;
+				private:
+					Pun::Colors m_board[sizeEdge][sizeEdge];
+					std::list<ValidMove> m_validMoves;
+					uint64_t m_emptyNeighbors = 0;
 
-			void turnOverPuns( Move position, DirectionVector dvec );
-			bool isValidDirection( Move position, DirectionVector dvec, Pun::Colors color );
+					void turnOverPuns( Move position, DirectionVector dvec );
 
-			inline void addEmptyNeighbors( Move position );
-			inline void addEmptyNeighbors( unsigned char x, unsigned char y );
-			inline uint64_t quickEmptyNeighborsGet( const unsigned char index );
-			void emptyNeighborsSet( const unsigned char x, const unsigned char y );
-			inline void quickEmptyNeighborsSet( const unsigned char x, const unsigned char y );
-			void emptyNeighborsUnset( const unsigned char x, const unsigned char y );
-			inline void quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y );
+					bool isValidDirection( Move position, DirectionVector dvec, Pun::Colors color );
 
-		public:
-			Board();
-			~Board();
+					inline void addEmptyNeighbors( Move position );
 
-			const punArray getBoard();
-			const std::list<ValidMove>& getValidMoves();
+					inline void addEmptyNeighbors( unsigned char x, unsigned char y );
 
-			void computeValidMoves( Pun::Colors color );
+					inline uint64_t quickEmptyNeighborsGet( const unsigned char index );
 
-			void play( Move move );
+					void emptyNeighborsSet( const unsigned char x, const unsigned char y );
 
-			const Pun::Colors at( const unsigned char x, const unsigned char y );
-			inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
+					inline void quickEmptyNeighborsSet( const unsigned char x, const unsigned char y );
 
-			void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
-			inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
-	};
+					void emptyNeighborsUnset( const unsigned char x, const unsigned char y );
+
+					inline void quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y );
+
+				public:
+					GameBoard();
+
+					~GameBoard();
+
+					const punArray getBoard();
+
+					const std::list<ValidMove> &getValidMoves();
+
+					void computeValidMoves( Pun::Colors color );
+
+					void play( Move move );
+
+					const Pun::Colors at( const unsigned char x, const unsigned char y );
+
+					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
+
+					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
+
+					inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
+			};
+		}
+	}
 
 #endif

@@ -8,18 +8,18 @@
 		namespace UI {
 			class Game {
 				protected:
-					const Board::punArray m_board;
-					const std::vector<Player*>& m_players;
-					const std::vector<Player*>::iterator& m_currentPlayer;
+					const Othello::Board::GameBoard::punArray m_board;
+					const std::vector<Othello::Players::Player*>& m_players;
+					const std::vector<Othello::Players::Player*>::iterator& m_currentPlayer;
 
 				public:
-					Game( const Board::punArray board, const std::vector<Player*>& players, std::vector<Player*>::iterator& currentPlayer ) : m_board( board ), m_players( players ), m_currentPlayer( currentPlayer ) {};
+					Game( const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : m_board( board ), m_players( players ), m_currentPlayer( currentPlayer ) {};
 					virtual ~Game() {};
 					virtual void showError( std::string msg ) = 0;
-					virtual Move getMove() = 0;
-					virtual void playerTurnBegin( Player& player ) = 0;
-					virtual void playerTurnEnd( Player& player ) = 0;
-					virtual void victory( Player& player ) = 0;
+					virtual Othello::Board::Move getMove() = 0;
+					virtual void playerTurnBegin( Othello::Players::Player& player ) = 0;
+					virtual void playerTurnEnd( Othello::Players::Player& player ) = 0;
+					virtual void victory( Othello::Players::Player& player ) = 0;
 			};
 		}
 	}

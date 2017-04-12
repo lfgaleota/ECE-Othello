@@ -8,18 +8,22 @@
 	#include "../board/move.hpp"
 
 
-	class Player {
-		protected:
-			std::string m_name;
-			Pun::Colors m_color;
+	namespace Othello {
+		namespace Players {
+			class Player {
+				protected:
+					std::string m_name;
+					Othello::Board::Pun::Colors m_color;
 
-		public:
-			Player( std::string name, Pun::Colors color );
+				public:
+					Player( std::string name, Othello::Board::Pun::Colors color );
 
-			const std::string &getName() const;
-			Pun::Colors getColor() const;
+					const std::string &getName() const;
+					Othello::Board::Pun::Colors getColor() const;
 
-			virtual Move getMove() = 0;
-	};
+					virtual Othello::Board::Move getMove() = 0;
+			};
+		}
+	}
 
 #endif

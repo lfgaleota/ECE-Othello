@@ -18,23 +18,23 @@
 					private:
 						Functions::CLI cli;
 						std::vector<std::string> m_displayMatrix;
-						Board& m_oboard;
+						Othello::Board::GameBoard& m_oboard;
 
 						void display();
 						void displayMatrix();
 						void displayPlayers();
 						void loadDisplayMatrix();
-						void showPiece( Pun::Colors color, unsigned int offsetX, unsigned int offsetY );
+						void showPiece( Othello::Board::Pun::Colors color, unsigned int offsetX, unsigned int offsetY );
 						void highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color );
 
 					public:
-						CLI( Board& oboard, const Board::punArray board, const std::vector<Player*>& players, std::vector<Player*>::iterator& currentPlayer );
+						CLI( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer );
 						~CLI();
 						void showError( std::string msg );
-						Move getMove();
-						void playerTurnBegin( Player& player );
-						void playerTurnEnd( Player& player );
-						void victory( Player& player );
+						Othello::Board::Move getMove();
+						void playerTurnBegin( Othello::Players::Player& player );
+						void playerTurnEnd( Othello::Players::Player& player );
+						void victory( Othello::Players::Player& player );
 				};
 			}
 		}

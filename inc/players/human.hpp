@@ -7,16 +7,20 @@
 	#include "player.hpp"
 	#include "../ui/games/gameui.hpp"
 
-	class Human : public Player {
-		private:
-			Othello::UI::Game* m_ui;
+	namespace Othello {
+		namespace Players {
+			class Human : public Player {
+				private:
+					Othello::UI::Game* m_ui;
 
-		public:
-			Human( std::string name, Pun::Colors color );
+				public:
+					Human( std::string name, Othello::Board::Pun::Colors color );
 
-			Move getMove();
+					Othello::Board::Move getMove();
 
-			void setUI( Othello::UI::Game *m_ui );
-	};
+					void setUI( Othello::UI::Game *m_ui );
+			};
+		}
+	}
 
 #endif

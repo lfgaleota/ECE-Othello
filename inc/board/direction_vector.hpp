@@ -3,15 +3,19 @@
 
 	#include <list>
 
-	struct DirectionVector {
-		const char x;
-		const char y;
+	namespace Othello {
+		namespace Board {
+			struct DirectionVector {
+				const char x;
+				const char y;
 
-		DirectionVector( char direction_x, char direction_y );
+				DirectionVector( char direction_x, char direction_y );
 
-		const static std::list<DirectionVector> directions;
-	};
+				const static std::list<DirectionVector> directions;
+			};
+		}
+	}
 
-	bool const operator==( DirectionVector& lhs, DirectionVector& rhs );
+	bool const operator==( Othello::Board::DirectionVector& lhs, Othello::Board::DirectionVector& rhs );
 
 #endif

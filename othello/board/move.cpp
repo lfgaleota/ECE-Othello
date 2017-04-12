@@ -1,5 +1,7 @@
 #include "../../inc/board/move.hpp"
 
+using namespace Othello::Board;
+
 Move::Move( unsigned char x, unsigned char y ) : x ( x ), y( y ), color( Pun::blank ) {}
 
 Move::Move( unsigned char x, unsigned char y, Pun::Colors color ) : x ( x ), y( y ), color( color ) {}

@@ -1,11 +1,11 @@
 #include "../../inc/board/board.hpp"
 
 using namespace std;
-using namespace Othello;
+using namespace Othello::Board;
 
-Board::Board() { // : m_board( 8, vector<Pun>( 8 ) )
-	for( unsigned char i = 0; i < Board::sizeEdge; i++ ) {
-		for( unsigned char j = 0; j < Board::sizeEdge; j++ ) {
+GameBoard::GameBoard() { // : m_board( 8, vector<Pun>( 8 ) )
+	for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
+		for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) {
 			if(( i == 3 && j == 3 ) || ( i == 4 && j == 4 )) {
 				quickSet( i, j, Pun::black );
 			} else {
@@ -35,74 +35,74 @@ Board::Board() { // : m_board( 8, vector<Pun>( 8 ) )
 }
 
 
-Board::~Board() {
+GameBoard::~GameBoard() {
 
 }
 
-const Board::punArray Board::getBoard() {
-	return (const Board::punArray) m_board;
+const GameBoard::punArray GameBoard::getBoard() {
+	return (const GameBoard::punArray) m_board;
 }
 
-const std::list<ValidMove> &Board::getValidMoves() {
+const std::list<ValidMove> &GameBoard::getValidMoves() {
 	return m_validMoves;
 }
 
-const Pun::Colors Board::at( const unsigned char x, const unsigned char y ) {
-	if( x < Board::sizeEdge && y < Board::sizeEdge )
+const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) {
+	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
 		return quickAt( x, y );
 	else
 		throw std::out_of_range( "Accessing outside of m_board range." );
 }
 
-const Pun::Colors Board::quickAt( const unsigned char x, const unsigned char y ) {
+const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char y ) {
 	return m_board[ x ][ y ];
 }
 
-void Board::set( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
-	if( x < Board::sizeEdge && y < Board::sizeEdge )
+void GameBoard::set( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
+	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
 		return quickSet( x, y, color );
 	else
 		throw std::out_of_range( "Accessing outside of m_board range." );
 }
 
-void Board::quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
+void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
 	m_board[ x ][ y ] = color;
 }
 
-uint64_t Board::quickEmptyNeighborsGet( const unsigned char index ) {
+uint64_t GameBoard::quickEmptyNeighborsGet( const unsigned char index ) {
 	return m_emptyNeighbors & ( ( (uint64_t) 1 ) << index );
 }
 
-void Board::emptyNeighborsSet( const unsigned char x, const unsigned char y ) {
-	if( x < Board::sizeEdge && y < Board::sizeEdge ) {
+void GameBoard::emptyNeighborsSet( const unsigned char x, const unsigned char y ) {
+	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
 		quickEmptyNeighborsSet( x, y );
 	} else {
 		throw std::out_of_range( "Accessing outside of empty neighbors range." );
 	}
 }
 
-void Board::quickEmptyNeighborsSet( const unsigned char x, const unsigned char y ) {
+void GameBoard::quickEmptyNeighborsSet( const unsigned char x, const unsigned char y ) {
 	m_emptyNeighbors |= ( ( (uint64_t) 1 ) << ( x * 8 + y ) );
 }
 
-void Board::emptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
-	if( x < Board::sizeEdge && y < Board::sizeEdge ) {
+void GameBoard::emptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
+	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
 		quickEmptyNeighborsUnset( x, y );
 	} else {
 		throw std::out_of_range( "Accessing outside of empty neighbors range." );
 	}
 }
 
-void Board::quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
+void GameBoard::quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
 	m_emptyNeighbors &= ~( ( (uint64_t) 1 ) << ( x * 8 + y ) );
 }
 
-void Board::computeValidMoves( Pun::Colors color ) {
+void GameBoard::computeValidMoves( Pun::Colors color ) {
 	uint64_t value;
 	m_validMoves.clear();
 
 	// On parcours la liste des voisins vides, qui contient la liste de tous les emplacements vides voisins d'un pion
-	for( unsigned char i = 0; i < Board::size; i++ ) {
+	for( unsigned char i = 0; i < GameBoard::size; i++ ) {
 		value = quickEmptyNeighborsGet( i );
 		if( value ) {
 			Move emptyNeighbor( (unsigned char) ( i / 8 ), (unsigned char) ( i % 8 ), color );
@@ -120,7 +120,7 @@ void Board::computeValidMoves( Pun::Colors color ) {
 	}
 }
 
-bool Board::isValidDirection( Move position, DirectionVector dvec, Pun::Colors color ) {
+bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colors color ) {
 	try {
 		unsigned char x = position.x, y = position.y;
 		Pun::Colors opposite = Pun::opposite( color );
@@ -142,7 +142,7 @@ bool Board::isValidDirection( Move position, DirectionVector dvec, Pun::Colors c
 	return false;
 }
 
-void Board::play( Move move ) {
+void GameBoard::play( Move move ) {
 	for( ValidMove &validMove: m_validMoves ) {
 		if( move == validMove ) {
 			// On insert la nouvelle pièce
@@ -162,7 +162,7 @@ void Board::play( Move move ) {
 	throw exceptions::invalid_move( "Not a valid move." );
 }
 
-void Board::turnOverPuns( Move position, DirectionVector dvec ) {
+void GameBoard::turnOverPuns( Move position, DirectionVector dvec ) {
 	try {
 		for( unsigned char x = position.x + dvec.x, y = position.y + dvec.y; at( x, y ) != position.color; x += dvec.x, y += dvec.y )
 			quickSet( x, y, position.color );
@@ -171,11 +171,11 @@ void Board::turnOverPuns( Move position, DirectionVector dvec ) {
 	}
 }
 
-void Board::addEmptyNeighbors( Move position ) {
+void GameBoard::addEmptyNeighbors( Move position ) {
 	addEmptyNeighbors( position.x, position.y );
 }
 
-void Board::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
+void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
 	for( unsigned char x = (unsigned char) ( posx - 1 ); x <= posx + 1; x++ ) {
 		for( unsigned char y = (unsigned char) ( posy - 1 ); y <= posy + 1; y++ ) {
 			try {

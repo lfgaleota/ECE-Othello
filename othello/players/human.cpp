@@ -1,6 +1,10 @@
 #include "../../inc/players/human.hpp"
 
-Human::Human( std::string name, Pun::Colors color ) : Player( name, color ) {}
+using namespace std;
+using namespace Othello::Board;
+using namespace Othello::Players;
+
+Human::Human( string name, Pun::Colors color ) : Player( name, color ) {}
 
 Move Human::getMove() {
 	return m_ui->getMove();

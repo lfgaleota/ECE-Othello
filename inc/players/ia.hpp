@@ -6,14 +6,18 @@
 	#include <vector>
 	#include "player.hpp"
 
-	class IA : public Player {
-		private:
+	namespace Othello {
+		namespace Players {
+			class IA : public Player {
+				private:
 
-			//dunno yet
+					//dunno yet
 
-		public:
+				public:
 
-			std::pair<int, int> ask_for_move();
-	};
+					std::pair<int, int> ask_for_move();
+			};
+		}
+	}
 
 #endif

@@ -2,6 +2,8 @@
 
 using namespace std;
 using namespace Othello;
+using namespace Othello::Board;
+using namespace Othello::Players;
 
 void Game::playerTurn() { //unfolding of a turn
 	if( m_currentPlayer == m_players.end() )
