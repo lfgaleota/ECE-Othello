@@ -80,6 +80,7 @@ dkms.conf
 .idea
 *.iws
 *.iml
+cmake-build-*/
 
 ## Plugin-specific files:
 
