@@ -3,7 +3,12 @@
 using namespace std;
 using namespace Othello::Board;
 
-GameBoard::GameBoard() { // : m_board( 8, vector<Pun>( 8 ) )
+/**
+ * @bried Constructeur de plateau de jeu
+ * @details Initialise un nouveau plateau de jeu, en concordance avec les règles du jeu. Initialise également les différents éléments spécifiques qui ne correspondent pas au jeu en lui-même, mais qui permettent de faire fonctionner l'implémentation, comme la liste des cases vides voisines à des pions.
+ */
+GameBoard::GameBoard() {
+	// On initialise la matrice de jeu conformément au règles
 	for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
 		for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) {
 			if(( i == 3 && j == 3 ) || ( i == 4 && j == 4 )) {
@@ -18,8 +23,7 @@ GameBoard::GameBoard() { // : m_board( 8, vector<Pun>( 8 ) )
 		}
 	}
 
-	//toutes les cases ayant un voisin à l'initialisation
-
+	// On indique toutes les cases voisines à des pions qui sont actuellement vides, en accord avec le plateau initalisé
 	quickEmptyNeighborsSet( 2, 2 );
 	quickEmptyNeighborsSet( 2, 3 );
 	quickEmptyNeighborsSet( 2, 4 );
@@ -34,6 +38,11 @@ GameBoard::GameBoard() { // : m_board( 8, vector<Pun>( 8 ) )
 	quickEmptyNeighborsSet( 3, 5 );
 }
 
+/**
+ * @brief Constructeur par copie de plateau de jeu
+ * @details Clone un plateau de jeu.
+ * @param[in] ref Plateau de référence à cloner
+ */
 GameBoard::GameBoard( GameBoard& ref ) {
 	m_emptyNeighbors = ref.m_emptyNeighbors;
 	std::memcpy( m_board, ref.m_board, sizeof( Pun ) * GameBoard::size );
@@ -43,14 +52,29 @@ GameBoard::~GameBoard() {
 
 }
 
+/**
+ * @brief Accesseur de plateau de jeu
+ * @return Pointeur constant vers le plateau de jeu
+ */
 const GameBoard::punArray GameBoard::getBoard() {
 	return (const GameBoard::punArray) m_board;
 }
 
+/**
+ * @brief Accesseur de coups valides
+ * @return Référence constante vers la liste de coups valides
+ */
 const std::list<ValidMove> &GameBoard::getValidMoves() {
 	return m_validMoves;
 }
 
+/**
+ * @brief Accesseur de plateau
+ * @details Retourne l'élément du plateau aux coordonnées indiquées, avec vérifications des entrées.
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ * @return Élément aux coordonnées indiquées
+ */
 const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) {
 	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
 		return quickAt( x, y );
@@ -58,10 +82,24 @@ const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) 
 		throw std::out_of_range( "Accessing outside of m_board range." );
 }
 
+/**
+ * @brief Accesseur de plateau rapide
+ * @details Retourne l'élément du plateau aux coordonnées indiquées, sans vérifications des entrées.
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ * @return Élément aux coordonnées indiquées
+ */
 const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char y ) {
 	return m_board[ x ][ y ];
 }
 
+/**
+ * @brief Définisseur de plateau
+ * @details Inscrit l'élément fourni sur le plateau aux coordonnées indiquées, avec vérifications des entrées.
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ * @param color Élément à placer
+ */
 void GameBoard::set( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
 	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
 		return quickSet( x, y, color );
@@ -69,40 +107,54 @@ void GameBoard::set( const unsigned char x, const unsigned char y, const Pun::Co
 		throw std::out_of_range( "Accessing outside of m_board range." );
 }
 
+/**
+ * @brief Définisseur de plateau rapide
+ * @details Inscrit l'élément fourni sur le plateau aux coordonnées indiquées, sans vérifications des entrées.
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ * @param color Élément à placer
+ */
 void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
 	m_board[ x ][ y ] = color;
 }
 
-uint64_t GameBoard::quickEmptyNeighborsGet( const unsigned char index ) {
-	return m_emptyNeighbors & ( ( (uint64_t) 1 ) << index );
+/**
+ * @brief Accesseur de voisins vides rapide
+ * @details Retourne si la case à l'index indiquée est un voisin vide
+ * @param[in] index Index de la case désirée ( x * 8 + y )
+ * @return État de la case
+ */
+bool GameBoard::quickEmptyNeighborsGet( const unsigned char index ) {
+	return ( ( m_emptyNeighbors & ( ( (uint64_t) 1 ) << index ) ) != 0 );
 }
 
-void GameBoard::emptyNeighborsSet( const unsigned char x, const unsigned char y ) {
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
-		quickEmptyNeighborsSet( x, y );
-	} else {
-		throw std::out_of_range( "Accessing outside of empty neighbors range." );
-	}
-}
-
+/**
+ * @brief Définisseur de voisins vides rapide
+ * @details Définie la case indiquée comme voisin vide
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ */
 void GameBoard::quickEmptyNeighborsSet( const unsigned char x, const unsigned char y ) {
 	m_emptyNeighbors |= ( ( (uint64_t) 1 ) << ( x * 8 + y ) );
 }
 
-void GameBoard::emptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
-		quickEmptyNeighborsUnset( x, y );
-	} else {
-		throw std::out_of_range( "Accessing outside of empty neighbors range." );
-	}
-}
-
+/**
+ * @brief Réinitialisateur de voisins vides rapide
+ * @details Définie la case indiquée comme n'étant pas un voisin vide
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ */
 void GameBoard::quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y ) {
 	m_emptyNeighbors &= ~( ( (uint64_t) 1 ) << ( x * 8 + y ) );
 }
 
+/**
+ * @brief Calculateur de coups valides
+ * @details Calcule, pour une couleur de pion donnée, les coups qui peuvent être joués, en accord avec les règles du jeu, en l'état actuel du plateau.
+ * @param[in] color Couleur de pion qui doit jouer
+ */
 void GameBoard::computeValidMoves( Pun::Colors color ) {
-	uint64_t value;
+	bool value;
 	m_validMoves.clear();
 
 	// On parcours la liste des voisins vides, qui contient la liste de tous les emplacements vides voisins d'un pion
@@ -124,15 +176,27 @@ void GameBoard::computeValidMoves( Pun::Colors color ) {
 	}
 }
 
+/**
+ * @brief Calculateur de validité de direction
+ * @details Indique si, pour une case de coordonnées données, pour une couleur de pion donnée, si une direction donnée comporte des pions adverses qui peuvent être retournée si le pion de couleur donnée est joué aux coordonnées données.
+ * @param[in] position Position du pion
+ * @param[in] dvec Direction à considérer
+ * @param[in] color Couleur de pion à jouer
+ * @return Validité de la direction
+ */
 bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colors color ) {
 	try {
 		unsigned char x = position.x, y = position.y;
 		Pun::Colors opposite = Pun::opposite( color );
+		// On regarde la case à la position + 1 (après déplacement)
 		x += dvec.x;
 		y += dvec.y;
 		Pun::Colors next = at( x, y );
+		// Si elle n'est pas de la couleur opposée, on s'arrête et on la déclare comme invalide directement (on a soit un pion "ami", soit un trou).
 		if( next != opposite )
 			return false;
+		// Sinon, on continue l'exploration dans le sens de dvec, jusqu'à tomber sur un pion de la couleur opposée.
+		// La vérification du .at() nous extrait d'ici si on arrive en dehors du plateau sans tomber sur un pion correct.
 		do {
 			x += dvec.x;
 			y += dvec.y;
@@ -146,8 +210,15 @@ bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colo
 	return false;
 }
 
+/**
+ * @brief Actuateur de coup
+ * @details Effectue le coup désiré, en vérifiant qu'il est valide.
+ * @param[in] move Coup à jouer
+ */
 void GameBoard::play( Move move ) {
+	// On parcours la liste des coups valides
 	for( ValidMove &validMove: m_validMoves ) {
+		// Si le coup désiré correspond à un coup valide
 		if( move == validMove ) {
 			// On insert la nouvelle pièce
 			quickSet( move.x, move.y, move.color );
@@ -166,8 +237,15 @@ void GameBoard::play( Move move ) {
 	throw exceptions::invalid_move( "Not a valid move." );
 }
 
+/**
+ * @brief Actuateur de retournement de pièces
+ * @details Retourne tous les pions adverses à partir dune position donnée, dans uen direction donnée, jusqu'à rencontrer un pion ami.
+ * @param[in] position Position de démarrage
+ * @param[in] dvec Direction de retournement
+ */
 void GameBoard::turnOverPuns( Move position, DirectionVector dvec ) {
 	try {
+		// On part de la position + 1 (après uin déplacement dans le sens de dvec), tant qu'on ne retombe pas sur la couleur initiale/ami, on "bascule" la pièce et on passe à la position suivante.
 		for( unsigned char x = position.x + dvec.x, y = position.y + dvec.y; at( x, y ) != position.color; x += dvec.x, y += dvec.y )
 			quickSet( x, y, position.color );
 	} catch( std::out_of_range e ) {
@@ -175,14 +253,27 @@ void GameBoard::turnOverPuns( Move position, DirectionVector dvec ) {
 	}
 }
 
+/**
+ * @brief Ajouteur de voisins vides
+ * @details Ajoute les voisins vides d'une case donnée.
+ * @param[in] position Position de la case
+ */
 void GameBoard::addEmptyNeighbors( Move position ) {
 	addEmptyNeighbors( position.x, position.y );
 }
 
+/**
+ * @brief Ajouteur de voisins vides
+ * @details Ajoute les voisins vides d'une case donnée.
+ * @param[in] posx Coordonnée en abscisse de l'emplacement
+ * @param[in] posy Coordonnée en ordonnée de l'emplacement
+ */
 void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
+	// On parcours chaque case annexe
 	for( unsigned char x = (unsigned char) ( posx - 1 ); x <= posx + 1; x++ ) {
 		for( unsigned char y = (unsigned char) ( posy - 1 ); y <= posy + 1; y++ ) {
 			try {
+				// Si elle est vide, on l'ajoute aux voisins vides
 				if( at( x, y ) == Pun::blank )
 					quickEmptyNeighborsSet( (unsigned char) x, (unsigned char) y );
 			} catch( std::out_of_range e ) {
