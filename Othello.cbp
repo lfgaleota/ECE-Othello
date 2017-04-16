@@ -49,7 +49,7 @@
 		<Unit filename="othello/inc/game.hpp" />
 		<Unit filename="othello/inc/players/human.hpp" />
 		<Unit filename="othello/inc/players/player.hpp" />
-		<Unit filename="othello/inc/players/simpleia.hpp" />
+		<Unit filename="othello/inc/players/simpleai.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
 		<Unit filename="main.cpp" />
@@ -60,7 +60,7 @@
 		<Unit filename="othello/game.cpp" />
 		<Unit filename="othello/players/human.cpp" />
 		<Unit filename="othello/players/player.cpp" />
-		<Unit filename="othello/players/simpleia.cpp" />
+		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Extensions>
 			<code_completion />

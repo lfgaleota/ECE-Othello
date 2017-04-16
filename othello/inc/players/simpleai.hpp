@@ -8,9 +8,9 @@
 
 	namespace Othello {
 		namespace Players {
-			class SimpleIA : public Player {
+			class SimpleAI : public Player {
 				public:
-					SimpleIA( std::string name, Othello::Board::Pun::Colors color );
+					SimpleAI( std::string name, Othello::Board::Pun::Colors color );
 
 					Othello::Board::Move getMove();
 			};

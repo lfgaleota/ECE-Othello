@@ -4,13 +4,13 @@ project(ECE_Othello)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-    othello/inc/players/simpleia.hpp
+    othello/inc/players/simpleai.hpp
     othello/inc/board/gameboard.hpp
     othello/inc/game.hpp
     othello/inc/players/human.hpp
     othello/inc/board/pun.hpp
     othello/inc/players/player.hpp
-        othello/players/simpleia.cpp
+    othello/players/simpleai.cpp
         othello/board/gameboard.cpp
         othello/game.cpp
         othello/players/human.cpp
