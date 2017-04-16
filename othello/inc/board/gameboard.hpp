@@ -13,14 +13,22 @@
 
 	namespace Othello {
 		namespace Board {
+			namespace Tree {
+				class ValidMoveNode;
+			}
+
 			class GameBoard {
+				friend class Othello::Board::Tree::ValidMoveNode;
+
 				public:
 					const static unsigned char sizeEdge = 8;
 					const static unsigned char size = sizeEdge * sizeEdge;
+					const static size_t sizeMemory = (size_t) ( GameBoard::size * 4 );
 
 					typedef Pun::Colors (*punArray)[GameBoard::sizeEdge];
 
 				private:
+
 					Pun::Colors m_board[sizeEdge][sizeEdge];
 					std::list<ValidMove> m_validMoves;
 					uint64_t m_emptyNeighbors = 0;
@@ -42,6 +50,8 @@
 					inline void quickEmptyNeighborsSet( const unsigned char x, const unsigned char y );
 
 					inline void quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y );
+
+					void quickPlay( ValidMove validMove );
 
 				public:
 					GameBoard();

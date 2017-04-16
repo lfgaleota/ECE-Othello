@@ -11,27 +11,34 @@ set(SOURCE_FILES
     othello/inc/board/pun.hpp
     othello/inc/players/player.hpp
     othello/players/simpleai.cpp
-        othello/board/gameboard.cpp
-        othello/game.cpp
-        othello/players/human.cpp
-        main.cpp
-        othello/players/player.cpp othello/board/move.cpp
+    othello/board/gameboard.cpp
+    othello/game.cpp
+    othello/players/human.cpp
+    main.cpp
+    othello/players/player.cpp othello/board/move.cpp
     othello/inc/board/move.hpp
-        othello/board/valid_move.cpp
+    othello/board/valid_move.cpp
     othello/inc/board/valid_move.hpp
-        othello/board/direction_vector.cpp
+    othello/board/direction_vector.cpp
     othello/inc/board/direction_vector.hpp
     othello/inc/ui/games/gameui.hpp
     othello/inc/ui/games/gamecliui.hpp
     othello/ui/games/gamecliui.cpp
-        cli/cli.hpp
-        cli/cli.cpp
-        cli/menu/menu.hpp
-        cli/menu/menu.cpp
-)
+    cli/cli.hpp
+    cli/cli.cpp
+    cli/menu/menu.hpp
+    cli/menu/menu.cpp
+    othello/board/tree/validmovenode.cpp othello/inc/board/tree/validmovenode.hpp)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
 
 if(UNIX)
     target_link_libraries(ECE_Othello ncurses)
 endif(UNIX)
+
+if(CMAKE_BUILD_TYPE MATCHES "Release")
+	if(CMAKE_COMPILER_IS_GNUCXX)
+		set(CMAKE_CXX_FLAGS "-O3")
+		set(CMAKE_EXE_LINKER_FLAGS "-s")
+	endif(CMAKE_COMPILER_IS_GNUCXX)
+endif(CMAKE_BUILD_TYPE MATCHES "Release")

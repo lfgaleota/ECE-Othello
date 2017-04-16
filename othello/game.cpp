@@ -1,4 +1,5 @@
 #include "inc/game.hpp"
+#include "inc/board/tree/validmovenode.hpp"
 
 using namespace std;
 using namespace Othello;
@@ -11,7 +12,9 @@ void Game::playerTurn() { //unfolding of a turn
 
 	m_ui->playerTurnBegin( **m_currentPlayer );
 
-	m_board.computeValidMoves(( *m_currentPlayer )->getColor());
+	m_board.computeValidMoves( ( *m_currentPlayer )->getColor() );
+	//Tree::ValidMoveNode graph( &m_board );
+	//graph.compute( ( *m_currentPlayer )->getColor(), 5 );
 
 	for( bool loop = true; loop; ) {
 		loop = false;

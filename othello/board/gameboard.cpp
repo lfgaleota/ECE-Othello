@@ -45,7 +45,7 @@ GameBoard::GameBoard() {
  */
 GameBoard::GameBoard( GameBoard& ref ) {
 	m_emptyNeighbors = ref.m_emptyNeighbors;
-	std::memcpy( m_board, ref.m_board, sizeof( Pun ) * GameBoard::size );
+	std::memcpy( m_board, ref.m_board, GameBoard::sizeMemory );
 }
 
 GameBoard::~GameBoard() {
@@ -246,21 +246,31 @@ void GameBoard::play( Move move ) {
 	for( ValidMove &validMove: m_validMoves ) {
 		// Si le coup désiré correspond à un coup valide
 		if( move == validMove ) {
-			// On insert la nouvelle pièce
-			quickSet( move.x, move.y, move.color );
-			// On retourne toutes les pièces dans les directions concernées
-			for( DirectionVector& direction : validMove.directions ) {
-				turnOverPuns( move, direction );
-			}
-			// On supprime la position actuelle des emplacements vides et on rajoute ses voisins vides
-			quickEmptyNeighborsUnset( move.x, move.y );
-			addEmptyNeighbors( move );
+			// On le joue
+			quickPlay( validMove );
 			return;
 		}
 	}
 
 	// Mauvais coup
 	throw exceptions::invalid_move( "Not a valid move." );
+}
+
+/**
+ * @brief Actuateur de coup rapide
+ * @details Effectue le coup désiré, sans vérification qu'il soit valide.
+ * @param[in] validMove Coup à jouer
+ */
+void GameBoard::quickPlay( ValidMove validMove ) {
+	// On insert la nouvelle pièce
+	quickSet( validMove.x, validMove.y, validMove.color );
+	// On retourne toutes les pièces dans les directions concernées
+	for( DirectionVector& direction : validMove.directions ) {
+		turnOverPuns( validMove, direction );
+	}
+	// On supprime la position actuelle des emplacements vides et on rajoute ses voisins vides
+	quickEmptyNeighborsUnset( validMove.x, validMove.y );
+	addEmptyNeighbors( validMove );
 }
 
 /**
