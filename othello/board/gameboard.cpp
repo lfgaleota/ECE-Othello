@@ -118,6 +118,31 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
 	m_board[ x ][ y ] = color;
 }
 
+/*
+ * Explications sur la variable emptyNeighbors:
+ *
+ * Cette variable stocke les cases qui sont à côté d'une case sur lequel un pion se trouve, mais quis sont elles-mêmes vides.
+ * Cette liste nous permet de ne pas reparcourir le tableau en entier/éviter de calculer pour chaque case si elle est vide et adjacente à un pion, pour accélérer les calculs.
+ *
+ * Cette liste est stockée dans un entier non-signé de 64bit. Le plateau comporte 8*8=64 cases, chaque bit de cet entier correspond à une case du plateau.
+ * -> 0 ce n'est pas un "voisin vide"
+ * -> 1 c'est un voisin "vide"
+ *
+ * On sépare cet entier en 8 sections de 8 bits, chaque section de 8 bits correspond à une coordonnées en x (0->7) et chaque bit de chaque section à une coordonnée en y (0->7).
+ * Ainsi, est assigné à chaque chaque couple (x,y) un même bit unique de l'entier.
+ * L'index se calcule à partir des coordonnées x et y par ( x * 8 + y ).
+ *
+ * Cette bizarrerie s'explique par les raisons suivantes:
+ * - Je ne voulais pas memêbetr à faire une fonction de comparaison qui fonctionne pour un couple (x,y) afin d'utiliser un set
+ * - Je ne voulais pas utiliser un set tout court, car on n'a pas besoin du trie, juste de l'unicité, et le set est beaucoup trop lourd pour juste cette tâche.
+ * - Sur l'entier, il est simple d'assigner à chaque couple (x,y) un bit unique -> pas de duplication, on peut écrire et réécrire sans se soucier du reste
+ * - L'entier est simple à accéder, copier et maintenir en mémoire, surtout sur un processeur 64bit:
+ * -> l'entier tient sur un seul registre de 64 bits
+ * -> pas besoin de reconsulter la mémoire pour accéder aux autres cases
+ * -> la copie se fait en un nombre minimale de cylces horloges
+ * -> lors dun traitement sur plusieurs cases, il y a plus de probabilités que cet entier reste dans le cache du processeur pour une utilisation immédiate ou ultérieure
+ */
+
 /**
  * @brief Accesseur de voisins vides rapide
  * @details Retourne si la case à l'index indiquée est un voisin vide
