@@ -12,7 +12,7 @@
 
 		#define WIN
 
-		#include "../winhack.h"
+		#include <windows.h>
 		#include <conio.h>
 
 		#define SLEEP(ms) Sleep(ms)

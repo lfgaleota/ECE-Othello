@@ -1,4 +1,4 @@
-#include "../../inc/players/simpleia.hpp"
+#include "../inc/players/simpleia.hpp"
 
 using namespace std;
 using namespace Othello::Board;

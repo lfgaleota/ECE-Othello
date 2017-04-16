@@ -1,7 +1,7 @@
-#include "inc/board/pun.hpp"
-#include "inc/board/gameboard.hpp"
-#include "inc/game.hpp"
-#include "inc/players/human.hpp"
+#include "othello/inc/board/pun.hpp"
+#include "othello/inc/board/gameboard.hpp"
+#include "othello/inc/game.hpp"
+#include "othello/inc/players/human.hpp"
 
 //ENORME idée, si on a le temps on fait un undo, on annule le coup qui vient d'être joué et on propose de le rejouer !
 

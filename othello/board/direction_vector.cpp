@@ -1,4 +1,4 @@
-#include "../../inc/board/direction_vector.hpp"
+#include "../inc/board/direction_vector.hpp"
 
 using namespace Othello::Board;
 

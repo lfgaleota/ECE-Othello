@@ -1,4 +1,4 @@
-#include "../../inc/board/valid_move.hpp"
+#include "../inc/board/valid_move.hpp"
 
 using namespace Othello::Board;
 

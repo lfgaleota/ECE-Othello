@@ -1,4 +1,4 @@
-#include "../../inc/board/gameboard.hpp"
+#include "../inc/board/gameboard.hpp"
 
 using namespace std;
 using namespace Othello::Board;

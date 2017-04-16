@@ -9,8 +9,8 @@
 	#include "../../board/gameboard.hpp"
 	#include "../../players/player.hpp"
 	#include "gameui.hpp"
-	#include "../../../cli/cli.hpp"
-	#include "../../../cli/menu/menu.hpp"
+	#include "../../../../cli/cli.hpp"
+	#include "../../../../cli/menu/menu.hpp"
 
 	namespace Othello {
 		namespace UI {
