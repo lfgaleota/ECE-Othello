@@ -8,12 +8,12 @@ using namespace Othello::Board;
 using namespace Othello::Players;
 
 /**
- * \brief Constructeur de l'interface de jeu
- * \details Initialise l'interface de jeu, lorsqu'il démarre.
- * \param[in] oboard Référence vers la classe #Board de jeu
- * \param[in] board Pointeur vers le plateau de jeu
- * \param[in] players Référence vers l'ensemble des joueurs
- * \param[in] currentPlayer Référence vers le joueur actuel
+ * @brief Constructeur de l'interface de jeu
+ * @details Initialise l'interface de jeu, lorsqu'il démarre.
+ * @param[in] oboard Référence vers la classe #Board de jeu
+ * @param[in] board Pointeur vers le plateau de jeu
+ * @param[in] players Référence vers l'ensemble des joueurs
+ * @param[in] currentPlayer Référence vers le joueur actuel
  */
 CLI::CLI( GameBoard& oboard, const GameBoard::punArray board, const vector<Player*>& players, vector<Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_oboard( oboard ) {
 	cli = Functions::CLI();
@@ -22,25 +22,25 @@ CLI::CLI( GameBoard& oboard, const GameBoard::punArray board, const vector<Playe
 }
 
 /**
- * \brief Destructeur de l'interface de jeu
- * \details Nettoie l'ensemble de l'interface à la fin du jeu.
+ * @brief Destructeur de l'interface de jeu
+ * @details Nettoie l'ensemble de l'interface à la fin du jeu.
  */
 CLI::~CLI() {
 
 }
 
 /**
- * \brief Affichage d'un erreur
- * \details Informe l'utilisateur d'une erreur au sein du programme.
- * \param msg Message d'erreur
+ * @brief Affichage d'un erreur
+ * @details Informe l'utilisateur d'une erreur au sein du programme.
+ * @param msg Message d'erreur
  */
 void CLI::showError( string msg ) {
 	cerr << msg << endl;
 }
 
 /**
- * \brief	Affichage de l'interface
- * \details	Affiche l'ensemble de l'interface, plateau et informations des joueurs.
+ * @brief	Affichage de l'interface
+ * @details	Affiche l'ensemble de l'interface, plateau et informations des joueurs.
  */
 void CLI::display() {
 	cli.clearScreen(); //first erases all previous displays
@@ -71,11 +71,11 @@ void CLI::display() {
 }
 
 /**
- * \brief	Affichage d'une pièce
- * \details	Affiche une pièce du plateau
- * \param[in] piece Pièce à afficher
- * \param[in] offsetX Coordonnée en abscisse de l'endroit où doit être affiché la pièce
- * \param[in] offsetY Coordonnée en ordonnée de l'endroit où doit être affiché la pièce
+ * @brief	Affichage d'une pièce
+ * @details	Affiche une pièce du plateau
+ * @param[in] piece Pièce à afficher
+ * @param[in] offsetX Coordonnée en abscisse de l'endroit où doit être affiché la pièce
+ * @param[in] offsetY Coordonnée en ordonnée de l'endroit où doit être affiché la pièce
  */
 void CLI::showPiece( Pun::Colors piece, unsigned int offsetX, unsigned int offsetY ) {
 	if( piece != Pun::blank ) {
@@ -91,8 +91,8 @@ void CLI::showPiece( Pun::Colors piece, unsigned int offsetX, unsigned int offse
 }
 
 /**
- * \brief	Affichage du plateau
- * \details	Affiche le plateau de jeu à l'écran, avec le fond précalculé.
+ * @brief	Affichage du plateau
+ * @details	Affiche le plateau de jeu à l'écran, avec le fond précalculé.
  */
 void CLI::displayMatrix() {
 	Pun::Colors piece;
@@ -129,11 +129,11 @@ void CLI::displayMatrix() {
 }
 
 /**
- * \brief	Met en valeur une pièce
- * \details	Permet de mettre en valeur un emplacement du plateau aux coordonnées indiquées, avec la couleur fournie.
- * \param[in] x Coordonnée en abscisse de l'emplacement
- * \param[in] y Coordonnée en ordonnée de l'emplacement
- * \param[in] color Couleur de surimpression
+ * @brief	Met en valeur une pièce
+ * @details	Permet de mettre en valeur un emplacement du plateau aux coordonnées indiquées, avec la couleur fournie.
+ * @param[in] x Coordonnée en abscisse de l'emplacement
+ * @param[in] y Coordonnée en ordonnée de l'emplacement
+ * @param[in] color Couleur de surimpression
  */
 void CLI::highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color ) { //highlights the selected piece
 	unsigned int i, j, offset_x = 0, offset_y = 0, piece_offset_x, piece_offset_y;
@@ -157,8 +157,8 @@ void CLI::highlightSelectedPiece( unsigned char x, unsigned char y, unsigned cha
 }
 
 /**
- * \brief	Affichage des joueurs
- * \details	Affiche les informations des joueurs à l'écran. Ici, leur nom est affiché, et le nom du joueur actuel est affiché en surimpression.
+ * @brief	Affichage des joueurs
+ * @details	Affiche les informations des joueurs à l'écran. Ici, leur nom est affiché, et le nom du joueur actuel est affiché en surimpression.
  */
 void CLI::displayPlayers() {
 	unsigned int width, height;
@@ -184,9 +184,9 @@ void CLI::displayPlayers() {
 }
 
 /**
- * \brief	Évènement demande de coup
- * \details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Propose également au joueur de quitter la partie, étant donné que cet écran est celui sur lequel le joueur sera la plupart du temps.
- * \return	Coup joué/demandé par le joueur
+ * @brief	Évènement demande de coup
+ * @details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Propose également au joueur de quitter la partie, étant donné que cet écran est celui sur lequel le joueur sera la plupart du temps.
+ * @return	Coup joué/demandé par le joueur
  */
 Move CLI::getMove() {
 	Functions::Keys::Key key;
@@ -248,27 +248,27 @@ Move CLI::getMove() {
 }
 
 /**
- * \brief	Évènement début de tour
- * \details	Fonction appelée au début du tour d'un joueur, avant toute chose.
- * \param[in] player Joueur actuel
+ * @brief	Évènement début de tour
+ * @details	Fonction appelée au début du tour d'un joueur, avant toute chose.
+ * @param[in] player Joueur actuel
  */
 void CLI::playerTurnBegin( Player& player ) { //the current player's turn begins --> display
 	display();
 }
 
 /**
- * \brief	Évènement fin de tour
- * \details	Fonction appelée à la fin du tour d'un joueur, après toutes ses actions.
- * \param[in] player Joueur actuel
+ * @brief	Évènement fin de tour
+ * @details	Fonction appelée à la fin du tour d'un joueur, après toutes ses actions.
+ * @param[in] player Joueur actuel
  */
 void CLI::playerTurnEnd( Player& player ) {
 
 }
 
 /**
- * \brief	Écran de victoire
- * \details	Affiche un écran de victoire pour le joueur gagnant.
- * \param[in] player Joueur gagnant
+ * @brief	Écran de victoire
+ * @details	Affiche un écran de victoire pour le joueur gagnant.
+ * @param[in] player Joueur gagnant
  */
 void CLI::victory( Player& player ) {
 	cli.clearScreen();
@@ -277,8 +277,8 @@ void CLI::victory( Player& player ) {
 }
 
 /**
- * \brief	Génération d'un fond de plateau
- * \details	Construit, à partir de la taille de la matrice, un fond de plateau destiné à être affiché par l'interface.
+ * @brief	Génération d'un fond de plateau
+ * @details	Construit, à partir de la taille de la matrice, un fond de plateau destiné à être affiché par l'interface.
  *         	Cetet fonction ne prend et renvoie rien. Elle utilise, en revanche, le paramètre sizeEdge de #Board, et remplie l'attribut #m_displaymatrix avec un ensemble de chaînes de caractères prêtes à afficher.
  */
 void CLI::loadDisplayMatrix() {
@@ -336,8 +336,8 @@ void CLI::loadDisplayMatrix() {
 }
 
 /**
- * \brief Écran de pause
- * \details Demande au joueur s'il souahite arrếter la partie. Lance une exception exit_game (cf #Exceptions) lorsque le joueur souhaite quitter le jeu.
+ * @brief Écran de pause
+ * @details Demande au joueur s'il souahite arrếter la partie. Lance une exception exit_game (cf #Exceptions) lorsque le joueur souhaite quitter le jeu.
  */
 void CLI::pauseMenu() {
 	vector<string> choices( { "Continuer", "Quitter" } );
