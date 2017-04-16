@@ -133,14 +133,15 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
  * L'index se calcule à partir des coordonnées x et y par ( x * 8 + y ).
  *
  * Cette bizarrerie s'explique par les raisons suivantes:
- * - Je ne voulais pas memêbetr à faire une fonction de comparaison qui fonctionne pour un couple (x,y) afin d'utiliser un set
- * - Je ne voulais pas utiliser un set tout court, car on n'a pas besoin du trie, juste de l'unicité, et le set est beaucoup trop lourd pour juste cette tâche.
+ * - Je ne voulais pas m'embêter à faire une fonction de comparaison qui fonctionne pour un couple (x,y) dans le cadre d'un set
+ * - Je ne voulais pas utiliser un set, car le tri est inutil, seul l'unicité compte, et le set est beaucoup trop lourd pour faire des traitements répétés rapides.
  * - Sur l'entier, il est simple d'assigner à chaque couple (x,y) un bit unique -> pas de duplication, on peut écrire et réécrire sans se soucier du reste
  * - L'entier est simple à accéder, copier et maintenir en mémoire, surtout sur un processeur 64bit:
- * -> l'entier tient sur un seul registre de 64 bits
- * -> pas besoin de reconsulter la mémoire pour accéder aux autres cases
- * -> la copie se fait en un nombre minimale de cylces horloges
- * -> lors dun traitement sur plusieurs cases, il y a plus de probabilités que cet entier reste dans le cache du processeur pour une utilisation immédiate ou ultérieure
+ * -> l'entier tient sur un seul registre de 64 bits, pas besoin de reconsulter la mémoire pour accéder aux autres cases
+ * -> la copie se fait en un nombre minimale de cycles d'horloges
+ * -> lors d'un traitement sur plusieurs cases, il y a plus de probabilités que cet entier reste dans le cache du processeur pour une utilisation immédiate ou ultérieure
+ *
+ * La perte de temps induite par le calcul de bitmasks afin d'accéder/modifier les cases me semble bien moindre face aux aux avantages que procure cette construction par rapoort à un set, ou plus simplement une matrice de booléens qui remplirait le même usage.
  */
 
 /**
