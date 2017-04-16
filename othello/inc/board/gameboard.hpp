@@ -33,13 +33,13 @@
 
 					inline void addEmptyNeighbors( unsigned char x, unsigned char y );
 
-					inline uint64_t quickEmptyNeighborsGet( const unsigned char index );
+					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
 
-					void emptyNeighborsSet( const unsigned char x, const unsigned char y );
+					inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
+
+					inline bool quickEmptyNeighborsGet( const unsigned char index );
 
 					inline void quickEmptyNeighborsSet( const unsigned char x, const unsigned char y );
-
-					void emptyNeighborsUnset( const unsigned char x, const unsigned char y );
 
 					inline void quickEmptyNeighborsUnset( const unsigned char x, const unsigned char y );
 
@@ -58,11 +58,7 @@
 
 					const Pun::Colors at( const unsigned char x, const unsigned char y );
 
-					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
-
 					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
-
-					inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
 			};
 		}
 	}
