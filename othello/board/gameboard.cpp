@@ -237,6 +237,15 @@ bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colo
 }
 
 /**
+ * @brief Vérificateur de possibilité de jouer
+ * @details Indique si le joueur peut jouer = s'il y a des coups valides. A utiliser après #computeValidMoves.
+ * @return Possibilité de jouer
+ */
+bool GameBoard::canPlay() {
+	return ( m_validMoves.size() > 0 );
+}
+
+/**
  * @brief Actuateur de coup
  * @details Effectue le coup désiré, en vérifiant qu'il est valide.
  * @param[in] move Coup à jouer

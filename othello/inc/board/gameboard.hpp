@@ -64,6 +64,7 @@
 
 					void computeValidMoves( Pun::Colors color );
 
+					bool canPlay();
 					void play( Move move );
 
 					const Pun::Colors at( const unsigned char x, const unsigned char y );

@@ -13,19 +13,21 @@ void Game::playerTurn() { //unfolding of a turn
 	m_ui->playerTurnBegin( **m_currentPlayer );
 
 	m_board.computeValidMoves( ( *m_currentPlayer )->getColor() );
-	//Tree::ValidMoveNode graph( &m_board );
-	//graph.compute( ( *m_currentPlayer )->getColor(), 5 );
 
-	for( bool loop = true; loop; ) {
-		loop = false;
+	if( m_board.canPlay() ) {
+		for( bool loop = true; loop; ) {
+			loop = false;
 
-		try {
-			Move move = (*m_currentPlayer)->getMove();
-			m_board.play( move );
-		} catch( exceptions::invalid_move& e ) { //shielding
-			m_ui->showError( e.what() );
-			loop = true;
+			try {
+				Move move = (*m_currentPlayer)->getMove();
+				m_board.play( move );
+			} catch( exceptions::invalid_move& e ) { //shielding
+				m_ui->showError( e.what() );
+				loop = true;
+			}
 		}
+	} else {
+		m_ui->showError( "Aucun coup n'est possible pour vous !" );
 	}
 
 	m_ui->playerTurnEnd( **m_currentPlayer ); //ends the turn
