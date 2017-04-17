@@ -328,13 +328,35 @@ void GameBoard::addEmptyNeighbors( Move position ) {
  * @param[in] posy Coordonnée en ordonnée de l'emplacement
  */
 void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
+	unsigned char maxX, maxY, minX, minY;
+	// On fixe les bornes
+	if( --posx >= GameBoard::sizeEdge ) {
+		minX = 0;
+	} else {
+		minX = posx;
+	}
+	if( --posy >= GameBoard::sizeEdge ) {
+		minY = 0;
+	} else {
+		minY = posy;
+	}
+	if( ++posx >= GameBoard::sizeEdge ) {
+		maxX = GameBoard::sizeEdge - 1;
+	} else {
+		maxX = posx;
+	}
+	if( ++posy >= GameBoard::sizeEdge ) {
+		maxY = GameBoard::sizeEdge - 1;
+	} else {
+		maxY = posy;
+	}
 	// On parcours chaque case annexe
-	for( unsigned char x = (unsigned char) ( posx - 1 ); x <= posx + 1; x++ ) {
-		for( unsigned char y = (unsigned char) ( posy - 1 ); y <= posy + 1; y++ ) {
+	for( unsigned char x = minX; x <= maxX; x++ ) {
+		for( unsigned char y = minY; y <= maxY; y++ ) {
 			try {
 				// Si elle est vide, on l'ajoute aux voisins vides
-				if( at( x, y ) == Pun::blank )
-					quickEmptyNeighborsSet( (unsigned char) x, (unsigned char) y );
+				if( quickAt( x, y ) == Pun::blank )
+					quickEmptyNeighborsSet( x, y );
 			} catch( std::out_of_range e ) {
 				// On est en dehors du plateau, rien de grave, ça peut arriver.
 			}
