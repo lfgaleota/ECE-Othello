@@ -28,17 +28,48 @@ void Game::playerTurn() { //unfolding of a turn
 		}
 	} else {
 		m_ui->showError( "Aucun coup n'est possible pour vous !" );
+		(*m_currentPlayer)->setCannotPlay();
 	}
 
 	m_ui->playerTurnEnd( **m_currentPlayer ); //ends the turn
 
+	verifyVictory();
+
 	m_currentPlayer = next( m_currentPlayer ); //changes the players
 }
 
-void Game::victory() { //WIN
-	vector<Player*>::iterator winingPlayer = m_currentPlayer;
+void Game::verifyVictory() {
+	won = true;
 
-	m_ui->victory( **winingPlayer );
+	for( Player*& player : m_players ) {
+		if( player->canPlay() )
+			won = false;
+	}
+}
+
+void Game::victory() {
+	vector<Player*>::iterator winingPlayer = m_players.end();
+
+	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); next( iplayer ) ) {
+		(*iplayer)->setPunCount( m_board.punCount( (*iplayer)->getColor() ) );
+
+		if( winingPlayer != m_players.end() ) {
+			if( (*iplayer)->getColor() != (*winingPlayer)->getColor() ) {
+				if( (*iplayer)->getPunCount() > (*winingPlayer)->getPunCount() ) {
+					winingPlayer = iplayer;
+				} else if( (*iplayer)->getPunCount() == (*winingPlayer)->getPunCount() ) {
+					winingPlayer = m_players.end();
+				}
+			}
+		} else {
+			winingPlayer = iplayer;
+		}
+	}
+
+	if( winingPlayer == m_players.end() )
+		m_ui->victory( nullptr );
+	else
+		m_ui->victory( *winingPlayer );
 }
 
 void Game::preparePlayers() {

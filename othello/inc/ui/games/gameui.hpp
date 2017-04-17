@@ -20,7 +20,7 @@
 					virtual Othello::Board::Move getMove() = 0;
 					virtual void playerTurnBegin( Othello::Players::Player& player ) = 0;
 					virtual void playerTurnEnd( Othello::Players::Player& player ) = 0;
-					virtual void victory( Othello::Players::Player& player ) = 0;
+					virtual void victory( Othello::Players::Player* player ) = 0;
 			};
 		}
 	}

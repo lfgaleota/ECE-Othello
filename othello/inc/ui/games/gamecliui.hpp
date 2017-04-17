@@ -4,6 +4,7 @@
 	//#define SIMPLE_UI true
 
 	#include <iostream>
+	#include <iomanip>
 	#include <fstream>
 	#include <sstream>
 	#include "../../board/gameboard.hpp"
@@ -24,6 +25,8 @@
 						void display();
 						void displayMatrix();
 						void displayPlayers();
+						void displayCounts();
+						void displayCount( Othello::Board::Pun::Colors color );
 						void loadDisplayMatrix();
 						void showPiece( Othello::Board::Pun::Colors color, unsigned int offsetX, unsigned int offsetY );
 						void highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color );
@@ -37,7 +40,7 @@
 						Othello::Board::Move getMove();
 						void playerTurnBegin( Othello::Players::Player& player );
 						void playerTurnEnd( Othello::Players::Player& player );
-						void victory( Othello::Players::Player& player );
+						void victory( Othello::Players::Player* player );
 				};
 			}
 		}

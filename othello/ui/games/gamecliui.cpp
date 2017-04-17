@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "../../inc/ui/games/gamecliui.hpp"
 
 using namespace std;
@@ -41,7 +39,7 @@ void CLI::showError( string msg ) {
 	cli.moveCursor( height - 1, 0 );
 	cli.setColor( BACKGROUND_RED );
 	cout << "!";
-	for( unsigned int i = 1; i < width; i++ )
+	for( unsigned int i = 1; i < width - 7; i++ )
 		cout << " ";
 	cli.moveCursor( 0, 0 );
 
@@ -66,7 +64,7 @@ void CLI::inform( string msg ) {
 	cli.moveCursor( height - 1, 0 );
 	cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY );
 	cout << "i";
-	for( unsigned int i = 1; i < width; i++ )
+	for( unsigned int i = 1; i < width - 7; i++ )
 		cout << " ";
 	cli.moveCursor( 0, 0 );
 
@@ -86,6 +84,7 @@ void CLI::display() {
 #ifndef SIMPLE_UI
 	displayMatrix(); //then displays the matrix
 	displayPlayers(); //then displays the players
+	displayCounts();
 #else
 	Pun::Colors color;
 	for( unsigned int j = 0; j < GameBoard::sizeEdge; j++ ) {
@@ -223,6 +222,41 @@ void CLI::displayPlayers() {
 }
 
 /**
+ * @brief	Affichage du nombre de pions sur le plateau
+ */
+void CLI::displayCounts() {
+	unsigned int width, height;
+
+	cli.getSize( width, height );
+
+	cli.moveCursor( height - 1, width - 7 );
+
+	displayCount( Pun::black );
+	displayCount( Pun::white );
+
+	cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY );
+	cout << " ";
+
+	cli.resetColor();
+}
+
+/**
+ * @brief Affichage du nombre de pions d'une couleur du plateau
+ * @param color Couleur à utiliser
+ */
+void CLI::displayCount( Pun::Colors color ) {
+	cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY );
+	cout << " ";
+	if( color == (*this->m_currentPlayer)->getColor() )
+		cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN );
+	else
+		cli.setColor( FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY );
+	cout << setw( 2 ) << (int) m_oboard.punCount( color );
+
+	cli.resetColor();
+}
+
+/**
  * @brief	Évènement demande de coup
  * @details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Propose également au joueur de quitter la partie, étant donné que cet écran est celui sur lequel le joueur sera la plupart du temps.
  * @return	Coup joué/demandé par le joueur
@@ -310,8 +344,14 @@ void CLI::playerTurnEnd( Player& player ) {
  * @details	Affiche un écran de victoire pour le joueur gagnant.
  * @param[in] player Joueur gagnant
  */
-void CLI::victory( Player& player ) {
+void CLI::victory( Player* player ) {
 	cli.clearScreen();
+
+	if( player != nullptr ) {
+		cout << "Le joueur " << player->getName() << " a gagné  avec " << player->getPunCount() << " pions !";
+	} else {
+		cout << "Draw !";
+	}
 
 	cli.getKey();
 }

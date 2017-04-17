@@ -21,6 +21,7 @@
 
 				void playerTurn();
 				void victory();
+				void verifyVictory();
 				void preparePlayers();
 
 			public:
