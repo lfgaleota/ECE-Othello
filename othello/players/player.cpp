@@ -27,9 +27,13 @@ void Player::setCannotPlay() {
 }
 
 unsigned char Player::getPunCount() const {
-	return punCount;
+	return m_punCount;
 }
 
 void Player::setPunCount( unsigned char punCount ) {
-	punCount = punCount;
+	m_punCount = punCount;
+}
+
+void Player::setBoard( GameBoard* board ) {
+	m_board = board;
 }

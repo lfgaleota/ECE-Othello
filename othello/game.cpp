@@ -29,7 +29,7 @@ void Game::playerTurn() { //unfolding of a turn
 			}
 		}
 	} else {
-		m_ui->showError( "Aucun coup n'est possible pour vous !" );
+		m_ui->informNoAvailableMoves( **m_currentPlayer );
 		(*m_currentPlayer)->setCannotPlay();
 	}
 
@@ -52,7 +52,7 @@ void Game::verifyVictory() {
 void Game::victory() {
 	vector<Player*>::iterator winingPlayer = m_players.end();
 
-	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); next( iplayer ) ) {
+	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
 		(*iplayer)->setPunCount( m_board.punCount( (*iplayer)->getColor() ) );
 
 		if( winingPlayer != m_players.end() ) {
@@ -76,8 +76,10 @@ void Game::victory() {
 
 void Game::preparePlayers() {
 	for( Player*& player : m_players ) {
-		if( Human* human = dynamic_cast<Human*>( player ) ) {
-			human->setUI( m_ui );
+		player->setBoard( &m_board );
+
+		if( UIPlayer* uiplayer = dynamic_cast<UIPlayer*>( player ) ) {
+			uiplayer->setUI( m_ui );
 		}
 	}
 }

@@ -4,21 +4,15 @@
 	#include <iostream>
 	#include <string>
 	#include <vector>
-	#include "player.hpp"
-	#include "../ui/games/gameui.hpp"
+	#include "uiplayer.hpp"
 
 	namespace Othello {
 		namespace Players {
-			class Human : public Player {
-				private:
-					Othello::UI::Game* m_ui;
-
+			class Human : public UIPlayer {
 				public:
 					Human( std::string name, Othello::Board::Pun::Colors color );
 
 					Othello::Board::Move getMove();
-
-					void setUI( Othello::UI::Game *m_ui );
 			};
 		}
 	}

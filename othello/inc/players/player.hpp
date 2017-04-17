@@ -6,7 +6,7 @@
 	#include <vector>
 	#include "../board/pun.hpp"
 	#include "../board/move.hpp"
-
+	#include "../board/gameboard.hpp"
 
 	namespace Othello {
 		namespace Players {
@@ -15,7 +15,8 @@
 					std::string m_name;
 					Othello::Board::Pun::Colors m_color;
 					bool m_canPlay = true;
-					unsigned char punCount = 0;
+					unsigned char m_punCount = 0;
+					Othello::Board::GameBoard* m_board;
 
 				public:
 					Player( std::string name, Othello::Board::Pun::Colors color );
@@ -28,6 +29,7 @@
 					void setCanPlay();
 					void setCannotPlay();
 					void setPunCount( unsigned char punCount );
+					void setBoard( Othello::Board::GameBoard* board );
 
 					virtual Othello::Board::Move getMove() = 0;
 			};
