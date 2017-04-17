@@ -36,6 +36,10 @@ GameBoard::GameBoard() {
 	quickEmptyNeighborsSet( 5, 5 );
 	quickEmptyNeighborsSet( 4, 5 );
 	quickEmptyNeighborsSet( 3, 5 );
+
+	// On initialise le nombre de pions sur le plateau
+	m_count.white = 2;
+	m_count.black = 2;
 }
 
 /**
@@ -271,11 +275,15 @@ void GameBoard::play( Move move ) {
  * @param[in] validMove Coup à jouer
  */
 void GameBoard::quickPlay( ValidMove validMove ) {
+	// On récupère une référence vers le nombre de pions pour la couleur donnée
+	unsigned char& count = ( validMove.color == Pun::white ? m_count.white : m_count.black );
+	unsigned char& oppositeCount = ( validMove.color == Pun::black ? m_count.white : m_count.black );
 	// On insert la nouvelle pièce
 	quickSet( validMove.x, validMove.y, validMove.color );
+	count++;
 	// On retourne toutes les pièces dans les directions concernées
 	for( DirectionVector& direction : validMove.directions ) {
-		turnOverPuns( validMove, direction );
+		turnOverPuns( validMove, direction, count, oppositeCount );
 	}
 	// On supprime la position actuelle des emplacements vides et on rajoute ses voisins vides
 	quickEmptyNeighborsUnset( validMove.x, validMove.y );
@@ -287,12 +295,18 @@ void GameBoard::quickPlay( ValidMove validMove ) {
  * @details Retourne tous les pions adverses à partir dune position donnée, dans uen direction donnée, jusqu'à rencontrer un pion ami.
  * @param[in] position Position de démarrage
  * @param[in] dvec Direction de retournement
+ * @param[in] count Référence vers le nombre de pion associé à la couleur qui est en train d'être jouée
+ * @param[in] oppositeCount Référence vers le nombre de pion associé à la couleur opposée à celle qui est en train d'être jouée
  */
-void GameBoard::turnOverPuns( Move position, DirectionVector dvec ) {
+void GameBoard::turnOverPuns( Move position, DirectionVector dvec, unsigned char& count, unsigned char& oppositeCount ) {
 	try {
-		// On part de la position + 1 (après uin déplacement dans le sens de dvec), tant qu'on ne retombe pas sur la couleur initiale/ami, on "bascule" la pièce et on passe à la position suivante.
-		for( unsigned char x = position.x + dvec.x, y = position.y + dvec.y; at( x, y ) != position.color; x += dvec.x, y += dvec.y )
+		// On part de la position + 1 (après un déplacement dans le sens de dvec), tant qu'on ne retombe pas sur la couleur initiale/ami, on "bascule" la pièce et on passe à la position suivante.
+		for( unsigned char x = position.x + dvec.x, y = position.y + dvec.y; at( x, y ) != position.color; x += dvec.x, y += dvec.y ) {
 			quickSet( x, y, position.color );
+			// On incrémente le nombre de pions "ami", et on décréménte le nombre de pions "ennemi"
+			count++;
+			oppositeCount--;
+		}
 	} catch( std::out_of_range e ) {
 		// On est en dehors du plateau, gros problème ! Cela ne devrait pas être le cas si le coup est valide.
 	}
@@ -326,4 +340,18 @@ void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
 			}
 		}
 	}
+}
+
+/**
+ * @brief Compteur de pions
+ * @details Compte et retourne le nombre de pions d'une couleur donnée.
+ * @param color Couleur à prendre en compte
+ * @return Nombre de pions de la couleur donnée
+ */
+unsigned char GameBoard::punCount( Pun::Colors color ) {
+	if( color == Pun::white )
+		return m_count.white;
+	if( color == Pun::black )
+		return m_count.black;
+	return 0;
 }

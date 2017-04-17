@@ -28,12 +28,18 @@
 					typedef Pun::Colors (*punArray)[GameBoard::sizeEdge];
 
 				private:
-
 					Pun::Colors m_board[sizeEdge][sizeEdge];
 					std::list<ValidMove> m_validMoves;
 					uint64_t m_emptyNeighbors = 0;
 
-					void turnOverPuns( Move position, DirectionVector dvec );
+					struct PunCount {
+						unsigned char white = 0;
+						unsigned char black = 0;
+					};
+
+					PunCount m_count;
+
+					void turnOverPuns( Move position, DirectionVector dvec, unsigned char& count, unsigned char& oppositeCount );
 
 					bool isValidDirection( Move position, DirectionVector dvec, Pun::Colors color );
 
@@ -70,6 +76,8 @@
 					const Pun::Colors at( const unsigned char x, const unsigned char y );
 
 					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
+
+					unsigned char punCount( Pun::Colors color );
 			};
 		}
 	}
