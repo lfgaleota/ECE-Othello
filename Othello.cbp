@@ -39,14 +39,19 @@
 		<Unit filename="cli/menu/menu.cpp" />
 		<Unit filename="cli/menu/menu.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="othello/algorithms/heuristics.cpp" />
+		<Unit filename="othello/algorithms/minimax.cpp" />
 		<Unit filename="othello/board/direction_vector.cpp" />
 		<Unit filename="othello/board/gameboard.cpp" />
 		<Unit filename="othello/board/move.cpp" />
 		<Unit filename="othello/board/tree/validmovenode.cpp" />
 		<Unit filename="othello/board/valid_move.cpp" />
 		<Unit filename="othello/game.cpp" />
+		<Unit filename="othello/inc/algorithms/heuristics.hpp" />
+		<Unit filename="othello/inc/algorithms/minimax.hpp" />
 		<Unit filename="othello/inc/board/direction_vector.hpp" />
 		<Unit filename="othello/inc/board/gameboard.hpp" />
+		<Unit filename="othello/inc/board/gameissue.hpp" />
 		<Unit filename="othello/inc/board/move.hpp" />
 		<Unit filename="othello/inc/board/pun.hpp" />
 		<Unit filename="othello/inc/board/tree/validmovenode.hpp" />
@@ -55,14 +60,18 @@
 		<Unit filename="othello/inc/exceptions/exit_game" />
 		<Unit filename="othello/inc/exceptions/invalid_move" />
 		<Unit filename="othello/inc/game.hpp" />
+		<Unit filename="othello/inc/players/enhancedai.hpp" />
 		<Unit filename="othello/inc/players/human.hpp" />
 		<Unit filename="othello/inc/players/player.hpp" />
 		<Unit filename="othello/inc/players/simpleai.hpp" />
+		<Unit filename="othello/inc/players/uiplayer.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
+		<Unit filename="othello/players/enhancedai.cpp" />
 		<Unit filename="othello/players/human.cpp" />
 		<Unit filename="othello/players/player.cpp" />
 		<Unit filename="othello/players/simpleai.cpp" />
+		<Unit filename="othello/players/uiplayer.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Extensions>
 			<code_completion />

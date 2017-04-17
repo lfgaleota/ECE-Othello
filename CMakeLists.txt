@@ -28,7 +28,18 @@ set(SOURCE_FILES
     cli/cli.cpp
     cli/menu/menu.hpp
     cli/menu/menu.cpp
-    othello/board/tree/validmovenode.cpp othello/inc/board/tree/validmovenode.hpp)
+    othello/board/tree/validmovenode.cpp
+    othello/inc/board/tree/validmovenode.hpp
+    othello/algorithms/minimax.cpp
+    othello/inc/algorithms/minimax.hpp
+    othello/inc/board/gameissue.hpp
+    othello/players/enhancedai.cpp
+    othello/inc/players/enhancedai.hpp
+    othello/players/uiplayer.cpp
+    othello/inc/players/uiplayer.hpp
+    othello/algorithms/heuristics.cpp
+    othello/inc/algorithms/heuristics.hpp
+)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
 
