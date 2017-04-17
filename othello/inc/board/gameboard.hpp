@@ -10,8 +10,14 @@
 	#include "move.hpp"
 	#include "valid_move.hpp"
 	#include "../exceptions/exceptions.hpp"
+	#include "gameissue.hpp"
 
 	namespace Othello {
+		namespace Algorithms {
+			class MiniMax;
+			class Heuristics;
+		}
+
 		namespace Board {
 			namespace Tree {
 				class ValidMoveNode;
@@ -19,6 +25,8 @@
 
 			class GameBoard {
 				friend class Othello::Board::Tree::ValidMoveNode;
+				friend class Othello::Algorithms::MiniMax;
+				friend class Othello::Algorithms::Heuristics;
 
 				public:
 					const static unsigned char sizeEdge = 8;
@@ -77,7 +85,9 @@
 
 					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
 
-					unsigned char punCount( Pun::Colors color );
+					const unsigned char punCount( Pun::Colors color ) const;
+
+					const GameIssue issue( Pun::Colors color ) const;
 			};
 		}
 	}

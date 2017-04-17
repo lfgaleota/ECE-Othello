@@ -50,6 +50,8 @@ GameBoard::GameBoard() {
 GameBoard::GameBoard( GameBoard& ref ) {
 	m_emptyNeighbors = ref.m_emptyNeighbors;
 	std::memcpy( m_board, ref.m_board, GameBoard::sizeMemory );
+	m_count.white = ref.m_count.white;
+	m_count.black = ref.m_count.black;
 }
 
 GameBoard::~GameBoard() {
@@ -335,17 +337,19 @@ void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
 	} else {
 		minX = posx;
 	}
-	if( --posy >= GameBoard::sizeEdge ) {
+	if( --posy - 1 >= GameBoard::sizeEdge ) {
 		minY = 0;
 	} else {
 		minY = posy;
 	}
-	if( ++posx >= GameBoard::sizeEdge ) {
+	posx += 2;
+	posy += 2;
+	if( posx >= GameBoard::sizeEdge ) {
 		maxX = GameBoard::sizeEdge - 1;
 	} else {
 		maxX = posx;
 	}
-	if( ++posy >= GameBoard::sizeEdge ) {
+	if( posy >= GameBoard::sizeEdge ) {
 		maxY = GameBoard::sizeEdge - 1;
 	} else {
 		maxY = posy;
@@ -370,10 +374,30 @@ void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
  * @param color Couleur à prendre en compte
  * @return Nombre de pions de la couleur donnée
  */
-unsigned char GameBoard::punCount( Pun::Colors color ) {
+const unsigned char GameBoard::punCount( Pun::Colors color ) const {
 	if( color == Pun::white )
 		return m_count.white;
 	if( color == Pun::black )
 		return m_count.black;
 	return 0;
+}
+
+const GameIssue GameBoard::issue( Pun::Colors color ) const {
+	if( m_validMoves.size() == 0 ) {
+		if( color == Pun::white ) {
+			if( m_count.white > m_count.black )
+				return GameIssue::Victory;
+			else if( m_count.white < m_count.black )
+				return GameIssue::Defeat;
+			return GameIssue::Draw;
+		} else if( color == Pun::black ) {
+			if( m_count.white < m_count.black )
+				return GameIssue::Victory;
+			else if( m_count.white > m_count.black )
+				return GameIssue::Defeat;
+			return GameIssue::Draw;
+		}
+	}
+
+	return GameIssue::Nothing;
 }
