@@ -11,26 +11,43 @@ const list<Tree::ValidMoveNode>& Tree::ValidMoveNode::getNextNodes() const {
 	return m_nextNodes;
 }
 
+ValidMove* Tree::ValidMoveNode::getValidMove() const {
+	return m_validMove;
+}
+
 Tree::ValidMoveNode::ValidMoveNode( GameBoard* board ) : m_board( board ) {}
+
+Tree::ValidMoveNode::ValidMoveNode( GameBoard* board, ValidMove* validMove ) : m_board( board ), m_validMove( validMove ) {}
 
 void Tree::ValidMoveNode::compute( Pun::Colors color, unsigned char depth ) {
 	GameBoard* cloneBoard;
 	Pun::Colors opposite;
 
-	if( depth >= 0 ) {
+	if( depth > 1 ) {
 		opposite = Pun::opposite( color );
-		for( const ValidMove& validMove : m_board->m_validMoves ) {
+		for( ValidMove& validMove : m_board->m_validMoves ) {
 			cloneBoard = new GameBoard( *m_board );
 			cloneBoard->quickPlay( validMove );
 			cloneBoard->computeValidMoves( opposite );
-			m_nextNodes.push_back( ValidMoveNode( cloneBoard ) );
+			m_nextNodes.push_back( ValidMoveNode( cloneBoard, &validMove ) );
 		}
-		if( depth > 1 ) {
-			--depth;
-			for( ValidMoveNode& nextNode : m_nextNodes ) {
-				nextNode.compute( opposite, depth );
-			}
+		--depth;
+		for( ValidMoveNode& nextNode : m_nextNodes ) {
+			nextNode.compute( opposite, depth );
 		}
+	} else {
+		for( ValidMove& validMove : m_board->m_validMoves ) {
+			cloneBoard = new GameBoard( *m_board );
+			cloneBoard->quickPlay( validMove );
+			m_nextNodes.push_back( ValidMoveNode( cloneBoard, &validMove ) );
+		}
+	}
+}
+
+void Tree::ValidMoveNode::prepareBottomStage( Pun::Colors color ) {
+	Pun::Colors opposite = Pun::opposite( color );
+	for( ValidMoveNode& nextNode : m_nextNodes ) {
+		nextNode.m_board->computeValidMoves( opposite );
 	}
 }
 
