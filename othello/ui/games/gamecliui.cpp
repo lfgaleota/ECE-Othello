@@ -31,11 +31,50 @@ CLI::~CLI() {
 
 /**
  * @brief Affichage d'un erreur
- * @details Informe l'utilisateur d'une erreur au sein du programme.
+ * @details Informe l'utilisateur d'une erreur au sein du programme. Bloque le programme en attendant une action de l'utilisateur.
  * @param msg Message d'erreur
  */
 void CLI::showError( string msg ) {
-	cerr << msg << endl;
+	unsigned int width, height;
+	cli.getSize( width, height );
+
+	cli.moveCursor( height - 1, 0 );
+	cli.setColor( BACKGROUND_RED );
+	cout << "!";
+	for( unsigned int i = 1; i < width; i++ )
+		cout << " ";
+	cli.moveCursor( 0, 0 );
+
+	cli.setColor( FOREGROUND_RED | FOREGROUND_INTENSITY );
+	cli.moveCursor( height - 1, 1 );
+	cout << msg;
+
+	cli.resetColor();
+
+	getchar();
+}
+
+/**
+ * @brief Affichage d'un message d'information
+ * @details Informe l'utilisateur d'une erreur au sein du programme. Non bloquant.
+ * @param msg Message d'erreur
+ */
+void CLI::inform( string msg ) {
+	unsigned int width, height;
+	cli.getSize( width, height );
+
+	cli.moveCursor( height - 1, 0 );
+	cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY );
+	cout << "i";
+	for( unsigned int i = 1; i < width; i++ )
+		cout << " ";
+	cli.moveCursor( 0, 0 );
+
+	cli.setColor( FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY );
+	cli.moveCursor( height - 1, 1 );
+	cout << msg;
+
+	cli.resetColor();
 }
 
 /**
@@ -195,6 +234,7 @@ Move CLI::getMove() {
 #ifndef SIMPLE_UI
 	display();
 	highlightSelectedPiece( x, y, BACKGROUND_RED ); // highlights the spot where the cursor is
+	inform( "Jouez votre tour !" );
 
 	for( bool loop = true; loop; ) {
 		key = cli.getKey(); //gets the use entry choice
@@ -232,8 +272,8 @@ Move CLI::getMove() {
 				break;
 		}
 
-		display(); //redo the display of the game
-		highlightSelectedPiece( x, y, BACKGROUND_RED ); //highlights the cursor spot
+		displayMatrix();
+		highlightSelectedPiece( x, y, BACKGROUND_RED );
 	}
 
 	return Move( x, y, (*m_currentPlayer)->getColor() );

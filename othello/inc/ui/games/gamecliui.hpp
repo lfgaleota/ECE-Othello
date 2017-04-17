@@ -33,6 +33,7 @@
 						CLI( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer );
 						~CLI();
 						void showError( std::string msg );
+						void inform( std::string msg );
 						Othello::Board::Move getMove();
 						void playerTurnBegin( Othello::Players::Player& player );
 						void playerTurnEnd( Othello::Players::Player& player );
