@@ -76,6 +76,14 @@ void CLI::inform( string msg ) {
 }
 
 /**
+ * @brief Informer qu'un joueur ne peut pas jouer
+ * @param player Joueur qui ne peut pas jouer
+ */
+void CLI::informNoAvailableMoves( Player& player ) {
+	showError( "Aucun coup n'est possible pour " + player.getName() + " !" );
+}
+
+/**
  * @brief	Affichage de l'interface
  * @details	Affiche l'ensemble de l'interface, plateau et informations des joueurs.
  */

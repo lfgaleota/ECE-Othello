@@ -17,6 +17,7 @@
 					virtual ~Game() {};
 					virtual void showError( std::string msg ) = 0;
 					virtual void inform( std::string msg ) = 0;
+					virtual void informNoAvailableMoves( Othello::Players::Player& player ) = 0;
 					virtual Othello::Board::Move getMove() = 0;
 					virtual void playerTurnBegin( Othello::Players::Player& player ) = 0;
 					virtual void playerTurnEnd( Othello::Players::Player& player ) = 0;
