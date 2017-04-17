@@ -15,6 +15,8 @@ void Game::playerTurn() { //unfolding of a turn
 	m_board.computeValidMoves( ( *m_currentPlayer )->getColor() );
 
 	if( m_board.canPlay() ) {
+		(*m_currentPlayer)->setCanPlay();
+
 		for( bool loop = true; loop; ) {
 			loop = false;
 

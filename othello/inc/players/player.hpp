@@ -25,6 +25,7 @@
 					bool canPlay() const;
 					unsigned char getPunCount() const;
 
+					void setCanPlay();
 					void setCannotPlay();
 					void setPunCount( unsigned char punCount );
 

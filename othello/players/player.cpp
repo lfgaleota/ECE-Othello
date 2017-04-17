@@ -18,6 +18,10 @@ bool Player::canPlay() const {
 	return m_canPlay;
 }
 
+void Player::setCanPlay() {
+	m_canPlay = true;
+}
+
 void Player::setCannotPlay() {
 	m_canPlay = false;
 }
