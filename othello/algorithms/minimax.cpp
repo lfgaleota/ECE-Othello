@@ -34,6 +34,9 @@ MiniMax::MiniMax( GameBoard* ref, Pun::Colors color ) : m_color( color ) {
 			m_foundMove = moves[ i ];
 		}
 	}
+
+	if( m_foundMove == nullptr )
+		m_foundMove = &(*ref->m_validMoves.begin());
 }
 
 void MiniMax::runMax( Tree::ValidMoveNode* ref, bool opposite, unsigned int depth, int* val ) {
