@@ -15,6 +15,7 @@
 					white = 2
 				};
 
+				/// \fn opposite
 				static inline Colors opposite( Colors color ) {
 					return (Colors) ((int) Colors::white - (int) color + (int) Colors::black );
 				}

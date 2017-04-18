@@ -15,8 +15,10 @@
 		    /// \class EnhancedAI enhancedai.hpp
 			class EnhancedAI : public UIPlayer {
 				public:
+					/// \fn EnhancedAI
 					EnhancedAI( std::string name, Othello::Board::Pun::Colors color );
 
+					/// \fn getMove
 					Othello::Board::Move getMove();
 			};
 		}

@@ -13,10 +13,13 @@
 			struct ValidMove : public Move {
 				std::list<DirectionVector> directions;
 
+				/// \fn ValidMoveOverloadConstructor
 				ValidMove( unsigned char x, unsigned char y );
 
+				/// \fn ValideMoveOverloadConstructorBis
 				ValidMove( const Move &move );
 
+				/// \fn addDirection
 				inline void addDirection( DirectionVector dvec ) {
 					directions.push_back( dvec );
 				}

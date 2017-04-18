@@ -74,25 +74,37 @@
 					void quickPlay( ValidMove validMove );
 
 				public:
+					/// \fn GameBoardDefaultConstructor
 					GameBoard();
+					/// \fn GameBoardOverloadConstructor
 					GameBoard( GameBoard& ref );
+					/// \fn GameBoardDestructor
 					~GameBoard();
 
+					/// \fn getBoard
 					const punArray getBoard();
 
+					/// \fn getValidMovesReference
 					const std::list<ValidMove> &getValidMoves();
 
+					/// \fn computeValidMoves
 					void computeValidMoves( Pun::Colors color );
 
+					/// \fn canPlay
 					bool canPlay();
+					/// \fn play
 					void play( Move move );
 
+					/// \fn at
 					const Pun::Colors at( const unsigned char x, const unsigned char y );
 
+					/// \fn set
 					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
 
+					/// \fn punCount
 					const unsigned char punCount( Pun::Colors color ) const;
 
+					/// \fn issue
 					const GameIssue issue( Pun::Colors color ) const;
 			};
 		}

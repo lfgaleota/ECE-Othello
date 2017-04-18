@@ -12,11 +12,13 @@
 				const char x;
 				const char y;
 
+				/// \fn DirectionVectorOverloadConstructor
 				DirectionVector( char direction_x, char direction_y );
 			};
 		}
 	}
 
+	/// \fn ==OperatorOverload
 	bool const operator==( Othello::Board::DirectionVector& lhs, Othello::Board::DirectionVector& rhs );
 
 #endif

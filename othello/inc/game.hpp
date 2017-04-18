@@ -21,12 +21,17 @@
 				Othello::UI::Game* m_ui;
 				bool won = false;
 
+				/// \fn playerTurn
 				void playerTurn();
+				/// \fn victory
 				void victory();
+				/// \fn verifyVictory
 				void verifyVictory();
+				/// \fn preparePlayers
 				void preparePlayers();
 
 			public:
+				/// \fn GameOverloadConstructor
 				Game( std::vector<Othello::Players::Player*>& players );
 		};
 	}

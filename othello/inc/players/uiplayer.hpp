@@ -14,8 +14,10 @@
 					Othello::UI::Game* m_ui;
 
 				public:
+					/// \fn UIPlayerOverloadConstructor
 					UIPlayer( std::string name, Othello::Board::Pun::Colors color );
 
+					/// \fn setUISetter
 					void setUI( Othello::UI::Game *m_ui );
 			};
 		}

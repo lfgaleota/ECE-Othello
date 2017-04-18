@@ -27,7 +27,9 @@
 					static const int MAX = 1000000;
 					static const int DEPTH = 5;
 
+					/// \fn MinimaxDefaultConstructor
 					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
+					/// \fn getResult
 					Othello::Board::ValidMove* getResult();
 			};
 		}

@@ -13,8 +13,10 @@
 		    /// \class SimpleAI simpleai.hpp
 			class SimpleAI : public Player {
 				public:
+					/// \fn SimpleAIOverloadConstructor
 					SimpleAI( std::string name, Othello::Board::Pun::Colors color );
 
+					/// \fn getMove
 					Othello::Board::Move getMove();
 			};
 		}
