@@ -46,6 +46,7 @@
 
 	namespace Functions {
 		namespace Keys {
+		    /// \enum Key
 			enum Key {
 				ArrowLeft,
 				ArrowRight,

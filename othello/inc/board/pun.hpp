@@ -5,6 +5,7 @@
 		namespace Board {
 
 			struct Pun {
+			    /// \enum Colors
 				enum Colors {
 					blank = 0,
 					black = 1,

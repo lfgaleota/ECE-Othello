@@ -3,6 +3,7 @@
 
 	namespace Othello {
 		namespace Board {
+		    /// \enum  GameIssue
 			enum GameIssue {
 				Nothing,
 				Victory,
