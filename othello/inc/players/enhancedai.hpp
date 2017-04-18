@@ -10,6 +10,7 @@
 
 	namespace Othello {
 		namespace Players {
+		    /// \class EnhancedAI enhancedai.hpp
 			class EnhancedAI : public UIPlayer {
 				public:
 					EnhancedAI( std::string name, Othello::Board::Pun::Colors color );

@@ -8,6 +8,7 @@
 
 	namespace Othello {
 		namespace Players {
+		    /// \class Human human.hpp
 			class Human : public UIPlayer {
 				public:
 					Human( std::string name, Othello::Board::Pun::Colors color );

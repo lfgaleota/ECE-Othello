@@ -3,7 +3,7 @@
 
 	namespace Othello {
 		namespace Board {
-			//enumeration qui permet de savoir si une case est blanche noire ou vide !
+
 			struct Pun {
 				enum Colors {
 					blank = 0,

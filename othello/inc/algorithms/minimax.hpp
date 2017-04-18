@@ -9,6 +9,7 @@
 
 	namespace Othello {
 		namespace Algorithms {
+		    /// \class MiniMax minimax.hpp
 			class MiniMax {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;

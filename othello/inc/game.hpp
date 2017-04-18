@@ -11,6 +11,7 @@
 	#include "ui/games/gamecliui.hpp"
 
 	namespace Othello {
+	    /// \class Game game.hpp
 		class Game {
 			private:
 				Othello::Board::GameBoard m_board; //game board

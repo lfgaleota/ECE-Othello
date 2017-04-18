@@ -10,6 +10,7 @@
 
 	namespace Othello {
 		namespace Players {
+		    /// \class Player player.hpp
 			class Player {
 				protected:
 					std::string m_name;

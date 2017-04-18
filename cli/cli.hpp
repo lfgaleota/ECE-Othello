@@ -67,6 +67,7 @@
 			};
 		}
 
+		/// \class CLI cli.hpp
 		class CLI {
 			private:
 				#if defined( WIN )

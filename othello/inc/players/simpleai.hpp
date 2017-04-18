@@ -8,6 +8,7 @@
 
 	namespace Othello {
 		namespace Players {
+		    /// \class SimpleAI simpleai.hpp
 			class SimpleAI : public Player {
 				public:
 					SimpleAI( std::string name, Othello::Board::Pun::Colors color );

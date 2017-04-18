@@ -7,6 +7,7 @@
 
 	namespace Functions {
 		namespace CLIs {
+		    /// \class menu menu.hpp
 			class Menu {
 				private:
 					std::string m_header;

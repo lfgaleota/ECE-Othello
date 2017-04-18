@@ -6,6 +6,7 @@
 
 	namespace Othello {
 		namespace UI {
+		    /// \class Game gameui.hpp
 			class Game {
 				protected:
 					const Othello::Board::GameBoard::punArray m_board;

@@ -8,6 +8,7 @@
 	namespace Othello {
 		namespace Board {
 			namespace Tree {
+			    /// \class ValidMoveNode validmovenode.hpp
 				class ValidMoveNode {
 					friend class Othello::Algorithms::MiniMax;
 

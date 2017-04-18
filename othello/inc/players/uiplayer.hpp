@@ -6,6 +6,7 @@
 
 	namespace Othello {
 		namespace Players {
+		    /// \class UIPlayer uiplayer.hpp
 			class UIPlayer : public Player {
 				protected:
 					Othello::UI::Game* m_ui;
