@@ -8,7 +8,7 @@ using namespace Othello::Players;
 EnhancedAI::EnhancedAI( string name, Pun::Colors color ) : UIPlayer( name, color ) {}
 
 Move EnhancedAI::getMove() {
-	m_ui->inform( "L'IA réfléchie..." );
+	m_ui->inform( "L'IA reflechit..." );
 
 	MiniMax minimax( m_board, m_color );
 
