@@ -10,8 +10,6 @@
 				const char y;
 
 				DirectionVector( char direction_x, char direction_y );
-
-				const static std::list<DirectionVector> directions;
 			};
 		}
 	}

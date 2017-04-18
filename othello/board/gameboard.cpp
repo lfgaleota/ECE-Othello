@@ -196,10 +196,13 @@ void GameBoard::computeValidMoves( Pun::Colors color ) {
 			Move emptyNeighbor( (unsigned char) ( i / 8 ), (unsigned char) ( i % 8 ), color );
 			// On teste si un pion de la couleur demandé existe dans toutes les directions (à optimiser ?)
 			ValidMove validMove = ValidMove( emptyNeighbor );
-			for( const DirectionVector &dvec : DirectionVector::directions ) {
-				if( isValidDirection( emptyNeighbor, dvec, color ) )
-					// Si la direction comporte un pion de la couleur demandée, alors elle est valide et on l'ajoute
-					validMove.addDirection( dvec );
+			for( char i = -1; i < 2; i++ ) {
+				for( char j = -1; j < 2; j++ ) {
+					DirectionVector dvec( i, j );
+					if( isValidDirection( emptyNeighbor, dvec, color ) )
+						// Si la direction comporte un pion de la couleur demandée, alors elle est valide et on l'ajoute
+						validMove.addDirection( dvec );
+				}
 			}
 			// Si on a au moins une direction correct, on a un mouvement valide, on l'ajoute
 			if( validMove.directions.size() > 0 )
@@ -217,27 +220,29 @@ void GameBoard::computeValidMoves( Pun::Colors color ) {
  * @return Validité de la direction
  */
 bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colors color ) {
-	try {
-		unsigned char x = position.x, y = position.y;
-		Pun::Colors opposite = Pun::opposite( color );
-		// On regarde la case à la position + 1 (après déplacement)
-		x += dvec.x;
-		y += dvec.y;
-		Pun::Colors next = at( x, y );
+	unsigned char x = position.x, y = position.y;
+	Pun::Colors opposite = Pun::opposite( color );
+	// On regarde la case à la position + 1 (après déplacement)
+	x += dvec.x;
+	y += dvec.y;
+	// Vérification si on sort pas du tableau
+	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
+		Pun::Colors next = quickAt( x, y );
 		// Si elle n'est pas de la couleur opposée, on s'arrête et on la déclare comme invalide directement (on a soit un pion "ami", soit un trou).
 		if( next != opposite )
 			return false;
 		// Sinon, on continue l'exploration dans le sens de dvec, jusqu'à tomber sur un pion de la couleur opposée.
-		// La vérification du .at() nous extrait d'ici si on arrive en dehors du plateau sans tomber sur un pion correct.
+		// On vérifie bien sur qu'on ne sort pas du tableau, auquel cas la direction est de toute manière invalide.
 		do {
 			x += dvec.x;
 			y += dvec.y;
-			next = at( x, y );
+			if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
+				next = quickAt( x, y );
+			else
+				return false;
 		} while( next == opposite );
 		if( next == color )
 			return true;
-	} catch( std::out_of_range e ) {
-		// On est en dehors du plateau, on n'a donc pas trouvé de pion de la couleur demandé sur la direction demandée
 	}
 	return false;
 }
