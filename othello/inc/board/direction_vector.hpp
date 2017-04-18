@@ -5,6 +5,7 @@
 
 	namespace Othello {
 		namespace Board {
+		    /// \struct DirectionVector
 			struct DirectionVector {
 				const char x;
 				const char y;

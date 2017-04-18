@@ -4,6 +4,7 @@
 	namespace Othello {
 		namespace Board {
 
+			/// \struct Pun
 			struct Pun {
 			    /// \enum Colors
 				enum Colors {

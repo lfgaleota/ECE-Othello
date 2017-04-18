@@ -6,6 +6,7 @@
 
 	namespace Othello {
 		namespace Board {
+		    /// \struct Move
 			struct Move {
 				const unsigned char x;
 				const unsigned char y;

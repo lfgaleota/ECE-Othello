@@ -23,6 +23,7 @@
 				class ValidMoveNode;
 			}
 
+			/// \class GameBoard gameboard.hpp
 			class GameBoard {
 				friend class Othello::Board::Tree::ValidMoveNode;
 				friend class Othello::Algorithms::MiniMax;
@@ -40,6 +41,7 @@
 					std::list<ValidMove> m_validMoves;
 					uint64_t m_emptyNeighbors = 0;
 
+					/// \struct PunCount
 					struct PunCount {
 						unsigned char white = 0;
 						unsigned char black = 0;
