@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(ECE_Othello)
 
+option(GPERFTOOL_PROFILER "Activate gperftool CPU Profiler")
+
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
@@ -44,8 +46,12 @@ set(SOURCE_FILES
 add_executable(ECE_Othello ${SOURCE_FILES})
 
 if(UNIX)
-    target_link_libraries(ECE_Othello ncurses)
+    target_link_libraries(ECE_Othello ncurses pthread)
 endif(UNIX)
+
+if(GPERFTOOL_PROFILER)
+	target_link_libraries(ECE_Othello profiler)
+endif(GPERFTOOL_PROFILER)
 
 if(CMAKE_BUILD_TYPE MATCHES "Release")
 	if(CMAKE_COMPILER_IS_GNUCXX)
