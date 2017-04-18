@@ -3,7 +3,9 @@
 
 	#include <list>
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
 		    /// \struct DirectionVector
 			struct DirectionVector {

@@ -4,7 +4,9 @@
 	#include "../../board/gameboard.hpp"
 	#include "../../players/player.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace UI
 		namespace UI {
 		    /// \class Game gameui.hpp
 			class Game {

@@ -10,6 +10,7 @@
 	#include "ui/games/gameui.hpp"
 	#include "ui/games/gamecliui.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
 	    /// \class Game game.hpp
 		class Game {

@@ -4,7 +4,9 @@
 	#include "pun.hpp"
 
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
 		    /// \struct Move
 			struct Move {

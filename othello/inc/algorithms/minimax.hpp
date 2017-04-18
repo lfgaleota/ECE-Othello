@@ -7,7 +7,9 @@
 	#include "../board/tree/validmovenode.hpp"
 	#include "heuristics.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
 		    /// \class MiniMax minimax.hpp
 			class MiniMax {

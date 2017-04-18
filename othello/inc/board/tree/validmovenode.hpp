@@ -5,8 +5,11 @@
 	#include <vector>
 	#include "../gameboard.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
+		    /// \namespace Tree
 			namespace Tree {
 			    /// \class ValidMoveNode validmovenode.hpp
 				class ValidMoveNode {

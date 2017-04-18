@@ -4,7 +4,9 @@
 	#include "player.hpp"
 	#include "../ui/games/gameui.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Players
 		namespace Players {
 		    /// \class UIPlayer uiplayer.hpp
 			class UIPlayer : public Player {

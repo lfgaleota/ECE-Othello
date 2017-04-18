@@ -5,7 +5,9 @@
 	#include "move.hpp"
 	#include "direction_vector.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
 		    /// \struct ValidMove
 			struct ValidMove : public Move {

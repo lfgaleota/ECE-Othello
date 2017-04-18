@@ -6,7 +6,9 @@
 	#include <vector>
 	#include "player.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Players
 		namespace Players {
 		    /// \class SimpleAI simpleai.hpp
 			class SimpleAI : public Player {

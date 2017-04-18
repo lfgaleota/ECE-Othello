@@ -8,7 +8,9 @@
 	#include "../board/move.hpp"
 	#include "../board/gameboard.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Players
 		namespace Players {
 		    /// \class Player player.hpp
 			class Player {

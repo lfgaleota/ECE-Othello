@@ -4,7 +4,9 @@
 	#include <stdexcept>
 	#include <string>
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Exceptions
 		namespace exceptions { //exeptions inclusions
 			#include "invalid_move"
 			#include "exit_game"

@@ -3,7 +3,9 @@
 
 	#include "../board/gameboard.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
 		    /// \class Heuristics heuristics.hpp
 			class Heuristics {

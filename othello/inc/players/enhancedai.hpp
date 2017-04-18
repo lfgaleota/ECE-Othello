@@ -8,7 +8,9 @@
 	#include "uiplayer.hpp"
 	#include "../algorithms/minimax.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Players
 		namespace Players {
 		    /// \class EnhancedAI enhancedai.hpp
 			class EnhancedAI : public UIPlayer {

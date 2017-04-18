@@ -6,6 +6,7 @@
 	#include "../cli.hpp"
 
 	namespace Functions {
+	    /// \namespace CLIs
 		namespace CLIs {
 		    /// \class menu menu.hpp
 			class Menu {

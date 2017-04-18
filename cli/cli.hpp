@@ -44,7 +44,9 @@
 		#define BACKGROUND_INTENSITY 0x80
 	#endif
 
+	/// \namespace Functions
 	namespace Functions {
+		/// \namespace Keys
 		namespace Keys {
 		    /// \enum Key
 			enum Key {

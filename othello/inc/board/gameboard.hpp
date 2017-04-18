@@ -12,13 +12,17 @@
 	#include "../exceptions/exceptions.hpp"
 	#include "gameissue.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
 			class MiniMax;
 			class Heuristics;
 		}
 
+        /// \namespace Board
 		namespace Board {
+		    /// \namespace Tree
 			namespace Tree {
 				class ValidMoveNode;
 			}

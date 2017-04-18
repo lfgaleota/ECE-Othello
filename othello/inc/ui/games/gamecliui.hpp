@@ -13,9 +13,13 @@
 	#include "../../../../cli/cli.hpp"
 	#include "../../../../cli/menu/menu.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace UI
 		namespace UI {
+		    /// \namespace Games
 			namespace Games {
+			    /// \class CLI gamecliui.hpp
 				class CLI : public Othello::UI::Game {
 					private:
 						Functions::CLI cli;
