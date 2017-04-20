@@ -11,7 +11,7 @@ BackupManager::~BackupManager()
 
 }
 
-void BackupManager::SaveInASlot()
+void BackupManager::SaveInASlot(int slotNumber)
 {
 
 }

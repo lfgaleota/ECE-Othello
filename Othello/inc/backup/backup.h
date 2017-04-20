@@ -17,7 +17,7 @@ public :
     BackupManager();
     ~BackupManager();
 
-    void SaveInASlot();
+    void SaveInASlot(int slotNumber);
 
 
 };
