@@ -10,6 +10,8 @@
 		    /// \class Heuristics heuristics.hpp
 			class Heuristics {
 				public:
+				    /// \fn simple
+				    /// \param {ref, color}
 					static int simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
 			};
 		}

@@ -18,7 +18,11 @@
 					Othello::Board::Pun::Colors m_color;
 					int iteration = 0;
 
+					/// \fn max
+					/// \param {ValidMoveNode, opposite, skipped, depth}
 					int max( Othello::Board::Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigned int depth );
+					/// \fn runMax
+					/// \param {ValidMoveNode, val}
 					void runMax( Othello::Board::Tree::ValidMoveNode* ref, int* val );
 
 				public:
@@ -28,8 +32,10 @@
 					static const int DEPTH;
 
 					/// \fn MinimaxDefaultConstructor
+					/// \param {ref, color}
 					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
 					/// \fn getResult
+					/// \param {No parameters}
 					Othello::Board::ValidMove* getResult();
 			};
 		}

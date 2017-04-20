@@ -22,21 +22,29 @@
 
 					public:
 						/// \fn ValidMoveNodeOverloadConstructor
+						/// \param {board}
 						ValidMoveNode( Othello::Board::GameBoard* board );
 						/// \fn ValidMoveNodeOverloadConstructorBis
+						/// \param {board, validMove}
 						ValidMoveNode( Othello::Board::GameBoard* board, Othello::Board::ValidMove* validMove );
 						/// \fn ValidMoveNodeDestructor
+						/// \param {no parameters}
 						~ValidMoveNode();
 
 						/// \fn compute
+						/// \param {color, depth}
 						void compute( Othello::Board::Pun::Colors color, unsigned char depth );
 						/// \fn prepareBottomStage
+						/// \param {color}
 						void prepareBottomStage( Othello::Board::Pun::Colors color );
 						/// \fn getBoard
+						/// \param {no parameters}
 						const Othello::Board::GameBoard* getBoard() const;
 						/// \fn getNextNodes
+						/// \param {no parameters}
 						const std::list<ValidMoveNode>& getNextNodes() const;
 						/// \fn getValidMoveGetter
+						/// \param {no parameters}
 						ValidMove* getValidMove() const;
 				};
 			}
