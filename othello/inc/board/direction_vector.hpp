@@ -3,17 +3,22 @@
 
 	#include <list>
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
+		    /// \struct DirectionVector
 			struct DirectionVector {
 				const char x;
 				const char y;
 
+				/// \fn DirectionVectorOverloadConstructor
 				DirectionVector( char direction_x, char direction_y );
 			};
 		}
 	}
 
+	/// \fn ==OperatorOverload
 	bool const operator==( Othello::Board::DirectionVector& lhs, Othello::Board::DirectionVector& rhs );
 
 #endif

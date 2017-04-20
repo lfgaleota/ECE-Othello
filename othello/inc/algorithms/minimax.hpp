@@ -7,8 +7,11 @@
 	#include "../board/tree/validmovenode.hpp"
 	#include "heuristics.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
+		    /// \class MiniMax minimax.hpp
 			class MiniMax {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
@@ -24,7 +27,9 @@
 					static const int MAX;
 					static const int DEPTH;
 
+					/// \fn MinimaxDefaultConstructor
 					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
+					/// \fn getResult
 					Othello::Board::ValidMove* getResult();
 			};
 		}

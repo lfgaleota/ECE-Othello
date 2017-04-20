@@ -1,10 +1,12 @@
+/// \author { Louis-Félix Galeota, Romain Brisse }
+/// \date 24 Avril 2017
+
 #include "othello/inc/board/pun.hpp"
 #include "othello/inc/board/gameboard.hpp"
 #include "othello/inc/game.hpp"
 #include "othello/inc/players/human.hpp"
 #include "othello/inc/players/enhancedai.hpp"
 
-//ENORME idée, si on a le temps on fait un undo, on annule le coup qui vient d'être joué et on propose de le rejouer !
 
 using namespace std;
 using namespace Othello;

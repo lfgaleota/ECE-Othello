@@ -1,16 +1,21 @@
 #ifndef _ECE_OTHELLO_BOARD_PUN_HPP_
 	#define _ECE_OTHELLO_BOARD_PUN_HPP_
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Board
 		namespace Board {
-			//enumeration qui permet de savoir si une case est blanche noire ou vide !
+
+			/// \struct Pun
 			struct Pun {
+			    /// \enum Colors
 				enum Colors {
 					blank = 0,
 					black = 1,
 					white = 2
 				};
 
+				/// \fn opposite
 				static inline Colors opposite( Colors color ) {
 					return (Colors) ((int) Colors::white - (int) color + (int) Colors::black );
 				}

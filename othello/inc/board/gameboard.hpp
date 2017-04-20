@@ -12,17 +12,22 @@
 	#include "../exceptions/exceptions.hpp"
 	#include "gameissue.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
 			class MiniMax;
 			class Heuristics;
 		}
 
+        /// \namespace Board
 		namespace Board {
+		    /// \namespace Tree
 			namespace Tree {
 				class ValidMoveNode;
 			}
 
+			/// \class GameBoard gameboard.hpp
 			class GameBoard {
 				friend class Othello::Board::Tree::ValidMoveNode;
 				friend class Othello::Algorithms::MiniMax;
@@ -40,6 +45,7 @@
 					std::list<ValidMove> m_validMoves;
 					uint64_t m_emptyNeighbors = 0;
 
+					/// \struct PunCount
 					struct PunCount {
 						unsigned char white = 0;
 						unsigned char black = 0;
@@ -68,25 +74,37 @@
 					void quickPlay( ValidMove validMove );
 
 				public:
+					/// \fn GameBoardDefaultConstructor
 					GameBoard();
+					/// \fn GameBoardOverloadConstructor
 					GameBoard( GameBoard& ref );
+					/// \fn GameBoardDestructor
 					~GameBoard();
 
+					/// \fn getBoard
 					const punArray getBoard();
 
+					/// \fn getValidMovesReference
 					const std::list<ValidMove> &getValidMoves();
 
+					/// \fn computeValidMoves
 					void computeValidMoves( Pun::Colors color );
 
+					/// \fn canPlay
 					bool canPlay();
+					/// \fn play
 					void play( Move move );
 
+					/// \fn at
 					const Pun::Colors at( const unsigned char x, const unsigned char y );
 
+					/// \fn set
 					void set( const unsigned char x, const unsigned char y, const Pun::Colors color );
 
+					/// \fn punCount
 					const unsigned char punCount( Pun::Colors color ) const;
 
+					/// \fn issue
 					const GameIssue issue( Pun::Colors color ) const;
 			};
 		}

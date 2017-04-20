@@ -44,8 +44,11 @@
 		#define BACKGROUND_INTENSITY 0x80
 	#endif
 
+	/// \namespace Functions
 	namespace Functions {
+		/// \namespace Keys
 		namespace Keys {
+		    /// \enum Key
 			enum Key {
 				ArrowLeft,
 				ArrowRight,
@@ -67,6 +70,7 @@
 			};
 		}
 
+		/// \class CLI cli.hpp
 		class CLI {
 			private:
 				#if defined( WIN )

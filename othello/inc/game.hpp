@@ -10,7 +10,9 @@
 	#include "ui/games/gameui.hpp"
 	#include "ui/games/gamecliui.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \class Game game.hpp
 		class Game {
 			private:
 				Othello::Board::GameBoard m_board; //game board
@@ -19,12 +21,17 @@
 				Othello::UI::Game* m_ui;
 				bool won = false;
 
+				/// \fn playerTurn
 				void playerTurn();
+				/// \fn victory
 				void victory();
+				/// \fn verifyVictory
 				void verifyVictory();
+				/// \fn preparePlayers
 				void preparePlayers();
 
 			public:
+				/// \fn GameOverloadConstructor
 				Game( std::vector<Othello::Players::Player*>& players );
 		};
 	}

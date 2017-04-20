@@ -182,7 +182,7 @@ void CLI::displayMatrix() {
  * @param[in] color Couleur de surimpression
  */
 void CLI::highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color ) { //highlights the selected piece
-	unsigned int i, j, offset_x = 0, offset_y = 0, piece_offset_x, piece_offset_y;
+	unsigned int offset_x = 0, offset_y = 0, piece_offset_x, piece_offset_y;
 
 	cli.setColor( color );
 

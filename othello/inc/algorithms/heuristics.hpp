@@ -3,8 +3,11 @@
 
 	#include "../board/gameboard.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Algorithms
 		namespace Algorithms {
+		    /// \class Heuristics heuristics.hpp
 			class Heuristics {
 				public:
 					static int simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
