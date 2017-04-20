@@ -13,16 +13,16 @@
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
 					Othello::Board::Pun::Colors m_color;
-					//int iteration = 0;
+					int iteration = 0;
 
-					int max( Othello::Board::Tree::ValidMoveNode* ref, bool opposite, unsigned int depth );
-					void runMax( Othello::Board::Tree::ValidMoveNode* ref, bool opposite, unsigned int depth, int* val );
+					int max( Othello::Board::Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigned int depth );
+					void runMax( Othello::Board::Tree::ValidMoveNode* ref, int* val );
 
 				public:
-					static const int MIN = -1000000;
-					static const int DRAW = 0;
-					static const int MAX = 1000000;
-					static const int DEPTH = 5;
+					static const int MIN;
+					static const int DRAW;
+					static const int MAX;
+					static const int DEPTH;
 
 					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
 					Othello::Board::ValidMove* getResult();

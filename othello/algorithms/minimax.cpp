@@ -4,21 +4,26 @@ using namespace std;
 using namespace Othello::Algorithms;
 using namespace Othello::Board;
 
+const int MiniMax::MIN = -1000000;
+const int MiniMax::DRAW = 0;
+const int MiniMax::MAX = 1000000;
+const int MiniMax::DEPTH = 5;
+
 MiniMax::MiniMax( GameBoard* ref, Pun::Colors color ) : m_color( color ) {
 	Tree::ValidMoveNode head( ref, nullptr );
 	head.compute( m_color, 1 );
 
 	size_t nodeSize = head.m_nextNodes.size();
 	unsigned int currentNode = 0;
-	int moveVal = -1000000;
+	int moveVal = MIN;
 
-	std::vector<int> vals( nodeSize, -1000000 );
+	std::vector<int> vals( nodeSize, MIN );
 	std::vector<ValidMove*> moves( nodeSize, nullptr );
 	std::vector<thread*> threads( nodeSize, nullptr );
 
 	for( Tree::ValidMoveNode& nextNode : head.m_nextNodes ) {
 		moves[ currentNode ] = nextNode.m_validMove;
-		threads[ currentNode ] = new thread( &MiniMax::runMax, this, &nextNode, false, 5, &vals[ currentNode ] );
+		threads[ currentNode ] = new thread( &MiniMax::runMax, this, &nextNode, &vals[ currentNode ] );
 
 		currentNode++;
 	}
@@ -39,48 +44,72 @@ MiniMax::MiniMax( GameBoard* ref, Pun::Colors color ) : m_color( color ) {
 		m_foundMove = &(*ref->m_validMoves.begin());
 }
 
-void MiniMax::runMax( Tree::ValidMoveNode* ref, bool opposite, unsigned int depth, int* val ) {
-	*val = max( ref, opposite, depth );
+void MiniMax::runMax( Tree::ValidMoveNode* ref, int* val ) {
+	*val = max( ref, false, false, DEPTH );
 }
 
-int MiniMax::max( Tree::ValidMoveNode* ref, bool opposite, unsigned int depth ) {
-	int maxVal = MiniMax::MIN, val;
+int MiniMax::max( Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigned int depth ) {
+	int minMaxVal, val;
 	Pun::Colors oppositeColor = Pun::opposite( m_color );
+
+	cout << (int) depth << ": " << ++iteration << endl;
 
 	ref->m_board->computeValidMoves( m_color );
 
-	GameIssue issue = ref->m_board->issue( m_color );
-	if( issue == GameIssue::Victory ) {
-		return MiniMax::MAX;
-	}
-	if( issue == GameIssue::Defeat ) {
-		return MiniMax::MIN;
-	}
-	if( issue == GameIssue::Draw ) {
-		return MiniMax::DRAW;
-	}
+	if( ref->m_board->m_validMoves.size() > 0 ) {
+		if( depth == 0 ) {
+			return Heuristics::simple( ref->m_board, m_color );
+		}
 
-	//cout << (int) depth << ": " << ++iteration << endl;
+		ref->compute( oppositeColor, 1 );
 
-	if( depth == 0 ) {
-		return Heuristics::simple( ref->m_board, m_color );
-	}
+		--depth;
 
-	ref->compute( oppositeColor, 1 );
+		if( !opposite ) {
+			minMaxVal = MiniMax::MIN;
 
-	--depth;
+			for( Tree::ValidMoveNode& nextNode : ref->m_nextNodes ) {
+				val = max( &nextNode, ~opposite, false, depth );
 
-	for( Tree::ValidMoveNode& nextNode : ref->m_nextNodes ) {
-		val = max( &nextNode, ~opposite, depth );
+				if( val > minMaxVal ) {
+					minMaxVal = val;
+				}
+			}
+		} else {
+			minMaxVal = MiniMax::MAX;
 
-		if( val > maxVal ) {
-			maxVal = val;
+			for( Tree::ValidMoveNode& nextNode : ref->m_nextNodes ) {
+				val = max( &nextNode, ~opposite, false, depth );
+
+				if( val < minMaxVal ) {
+					minMaxVal = val;
+				}
+			}
+		}
+
+		return minMaxVal;
+	} else {
+		if( !skipped ) {
+			GameBoard* cloneBoard = new GameBoard( *ref->m_board );
+			ref->m_nextNodes.push_back( Tree::ValidMoveNode( cloneBoard ) );
+			std::list<Tree::ValidMoveNode>::iterator nextNode = ref->m_nextNodes.begin();
+			nextNode->compute( oppositeColor, 1 );
+			return max( &(*nextNode), ~opposite, true, depth );
+		} else {
+			GameIssue issue = ref->m_board->issue( m_color );
+			if( issue == GameIssue::Victory ) {
+				return MiniMax::MAX;
+			}
+			if( issue == GameIssue::Defeat ) {
+				return MiniMax::MIN;
+			}
+			if( issue == GameIssue::Draw ) {
+				return MiniMax::DRAW;
+			}
 		}
 	}
-	if( opposite )
-		return -maxVal;
-	else
-		return maxVal;
+
+	return 0;
 }
 
 Othello::Board::ValidMove* MiniMax::getResult() {

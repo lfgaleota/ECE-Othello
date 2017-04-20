@@ -388,20 +388,18 @@ const unsigned char GameBoard::punCount( Pun::Colors color ) const {
 }
 
 const GameIssue GameBoard::issue( Pun::Colors color ) const {
-	if( m_validMoves.size() == 0 ) {
-		if( color == Pun::white ) {
-			if( m_count.white > m_count.black )
-				return GameIssue::Victory;
-			else if( m_count.white < m_count.black )
-				return GameIssue::Defeat;
-			return GameIssue::Draw;
-		} else if( color == Pun::black ) {
-			if( m_count.white < m_count.black )
-				return GameIssue::Victory;
-			else if( m_count.white > m_count.black )
-				return GameIssue::Defeat;
-			return GameIssue::Draw;
-		}
+	if( color == Pun::white ) {
+		if( m_count.white > m_count.black )
+			return GameIssue::Victory;
+		else if( m_count.white < m_count.black )
+			return GameIssue::Defeat;
+		return GameIssue::Draw;
+	} else if( color == Pun::black ) {
+		if( m_count.white < m_count.black )
+			return GameIssue::Victory;
+		else if( m_count.white > m_count.black )
+			return GameIssue::Defeat;
+		return GameIssue::Draw;
 	}
 
 	return GameIssue::Nothing;
