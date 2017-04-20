@@ -14,9 +14,11 @@
 			class SimpleAI : public Player {
 				public:
 					/// \fn SimpleAIOverloadConstructor
+					/// \param {color}
 					SimpleAI( std::string name, Othello::Board::Pun::Colors color );
 
 					/// \fn getMove
+					/// \param {no parameters}
 					Othello::Board::Move getMove();
 			};
 		}
