@@ -23,27 +23,37 @@
 
 				public:
 					/// \fn PlayerOverloadConstructor
+					/// \param {color}
 					Player( std::string name, Othello::Board::Pun::Colors color );
 
 					/// \fn getNameGetter
+					/// \param {no parameters}
 					const std::string &getName() const;
 					/// \fn getColorGetter
+					/// \param {no parameters}
 					Othello::Board::Pun::Colors getColor() const;
 					/// \fn canPlay
+					/// \param {no parameters}
 					bool canPlay() const;
 					/// \fn getPunCountGetter
+					/// \param {no parameters}
 					unsigned char getPunCount() const;
 
 					/// \fn setCanPlaySetter
+					/// \param {no parameters}
 					void setCanPlay();
 					/// \fn setCannotPlaySetter
+					/// \param {no parameters}
 					void setCannotPlay();
 					/// \fn setPunCountSetter
+					/// \param {punCount}
 					void setPunCount( unsigned char punCount );
 					/// \fn setBoardSetter
+					/// \param {board}
 					void setBoard( Othello::Board::GameBoard* board );
 
 					/// \fn getMove
+					/// \param {no parameters}
 					virtual Othello::Board::Move getMove() = 0;
 			};
 		}
