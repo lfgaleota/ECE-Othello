@@ -14,12 +14,15 @@
 				std::list<DirectionVector> directions;
 
 				/// \fn ValidMoveOverloadConstructor
+				/// \param {x,y}
 				ValidMove( unsigned char x, unsigned char y );
 
 				/// \fn ValideMoveOverloadConstructorBis
+				/// \param {move}
 				ValidMove( const Move &move );
 
 				/// \fn addDirection
+				/// \param {dvec}
 				inline void addDirection( DirectionVector dvec ) {
 					directions.push_back( dvec );
 				}
