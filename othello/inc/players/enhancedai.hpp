@@ -16,9 +16,11 @@
 			class EnhancedAI : public UIPlayer {
 				public:
 					/// \fn EnhancedAI
+					/// \param {name, color}
 					EnhancedAI( std::string name, Othello::Board::Pun::Colors color );
 
 					/// \fn getMove
+					/// \param {no parameters}
 					Othello::Board::Move getMove();
 			};
 		}
