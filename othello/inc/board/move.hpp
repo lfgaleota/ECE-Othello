@@ -15,21 +15,26 @@
 				const Pun::Colors color;
 
 				/// \fn MoveOverloadConstructor
+				/// \param {x, y}
 				Move( unsigned char x, unsigned char y );
 
 				/// \fn MoveOverloadConstructorBis
+				/// \param {x, y, color}
 				Move( unsigned char x, unsigned char y, Pun::Colors color );
 
 				/// \fn MoveOverloadConstructorTris
+				/// \param {move}
 				Move( const Move &move );
 			};
 		}
 	}
 
 	/// \fn ==OperatorOverload
+	/// \param {lhs, rhs}
 	bool operator==( const Othello::Board::Move& lhs, const Othello::Board::Move& rhs );
 
 	/// \fn <OperatorOverload
+	/// \param {lhs, rhs}
 	bool operator<( const Othello::Board::Move& lhs, const Othello::Board::Move& rhs );
 
 #endif
