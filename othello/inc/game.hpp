@@ -22,16 +22,21 @@
 				bool won = false;
 
 				/// \fn playerTurn
+				/// \param {no parameters}
 				void playerTurn();
 				/// \fn victory
+				/// \param {no parameters}
 				void victory();
 				/// \fn verifyVictory
+				/// \param {no parameters}
 				void verifyVictory();
 				/// \fn preparePlayers
+				/// \param {no parameters}
 				void preparePlayers();
 
 			public:
 				/// \fn GameOverloadConstructor
+				/// \param {players}
 				Game( std::vector<Othello::Players::Player*>& players );
 		};
 	}
