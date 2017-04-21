@@ -4,7 +4,7 @@ using namespace std;
 using namespace Othello::Board;
 
 /**
- * @bried Constructeur de plateau de jeu
+ * @brief Constructeur de plateau de jeu
  * @details Initialise un nouveau plateau de jeu, en concordance avec les règles du jeu. Initialise également les différents éléments spécifiques qui ne correspondent pas au jeu en lui-même, mais qui permettent de faire fonctionner l'implémentation, comme la liste des cases vides voisines à des pions.
  */
 GameBoard::GameBoard() {
