@@ -54,6 +54,9 @@ GameBoard::GameBoard( GameBoard& ref ) {
 	m_count.black = ref.m_count.black;
 }
 
+/**
+* @brief Destructeur de la classe GameBoard
+**/
 GameBoard::~GameBoard() {
 
 }
@@ -187,7 +190,7 @@ void GameBoard::quickEmptyNeighborsUnset( const unsigned char x, const unsigned 
  */
 void GameBoard::computeValidMoves( Pun::Colors color ) {
 	bool value;
-	m_validMoves.clear();
+	m_validMoves.clear(); //on vide le vecteur des mouvements possibles précédents
 
 	// On parcours la liste des voisins vides, qui contient la liste de tous les emplacements vides voisins d'un pion
 	for( unsigned char i = 0; i < GameBoard::size; i++ ) {

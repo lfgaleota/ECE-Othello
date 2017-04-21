@@ -367,7 +367,7 @@ void CLI::victory( Player* player ) {
 /**
  * @brief	Génération d'un fond de plateau
  * @details	Construit, à partir de la taille de la matrice, un fond de plateau destiné à être affiché par l'interface.
- *         	Cetet fonction ne prend et renvoie rien. Elle utilise, en revanche, le paramètre sizeEdge de #Board, et remplie l'attribut #m_displaymatrix avec un ensemble de chaînes de caractères prêtes à afficher.
+ *         	Cette fonction ne prend et renvoie rien. Elle utilise, en revanche, le paramètre sizeEdge de #Board, et remplie l'attribut #m_displaymatrix avec un ensemble de chaînes de caractères prêtes à afficher.
  */
 void CLI::loadDisplayMatrix() {
 	std::string tmp;
