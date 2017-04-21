@@ -143,7 +143,7 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
  *
  * Cette bizarrerie s'explique par les raisons suivantes:
  * - Je ne voulais pas m'embêter à faire une fonction de comparaison qui fonctionne pour un couple (x,y) dans le cadre d'un set
- * - Je ne voulais pas utiliser un set, car le tri est inutil, seul l'unicité compte, et le set est beaucoup trop lourd pour faire des traitements répétés rapides.
+ * - Je ne voulais pas utiliser un set, car le tri est inutile, seul l'unicité compte, et le set est beaucoup trop lourd pour faire des traitements répétés rapides.
  * - Sur l'entier, il est simple d'assigner à chaque couple (x,y) un bit unique -> pas de duplication, on peut écrire et réécrire sans se soucier du reste
  * - L'entier est simple à accéder, copier et maintenir en mémoire, surtout sur un processeur 64bit:
  * -> l'entier tient sur un seul registre de 64 bits, pas besoin de reconsulter la mémoire pour accéder aux autres cases
@@ -390,6 +390,10 @@ const unsigned char GameBoard::punCount( Pun::Colors color ) const {
 	return 0;
 }
 
+/**
+* @brief Fonction qui renvoie l'issue du jeu
+* @return l'issue du jeu (victoire/defaite/egalité)
+**/
 const GameIssue GameBoard::issue( Pun::Colors color ) const {
 	if( color == Pun::white ) {
 		if( m_count.white > m_count.black )
