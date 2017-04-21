@@ -18,6 +18,7 @@ int main() {
 	players.push_back( new Human( "Player1", Pun::black ) );
 	players.push_back( new EnhancedAI( "Player2", Pun::white ) );
 
+	/** This line starts the Othello game. **/
 	Game othello( players );
 	return 0;
 }

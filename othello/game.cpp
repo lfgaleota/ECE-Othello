@@ -84,10 +84,12 @@ void Game::preparePlayers() {
 	}
 }
 
+/// \fn GameOverloadConstructor
+/// \param {players}
 Game::Game( std::vector<Player*>& players ): m_players( players ) { //that's how it goes down
-	m_currentPlayer = m_players.begin(); //first player "selected"
+	m_currentPlayer = m_players.begin(); ///first player "selected" in the vector of players passed to the constructor
 
-	m_ui = new UI::Games::CLI( m_board, m_board.getBoard(), m_players, m_currentPlayer );
+	m_ui = new UI::Games::CLI( m_board, m_board.getBoard(), m_players, m_currentPlayer ); //Here we create a User Interface
 
 	preparePlayers();
 
