@@ -9,6 +9,9 @@ const int MiniMax::DRAW = 0;
 const int MiniMax::MAX = 1000000;
 const int MiniMax::DEPTH = 5;
 
+/**
+* @brief Constructeur de la classe MiniMax
+**/
 MiniMax::MiniMax( GameBoard* ref, Pun::Colors color ) : m_color( color ) {
 	Tree::ValidMoveNode head( ref, nullptr );
 	head.compute( m_color, 1 );
@@ -44,10 +47,18 @@ MiniMax::MiniMax( GameBoard* ref, Pun::Colors color ) : m_color( color ) {
 		m_foundMove = &(*ref->m_validMoves.begin());
 }
 
+/**
+* @brief Fonction runmax, qui lance la recherche
+**/
 void MiniMax::runMax( Tree::ValidMoveNode* ref, int* val ) {
 	*val = max( ref, false, false, DEPTH );
 }
 
+/**
+* @brief Fonction max.
+* @details
+* @return 0 (blindage) sinon return l'heuristique le min le max...
+**/
 int MiniMax::max( Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigned int depth ) {
 	int minMaxVal, val;
 	Pun::Colors oppositeColor = Pun::opposite( m_color );
@@ -112,6 +123,10 @@ int MiniMax::max( Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigne
 	return 0;
 }
 
+/**
+* @brief Accesseur de la validité du mouvement
+* @return le mouvement choisi par MinMax.
+**/
 Othello::Board::ValidMove* MiniMax::getResult() {
 	return m_foundMove;
 }
