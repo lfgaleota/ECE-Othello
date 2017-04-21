@@ -3,17 +3,17 @@
 using namespace Othello::Board;
 
 /**
-* @brief Constructeur surchargé de la classe Move
+* @brief Constructeur surchargé de la structure Move
 **/
 Move::Move( unsigned char x, unsigned char y ) : x ( x ), y( y ), color( Pun::blank ) {}
 
 /**
-* @brief Constructeur surchargé de la classe Move
+* @brief Constructeur surchargé de la structure Move
 **/
 Move::Move( unsigned char x, unsigned char y, Pun::Colors color ) : x ( x ), y( y ), color( color ) {}
 
 /**
-* @brief Constructeur surchargé de la classe Move
+* @brief Constructeur surchargé de la structure Move
 **/
 Move::Move( const Move &move ) : x( move.x ), y( move.y ), color( move.color ) {}
 
