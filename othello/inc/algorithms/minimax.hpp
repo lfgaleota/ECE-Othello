@@ -15,12 +15,12 @@
 			class MiniMax {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
-					Othello::Board::Pun::Colors m_color;
-					int iteration = 0;
+					Othello::Board::Pun::Colors m_color, m_oppositeColor;
 
 					/// \fn max
 					/// \param {ValidMoveNode, opposite, skipped, depth}
-					int max( Othello::Board::Tree::ValidMoveNode* ref, bool opposite, bool skipped, unsigned int depth );
+					int max( Othello::Board::Tree::ValidMoveNode* ref, bool skipped, unsigned int depth );
+					int min( Othello::Board::Tree::ValidMoveNode* ref, bool skipped, unsigned int depth );
 					/// \fn runMax
 					/// \param {ValidMoveNode, val}
 					void runMax( Othello::Board::Tree::ValidMoveNode* ref, int* val );
@@ -33,7 +33,7 @@
 
 					/// \fn MinimaxDefaultConstructor
 					/// \param {ref, color}
-					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
+					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Othello::Board::Pun::Colors color );
 					/// \fn getResult
 					/// \param {No parameters}
 					Othello::Board::ValidMove* getResult();

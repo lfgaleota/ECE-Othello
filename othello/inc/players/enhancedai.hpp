@@ -14,6 +14,9 @@
 		namespace Players {
 		    /// \class EnhancedAI enhancedai.hpp
 			class EnhancedAI : public UIPlayer {
+				private:
+					Othello::Board::Tree::ValidMoveNode m_tree;
+
 				public:
 					/// \fn EnhancedAI
 					/// \param {name, color}

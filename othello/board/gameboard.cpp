@@ -199,9 +199,9 @@ void GameBoard::computeValidMoves( Pun::Colors color ) {
 			Move emptyNeighbor( (unsigned char) ( i / 8 ), (unsigned char) ( i % 8 ), color );
 			// On teste si un pion de la couleur demandé existe dans toutes les directions (à optimiser ?)
 			ValidMove validMove = ValidMove( emptyNeighbor );
-			for( char i = -1; i < 2; i++ ) {
-				for( char j = -1; j < 2; j++ ) {
-					DirectionVector dvec( i, j );
+			for( char x = -1; x < 2; x++ ) {
+				for( char y = -1; y < 2; y++ ) {
+					DirectionVector dvec( x, y );
 					if( isValidDirection( emptyNeighbor, dvec, color ) )
 						// Si la direction comporte un pion de la couleur demandée, alors elle est valide et on l'ajoute
 						validMove.addDirection( dvec );

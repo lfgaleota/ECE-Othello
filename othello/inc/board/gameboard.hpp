@@ -20,6 +20,10 @@
 			class Heuristics;
 		}
 
+		namespace Players {
+			class SimpleAI;
+		}
+
         /// \namespace Board
 		namespace Board {
 		    /// \namespace Tree
@@ -32,6 +36,7 @@
 				friend class Othello::Board::Tree::ValidMoveNode;
 				friend class Othello::Algorithms::MiniMax;
 				friend class Othello::Algorithms::Heuristics;
+				friend class Othello::Players::SimpleAI;
 
 				public:
 					const static unsigned char sizeEdge = 8;
