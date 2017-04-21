@@ -6,6 +6,7 @@
 #include "othello/inc/game.hpp"
 #include "othello/inc/players/human.hpp"
 #include "othello/inc/players/enhancedai.hpp"
+#include "othello/inc/players/simpleai.hpp"
 
 
 using namespace std;
