@@ -171,7 +171,7 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
  * @param[in] index Index de la case désirée ( x * 8 + y )
  * @return État de la case
  */
-bool GameBoard::quickEmptyNeighborsGet( const unsigned char index ) {
+bool GameBoard::quickEmptyNeighborsGet( const unsigned char index ) const {
 	return ( ( m_emptyNeighbors & ( ( (uint64_t) 1 ) << index ) ) != 0 );
 }
 

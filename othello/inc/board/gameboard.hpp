@@ -84,7 +84,7 @@
 
 					/// \fn quickEmptyNeighborGet
 					/// \param {index}
-					inline bool quickEmptyNeighborsGet( const unsigned char index );
+					inline bool quickEmptyNeighborsGet( const unsigned char index ) const;
 
 					/// \fn quickEmptyNeighborsSet
 					/// \param {x, y}
