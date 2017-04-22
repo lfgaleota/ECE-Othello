@@ -43,7 +43,7 @@
 			<Add library="alleggl" />
 			<Add library="opengl32" />
 			<Add library="glu32" />
-			<Add library="alleg" />
+			<Add library="alleg44" />
 			<Add library="alleggl" />
 			<Add library="winmm" />
 			<Add library="gdi32" />
