@@ -8,7 +8,7 @@ Save::~Save()
 
 }
 
-//passer à un type booleen pour vérifier que la sauvegarde a réussi ?
+//passer Ã  un type booleen pour vÃ©rifier que la sauvegarde a rÃ©ussi ?
 /**
 *@brief fonction savePlayer
 *@details permet de sauvegarder un joueur dans l'un des trois slots de sauvegarde.

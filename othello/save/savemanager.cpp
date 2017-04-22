@@ -10,7 +10,7 @@ SaveManager::~SaveManager()
 
 /**
 *@brief fonction save
-*@details permet de sauvegarder dans l'un des trois slots prévu à cet effet, le jeu à un instant donné
+*@details permet de sauvegarder dans l'un des trois slots prÃ©vu Ã  cet effet, le jeu Ã  un instant donnÃ©
 **/
 void SaveManager::save(Othello::Board::GameBoard gameBoard_toSave,Othello::Players::Human player_toSave,int slot)
 {
