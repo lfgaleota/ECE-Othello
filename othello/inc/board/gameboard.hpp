@@ -101,10 +101,15 @@
 					void quickPlay( ValidMove validMove );
 
 				public:
+
+					/// \fn accesseur de emptyNeighbors
+					/// \param {no parameters}
+				    uint64_t getEmptyNeighbors();
+
 					/// \fn GameBoardDefaultConstructor
 					/// \param {no parameters}
 					GameBoard();
-					/// \fn GameBoardOverloadConstructor
+					/// \fn GameBoardCopyConstructor
 					/// \param {ref}
 					GameBoard( GameBoard& ref );
 					GameBoard( GameBoard* ref );

@@ -165,6 +165,11 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
  * La perte de temps induite par le calcul de bitmasks afin d'accéder/modifier les cases me semble bien moindre face aux aux avantages que procure cette construction par rapoort à un set, ou plus simplement une matrice de booléens qui remplirait le même usage.
  */
 
+ uint64_t GameBoard::getEmptyNeighbors()
+ {
+     return m_emptyNeighbors ;
+ }
+
 /**
  * @brief Accesseur de voisins vides rapide
  * @details Retourne si la case à l'index indiquée est un voisin vide
