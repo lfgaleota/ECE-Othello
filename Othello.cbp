@@ -112,6 +112,10 @@
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
 		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
+		<Unit filename="othello/inc/algorithms/minimax.hpp" />
+		<Unit filename="othello/algorithms/minimax.cpp" />
+		<Unit filename="othello/inc/algorithms/alphabeta.hpp" />
+		<Unit filename="othello/algorithms/alphabeta.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

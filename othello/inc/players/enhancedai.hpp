@@ -7,6 +7,7 @@
 	#include <exception>
 	#include <atomic>
 	#include "uiplayer.hpp"
+	#include "../algorithms/alphabeta.hpp"
 	#include "../algorithms/minimax.hpp"
 
 	/**

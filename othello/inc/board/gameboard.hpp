@@ -17,6 +17,7 @@
 	    /// \namespace Algorithms
 		namespace Algorithms {
 			class MiniMax;
+			class AlphaBeta;
 			class Heuristics;
 		}
 
@@ -35,6 +36,7 @@
 			class GameBoard {
 				friend class Othello::Board::Tree::ValidMoveNode;
 				friend class Othello::Algorithms::MiniMax;
+				friend class Othello::Algorithms::AlphaBeta;
 				friend class Othello::Algorithms::Heuristics;
 				friend class Othello::Players::SimpleAI;
 

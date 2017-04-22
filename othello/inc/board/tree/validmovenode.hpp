@@ -14,6 +14,7 @@
 			    /// \class ValidMoveNode validmovenode.hpp
 				class ValidMoveNode {
 					friend class Othello::Algorithms::MiniMax;
+					friend class Othello::Algorithms::AlphaBeta;
 
 					private:
 						Othello::Board::GameBoard* m_board;

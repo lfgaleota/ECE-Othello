@@ -47,6 +47,8 @@ set(SOURCE_FILES
     othello/inc/ui/games/gameallegroui.hpp
     othello/ui/games/allegrovalidmovetreeviewer.cpp
     othello/inc/ui/games/allegrovalidmovetreeviewer.hpp
+    othello/algorithms/alphabeta.cpp
+    othello/inc/algorithms/alphabeta.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)

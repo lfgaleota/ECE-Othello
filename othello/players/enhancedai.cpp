@@ -14,9 +14,9 @@ Move EnhancedAI::getMove() {
 	m_tree = Tree::ValidMoveNode( m_board );
 	m_ui->setTree( &m_tree );
 
-	MiniMax minimax( m_board, &m_tree, m_color );
+	AlphaBeta alphabeta( m_board, &m_tree, m_color );
 
-	ValidMove* move = minimax.getResult();
+	ValidMove* move = alphabeta.getResult();
 	if( move == nullptr )
 		throw logic_error( "Move not found" );
 	m_done = true;
