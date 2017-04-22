@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "../players/human.hpp"
 #include "../board/gameboard.hpp"
 
@@ -11,14 +12,14 @@ class Save
 {
 private :
 
-    //nothing to do here yet
+    std::string m_playerName ;
 
 public :
 
     /// \fn saveBoard
-    void saveBoard(Othello::Board::GameBoard gameBoard_toSave);
+    void saveBoard(Othello::Board::GameBoard gameBoard_toSave, int slot);
     /// \fn savePlayer
-    void savePlayer(Othello::Players::Human player_toSave);
+    void savePlayer(Othello::Players::Human player_toSave, int slot);
 
     /// \fn destructor
     ~Save();
