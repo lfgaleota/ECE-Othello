@@ -39,12 +39,10 @@
 			<Add library="loadpng" />
 			<Add library="png" />
 			<Add library="jpgalleg" />
-			<Add library="alleg44" />
 			<Add library="alleggl" />
+			<Add library="alleg44" />
 			<Add library="opengl32" />
 			<Add library="glu32" />
-			<Add library="alleg44" />
-			<Add library="alleggl" />
 			<Add library="winmm" />
 			<Add library="gdi32" />
 		</Linker>
@@ -69,6 +67,7 @@
 		<Unit filename="imgui/stb_textedit.h" />
 		<Unit filename="imgui/stb_truetype.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="othello/algorithms/alphabeta.cpp" />
 		<Unit filename="othello/algorithms/heuristics.cpp" />
 		<Unit filename="othello/algorithms/minimax.cpp" />
 		<Unit filename="othello/board/direction_vector.cpp" />
@@ -77,10 +76,9 @@
 		<Unit filename="othello/board/tree/validmovenode.cpp" />
 		<Unit filename="othello/board/valid_move.cpp" />
 		<Unit filename="othello/game.cpp" />
+		<Unit filename="othello/inc/algorithms/alphabeta.hpp" />
 		<Unit filename="othello/inc/algorithms/heuristics.hpp" />
 		<Unit filename="othello/inc/algorithms/minimax.hpp" />
-		<Unit filename="othello/inc/backup/backup.cpp" />
-		<Unit filename="othello/inc/backup/backup.h" />
 		<Unit filename="othello/inc/board/direction_vector.hpp" />
 		<Unit filename="othello/inc/board/gameboard.hpp" />
 		<Unit filename="othello/inc/board/gameissue.hpp" />
@@ -98,6 +96,10 @@
 		<Unit filename="othello/inc/players/player.hpp" />
 		<Unit filename="othello/inc/players/simpleai.hpp" />
 		<Unit filename="othello/inc/players/uiplayer.hpp" />
+		<Unit filename="othello/inc/save/save.hpp" />
+		<Unit filename="othello/inc/save/savemanager.hpp" />
+		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
+		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/gameallegroui.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
@@ -106,20 +108,12 @@
 		<Unit filename="othello/players/player.cpp" />
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
+		<Unit filename="othello/save/save.cpp" />
+		<Unit filename="othello/save/savemanager.cpp" />
+		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
-		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Unit filename="othello/ui/games/gameallegroui.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
-		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
-		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
-		<Unit filename="othello/inc/algorithms/minimax.hpp" />
-		<Unit filename="othello/algorithms/minimax.cpp" />
-		<Unit filename="othello/inc/algorithms/alphabeta.hpp" />
-		<Unit filename="othello/algorithms/alphabeta.cpp" />
-		<Unit filename="othello/inc/save/save.hpp" />
-		<Unit filename="othello/save/save.cpp" />
-		<Unit filename="othello/inc/save/savemanager.hpp" />
-		<Unit filename="othello/save/savemanager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

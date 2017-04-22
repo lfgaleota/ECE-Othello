@@ -74,13 +74,10 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 	endif(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_BUILD_TYPE MATCHES "Release")
 
-target_link_libraries(ECE_Othello m z loadpng png jpgalleg alleg alleggl)
+target_link_libraries(ECE_Othello m z loadpng png jpgalleg alleggl alleg)
 
 if(WIN32)
-	target_link_libraries(ECE_Othello opengl32 glu32)
+	target_link_libraries(ECE_Othello opengl32 glu32 winmm gdi32)
 else(WIN32)
 	target_link_libraries(ECE_Othello GL GLU)
 endif(WIN32)
-
-# Hack to allow compilation on Windows systems
-target_link_libraries(ECE_Othello alleg alleggl)
