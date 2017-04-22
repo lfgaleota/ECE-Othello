@@ -37,3 +37,17 @@ void Player::setPunCount( unsigned char punCount ) {
 void Player::setBoard( GameBoard* board ) {
 	m_board = board;
 }
+
+bool Player::typeCheck( int typeInt ) {
+	if( typeInt < static_cast<int>( Player::Type::Human ) ) return false;
+	if( typeInt > static_cast<int>( Player::Type::EnhancedAI ) ) return false;
+
+	switch( static_cast<Player::Type>( typeInt ) ) {
+		case Player::Type::Human:
+		case Player::Type::SimpleAI:
+		case Player::Type::EnhancedAI:
+			return true;
+		default:
+			return false;
+	}
+}

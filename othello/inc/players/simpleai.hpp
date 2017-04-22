@@ -49,6 +49,12 @@
 					 * @details Informe le joueur que son tour est terminé.
 					 */
 					void turnEnd();
+
+					/**
+					 * @brief Accesseur de type de joueur
+					 * @return Type de joueur
+					 */
+					Type getType();
 			};
 		}
 	}

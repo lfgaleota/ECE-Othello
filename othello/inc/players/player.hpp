@@ -32,6 +32,12 @@
 					Othello::Board::GameBoard* m_board; /*! < Pointeur vers le plateau de jeu, utile pour les IA */
 
 				public:
+					enum Type {
+						Human,
+						SimpleAI,
+						EnhancedAI
+					};
+
 					/**
 					 * @brief Constructeur
 					 * @param name Nom du joueur
@@ -118,6 +124,19 @@
 					 * @return Mouvement choisi
 					 */
 					virtual Othello::Board::Move getMove() = 0;
+
+					/**
+					 * @brief Accesseur de type de joueur
+					 * @return Type de joueur
+					 */
+					 virtual Type getType() = 0;
+
+					/**
+					 * @brief Vérificateur de type
+					 * @ëetails Vérifie si l'entier fournit peut être caster de manière sécurisée vers une énumération #Type.
+					 * @return Validité de l'entier
+					 */
+					static bool typeCheck( int typeInt );
 			};
 		}
 	}

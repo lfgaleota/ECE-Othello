@@ -34,3 +34,7 @@ void SimpleAI::turnBegin() {
 void SimpleAI::turnEnd() {
 	UIPlayer::turnEnd();
 }
+
+Player::Type SimpleAI::getType() {
+	return Player::Type::SimpleAI;
+}

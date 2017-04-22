@@ -32,3 +32,7 @@ void EnhancedAI::turnBegin() {
 void EnhancedAI::turnEnd() {
 	UIPlayer::turnEnd();
 }
+
+Player::Type EnhancedAI::getType() {
+	return Player::Type::EnhancedAI;
+}

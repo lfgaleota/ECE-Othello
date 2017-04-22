@@ -24,3 +24,7 @@ void Human::turnBegin() {
 void Human::turnEnd() {
 	UIPlayer::turnEnd();
 }
+
+Player::Type Human::getType() {
+	return Player::Type::Human;
+}
