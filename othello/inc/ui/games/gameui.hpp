@@ -37,6 +37,11 @@
 					Game( const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : m_board( board ), m_players( players ), m_currentPlayer( currentPlayer ) {};
 
 					/**
+					 * @brief Destructeur de l'interface de jeu
+					 */
+					virtual ~Game() = 0;
+
+					/**
 					 * @brief Affichage d'une erreur
 					 * @details Informe l'utilisateur d'une erreur au sein du programme. Bloque le programme en attendant une action de l'utilisateur.
 					 * @param msg Message d'erreur

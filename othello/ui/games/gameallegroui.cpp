@@ -145,7 +145,7 @@ void ErrorBar::animateIn( std::string msg, bool force ) {
 }
 
 
-Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_oboard( oboard ), m_io( ImGui::GetIO() ) {
+Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_io( ImGui::GetIO() ), m_oboard( oboard ) {
 	loadSprites();
 	loadBackgrounds();
 	loadFonts();
