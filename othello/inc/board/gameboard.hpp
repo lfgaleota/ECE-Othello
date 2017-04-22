@@ -102,7 +102,7 @@
 					/// \fn GameBoardDefaultConstructor
 					/// \param {no parameters}
 					GameBoard();
-					/// \fn GameBoardOverloadConstructor
+					/// \fn GameBoardCopyConstructor
 					/// \param {ref}
 					GameBoard( GameBoard& ref );
 					GameBoard( GameBoard* ref );

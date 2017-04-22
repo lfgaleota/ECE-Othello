@@ -8,9 +8,9 @@ class SaveManager
 {
 private :
 
-    Save firstSlot ;
-    Save secondSlot ;
-    Save thirdSlot ;
+    Save m_firstSlot ;
+    Save m_secondSlot ;
+    Save m_thirdSlot ;
 
 public :
 
