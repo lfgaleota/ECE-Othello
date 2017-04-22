@@ -42,7 +42,12 @@ set(SOURCE_FILES
     othello/algorithms/heuristics.cpp
     othello/inc/algorithms/heuristics.hpp
     othello/ui/games/clivalidmovetreeviewer.cpp
-    othello/inc/ui/games/clivalidmovetreeviewer.hpp)
+    othello/inc/ui/games/clivalidmovetreeviewer.hpp
+    othello/ui/games/gameallegroui.cpp
+    othello/inc/ui/games/gameallegroui.hpp
+    imgui/imgui.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_impl_agl.cpp)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
 
