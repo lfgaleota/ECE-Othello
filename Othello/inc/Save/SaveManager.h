@@ -18,7 +18,7 @@ public :
     ~SaveManager();
 
     void save(Othello::Board::GameBoard gameBoard_toSave,Othello::Players::Human player_toSave, int slot);
-    void load();
+
 };
 
 

@@ -19,6 +19,10 @@ public :
     /// \fn savePlayer
     void savePlayer(Othello::Players::Human player_toSave, int slot);
 
+    std::string loadPlayer(int slot);
+    uint64_t loadEmptyNeighbors(int slot);
+    unsigned char loadPunCount(int slot);
+
     /// \fn destructor
     ~Save();
 };

@@ -59,8 +59,6 @@ void Save::saveBoard(Othello::Board::GameBoard gameBoard_toSave, int slot)
         //save the count
         board1 << gameBoard_toSave.punCount(Othello::Board::Pun::white) << std::endl ;
         board1 << gameBoard_toSave.punCount(Othello::Board::Pun::black) << std::endl ;
-        //save the board
-
 
         break;
 
@@ -88,4 +86,42 @@ void Save::saveBoard(Othello::Board::GameBoard gameBoard_toSave, int slot)
 
 
 
+}
+
+std::string Save::loadPlayer(int slot)
+{
+    std::ifstream player1("playerFile1.txt");
+    std::ifstream player2("playerFile2.txt");
+    std::ifstream player3("playerFile3.txt");
+
+    std::string line ;
+
+    switch(slot)
+    {
+    case 1 :
+
+        getline(player1,line);
+        break ;
+
+    case 2 :
+
+        getline(player2,line);
+        break ;
+
+    case 3 :
+
+        getline(player3,line);
+        break ;
+
+    default :
+
+        line = "randomPlayer" ;
+        break ;
+    }
+
+    player1.close();
+    player2.close();
+    player3.close();
+
+return line ;
 }
