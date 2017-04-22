@@ -11,8 +11,7 @@ class Save
 {
 private :
 
-    Othello::Players::Human m_player_save ;
-    Othello::Board::GameBoard m_gameBoard_save ;
+    //nothing to do here yet
 
 public :
 
