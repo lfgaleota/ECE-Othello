@@ -76,7 +76,7 @@
 
 					/// \fn quickAT
 					/// \param {x, y}
-					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y );
+					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y ) const;
 
 					/// \fn quickSet
 					/// \param {x, y, color}
@@ -105,6 +105,7 @@
 					/// \fn GameBoardOverloadConstructor
 					/// \param {ref}
 					GameBoard( GameBoard& ref );
+					GameBoard( GameBoard* ref );
 					/// \fn GameBoardDestructor
 					/// \param {no parameters}
 					~GameBoard();
@@ -130,7 +131,7 @@
 
 					/// \fn at
 					/// \param {x, y}
-					const Pun::Colors at( const unsigned char x, const unsigned char y );
+					const Pun::Colors at( const unsigned char x, const unsigned char y ) const;
 
 					/// \fn set
 					/// \param {x, y color}

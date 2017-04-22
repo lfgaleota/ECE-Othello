@@ -55,6 +55,18 @@ GameBoard::GameBoard( GameBoard& ref ) {
 }
 
 /**
+ * @brief Constructeur par copie de plateau de jeu par pointeur
+ * @details Clone un plateau de jeu.
+ * @param[in] ref Plateau de référence à cloner
+ */
+GameBoard::GameBoard( GameBoard* ref ) {
+	m_emptyNeighbors = ref->m_emptyNeighbors;
+	std::memcpy( m_board, ref->m_board, GameBoard::sizeMemory );
+	m_count.white = ref->m_count.white;
+	m_count.black = ref->m_count.black;
+}
+
+/**
 * @brief Destructeur de la classe GameBoard
 **/
 GameBoard::~GameBoard() {
@@ -84,7 +96,7 @@ const std::list<ValidMove> &GameBoard::getValidMoves() {
  * @param[in] y Coordonnée en ordonnée de l'emplacement
  * @return Élément aux coordonnées indiquées
  */
-const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) {
+const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) const {
 	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
 		return quickAt( x, y );
 	else
@@ -98,7 +110,7 @@ const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) 
  * @param[in] y Coordonnée en ordonnée de l'emplacement
  * @return Élément aux coordonnées indiquées
  */
-const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char y ) {
+const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char y ) const {
 	return m_board[ x ][ y ];
 }
 
