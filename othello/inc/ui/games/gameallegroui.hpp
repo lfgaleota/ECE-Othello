@@ -15,6 +15,7 @@
 	#include "../../../../imgui/imgui_impl_agl.h"
 	#include "gameui.hpp"
 	#include "../../exceptions/exceptions.hpp"
+	#include "allegrovalidmovetreeviewer.hpp"
 
 	#define PLAYER_NAME_PADDING_W 10
 	#define PLAYER_NAME_PADDING_H 2
@@ -28,7 +29,7 @@
 	#define VICTORY_PADDING 50
 	#define FONT_SIZE_16 0
 	#define FONT_SIZE_32 1
-	#define PAUSE_HEIGHT 140
+	#define PAUSE_HEIGHT 180
 	#define PAUSE_BUTTON_WIDTH 300
 	#define PAUSE_BUTTON_HEIGHT 40
 	#define PAUSE_BLENDING_FACTOR 130
@@ -110,13 +111,14 @@
 						BITMAP* m_page;
 						FONT *m_textFont, *m_glTextFont;
 						ImGuiIO& m_io;
-						bool prevKeyEsc = false, keyEsc = false;
+						bool prevKeyEsc = false, keyEsc = false, prevKeyG = false, keyG = false;
 						unsigned char x = 0, y = 0;
 						float dt;
 						time_t before;
 						Othello::Board::GameBoard& m_oboard;
 						MessageBar infoBar;
 						ErrorBar errorBar;
+						AllegroValidMoveTreeViewer m_treeViewer;
 						bool m_pause = false, m_getMove = false;
 
 						void loadSprites();
@@ -125,6 +127,7 @@
 						void loadIMGUIStyle();
 
 						void display();
+						void displayBackground();
 						void displayMatrix();
 						void displayPlayers();
 						void highlightSelectedPiece( unsigned int x, unsigned int y, int color = COLOR_SELECTION );

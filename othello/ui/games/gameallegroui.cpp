@@ -152,6 +152,8 @@ Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::GameB
 
 	m_page = create_bitmap( SCREEN_W, SCREEN_H );
 
+	m_treeViewer = AllegroValidMoveTreeViewer( &m_tree, 5, m_page );
+
 	infoBar = MessageBar( m_page, m_textFont );
 	errorBar = ErrorBar( m_page, m_textFont, &infoBar );
 }
@@ -318,8 +320,12 @@ void Allegro::displayPlayers() {
 	}
 }
 
-void Allegro::display() {
+void Allegro::displayBackground() {
 	stretch_blit( m_bitmaps.find( "gameBg" )->second, m_page, 0, 0, m_bitmaps.find( "gameBg" )->second->w, m_bitmaps.find( "gameBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H );
+}
+
+void Allegro::display() {
+	displayBackground();
 
 	set_alpha_blender();
 
@@ -332,9 +338,19 @@ void Allegro::display() {
 void Allegro::updateInputs() {
 	prevKeyEsc = keyEsc;
 	keyEsc = (bool) key[ KEY_ESC ];
+	prevKeyG = keyG;
+	keyG = (bool) key[ KEY_G ];
 
 	if( !prevKeyEsc && keyEsc ) {
-		m_pause = true;
+		if( m_treeViewer.opened ) {
+			m_treeViewer.opened = false;
+		} else {
+			m_pause ^= true;
+		}
+	}
+
+	if( !prevKeyG && keyG ) {
+		m_treeViewer.opened ^= true;
 	}
 }
 
@@ -360,7 +376,7 @@ Othello::Board::Move Allegro::getMove() {
 	int mx, my;
 	unsigned int rw, rh, posx, posy;
 
-	if( !m_pause ) {
+	if( !m_pause && !m_treeViewer.opened ) {
 		x = 0;
 		y = 0;
 		m_getMove = true;
@@ -397,15 +413,22 @@ void Allegro::playerTurnEnd( Player* player ) {
 
 void Allegro::gameDisplay() {
 	allegro_gl_set_allegro_mode();
-	display();
-	infoBar.render( dt );
-	errorBar.render( dt );
-	if( m_pause ) {
-		renderPause();
-	} else {
-		if( m_getMove ) {
-			highlightSelectedPiece( x, y, COLOR_SELECTION );
+	if( !m_treeViewer.opened ) {
+		display();
+		infoBar.render( dt );
+		errorBar.render( dt );
+		if( m_pause ) {
+			renderPause();
+		} else {
+			if( m_getMove ) {
+				highlightSelectedPiece( x, y, COLOR_SELECTION );
+			}
+			blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
+			allegro_gl_unset_allegro_mode();
 		}
+	} else {
+		displayBackground();
+		m_treeViewer.render();
 		blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
 		allegro_gl_unset_allegro_mode();
 	}
@@ -462,6 +485,7 @@ void Allegro::inform( std::string msg ) {
 }
 
 void Allegro::renderPause() {
+	float button_x;
 	set_trans_blender( 0, 0, 0, PAUSE_BLENDING_FACTOR );
 
 	drawing_mode( DRAW_MODE_TRANS, NULL, 0, 0 );
@@ -478,14 +502,21 @@ void Allegro::renderPause() {
 	ImGui::SetNextWindowSize( ImVec2( SCREEN_W, PAUSE_HEIGHT ), ImGuiSetCond_Appearing );
 	ImGui::SetNextWindowPosCenter();
 	ImGui::Begin( "Pause", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
+	button_x  = ( ImGui::GetWindowWidth() - PAUSE_BUTTON_WIDTH ) / 2;
 	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "Pause" ).x ) / 2 );
 	ImGui::Text( "PAUSE" );
-	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - PAUSE_BUTTON_WIDTH ) / 2 );
+	ImGui::SetCursorPosX( button_x );
 	if( ImGui::Button( "CONTINUER", ImVec2( PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT ) ) ) {
 		m_pause = false;
 		ImGui::GetIO().MouseReleased[ 0 ] = false;
 	}
-	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - PAUSE_BUTTON_WIDTH ) / 2 );
+	ImGui::SetCursorPosX( button_x );
+	if( ImGui::Button( "GRAPHE", ImVec2( PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT ) ) ) {
+		m_pause = false;
+		m_treeViewer.opened = true;
+		ImGui::GetIO().MouseReleased[ 0 ] = false;
+	}
+	ImGui::SetCursorPosX( button_x );
 	if( ImGui::Button( "QUITTER", ImVec2( PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT ) ) ) {
 		throw exceptions::exit_game();
 	}

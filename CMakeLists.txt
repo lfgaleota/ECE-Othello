@@ -45,6 +45,8 @@ set(SOURCE_FILES
     othello/inc/ui/games/clivalidmovetreeviewer.hpp
     othello/ui/games/gameallegroui.cpp
     othello/inc/ui/games/gameallegroui.hpp
+    othello/ui/games/allegrovalidmovetreeviewer.cpp
+    othello/inc/ui/games/allegrovalidmovetreeviewer.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)

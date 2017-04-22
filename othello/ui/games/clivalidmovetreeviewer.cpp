@@ -5,51 +5,53 @@ using namespace Othello::Board;
 using namespace Othello::UI::Games;
 
 CLIValidMoveTreeViewer::CLIValidMoveTreeViewer( Othello::Board::Tree::ValidMoveNode* m_tree, unsigned int depth ) : m_tree( m_tree ) {
-	m_cursors = std::vector<unsigned int>( depth, 0 );
-	m_nodes = std::vector<const Tree::ValidMoveNode*>( depth, nullptr );
-	cli = Functions::CLI();
+	if( m_tree != nullptr ) {
+		m_cursors = std::vector<unsigned int>( depth, 0 );
+		m_nodes = std::vector<const Tree::ValidMoveNode*>( depth, nullptr );
+		cli = Functions::CLI();
 
-	Functions::Keys::Key key;
+		Functions::Keys::Key key;
 
-	for( bool loop = true; loop; ) {
-		cli.clearScreen();
-		render();
-		key = cli.getKey(); //gets the use entry choice
+		for( bool loop = true; loop; ) {
+			cli.clearScreen();
+			render();
+			key = cli.getKey(); //gets the use entry choice
 
-		switch( key ) {
-			case Functions::Keys::Key::ArrowUp:
-				if( m_cursors.at( x ) > 0 ) {
-					m_cursors.at( x )--;
-					for( unsigned int i = x + 1; i < m_cursors.size(); i++ )
-						m_cursors.at( i ) = 0;
-				}
-				break;
+			switch( key ) {
+				case Functions::Keys::Key::ArrowUp:
+					if( m_cursors.at( x ) > 0 ) {
+						m_cursors.at( x )--;
+						for( unsigned int i = x + 1; i < m_cursors.size(); i++ )
+							m_cursors.at( i ) = 0;
+					}
+					break;
 
-			case Functions::Keys::Key::ArrowDown:
-				if( m_cursors.at( x ) < m_nodes.at( x )->getNextNodes().size() - 1 ) {
-					m_cursors.at( x )++;
-					for( unsigned int i = x + 1; i < m_cursors.size(); i++ )
-						m_cursors.at( i ) = 0;
-				}
-				break;
+				case Functions::Keys::Key::ArrowDown:
+					if( m_cursors.at( x ) < m_nodes.at( x )->getNextNodes().size() - 1 ) {
+						m_cursors.at( x )++;
+						for( unsigned int i = x + 1; i < m_cursors.size(); i++ )
+							m_cursors.at( i ) = 0;
+					}
+					break;
 
-			case Functions::Keys::Key::ArrowLeft:
-				if( x > 0 )
-					x--;
-				break;
+				case Functions::Keys::Key::ArrowLeft:
+					if( x > 0 )
+						x--;
+					break;
 
-			case Functions::Keys::Key::ArrowRight:
-				if( x < depth - 1 )
-					x++;
-				break;
+				case Functions::Keys::Key::ArrowRight:
+					if( x < depth - 1 )
+						x++;
+					break;
 
-			case Functions::Keys::Key::N0:
-			case Functions::Keys::Key::Escape:
-				loop = false;
-				break;
+				case Functions::Keys::Key::N0:
+				case Functions::Keys::Key::Escape:
+					loop = false;
+					break;
 
-			default:
-				break;
+				default:
+					break;
+			}
 		}
 	}
 }
