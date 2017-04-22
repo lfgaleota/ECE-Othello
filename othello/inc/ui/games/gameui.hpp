@@ -39,7 +39,7 @@
 					/**
 					 * @brief Destructeur de l'interface de jeu
 					 */
-					virtual ~Game() = 0;
+					virtual ~Game() {};
 
 					/**
 					 * @brief Affichage d'une erreur

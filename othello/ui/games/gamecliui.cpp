@@ -11,6 +11,8 @@ CLI::CLI( GameBoard& oboard, const GameBoard::punArray board, const vector<Playe
 	display();
 }
 
+CLI::~CLI() {}
+
 void CLI::showError( string msg ) {
 	unsigned int width, height;
 	cli.getSize( width, height );

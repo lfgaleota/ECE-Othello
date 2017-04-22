@@ -113,6 +113,11 @@
 						     std::vector<Othello::Players::Player*>::iterator& currentPlayer );
 
 						/**
+						 * @brief Destructeur de l'interface de jeu
+						 */
+						~CLI();
+
+						/**
 						 * @brief Affichage d'une erreur
 						 * @details Informe l'utilisateur d'une erreur au sein du programme. Bloque le programme en attendant une action de l'utilisateur.
 						 * @param msg Message d'erreur
