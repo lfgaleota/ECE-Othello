@@ -41,7 +41,8 @@ set(SOURCE_FILES
     othello/inc/players/uiplayer.hpp
     othello/algorithms/heuristics.cpp
     othello/inc/algorithms/heuristics.hpp
-)
+    othello/ui/games/clivalidmovetreeviewer.cpp
+    othello/inc/ui/games/clivalidmovetreeviewer.hpp)
 
 add_executable(ECE_Othello ${SOURCE_FILES})
 
@@ -59,3 +60,14 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 		set(CMAKE_EXE_LINKER_FLAGS "-s")
 	endif(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_BUILD_TYPE MATCHES "Release")
+
+target_link_libraries(ECE_Othello m z loadpng png jpgalleg alleg alleggl)
+
+if(WIN32)
+	target_link_libraries(ECE_Othello opengl32 glu32)
+else(WIN32)
+	target_link_libraries(ECE_Othello GL GLU)
+endif(WIN32)
+
+# Hack to allow compilation on Windows systems
+target_link_libraries(ECE_Othello alleg alleggl)

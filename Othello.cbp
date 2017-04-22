@@ -73,6 +73,8 @@
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
+		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
+		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
