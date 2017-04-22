@@ -6,13 +6,11 @@
 #include <string>
 #include "../players/human.hpp"
 #include "../board/gameboard.hpp"
+#include "../board/pun.hpp"
 
 /// \class Save Save.h
 class Save
 {
-private :
-
-    std::string m_playerName ;
 
 public :
 

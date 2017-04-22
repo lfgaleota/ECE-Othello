@@ -99,6 +99,11 @@
 					void quickPlay( ValidMove validMove );
 
 				public:
+
+					/// \fn accesseur de emptyNeighbors
+					/// \param {no parameters}
+				    uint64_t getEmptyNeighbors();
+
 					/// \fn GameBoardDefaultConstructor
 					/// \param {no parameters}
 					GameBoard();
