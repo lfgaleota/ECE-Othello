@@ -49,10 +49,11 @@ set(SOURCE_FILES
     othello/inc/ui/games/allegrovalidmovetreeviewer.hpp
     othello/algorithms/alphabeta.cpp
     othello/inc/algorithms/alphabeta.hpp
-    othello/save/save.cpp
     othello/inc/save/save.hpp
     othello/save/savemanager.cpp
     othello/inc/save/savemanager.hpp
+    othello/board/pun.cpp
+    othello/inc/board/gameboardconstants.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)

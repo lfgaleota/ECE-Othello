@@ -1,25 +1,37 @@
 #ifndef _ECE_OTHELLO_SAVE_SAVEMANAGER_HPP_
 	#define _ECE_OTHELLO_SAVE_SAVEMANAGER_HPP_
 
-	#include <iostream>
+	#include <fstream>
+	#include <sstream>
 	#include "save.hpp"
+	#include "../players/human.hpp"
+	#include "../players/simpleai.hpp"
+	#include "../players/enhancedai.hpp"
 
-	/// \class SaveManager SaveManager.h
-	class SaveManager {
-		private :
+	namespace Othello {
+		namespace Save {
+			class SaveManager {
+				private:
+					static const std::string savePath;
 
-			Save m_firstSlot;
-			Save m_secondSlot;
-			Save m_thirdSlot;
+					static bool dumpBoard( Othello::Board::GameBoard* ref, std::ostream& saveFile );
+					static bool dumpEmptyNeighbors( Othello::Board::GameBoard* ref, std::ostream& saveFile );
+					static bool dumpPunCounts( Othello::Board::GameBoard* ref, std::ostream& saveFile );
+					static bool dumpPlayers( std::vector<Othello::Players::Player*>& ref, std::vector<Othello::Players::Player*>::iterator& current, std::ostream& saveFile );
 
-		public :
+					static Othello::Players::Player* init( Othello::Players::Player::Type type, std::string name, Othello::Board::Pun::Colors color );
 
-			/// \fn Destructor
-			~SaveManager();
+					static bool loadBoard( Save& save, std::string value );
+					static bool loadEmptyNeighbors( Save& save, std::string value );
+					static bool loadPunCounts( Save& save, std::string value );
+					static bool loadPlayers( Save& save, std::string value );
 
-			/// \fn save
-			void save( Othello::Board::GameBoard gameBoard_toSave, Othello::Players::Human player_toSave, int slot );
-
-	};
+				public:
+					static Save load();
+					static void save( Othello::Board::GameBoard* board, std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& current );
+					static bool check();
+			};
+		}
+	}
 
 #endif

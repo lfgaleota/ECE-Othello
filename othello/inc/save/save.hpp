@@ -4,32 +4,24 @@
 	#include <iostream>
 	#include <fstream>
 	#include <string>
-	#include "../players/human.hpp"
-	#include "../board/gameboard.hpp"
+	#include <vector>
+	#include "../board/gameboardconstants.hpp"
 	#include "../board/pun.hpp"
 
-	/// \class Save Save.h
-	class Save {
+	namespace Othello {
+		namespace Players{
+			class Player;
+		}
 
-		public :
-
-			/// \fn saveBoard
-			void saveBoard( Othello::Board::GameBoard gameBoard_toSave, int slot );
-
-			/// \fn savePlayer
-			void savePlayer( Othello::Players::Human player_toSave, int slot );
-
-			/// \fn loadPlayer
-			std::string loadPlayer( int slot );
-
-			/// \fn loadEmptyNeighbors
-			uint64_t loadEmptyNeighbors( int slot );
-
-			/// \fn loadPunCount
-			unsigned char loadPunCount( int slot );
-
-			/// \fn destructor
-			~Save();
-	};
+		namespace Save {
+			struct Save {
+				Othello::Board::Pun::Colors board[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ];
+				uint64_t emptyNeighbors;
+				Othello::Board::PunCount count;
+				std::vector<Othello::Players::Player*> players;
+				unsigned char currentPlayer;
+			};
+		}
+	}
 
 #endif

@@ -11,6 +11,7 @@
 	#include "ui/games/gameui.hpp"
 	#include "ui/games/gameallegroui.hpp"
 	#include "ui/games/gamecliui.hpp"
+	#include "save/savemanager.hpp"
 
 	/**
 	 * @namespace Othello
@@ -24,8 +25,8 @@
 		 */
 		class Game {
 			private:
-				Othello::Board::GameBoard m_board; //game board
-				std::vector<Othello::Players::Player*>& m_players; //players
+				Othello::Board::GameBoard* m_board; //game board
+				std::vector<Othello::Players::Player*> m_players; //players
 				std::vector<Othello::Players::Player*>::iterator m_currentPlayer; //an iterator of players (we need to know who's turn it is)
 				Othello::UI::Game* m_ui;
 				bool won = false;
@@ -50,14 +51,26 @@
 
 				/**
 				 * @brief Préparateur d'objet joueur
-				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement.
+				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement, choisie le joueur qui débute selon les règles.
 				 */
 				void preparePlayers();
 
+				/**
+				 * @brief Préparateur d'objet joueur
+				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement, règle le joueur qui débute selon la demande.
+				 */
+				void preparePlayers( unsigned char currentPlayer );
+
 			public:
 				/**
-				 * @brief Constructeur
-				 * @ëetails Initie une nouvelle partie du jeu.
+				 * @brief Constructeur par chargement de partie
+				 * @details Reprend partie du jeu depuis une sauvegarde.
+				 */
+				Game();
+
+				/**
+				 * @brief Constructeur normal
+				 * @details Initie une nouvelle partie du jeu avec les joueurs apportés.
 				 * @param players Ensemble de pointeur vers joueurs, préalablement créé.
 				 */
 				Game( std::vector<Othello::Players::Player*>& players );
