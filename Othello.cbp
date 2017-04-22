@@ -39,7 +39,7 @@
 			<Add library="loadpng" />
 			<Add library="png" />
 			<Add library="jpgalleg" />
-			<Add library="alleg" />
+			<Add library="alleg44" />
 			<Add library="alleggl" />
 			<Add library="opengl32" />
 			<Add library="glu32" />
