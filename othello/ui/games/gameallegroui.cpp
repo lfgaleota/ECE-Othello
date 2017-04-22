@@ -144,7 +144,7 @@ void ErrorBar::animateIn( std::string msg, bool force ) {
 	MessageBar::animateIn( msg, force );
 }
 
-Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_io( ImGui::GetIO() ), m_oboard( oboard ) {
+Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_io( ImGui::GetIO() ), m_oboard( oboard ) {
 	loadSprites();
 	loadBackgrounds();
 	loadFonts();
@@ -268,11 +268,11 @@ void Allegro::displayMatrix() {
 
 	rw = (unsigned int) m_bitmaps.find( "case" )->second->w;
 	rh = (unsigned int) m_bitmaps.find( "case" )->second->h;
-	pos_x = ( SCREEN_W - GameBoard::sizeEdge * rw ) / 2;
-	pos_y = ( SCREEN_H - GameBoard::sizeEdge * rh ) / 2;
+	pos_x = ( SCREEN_W - Board::sizeEdge * rw ) / 2;
+	pos_y = ( SCREEN_H - Board::sizeEdge * rh ) / 2;
 
-	for( unsigned int j = 0; j < GameBoard::sizeEdge; j++ ) { //browse
-		for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned int j = 0; j < Board::sizeEdge; j++ ) { //browse
+		for( unsigned int i = 0; i < Board::sizeEdge; i++ ) {
 			piece = m_board[ i ][ j ];
 			if( inv ) {
 				draw_sprite( m_page, caseInv, pos_x + i * caseInv->w, pos_y + j * caseInv->h );
@@ -356,11 +356,11 @@ void Allegro::updateInputs() {
 
 void Allegro::highlightSelectedPiece( unsigned int x, unsigned int y, int color ) {
 	unsigned int rw, rh, posx, posy;
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
+	if( x < Board::sizeEdge && y < Board::sizeEdge ) {
 		rw = (unsigned int) m_bitmaps.find( "case" )->second->w;
 		rh = (unsigned int) m_bitmaps.find( "case" )->second->h;
-		posx = ( SCREEN_W - GameBoard::sizeEdge * rw ) / 2;
-		posy = ( SCREEN_H - GameBoard::sizeEdge * rh ) / 2;
+		posx = ( SCREEN_W - Board::sizeEdge * rw ) / 2;
+		posy = ( SCREEN_H - Board::sizeEdge * rh ) / 2;
 
 		set_trans_blender( 0, 0, 0, COLOR_SELECTION_BLENDFACTOR );
 
@@ -383,13 +383,13 @@ Othello::Board::Move Allegro::getMove() {
 
 		rw = ( unsigned int ) m_bitmaps.find( "case" )->second->w;
 		rh = ( unsigned int ) m_bitmaps.find( "case" )->second->h;
-		posx = ( SCREEN_W - GameBoard::sizeEdge * rw ) / 2;
-		posy = ( SCREEN_H - GameBoard::sizeEdge * rh ) / 2;
+		posx = ( SCREEN_W - Board::sizeEdge * rw ) / 2;
+		posy = ( SCREEN_H - Board::sizeEdge * rh ) / 2;
 
 		mx = ( mouse_x - posx ) / rw;
 		my = ( mouse_y - posy ) / rh;
 
-		if( mx >= 0 && my >= 0 && ( unsigned ) mx < GameBoard::sizeEdge && ( unsigned ) my < GameBoard::sizeEdge ) {
+		if( mx >= 0 && my >= 0 && ( unsigned ) mx < Board::sizeEdge && ( unsigned ) my < Board::sizeEdge ) {
 			x = ( unsigned char ) mx;
 			y = ( unsigned char ) my;
 

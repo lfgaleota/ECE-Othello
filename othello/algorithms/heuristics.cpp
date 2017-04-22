@@ -4,7 +4,7 @@ using namespace std;
 using namespace Othello::Algorithms;
 using namespace Othello::Board;
 
-const int Heuristics::weightTable[ Othello::Board::GameBoard::sizeEdge ][ Othello::Board::GameBoard::sizeEdge ] = {
+const int Heuristics::weightTable[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ] = {
 	{ 100, -50, 11, 8, 8, 11, -50, 100 },
 	{ -50, -70, -4, 1, 1, -4, -70, -50 },
 	{ 11, -4, 2, 2, 2, 2, -4, 11 },
@@ -31,8 +31,8 @@ int Heuristics::normale( GameBoard* ref, Pun::Colors color, Pun::Colors opposite
 	/*
 	 * Calcul de l'occupation
 	 */
-	for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
-		for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) {
+	for( unsigned char i = 0; i < Board::sizeEdge; i++ ) {
+		for( unsigned char j = 0; j < Board::sizeEdge; j++ ) {
 			piece = ref->quickAt( i, j );
 			if( piece == color ) {
 				weightedOccupancy += weightTable[ i ][ j ];
@@ -61,7 +61,7 @@ int Heuristics::normale( GameBoard* ref, Pun::Colors color, Pun::Colors opposite
 	 * Calcul de la mobilité
 	 */
 	count = ref->m_validMoves.size();
-	for( unsigned char i = 0; i < GameBoard::size; i++ ) {
+	for( unsigned char i = 0; i < Board::size; i++ ) {
 		if( ref->quickEmptyNeighborsGet( i ) )
 			emptyNeighbors++;
 	}

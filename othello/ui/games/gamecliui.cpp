@@ -5,7 +5,7 @@ using namespace Othello::UI::Games;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-CLI::CLI( GameBoard& oboard, const GameBoard::punArray board, const vector<Player*>& players, vector<Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_oboard( oboard ) {
+CLI::CLI( GameBoard& oboard, const Board::punArray board, const vector<Player*>& players, vector<Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_oboard( oboard ) {
 	cli = Functions::CLI();
 	loadDisplayMatrix();
 	display();
@@ -89,8 +89,8 @@ void CLI::displayMatrix() {
 
 	cli.resetColor();
 
-	for( unsigned int j = 0; j < GameBoard::sizeEdge; j++ ) { //browse again
-		for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned int j = 0; j < Board::sizeEdge; j++ ) { //browse again
+		for( unsigned int i = 0; i < Board::sizeEdge; i++ ) {
 			piece = m_board[ i ][ j ];
 
 			piece_offset_y = offset_y + j * 2 + 4;
@@ -198,7 +198,7 @@ Move CLI::getMove() {
 				break;
 
 			case Functions::Keys::Key::ArrowDown:
-				if( y < GameBoard::sizeEdge - 1 )
+				if( y < Board::sizeEdge - 1 )
 					y++;
 				break;
 
@@ -208,7 +208,7 @@ Move CLI::getMove() {
 				break;
 
 			case Functions::Keys::Key::ArrowRight:
-				if( x < GameBoard::sizeEdge - 1 )
+				if( x < Board::sizeEdge - 1 )
 					x++;
 				break;
 
@@ -259,13 +259,13 @@ void CLI::loadDisplayMatrix() {
 	std::ostringstream tmp2;
 
 	tmp = " ";
-	for( unsigned int i = 0; i < GameBoard::sizeEdge - 1; i++ )
+	for( unsigned int i = 0; i < Board::sizeEdge - 1; i++ )
 		tmp += "_____";
 	tmp += "____        ";
 	this->m_displayMatrix.push_back( tmp );
 
 	tmp = "";
-	for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned int i = 0; i < Board::sizeEdge; i++ ) {
 		tmp += "| ";
 		tmp += ( char ) ( 'A' + i );
 		tmp += "  ";
@@ -274,22 +274,22 @@ void CLI::loadDisplayMatrix() {
 	this->m_displayMatrix.push_back( tmp );
 
 	tmp = "";
-	for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned int i = 0; i < Board::sizeEdge; i++ ) {
 		tmp += "|____";
 	}
 	tmp += "|       ";
 	this->m_displayMatrix.push_back( tmp );
 
 	tmp = " ";
-	for( unsigned int i = 0; i < GameBoard::sizeEdge - 1; i++ ) {
+	for( unsigned int i = 0; i < Board::sizeEdge - 1; i++ ) {
 		tmp += "_____";
 	}
 	tmp += "____   ____ ";
 	this->m_displayMatrix.push_back( tmp );
 
-	for( unsigned int j = 0; j < GameBoard::sizeEdge * 2; j++ ) {
+	for( unsigned int j = 0; j < Board::sizeEdge * 2; j++ ) {
 		tmp2.str( "" );
-		for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
+		for( unsigned int i = 0; i < Board::sizeEdge; i++ ) {
 			tmp2 << "|";
 
 			if( !( j % 2 ) ) {

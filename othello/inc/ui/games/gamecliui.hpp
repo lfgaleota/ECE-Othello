@@ -108,7 +108,7 @@
 						 * @param[in] players Référence vers l'ensemble des joueurs
 						 * @param[in] currentPlayer Référence vers le joueur actuel
 						 */
-						CLI( Othello::Board::GameBoard& oboard, const Othello::Board::GameBoard::punArray board,
+						CLI( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board,
 						     const std::vector<Othello::Players::Player*>& players,
 						     std::vector<Othello::Players::Player*>::iterator& currentPlayer );
 

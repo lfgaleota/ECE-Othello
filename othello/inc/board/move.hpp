@@ -3,7 +3,6 @@
 
 	#include "pun.hpp"
 
-
 	/// \namespace Othello
 	namespace Othello {
 	    /// \namespace Board

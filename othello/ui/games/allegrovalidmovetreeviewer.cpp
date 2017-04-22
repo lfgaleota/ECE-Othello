@@ -71,8 +71,8 @@ void AllegroValidMoveTreeViewer::renderColumn( const Tree::ValidMoveNode* node, 
 		showCursor = false;
 
 		if( i >= cursor ) {
-			offset_x = VIEWER_MARGIN + ( depth - 1 ) * VIEWER_CASE_SIZE * ( GameBoard::sizeEdge + VIEWER_CASE_MARGIN );
-			offset_y = VIEWER_MARGIN + actuali * VIEWER_CASE_SIZE * ( GameBoard::sizeEdge + VIEWER_CASE_MARGIN );
+			offset_x = VIEWER_MARGIN + ( depth - 1 ) * VIEWER_CASE_SIZE * ( Board::sizeEdge + VIEWER_CASE_MARGIN );
+			offset_y = VIEWER_MARGIN + actuali * VIEWER_CASE_SIZE * ( Board::sizeEdge + VIEWER_CASE_MARGIN );
 
 			if( i == cursor ) {
 				if( x == depth - 1 )
@@ -96,12 +96,12 @@ void AllegroValidMoveTreeViewer::renderNode( const GameBoard* ref, int eval, uns
 	int x, y;
 
 	if( showCursor ) {
-		rectfill( m_page, offset_x - VIEWER_BORDER_SIZE, offset_y - VIEWER_BORDER_SIZE, offset_x + VIEWER_CASE_SIZE * GameBoard::sizeEdge + VIEWER_BORDER_SIZE, offset_y + VIEWER_CASE_SIZE * GameBoard::sizeEdge + VIEWER_BORDER_SIZE, ( selected ? VIEWER_BORDER_COLOR_SELECTED : VIEWER_BORDER_COLOR ) );
+		rectfill( m_page, offset_x - VIEWER_BORDER_SIZE, offset_y - VIEWER_BORDER_SIZE, offset_x + VIEWER_CASE_SIZE * Board::sizeEdge + VIEWER_BORDER_SIZE, offset_y + VIEWER_CASE_SIZE * Board::sizeEdge + VIEWER_BORDER_SIZE, ( selected ? VIEWER_BORDER_COLOR_SELECTED : VIEWER_BORDER_COLOR ) );
 	}
-	rectfill( m_page, offset_x, offset_y, offset_x + VIEWER_CASE_SIZE * GameBoard::sizeEdge, offset_y + VIEWER_CASE_SIZE * GameBoard::sizeEdge, VIEWER_CASE_COLOR );
+	rectfill( m_page, offset_x, offset_y, offset_x + VIEWER_CASE_SIZE * Board::sizeEdge, offset_y + VIEWER_CASE_SIZE * Board::sizeEdge, VIEWER_CASE_COLOR );
 
-	for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) { //browse again
-		for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned char j = 0; j < Board::sizeEdge; j++ ) { //browse again
+		for( unsigned char i = 0; i < Board::sizeEdge; i++ ) {
 			piece = ref->at( i, j );
 			x = offset_x + VIEWER_CASE_SIZE * i + VIEWER_CASE_SIZE / 2;
 			y = offset_y + VIEWER_CASE_SIZE * j + VIEWER_CASE_SIZE / 2;
@@ -114,7 +114,7 @@ void AllegroValidMoveTreeViewer::renderNode( const GameBoard* ref, int eval, uns
 		}
 	}
 
-	textprintf_centre_ex( m_page, font, offset_x + VIEWER_CASE_SIZE * GameBoard::sizeEdge / 2, offset_y + VIEWER_CASE_SIZE * GameBoard::sizeEdge, VIEWER_TEXT_COLOR, VIEWER_TEXT_BGCOLOR, "%d", eval );
+	textprintf_centre_ex( m_page, font, offset_x + VIEWER_CASE_SIZE * Board::sizeEdge / 2, offset_y + VIEWER_CASE_SIZE * Board::sizeEdge, VIEWER_TEXT_COLOR, VIEWER_TEXT_BGCOLOR, "%d", eval );
 	if( showCursor )
-		textprintf_ex( m_page, font, offset_x + VIEWER_CASE_SIZE * GameBoard::sizeEdge, offset_y + VIEWER_CASE_SIZE * GameBoard::sizeEdge/ 2, VIEWER_TEXT_COLOR, VIEWER_TEXT_BGCOLOR, ">" );
+		textprintf_ex( m_page, font, offset_x + VIEWER_CASE_SIZE * Board::sizeEdge, offset_y + VIEWER_CASE_SIZE * Board::sizeEdge/ 2, VIEWER_TEXT_COLOR, VIEWER_TEXT_BGCOLOR, ">" );
 }

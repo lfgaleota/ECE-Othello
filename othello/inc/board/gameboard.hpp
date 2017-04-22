@@ -11,6 +11,8 @@
 	#include "valid_move.hpp"
 	#include "../exceptions/exceptions.hpp"
 	#include "gameissue.hpp"
+	#include "gameboardconstants.hpp"
+	#include "../save/save.hpp"
 
 	/// \namespace Othello
 	namespace Othello {
@@ -40,23 +42,10 @@
 				friend class Othello::Algorithms::Heuristics;
 				friend class Othello::Players::SimpleAI;
 
-				public:
-					const static unsigned char sizeEdge = 8;
-					const static unsigned char size = sizeEdge * sizeEdge;
-					const static size_t sizeMemory = (size_t) ( GameBoard::size * 4 );
-
-					typedef Pun::Colors (*punArray)[GameBoard::sizeEdge];
-
 				private:
-					Pun::Colors m_board[sizeEdge][sizeEdge];
+					Pun::Colors m_board[ sizeEdge ][ sizeEdge ];
 					std::list<ValidMove> m_validMoves;
 					uint64_t m_emptyNeighbors = 0;
-
-					/// \struct PunCount
-					struct PunCount {
-						unsigned char white = 0;
-						unsigned char black = 0;
-					};
 
 					PunCount m_count;
 
@@ -76,17 +65,30 @@
 					/// \param {x, y}
 					inline void addEmptyNeighbors( unsigned char x, unsigned char y );
 
-					/// \fn quickAT
-					/// \param {x, y}
-					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y ) const;
+					/**
+					 * @brief Accesseur de plateau rapide
+					 * @details Retourne l'élément du plateau aux coordonnées indiquées, sans vérifications des entrées.
+					 * @param[in] x Coordonnée en abscisse de l'emplacement
+					 * @param[in] y Coordonnée en ordonnée de l'emplacement
+					 * @return Élément aux coordonnées indiquées
+					 */
+					inline const Pun::Colors quickAt( const unsigned char x, const unsigned char y ) const {
+						return m_board[ x ][ y ];
+					}
 
 					/// \fn quickSet
 					/// \param {x, y, color}
 					inline void quickSet( const unsigned char x, const unsigned char y, const Pun::Colors color );
 
-					/// \fn quickEmptyNeighborGet
-					/// \param {index}
-					inline bool quickEmptyNeighborsGet( const unsigned char index ) const;
+					/**
+					 * @brief Accesseur de voisins vides rapide
+					 * @details Retourne si la case à l'index indiquée est un voisin vide
+					 * @param[in] index Index de la case désirée ( x * 8 + y )
+					 * @return État de la case
+					 */
+					inline bool quickEmptyNeighborsGet( const unsigned char index ) const {
+						return ( ( m_emptyNeighbors & ( ( (uint64_t) 1 ) << index ) ) != 0 );
+					}
 
 					/// \fn quickEmptyNeighborsSet
 					/// \param {x, y}
@@ -113,6 +115,9 @@
 					/// \param {ref}
 					GameBoard( GameBoard& ref );
 					GameBoard( GameBoard* ref );
+					/// \fn GameBoardCopyConstructor
+					/// \param {ref}
+					GameBoard( Othello::Save::Save& save );
 					/// \fn GameBoardDestructor
 					/// \param {no parameters}
 					~GameBoard();

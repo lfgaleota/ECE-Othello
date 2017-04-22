@@ -20,7 +20,7 @@
 		     */
 			class Heuristics {
 				public:
-				    static const int weightTable[ Othello::Board::GameBoard::sizeEdge ][ Othello::Board::GameBoard::sizeEdge ];
+				    static const int weightTable[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ];
 
 					/**
 					 * @brief Heuristique simple

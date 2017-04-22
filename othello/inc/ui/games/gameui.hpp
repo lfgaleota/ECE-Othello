@@ -21,7 +21,7 @@
 			 */
 			class Game {
 				protected:
-					const Othello::Board::GameBoard::punArray m_board;
+					const Othello::Board::punArray m_board;
 					const std::vector<Othello::Players::Player*>& m_players;
 					const std::vector<Othello::Players::Player*>::iterator& m_currentPlayer;
 					Othello::Board::Tree::ValidMoveNode* m_tree = nullptr;
@@ -34,7 +34,7 @@
 					 * @param[in] players Référence vers l'ensemble des joueurs
 					 * @param[in] currentPlayer Référence vers le joueur actuel
 					 */
-					Game( const Othello::Board::GameBoard::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : m_board( board ), m_players( players ), m_currentPlayer( currentPlayer ) {};
+					Game( const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : m_board( board ), m_players( players ), m_currentPlayer( currentPlayer ) {};
 
 					/**
 					 * @brief Destructeur de l'interface de jeu

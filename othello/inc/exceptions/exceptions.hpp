@@ -17,6 +17,7 @@
 			#include "invalid_move"
 			#include "exit_game"
 			#include "no_selected_move"
+			#include "invalid_save"
 		}
 	}
 #endif

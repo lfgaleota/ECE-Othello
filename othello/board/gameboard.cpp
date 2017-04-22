@@ -9,8 +9,8 @@ using namespace Othello::Board;
  */
 GameBoard::GameBoard() {
 	// On initialise la matrice de jeu conformément au règles
-	for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
-		for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) {
+	for( unsigned char i = 0; i < Board::sizeEdge; i++ ) {
+		for( unsigned char j = 0; j < Board::sizeEdge; j++ ) {
 			if(( i == 3 && j == 3 ) || ( i == 4 && j == 4 )) {
 				quickSet( i, j, Pun::black );
 			} else {
@@ -49,7 +49,7 @@ GameBoard::GameBoard() {
  */
 GameBoard::GameBoard( GameBoard& ref ) {
 	m_emptyNeighbors = ref.m_emptyNeighbors;
-	std::memcpy( m_board, ref.m_board, GameBoard::sizeMemory );
+	std::memcpy( m_board, ref.m_board, Board::sizeMemory );
 	m_count.white = ref.m_count.white;
 	m_count.black = ref.m_count.black;
 }
@@ -61,9 +61,21 @@ GameBoard::GameBoard( GameBoard& ref ) {
  */
 GameBoard::GameBoard( GameBoard* ref ) {
 	m_emptyNeighbors = ref->m_emptyNeighbors;
-	std::memcpy( m_board, ref->m_board, GameBoard::sizeMemory );
+	std::memcpy( m_board, ref->m_board, Board::sizeMemory );
 	m_count.white = ref->m_count.white;
 	m_count.black = ref->m_count.black;
+}
+
+/**
+ * @brief Constructeur par sauvegarde
+ * @details Clone un plateau de jeu.
+ * @param[in] save Sauvegarde
+ */
+GameBoard::GameBoard( Othello::Save::Save& save ) {
+	m_emptyNeighbors = save.emptyNeighbors;
+	std::memcpy( m_board, save.board, Board::sizeMemory );
+	m_count.white = save.count.white;
+	m_count.black = save.count.black;
 }
 
 /**
@@ -77,8 +89,8 @@ GameBoard::~GameBoard() {
  * @brief Accesseur de plateau de jeu
  * @return Pointeur constant vers le plateau de jeu
  */
-const GameBoard::punArray GameBoard::getBoard() {
-	return (const GameBoard::punArray) m_board;
+const Othello::Board::punArray GameBoard::getBoard() {
+	return (const Othello::Board::punArray) m_board;
 }
 
 /**
@@ -97,21 +109,10 @@ const std::list<ValidMove> &GameBoard::getValidMoves() {
  * @return Élément aux coordonnées indiquées
  */
 const Pun::Colors GameBoard::at( const unsigned char x, const unsigned char y ) const {
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
+	if( x < Board::sizeEdge && y < Board::sizeEdge )
 		return quickAt( x, y );
 	else
 		throw std::out_of_range( "Accessing outside of m_board range." );
-}
-
-/**
- * @brief Accesseur de plateau rapide
- * @details Retourne l'élément du plateau aux coordonnées indiquées, sans vérifications des entrées.
- * @param[in] x Coordonnée en abscisse de l'emplacement
- * @param[in] y Coordonnée en ordonnée de l'emplacement
- * @return Élément aux coordonnées indiquées
- */
-const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char y ) const {
-	return m_board[ x ][ y ];
 }
 
 /**
@@ -122,7 +123,7 @@ const Pun::Colors GameBoard::quickAt( const unsigned char x, const unsigned char
  * @param color Élément à placer
  */
 void GameBoard::set( const unsigned char x, const unsigned char y, const Pun::Colors color ) {
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
+	if( x < Board::sizeEdge && y < Board::sizeEdge )
 		return quickSet( x, y, color );
 	else
 		throw std::out_of_range( "Accessing outside of m_board range." );
@@ -165,19 +166,8 @@ void GameBoard::quickSet( const unsigned char x, const unsigned char y, const Pu
  * La perte de temps induite par le calcul de bitmasks afin d'accéder/modifier les cases me semble bien moindre face aux aux avantages que procure cette construction par rapoort à un set, ou plus simplement une matrice de booléens qui remplirait le même usage.
  */
 
- uint64_t GameBoard::getEmptyNeighbors()
- {
-     return m_emptyNeighbors ;
- }
-
-/**
- * @brief Accesseur de voisins vides rapide
- * @details Retourne si la case à l'index indiquée est un voisin vide
- * @param[in] index Index de la case désirée ( x * 8 + y )
- * @return État de la case
- */
-bool GameBoard::quickEmptyNeighborsGet( const unsigned char index ) const {
-	return ( ( m_emptyNeighbors & ( ( (uint64_t) 1 ) << index ) ) != 0 );
+uint64_t GameBoard::getEmptyNeighbors() {
+	return m_emptyNeighbors ;
 }
 
 /**
@@ -210,7 +200,7 @@ void GameBoard::computeValidMoves( Pun::Colors color ) {
 	m_validMoves.clear(); //on vide le vecteur des mouvements possibles précédents
 
 	// On parcours la liste des voisins vides, qui contient la liste de tous les emplacements vides voisins d'un pion
-	for( unsigned char i = 0; i < GameBoard::size; i++ ) {
+	for( unsigned char i = 0; i < Board::size; i++ ) {
 		value = quickEmptyNeighborsGet( i );
 		if( value ) {
 			Move emptyNeighbor( (unsigned char) ( i / 8 ), (unsigned char) ( i % 8 ), color );
@@ -246,7 +236,7 @@ bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colo
 	x += dvec.x;
 	y += dvec.y;
 	// Vérification si on sort pas du tableau
-	if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge ) {
+	if( x < Board::sizeEdge && y < Board::sizeEdge ) {
 		Pun::Colors next = quickAt( x, y );
 		// Si elle n'est pas de la couleur opposée, on s'arrête et on la déclare comme invalide directement (on a soit un pion "ami", soit un trou).
 		if( next != opposite )
@@ -256,7 +246,7 @@ bool GameBoard::isValidDirection( Move position, DirectionVector dvec, Pun::Colo
 		do {
 			x += dvec.x;
 			y += dvec.y;
-			if( x < GameBoard::sizeEdge && y < GameBoard::sizeEdge )
+			if( x < Board::sizeEdge && y < Board::sizeEdge )
 				next = quickAt( x, y );
 			else
 				return false;
@@ -357,25 +347,25 @@ void GameBoard::addEmptyNeighbors( Move position ) {
 void GameBoard::addEmptyNeighbors( unsigned char posx, unsigned char posy ) {
 	unsigned char maxX, maxY, minX, minY;
 	// On fixe les bornes
-	if( --posx >= GameBoard::sizeEdge ) {
+	if( --posx >= Board::sizeEdge ) {
 		minX = 0;
 	} else {
 		minX = posx;
 	}
-	if( --posy - 1 >= GameBoard::sizeEdge ) {
+	if( --posy - 1 >= Board::sizeEdge ) {
 		minY = 0;
 	} else {
 		minY = posy;
 	}
 	posx += 2;
 	posy += 2;
-	if( posx >= GameBoard::sizeEdge ) {
-		maxX = GameBoard::sizeEdge - 1;
+	if( posx >= Board::sizeEdge ) {
+		maxX = Board::sizeEdge - 1;
 	} else {
 		maxX = posx;
 	}
-	if( posy >= GameBoard::sizeEdge ) {
-		maxY = GameBoard::sizeEdge - 1;
+	if( posy >= Board::sizeEdge ) {
+		maxY = Board::sizeEdge - 1;
 	} else {
 		maxY = posy;
 	}

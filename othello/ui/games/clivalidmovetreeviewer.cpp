@@ -92,17 +92,17 @@ void CLIValidMoveTreeViewer::renderColumn( const Tree::ValidMoveNode* node, unsi
 
 	for( const Tree::ValidMoveNode& next : node->getNextNodes() ) {
 		if( i >= cursor ) {
-			offset_x = 2 + ( depth - 1 ) * ( GameBoard::sizeEdge + 2 );
-			offset_y = actuali * ( GameBoard::sizeEdge + 1 );
+			offset_x = 2 + ( depth - 1 ) * ( Board::sizeEdge + 2 );
+			offset_y = actuali * ( Board::sizeEdge + 1 );
 
 			if( i == cursor && depth < m_cursors.size() ) {
 				if( x == depth )
 					cli.setColor( BACKGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_INTENSITY );
 
 				m_nodes.at( depth ) = &next;
-				cli.moveCursor( offset_y + 3, offset_x + GameBoard::sizeEdge );
+				cli.moveCursor( offset_y + 3, offset_x + Board::sizeEdge );
 				cout << ">";
-				cli.moveCursor( offset_y + 4, offset_x + GameBoard::sizeEdge );
+				cli.moveCursor( offset_y + 4, offset_x + Board::sizeEdge );
 				cout << ">";
 				cli.resetColor();
 
@@ -119,8 +119,8 @@ void CLIValidMoveTreeViewer::renderColumn( const Tree::ValidMoveNode* node, unsi
 void CLIValidMoveTreeViewer::renderNode( const GameBoard* ref, int eval, unsigned int offset_x, unsigned int offset_y ) {
 	Pun::Colors piece;
 
-	for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) { //browse again
-		for( unsigned char i = 0; i < GameBoard::sizeEdge; i++ ) {
+	for( unsigned char j = 0; j < Board::sizeEdge; j++ ) { //browse again
+		for( unsigned char i = 0; i < Board::sizeEdge; i++ ) {
 			piece = ref->at( i, j );
 
 			if( piece == Pun::white )
@@ -140,7 +140,7 @@ void CLIValidMoveTreeViewer::renderNode( const GameBoard* ref, int eval, unsigne
 	cout << eval;
 
 	if( offset_x > 0 ) {
-		for( unsigned char j = 0; j < GameBoard::sizeEdge; j++ ) {
+		for( unsigned char j = 0; j < Board::sizeEdge; j++ ) {
 			cli.moveCursor( offset_y + j, offset_x - 1 );
 			cout << "|";
 		}
