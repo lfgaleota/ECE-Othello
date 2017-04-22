@@ -14,6 +14,7 @@
 					const Othello::Board::GameBoard::punArray m_board;
 					const std::vector<Othello::Players::Player*>& m_players;
 					const std::vector<Othello::Players::Player*>::iterator& m_currentPlayer;
+					Othello::Board::Tree::ValidMoveNode* m_tree = nullptr;
 
 				public:
 					/// \fn GameOverloadConstructor
@@ -43,6 +44,11 @@
 					/// \fn victory
 					/// \param {player}
 					virtual void victory( Othello::Players::Player* player ) = 0;
+					/// \fn setTree
+					/// \param {head}
+					void setTree( Othello::Board::Tree::ValidMoveNode* head ) {
+						m_tree = head;
+					}
 			};
 		}
 	}

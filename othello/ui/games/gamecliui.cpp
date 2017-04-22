@@ -271,7 +271,6 @@ void CLI::displayCount( Pun::Colors color ) {
  */
 Move CLI::getMove() {
 	Functions::Keys::Key key;
-	unsigned char x = 0, y = 0;
 
 #ifndef SIMPLE_UI
 	display();
@@ -309,6 +308,9 @@ Move CLI::getMove() {
 			case Functions::Keys::Key::N0:
 			case Functions::Keys::Key::Escape:
 				pauseMenu();
+
+			case Functions::Keys::Key::N1:
+				CLIValidMoveTreeViewer( m_tree, 5 );
 
 			default:
 				break;

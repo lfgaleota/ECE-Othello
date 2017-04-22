@@ -12,6 +12,7 @@
 	#include "gameui.hpp"
 	#include "../../../../cli/cli.hpp"
 	#include "../../../../cli/menu/menu.hpp"
+	#include "clivalidmovetreeviewer.hpp"
 
 	/// \namespace Othello
 	namespace Othello {
@@ -25,6 +26,7 @@
 						Functions::CLI cli;
 						std::vector<std::string> m_displayMatrix;
 						Othello::Board::GameBoard& m_oboard;
+						unsigned char x = 0, y = 0;
 
 						/// \fn display
 						/// \param {no parameters}

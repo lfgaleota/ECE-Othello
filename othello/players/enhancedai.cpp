@@ -19,6 +19,7 @@ Move EnhancedAI::getMove() {
 	m_ui->inform( "L'IA reflechit..." );
 
 	m_tree = Tree::ValidMoveNode( m_board );
+	m_ui->setTree( &m_tree );
 
 	MiniMax minimax( m_board, &m_tree, m_color );
 
