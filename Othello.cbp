@@ -116,6 +116,10 @@
 		<Unit filename="othello/algorithms/minimax.cpp" />
 		<Unit filename="othello/inc/algorithms/alphabeta.hpp" />
 		<Unit filename="othello/algorithms/alphabeta.cpp" />
+		<Unit filename="othello/inc/save/save.hpp" />
+		<Unit filename="othello/save/save.cpp" />
+		<Unit filename="othello/inc/save/savemanager.hpp" />
+		<Unit filename="othello/save/savemanager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
