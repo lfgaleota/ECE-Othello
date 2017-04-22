@@ -4,12 +4,19 @@
 	#include <stdexcept>
 	#include <string>
 
-	/// \namespace Othello
+	/**
+	 * @namespace Othello
+	 * @details Espace de nommage du jeu.
+	 */
 	namespace Othello {
-	    /// \namespace Exceptions
-		namespace exceptions { //exeptions inclusions
+	    /**
+	     * @namespace exceptions
+	     * @details Espace de nommage des exceptions personnalisées du jeu.
+	     */
+		namespace exceptions {
 			#include "invalid_move"
 			#include "exit_game"
+			#include "no_selected_move"
 		}
 	}
 #endif
