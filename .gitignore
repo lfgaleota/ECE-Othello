@@ -188,3 +188,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/c,osx,c++,cmake,clion,linux,windows,codeblocks
+
+imgui.ini
