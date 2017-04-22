@@ -1,11 +1,18 @@
 #include "Save.h"
 
+/**
+*@brief destructeur de la classe Save
+**/
 Save::~Save()
 {
 
 }
 
 //passer à un type booleen pour vérifier que la sauvegarde a réussi ?
+/**
+*@brief fonction savePlayer
+*@details permet de sauvegarder un joueur dans l'un des trois slots de sauvegarde.
+**/
 void Save::savePlayer(Othello::Players::Human player_toSave, int slot)
 {
 
@@ -44,6 +51,10 @@ void Save::savePlayer(Othello::Players::Human player_toSave, int slot)
     players3.close();
 }
 
+/**
+*@brief fonction saveBoard
+*@details permet de sauvegarder un plateau dans l'un des trois slots de sauvegarde.
+**/
 void Save::saveBoard(Othello::Board::GameBoard gameBoard_toSave, int slot)
 {
     std::ofstream board1("boardFile1.txt");
@@ -88,6 +99,10 @@ void Save::saveBoard(Othello::Board::GameBoard gameBoard_toSave, int slot)
 
 }
 
+/**
+*@brief fonction loadPlayer
+*@details permet de charger un joueur depuis l'un des trois slots de sauvegarde.
+**/
 std::string Save::loadPlayer(int slot)
 {
     std::ifstream player1("playerFile1.txt");

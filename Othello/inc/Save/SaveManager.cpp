@@ -1,10 +1,17 @@
 #include "SaveManager.h"
 
+/**
+*@brief destructeur de la classe SaveManager
+**/
 SaveManager::~SaveManager()
 {
 
 }
 
+/**
+*@brief fonction save
+*@details permet de sauvegarder dans l'un des trois slots prévu à cet effet, le jeu à un instant donné
+**/
 void SaveManager::save(Othello::Board::GameBoard gameBoard_toSave,Othello::Players::Human player_toSave,int slot)
 {
     switch(slot)
