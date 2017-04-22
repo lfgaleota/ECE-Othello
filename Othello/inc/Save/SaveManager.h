@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Save.h"
 
+/// \class SaveManager SaveManager.h
 class SaveManager
 {
 private :
@@ -14,9 +15,10 @@ private :
 
 public :
 
-    SaveManager();
+    /// \fn Destructor
     ~SaveManager();
 
+    /// \fn save
     void save(Othello::Board::GameBoard gameBoard_toSave,Othello::Players::Human player_toSave, int slot);
 
 };
