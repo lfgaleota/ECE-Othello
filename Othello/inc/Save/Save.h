@@ -3,15 +3,26 @@
 
 #include <iostream>
 #include <fstream>
+#include "../players/human.hpp"
+#include "../board/gameboard.hpp"
 
-class SaveManager
+/// \class Save Save.h
+class Save
 {
 private :
 
+    Othello::Players::Human m_player_save ;
+    Othello::Board::GameBoard m_gameBoard_save ;
+
 public :
 
-    SaveManager();
-    ~SaveManager();
+    /// \fn saveBoard
+    void saveBoard(Othello::Board::GameBoard gameBoard_toSave);
+    /// \fn savePlayer
+    void savePlayer(Othello::Players::Human player_toSave);
+
+    /// \fn destructor
+    ~Save();
 };
 
 
