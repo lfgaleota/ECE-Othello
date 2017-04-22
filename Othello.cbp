@@ -33,11 +33,41 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add library="m" />
+			<Add library="z" />
+			<Add library="loadpng" />
+			<Add library="png" />
+			<Add library="jpgalleg" />
+			<Add library="alleg" />
+			<Add library="alleggl" />
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="alleg" />
+			<Add library="alleggl" />
+			<Add library="winmm" />
+			<Add library="gdi32" />
+		</Linker>
+		<Unit filename=".gitignore" />
 		<Unit filename="CMakeLists.txt" />
+		<Unit filename="README.md" />
 		<Unit filename="cli/cli.cpp" />
 		<Unit filename="cli/cli.hpp" />
 		<Unit filename="cli/menu/menu.cpp" />
 		<Unit filename="cli/menu/menu.hpp" />
+		<Unit filename="imgui/LICENSE" />
+		<Unit filename="imgui/README.md" />
+		<Unit filename="imgui/imconfig.h" />
+		<Unit filename="imgui/imgui.cpp" />
+		<Unit filename="imgui/imgui.h" />
+		<Unit filename="imgui/imgui_demo.cpp" />
+		<Unit filename="imgui/imgui_draw.cpp" />
+		<Unit filename="imgui/imgui_impl_agl.cpp" />
+		<Unit filename="imgui/imgui_impl_agl.h" />
+		<Unit filename="imgui/imgui_internal.h" />
+		<Unit filename="imgui/stb_rect_pack.h" />
+		<Unit filename="imgui/stb_textedit.h" />
+		<Unit filename="imgui/stb_truetype.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="othello/algorithms/heuristics.cpp" />
 		<Unit filename="othello/algorithms/minimax.cpp" />
@@ -49,6 +79,8 @@
 		<Unit filename="othello/game.cpp" />
 		<Unit filename="othello/inc/algorithms/heuristics.hpp" />
 		<Unit filename="othello/inc/algorithms/minimax.hpp" />
+		<Unit filename="othello/inc/backup/backup.cpp" />
+		<Unit filename="othello/inc/backup/backup.h" />
 		<Unit filename="othello/inc/board/direction_vector.hpp" />
 		<Unit filename="othello/inc/board/gameboard.hpp" />
 		<Unit filename="othello/inc/board/gameissue.hpp" />
@@ -59,12 +91,15 @@
 		<Unit filename="othello/inc/exceptions/exceptions.hpp" />
 		<Unit filename="othello/inc/exceptions/exit_game" />
 		<Unit filename="othello/inc/exceptions/invalid_move" />
+		<Unit filename="othello/inc/exceptions/no_selected_move" />
 		<Unit filename="othello/inc/game.hpp" />
 		<Unit filename="othello/inc/players/enhancedai.hpp" />
 		<Unit filename="othello/inc/players/human.hpp" />
 		<Unit filename="othello/inc/players/player.hpp" />
 		<Unit filename="othello/inc/players/simpleai.hpp" />
 		<Unit filename="othello/inc/players/uiplayer.hpp" />
+		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
+		<Unit filename="othello/inc/ui/games/gameallegroui.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
 		<Unit filename="othello/players/enhancedai.cpp" />
@@ -72,9 +107,9 @@
 		<Unit filename="othello/players/player.cpp" />
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
-		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
-		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
+		<Unit filename="othello/ui/games/gameallegroui.cpp" />
+		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
