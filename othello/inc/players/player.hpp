@@ -8,52 +8,115 @@
 	#include "../board/move.hpp"
 	#include "../board/gameboard.hpp"
 
-	/// \namespace Othello
+	/**
+	 * @namespace Othello
+	 * @details Espace de nommage du jeu.
+	 */
 	namespace Othello {
-	    /// \namespace Players
+		/**
+		 * @namespace Players
+		 * @details Espace de nommage regroupant les différentes classes de joueurs.
+		 */
 		namespace Players {
-		    /// \class Player player.hpp
+			/**
+			 * @class Player
+			 * @brief Classe représentrant un joueur
+			 * @details L'interface Player représente un joueur quelconque du jeu, que cela soit un humain, une IA ou autre. Elle définie un ensemble de fonctions communes qui fonctionneront de la même manière peu importe le joueur.
+			 */
 			class Player {
 				protected:
-					std::string m_name;
-					Othello::Board::Pun::Colors m_color;
-					bool m_canPlay = true;
-					unsigned char m_punCount = 0;
-					Othello::Board::GameBoard* m_board;
+					std::string m_name; /*! < Nom du joueur */
+					Othello::Board::Pun::Colors m_color; /*! < Couleur de pion du joueur */
+					bool m_canPlay = true; /*! < Définie si un joueur peut jouer */
+					unsigned char m_punCount = 0; /*! < Nombre de pions à la fin de la partie* */
+					Othello::Board::GameBoard* m_board; /*! < Pointeur vers le plateau de jeu, utile pour les IA */
 
 				public:
-					/// \fn PlayerOverloadConstructor
-					/// \param {color}
+					/**
+					 * @brief Constructeur
+					 * @param name Nom du joueur
+					 * @param color Couleur de pion du joueur
+					 */
 					Player( std::string name, Othello::Board::Pun::Colors color );
 
-					/// \fn getNameGetter
-					/// \param {no parameters}
-					const std::string &getName() const;
-					/// \fn getColorGetter
-					/// \param {no parameters}
+					/**
+					 * @brief Accesseur de nom
+					 * @return Nom du joueur
+					 */
+					const std::string& getName() const;
+
+					/**
+					 * @brief Accesseur de couleur de pion
+					 * @return Couleur de pion du joueur
+					 */
 					Othello::Board::Pun::Colors getColor() const;
-					/// \fn canPlay
-					/// \param {no parameters}
+
+					/**
+					 * @brief Accesseur de possibilité de jouer
+					 * @return Possibilité de jouer du joueur
+					 */
 					bool canPlay() const;
-					/// \fn getPunCountGetter
-					/// \param {no parameters}
+
+					/**
+					 * @brief Accesseur du nombre de pions
+					 * @return Nombre de pions du joueur (à la fin de la partie)
+					 */
 					unsigned char getPunCount() const;
 
-					/// \fn setCanPlaySetter
-					/// \param {no parameters}
-					void setCanPlay();
-					/// \fn setCannotPlaySetter
-					/// \param {no parameters}
-					void setCannotPlay();
-					/// \fn setPunCountSetter
-					/// \param {punCount}
+					/**
+					 * @brief Mutateur du nombre de pions
+					 * @param punCount Nombre de pions du joueur (à la fin de la partie)
+					 */
 					void setPunCount( unsigned char punCount );
-					/// \fn setBoardSetter
-					/// \param {board}
+
+					/**
+					 * @brief Mutateur de possibilité de joueur
+					 * @details Indique que le joueur peut jouer.
+					 */
+					void setCanPlay();
+
+					/**
+					 * @brief Mutateur d'impossibilité de joueur
+					 * @details Indique que le joueur ne peut pas jouer.
+					 */
+					void setCannotPlay();
+
+					/**
+					 * @brief Mutateur de poineur de plateau
+					 * @details À appelé au plus tôt, définie le plateau qui sera utilisé par le joueur.
+					 * @param board Pointeur vers plateau de jeu
+					 */
 					void setBoard( Othello::Board::GameBoard* board );
 
-					/// \fn getMove
-					/// \param {no parameters}
+					/**
+					 * @brief Début de tour
+					 * @details Informe le joueur que son tour démarre.
+					 */
+					virtual void turnBegin() = 0;
+
+					/**
+					 * @brief Fin de tour
+					 * @details Informe le joueur que son tour est terminé.
+					 */
+					virtual void turnEnd() = 0;
+
+					/**
+					 * @brief Informateur de coup indisponible
+					 * @brief Indique au joueur qu'il ne peut pas jouer car il n'a pas de coup possible.
+					 */
+					virtual void noAvailableMoves() = 0;
+
+					/**
+					 * @brief Informateur d'erreur
+					 * @param message Message d'erreur
+					 */
+					virtual void error( std::string message ) = 0;
+
+					/**
+					 * @brief Récupérateur de mouvement choisi
+					 * @details Demande au joueur le mouvement qu'il souhaite jouer.
+					 * @return Mouvement choisi
+					 */
 					virtual Othello::Board::Move getMove() = 0;
 			};
 		}

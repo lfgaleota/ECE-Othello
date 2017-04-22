@@ -7,12 +7,21 @@
 	#include "board/gameboard.hpp"
 	#include "players/player.hpp"
 	#include "players/human.hpp"
+	#include "board/tree/validmovenode.hpp"
 	#include "ui/games/gameui.hpp"
+	#include "ui/games/gameallegroui.hpp"
 	#include "ui/games/gamecliui.hpp"
 
-	/// \namespace Othello
+	/**
+	 * @namespace Othello
+	 * @details Espace de nommage du jeu.
+	 */
 	namespace Othello {
-	    /// \class Game game.hpp
+		/**
+		 * @class Game
+		 * @brief Classe de Jeu
+		 * @details Classe initiatrice de jeu. Elle gère directement tous ses aspects, les appels à l'interface, le passage des joueurs, etc... Il suffit d'appeler le constructeur en fournissant les paramètres nécessaires. Le constructeur quitte dès que la partie est terminée.
+		 */
 		class Game {
 			private:
 				Othello::Board::GameBoard m_board; //game board
@@ -21,22 +30,36 @@
 				Othello::UI::Game* m_ui;
 				bool won = false;
 
-				/// \fn playerTurn
-				/// \param {no parameters}
+				/**
+				 * @brief Effectueur de coup de joueur
+				 * @details Effectue le coup d'un joueur. Passe au joueur suivant à la fin.
+				 */
 				void playerTurn();
-				/// \fn victory
-				/// \param {no parameters}
+
+				/**
+				 * @brief Effectueur de victoire
+				 * @details Calcul quel joueur a gagné, déclenche l'écran de victoire.
+				 */
 				void victory();
-				/// \fn verifyVictory
-				/// \param {no parameters}
+
+				/**
+				 * @brief Vérificateur de victoire
+				 * @details Vérifie si un joueur a gagné. Arrête le jeu en conséquence.
+				 */
 				void verifyVictory();
-				/// \fn preparePlayers
-				/// \param {no parameters}
+
+				/**
+				 * @brief Préparateur d'objet joueur
+				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement.
+				 */
 				void preparePlayers();
 
 			public:
-				/// \fn GameOverloadConstructor
-				/// \param {players}
+				/**
+				 * @brief Constructeur
+				 * @ëetails Initie une nouvelle partie du jeu.
+				 * @param players Ensemble de pointeur vers joueurs, préalablement créé.
+				 */
 				Game( std::vector<Othello::Players::Player*>& players );
 		};
 	}

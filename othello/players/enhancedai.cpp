@@ -5,19 +5,12 @@ using namespace Othello::Algorithms;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-/**
-* @brief Constructeur de la classe EnhancedAI
-**/
-EnhancedAI::EnhancedAI( string name, Pun::Colors color ) : UIPlayer( name, color ), m_tree( nullptr ) {}
+EnhancedAI::EnhancedAI( string name, Pun::Colors color ) : UIPlayer( name, color ), m_tree( nullptr ) {
+	m_done = false;
+}
 
-/**
-* @brief Accesseur du mouvement pour une AI simple
-* @details Cette IA récupère le mouvement voulu en appelant la fonction qui contient l'algorithme de minmax.
-* @return le mouvement.
-**/
 Move EnhancedAI::getMove() {
-	m_ui->inform( "L'IA reflechit..." );
-
+	m_done = false;
 	m_tree = Tree::ValidMoveNode( m_board );
 	m_ui->setTree( &m_tree );
 
@@ -26,5 +19,16 @@ Move EnhancedAI::getMove() {
 	ValidMove* move = minimax.getResult();
 	if( move == nullptr )
 		throw logic_error( "Move not found" );
+	m_done = true;
 	return *move;
+}
+
+void EnhancedAI::turnBegin() {
+	UIPlayer::turnBegin();
+
+	m_ui->inform( "L'IA réfléchit..." );
+}
+
+void EnhancedAI::turnEnd() {
+	UIPlayer::turnEnd();
 }

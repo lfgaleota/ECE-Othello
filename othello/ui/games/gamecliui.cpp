@@ -5,33 +5,12 @@ using namespace Othello::UI::Games;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-/**
- * @brief Constructeur de l'interface de jeu
- * @details Initialise l'interface de jeu, lorsqu'il démarre.
- * @param[in] oboard Référence vers la classe #Board de jeu
- * @param[in] board Pointeur vers le plateau de jeu
- * @param[in] players Référence vers l'ensemble des joueurs
- * @param[in] currentPlayer Référence vers le joueur actuel
- */
 CLI::CLI( GameBoard& oboard, const GameBoard::punArray board, const vector<Player*>& players, vector<Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_oboard( oboard ) {
 	cli = Functions::CLI();
 	loadDisplayMatrix();
 	display();
 }
 
-/**
- * @brief Destructeur de l'interface de jeu
- * @details Nettoie l'ensemble de l'interface à la fin du jeu.
- */
-CLI::~CLI() {
-
-}
-
-/**
- * @brief Affichage d'un erreur
- * @details Informe l'utilisateur d'une erreur au sein du programme. Bloque le programme en attendant une action de l'utilisateur.
- * @param msg Message d'erreur
- */
 void CLI::showError( string msg ) {
 	unsigned int width, height;
 	cli.getSize( width, height );
@@ -52,11 +31,6 @@ void CLI::showError( string msg ) {
 	getchar();
 }
 
-/**
- * @brief Affichage d'un message d'information
- * @details Informe l'utilisateur d'une erreur au sein du programme. Non bloquant.
- * @param msg Message d'erreur
- */
 void CLI::inform( string msg ) {
 	unsigned int width, height;
 	cli.getSize( width, height );
@@ -75,54 +49,17 @@ void CLI::inform( string msg ) {
 	cli.resetColor();
 }
 
-/**
- * @brief Informer qu'un joueur ne peut pas jouer
- * @param player Joueur qui ne peut pas jouer
- */
-void CLI::informNoAvailableMoves( Player& player ) {
-	showError( "Aucun coup n'est possible pour " + player.getName() + " !" );
+void CLI::informNoAvailableMoves( Player* player ) {
+	showError( "Aucun coup n'est possible pour " + player->getName() + " !" );
 }
 
-/**
- * @brief	Affichage de l'interface
- * @details	Affiche l'ensemble de l'interface, plateau et informations des joueurs.
- */
 void CLI::display() {
-	cli.clearScreen(); //first erases all previous displays
-#ifndef SIMPLE_UI
-	displayMatrix(); //then displays the matrix
-	displayPlayers(); //then displays the players
+	cli.clearScreen();
+	displayMatrix();
+	displayPlayers();
 	displayCounts();
-#else
-	Pun::Colors color;
-	for( unsigned int j = 0; j < GameBoard::sizeEdge; j++ ) {
-		cout << j;
-	}
-	cout << endl;
-	for( unsigned int j = 0; j < GameBoard::sizeEdge; j++ ) {
-		for( unsigned int i = 0; i < GameBoard::sizeEdge; i++ ) {
-			color = m_board[ i ][ j ];
-			if( color == Pun::white )
-				cout << "W";
-			else if( color == Pun::black )
-				cout << "B";
-			else
-				cout << " ";
-		}
-		cout << j << endl;
-	}
-
-	cout << "Tour de: " << (*m_currentPlayer)->getName() << endl;
-#endif
 }
 
-/**
- * @brief	Affichage d'une pièce
- * @details	Affiche une pièce du plateau
- * @param[in] piece Pièce à afficher
- * @param[in] offsetX Coordonnée en abscisse de l'endroit où doit être affiché la pièce
- * @param[in] offsetY Coordonnée en ordonnée de l'endroit où doit être affiché la pièce
- */
 void CLI::showPiece( Pun::Colors piece, unsigned int offsetX, unsigned int offsetY ) {
 	if( piece != Pun::blank ) {
 		if( piece == Pun::white )
@@ -136,10 +73,6 @@ void CLI::showPiece( Pun::Colors piece, unsigned int offsetX, unsigned int offse
 	}
 }
 
-/**
- * @brief	Affichage du plateau
- * @details	Affiche le plateau de jeu à l'écran, avec le fond précalculé.
- */
 void CLI::displayMatrix() {
 	Pun::Colors piece;
 	unsigned int offset_x = 0, offset_y = 0, piece_offset_x, piece_offset_y; //useful variables
@@ -174,13 +107,6 @@ void CLI::displayMatrix() {
 	}
 }
 
-/**
- * @brief	Met en valeur une pièce
- * @details	Permet de mettre en valeur un emplacement du plateau aux coordonnées indiquées, avec la couleur fournie.
- * @param[in] x Coordonnée en abscisse de l'emplacement
- * @param[in] y Coordonnée en ordonnée de l'emplacement
- * @param[in] color Couleur de surimpression
- */
 void CLI::highlightSelectedPiece( unsigned char x, unsigned char y, unsigned char color ) { //highlights the selected piece
 	unsigned int offset_x = 0, offset_y = 0, piece_offset_x, piece_offset_y;
 
@@ -202,10 +128,6 @@ void CLI::highlightSelectedPiece( unsigned char x, unsigned char y, unsigned cha
 	cli.resetColor(); //reset the colors, so everything can go back to normal
 }
 
-/**
- * @brief	Affichage des joueurs
- * @details	Affiche les informations des joueurs à l'écran. Ici, leur nom est affiché, et le nom du joueur actuel est affiché en surimpression.
- */
 void CLI::displayPlayers() {
 	unsigned int width, height;
 
@@ -229,9 +151,6 @@ void CLI::displayPlayers() {
 	}
 }
 
-/**
- * @brief	Affichage du nombre de pions sur le plateau
- */
 void CLI::displayCounts() {
 	unsigned int width, height;
 
@@ -248,10 +167,6 @@ void CLI::displayCounts() {
 	cli.resetColor();
 }
 
-/**
- * @brief Affichage du nombre de pions d'une couleur du plateau
- * @param color Couleur à utiliser
- */
 void CLI::displayCount( Pun::Colors color ) {
 	cli.setColor( BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY );
 	cout << " ";
@@ -264,15 +179,9 @@ void CLI::displayCount( Pun::Colors color ) {
 	cli.resetColor();
 }
 
-/**
- * @brief	Évènement demande de coup
- * @details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Propose également au joueur de quitter la partie, étant donné que cet écran est celui sur lequel le joueur sera la plupart du temps.
- * @return	Coup joué/demandé par le joueur
- */
 Move CLI::getMove() {
 	Functions::Keys::Key key;
 
-#ifndef SIMPLE_UI
 	display();
 	highlightSelectedPiece( x, y, BACKGROUND_RED ); // highlights the spot where the cursor is
 	inform( "Jouez votre tour !" );
@@ -321,39 +230,16 @@ Move CLI::getMove() {
 	}
 
 	return Move( x, y, (*m_currentPlayer)->getColor() );
-#else
-	cout << "Ou placer (X) ?";
-	cin >> x;
-	cout << "Ou placer (Y) ?";
-	cin >> y;
-
-	return Move( x - 48, y - 48, (*m_currentPlayer)->getColor() );
-#endif
 }
 
-/**
- * @brief	Évènement début de tour
- * @details	Fonction appelée au début du tour d'un joueur, avant toute chose.
- * @param[in] player Joueur actuel
- */
-void CLI::playerTurnBegin( Player& player ) { //the current player's turn begins --> display
+void CLI::playerTurnBegin( Player* player ) { //the current player's turn begins --> display
 	display();
 }
 
-/**
- * @brief	Évènement fin de tour
- * @details	Fonction appelée à la fin du tour d'un joueur, après toutes ses actions.
- * @param[in] player Joueur actuel
- */
-void CLI::playerTurnEnd( Player& player ) {
+void CLI::playerTurnEnd( Player* player ) {
 
 }
 
-/**
- * @brief	Écran de victoire
- * @details	Affiche un écran de victoire pour le joueur gagnant.
- * @param[in] player Joueur gagnant
- */
 void CLI::victory( Player* player ) {
 	cli.clearScreen();
 
@@ -366,11 +252,6 @@ void CLI::victory( Player* player ) {
 	cli.getKey();
 }
 
-/**
- * @brief	Génération d'un fond de plateau
- * @details	Construit, à partir de la taille de la matrice, un fond de plateau destiné à être affiché par l'interface.
- *         	Cette fonction ne prend et renvoie rien. Elle utilise, en revanche, le paramètre sizeEdge de #Board, et remplie l'attribut #m_displaymatrix avec un ensemble de chaînes de caractères prêtes à afficher.
- */
 void CLI::loadDisplayMatrix() {
 	std::string tmp;
 	std::ostringstream tmp2;
@@ -425,10 +306,6 @@ void CLI::loadDisplayMatrix() {
 	}
 }
 
-/**
- * @brief Écran de pause
- * @details Demande au joueur s'il souahite arrếter la partie. Lance une exception exit_game (cf #Exceptions) lorsque le joueur souhaite quitter le jeu.
- */
 void CLI::pauseMenu() {
 	vector<string> choices( { "Continuer", "Quitter" } );
 	Functions::CLIs::Menu menu = Functions::CLIs::Menu( "Pause", choices, BACKGROUND_GREEN | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY, BACKGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY );
@@ -440,3 +317,5 @@ void CLI::pauseMenu() {
 			break;
 	}
 }
+
+void CLI::render() {}

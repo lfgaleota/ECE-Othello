@@ -4,15 +4,23 @@ using namespace std;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-/**
-* @brief Constructeur surchargé de la classe Human
-**/
+
 Human::Human( string name, Pun::Colors color ) : UIPlayer( name, color ) {}
 
-/**
-* @brief Accesseur en lecture du mouvement dans la classe Human
-* @return Le mouvement pour l'UI
-**/
 Move Human::getMove() {
-	return m_ui->getMove();
+	for( ;; ) {
+		m_ui->render();
+		try {
+			return m_ui->getMove();
+		} catch( exceptions::no_selected_move e ) {}
+	}
+}
+
+void Human::turnBegin() {
+	UIPlayer::turnBegin();
+	m_ui->inform( "Jouez votre tour !" );
+}
+
+void Human::turnEnd() {
+	UIPlayer::turnEnd();
 }

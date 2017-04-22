@@ -1,21 +1,15 @@
 #include "inc/game.hpp"
-#include "inc/board/tree/validmovenode.hpp"
 
 using namespace std;
 using namespace Othello;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-
-/**
-* @brief Cette fonction gère le tour d'un joueur.
-* @details On commence par déterminer le joueur dont c'est le tour, puis on le commence, on l'affiche, on cherche les coups valides, on effectue le coup d'une façon ou d'une autre en fonction du joueur, puis on finit le tour et on vérifie la condition de victoire.
-**/
 void Game::playerTurn() { //unfolding of a turn
 	if( m_currentPlayer == m_players.end() ) //those two lines set whose turn it is
 		m_currentPlayer = m_players.begin();
 
-	m_ui->playerTurnBegin( **m_currentPlayer ); //displays the game at this state.
+	(*m_currentPlayer)->turnBegin(); //displays the game at this state.
 
 	m_board.computeValidMoves( ( *m_currentPlayer )->getColor() );
 
@@ -28,27 +22,23 @@ void Game::playerTurn() { //unfolding of a turn
 			try {
 				Move move = (*m_currentPlayer)->getMove();
 				m_board.play( move );
-			} catch( exceptions::invalid_move& e ) { //shielding
-				m_ui->showError( e.what() );
+			} catch( exceptions::invalid_move& e ) {
+				(*m_currentPlayer)->error( e.what() );
 				loop = true;
 			}
 		}
 	} else {
-		m_ui->informNoAvailableMoves( **m_currentPlayer );
+		(*m_currentPlayer)->noAvailableMoves();
 		(*m_currentPlayer)->setCannotPlay();
 	}
 
-	m_ui->playerTurnEnd( **m_currentPlayer ); //ends the turn
+	(*m_currentPlayer)->turnEnd(); //ends the turn
 
 	verifyVictory();
 
 	m_currentPlayer = next( m_currentPlayer ); //changes the players
 }
 
-/**
-* @brief On vérifie la condition de victoire.
-* @details On déclare un booleen de victoire vrai par défaut, puis on consulte le jeu actuel pour vérifier si des coups sont jouables pour l'un ou l'autre des joueurs. Si oui, le booleen devient faux
-**/
 void Game::verifyVictory() {
 	won = true;
 
@@ -58,10 +48,6 @@ void Game::verifyVictory() {
 	}
 }
 
-/**
-* @brief C'est la fonction de victoire. Si victoire il y a on l'execute !
-* @details
-**/
 void Game::victory() {
 	vector<Player*>::iterator winingPlayer = m_players.end();
 
@@ -87,36 +73,39 @@ void Game::victory() {
 		m_ui->victory( *winingPlayer );
 }
 
-/**
-* @brief fonction de preparation des joueurs.
-* @details on prepare le plateau
-**/
 void Game::preparePlayers() {
-	for( Player*& player : m_players ) {
-		player->setBoard( &m_board );
+	// On initialise le joueur actuel comme Ã©tant la fin du vecteur. Utile pour la vÃ©rification plus bas.
+	m_currentPlayer = m_players.end();
 
-		if( UIPlayer* uiplayer = dynamic_cast<UIPlayer*>( player ) ) {
+	// Pour chaque joueur, on lui passe le plateau de jeu et l'interface si nÃ©cessaire.
+	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
+		(*iplayer)->setBoard( &m_board );
+
+		if( UIPlayer* uiplayer = dynamic_cast<UIPlayer*>( *iplayer ) ) {
 			uiplayer->setUI( m_ui );
 		}
+
+		// Le joueur qui commence est celui qui a des pions noirs.
+		if( (*iplayer)->getColor() == Pun::black )
+			m_currentPlayer = iplayer;
 	}
+
+	// Si on n'a pas trouvÃ© de premier joueur (=joueur avec des pions noirs), on quitte: le jeu ne peut pas se dÃ©rouler correctement.
+	if( m_currentPlayer == m_players.end() )
+		throw logic_error( "No player with black puns. Game can not continue in this state." );
 }
 
-/**
-* @brief Constructeur de la classe game
-* @details c'est LA fonction de jeu, elle lance les tours de joueurs jusqu'à l'apparition d'une victoire. La fonction est blindée afin que le jeu se déroule correctement.
-**/
-Game::Game( std::vector<Player*>& players ): m_players( players ) { //that's how it goes down
-	m_currentPlayer = m_players.begin(); ///first player "selected" in the vector of players passed to the constructor
+Game::Game( std::vector<Player*>& players ): m_players( players ) {
+	// On crÃ©Ã© l'interface de jeu
+	m_ui = new UI::Games::Allegro( m_board, m_board.getBoard(), m_players, m_currentPlayer );
 
-	m_ui = new UI::Games::CLI( m_board, m_board.getBoard(), m_players, m_currentPlayer ); ///Here we create a User Interface
-
-	preparePlayers(); ///call of the function "preparePlayers"
+	preparePlayers();
 
 	try {
-		while( !won ) //while nobody won
-			playerTurn(); //turns
-		victory(); //if you won -> victory
+		while( !won )
+			playerTurn();
+		victory();
 	} catch( exceptions::exit_game e ) {}
 
-	delete m_ui; //delete UI at the end of the game
+	delete m_ui;
 }
