@@ -56,3 +56,7 @@ Tree::ValidMoveNode::~ValidMoveNode() {
 		delete nextNode.m_board;
 	}
 }
+
+int Tree::ValidMoveNode::getEval() const {
+	return m_eval;
+}

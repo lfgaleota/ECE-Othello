@@ -42,6 +42,8 @@ MiniMax::MiniMax( GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Pun
 		}
 	}
 
+	head->m_eval = moveVal;
+
 	if( m_foundMove == nullptr )
 		m_foundMove = &(*ref->m_validMoves.begin());
 }
@@ -65,7 +67,9 @@ int MiniMax::max( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 
 	if( ref->m_board->m_validMoves.size() > 0 ) {
 		if( depth == 0 ) {
-			return Heuristics::simple( ref->m_board, m_color );
+			val = Heuristics::simple( ref->m_board, m_color );
+			ref->m_eval = val;
+			return val;
 		}
 
 		ref->compute( m_oppositeColor, 1 );
@@ -82,6 +86,8 @@ int MiniMax::max( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 			}
 		}
 
+		ref->m_eval = minMaxVal;
+
 		return minMaxVal;
 	} else {
 		if( !skipped ) {
@@ -89,16 +95,22 @@ int MiniMax::max( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 			ref->m_nextNodes.push_back( Tree::ValidMoveNode( cloneBoard ) );
 			std::list<Tree::ValidMoveNode>::iterator nextNode = ref->m_nextNodes.begin();
 			nextNode->compute( m_oppositeColor, 1 );
-			return max( &(*nextNode), true, depth );
+
+			minMaxVal = min( &(*nextNode), true, depth );
+			ref->m_eval = minMaxVal;
+			return minMaxVal;
 		} else {
 			GameIssue issue = ref->m_board->issue( m_color );
 			if( issue == GameIssue::Victory ) {
+				ref->m_eval = MiniMax::MAX;
 				return MiniMax::MAX;
 			}
 			if( issue == GameIssue::Defeat ) {
+				ref->m_eval = MiniMax::MIN;
 				return MiniMax::MIN;
 			}
 			if( issue == GameIssue::Draw ) {
+				ref->m_eval = MiniMax::DRAW;
 				return MiniMax::DRAW;
 			}
 		}
@@ -114,7 +126,9 @@ int MiniMax::min( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 
 	if( ref->m_board->m_validMoves.size() > 0 ) {
 		if( depth == 0 ) {
-			return Heuristics::simple( ref->m_board, m_oppositeColor );
+			val = Heuristics::simple( ref->m_board, m_oppositeColor );
+			ref->m_eval = val;
+			return val;
 		}
 
 		ref->compute( m_color, 1 );
@@ -131,6 +145,8 @@ int MiniMax::min( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 			}
 		}
 
+		ref->m_eval = minMaxVal;
+
 		return minMaxVal;
 	} else {
 		if( !skipped ) {
@@ -138,16 +154,22 @@ int MiniMax::min( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 			ref->m_nextNodes.push_back( Tree::ValidMoveNode( cloneBoard ) );
 			std::list<Tree::ValidMoveNode>::iterator nextNode = ref->m_nextNodes.begin();
 			nextNode->compute( m_color, 1 );
-			return max( &(*nextNode), true, depth );
+
+			minMaxVal = max( &(*nextNode), true, depth );
+			ref->m_eval = minMaxVal;
+			return minMaxVal;
 		} else {
 			GameIssue issue = ref->m_board->issue( m_color );
 			if( issue == GameIssue::Victory ) {
+				ref->m_eval = MiniMax::MAX;
 				return MiniMax::MAX;
 			}
 			if( issue == GameIssue::Defeat ) {
+				ref->m_eval = MiniMax::MIN;
 				return MiniMax::MIN;
 			}
 			if( issue == GameIssue::Draw ) {
+				ref->m_eval = MiniMax::DRAW;
 				return MiniMax::DRAW;
 			}
 		}

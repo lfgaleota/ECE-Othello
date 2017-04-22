@@ -19,6 +19,7 @@
 						Othello::Board::GameBoard* m_board;
 						Othello::Board::ValidMove* m_validMove;
 						std::list<ValidMoveNode> m_nextNodes;
+						int m_eval = 0;
 
 					public:
 						/// \fn ValidMoveNodeOverloadConstructor
@@ -46,6 +47,8 @@
 						/// \fn getValidMoveGetter
 						/// \param {no parameters}
 						ValidMove* getValidMove() const;
+
+						int getEval() const;
 				};
 			}
 		}
