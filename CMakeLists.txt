@@ -5,6 +5,8 @@ option(GPERFTOOL_PROFILER "Activate gperftool CPU Profiler")
 
 set(CMAKE_CXX_STANDARD 11)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
 set(SOURCE_FILES
     othello/inc/players/randomai.hpp
     othello/inc/board/gameboard.hpp
@@ -58,6 +60,8 @@ set(SOURCE_FILES
     othello/inc/board/gameboardconstants.hpp
     othello/ui/main/maincliui.cpp
     othello/inc/ui/main/maincliui.hpp
+    othello/ui/main/mainallegroui.cpp
+    othello/inc/ui/main/mainallegroui.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)
@@ -79,7 +83,17 @@ if(CMAKE_BUILD_TYPE MATCHES "Release")
 	endif(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_BUILD_TYPE MATCHES "Release")
 
-target_link_libraries(ECE_Othello m z loadpng png jpgalleg alleggl alleg)
+#target_link_libraries(ECE_Othello m z loadpng png jpgalleg alleggl alleg)
+
+target_link_libraries(ECE_Othello m z)
+
+find_package(FMOD REQUIRED)
+include_directories(${FMOD_INCLUDE_DIRS})
+target_link_libraries(ECE_Othello ${FMOD_LIBRARIES})
+
+find_package(ALLEGRO4 REQUIRED)
+include_directories(${ALLEGRO4_INCLUDE_DIRS})
+target_link_libraries(ECE_Othello ${ALLEGRO4_LIBRARIES})
 
 if(WIN32)
 	target_link_libraries(ECE_Othello opengl32 glu32 winmm gdi32)

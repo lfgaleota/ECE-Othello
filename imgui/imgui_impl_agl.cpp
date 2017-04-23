@@ -229,7 +229,7 @@ void ImGui_ImplAGL_NewFrame(float dTime)
 	io.MouseDown[2] = (mouse_b & 0b100) != 0;
 
 	// Setup time step
-	io.DeltaTime = dTime;
+	io.DeltaTime = ( dTime >= 0 ? dTime : 1 / 60.f );
 
 	// Start the frame
 	ImGui::NewFrame();

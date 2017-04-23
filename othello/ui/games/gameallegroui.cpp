@@ -442,7 +442,8 @@ void Allegro::render() {
 }
 
 void Allegro::victory( Player* player ) {
-	newFrame();
+	bool mouseL = false;
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	allegro_gl_set_allegro_mode();
 	stretch_blit( m_bitmaps.find( "mainBg" )->second, m_page, 0, 0, m_bitmaps.find( "mainBg" )->second->w, m_bitmaps.find( "mainBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H);
 	set_alpha_blender();
@@ -455,11 +456,9 @@ void Allegro::victory( Player* player ) {
 
 	before = clock() - 1;
 	for( bool loop = true; loop; ) {
-		COMPUTE_DT( dt );
-		ImGui_ImplAGL_NewFrame( dt );
-
-		if( ImGui::IsMouseReleased( 0 ) )
+		if( mouseL )
 			loop = false;
+		mouseL = (bool) ( mouse_b & 1 );
 	}
 }
 
@@ -501,9 +500,9 @@ void Allegro::renderPause() {
 
 	ImGui::SetNextWindowSize( ImVec2( SCREEN_W, PAUSE_HEIGHT ), ImGuiSetCond_Appearing );
 	ImGui::SetNextWindowPosCenter();
-	ImGui::Begin( "Pause", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
+	ImGui::Begin( "", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
 	button_x  = ( ImGui::GetWindowWidth() - PAUSE_BUTTON_WIDTH ) / 2;
-	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "Pause" ).x ) / 2 );
+	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "PAUSE" ).x ) / 2 );
 	ImGui::Text( "PAUSE" );
 	ImGui::SetCursorPosX( button_x );
 	if( ImGui::Button( "CONTINUER", ImVec2( PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT ) ) ) {
