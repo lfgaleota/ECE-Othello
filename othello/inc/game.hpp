@@ -51,29 +51,35 @@
 
 				/**
 				 * @brief Préparateur d'objet joueur
-				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement, choisie le joueur qui débute selon les règles.
+				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement.
 				 */
 				void preparePlayers();
 
 				/**
-				 * @brief Préparateur d'objet joueur
-				 * @details Prépare les objets joueur avant le début du jeu, fournit les élements nécessaires à leur fonctionnement, règle le joueur qui débute selon la demande.
+				 * @brief Choisisseur de joueur
+				 * @details Choisie le joueur qui débute selon les règles.
 				 */
-				void preparePlayers( unsigned char currentPlayer );
+				void findStartingPlayer();
+
+				/**
+				 * @brief Choisisseur de joueur
+				 * @details Règle le joueur qui débute selon la demande.
+				 */
+				void findStartingPlayer( unsigned char currentPlayer );
 
 			public:
 				/**
 				 * @brief Constructeur par chargement de partie
 				 * @details Reprend partie du jeu depuis une sauvegarde.
 				 */
-				Game();
+				Game( bool allegro );
 
 				/**
 				 * @brief Constructeur normal
 				 * @details Initie une nouvelle partie du jeu avec les joueurs apportés.
 				 * @param players Ensemble de pointeur vers joueurs, préalablement créé.
 				 */
-				Game( std::vector<Othello::Players::Player*>& players );
+				Game( std::vector<Othello::Players::Player*>& players, bool allegro );
 		};
 	}
 

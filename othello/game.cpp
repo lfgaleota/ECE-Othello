@@ -81,9 +81,6 @@ void Game::victory() {
 }
 
 void Game::preparePlayers() {
-	// On initialise le joueur actuel comme étant la fin du vecteur. Utile pour la vérification plus bas.
-	m_currentPlayer = m_players.end();
-
 	// Pour chaque joueur, on lui passe le plateau de jeu et l'interface si nécessaire.
 	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
 		(*iplayer)->setBoard( m_board );
@@ -91,7 +88,15 @@ void Game::preparePlayers() {
 		if( UIPlayer* uiplayer = dynamic_cast<UIPlayer*>( *iplayer ) ) {
 			uiplayer->setUI( m_ui );
 		}
+	}
+}
 
+void Game::findStartingPlayer() {
+	// On initialise le joueur actuel comme étant la fin du vecteur. Utile pour la vérification plus bas.
+	m_currentPlayer = m_players.end();
+
+	// Pour chaque joueur, on lui passe le plateau de jeu et l'interface si nécessaire.
+	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
 		// Le joueur qui commence est celui qui a des pions noirs.
 		if( (*iplayer)->getColor() == Pun::black )
 			m_currentPlayer = iplayer;
@@ -102,7 +107,7 @@ void Game::preparePlayers() {
 		throw logic_error( "No player with black puns. Game can not continue in this state." );
 }
 
-void Game::preparePlayers( unsigned char currentPlayer ) {
+void Game::findStartingPlayer( unsigned char currentPlayer ) {
 	unsigned char i = 0;
 
 	// On initialise le joueur actuel comme étant la fin du vecteur. Utile pour la vérification plus bas.
@@ -110,16 +115,9 @@ void Game::preparePlayers( unsigned char currentPlayer ) {
 
 	// Pour chaque joueur, on lui passe le plateau de jeu et l'interface si nécessaire.
 	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
-		(*iplayer)->setBoard( m_board );
-
-		if( UIPlayer* uiplayer = dynamic_cast<UIPlayer*>( *iplayer ) ) {
-			uiplayer->setUI( m_ui );
-		}
-
 		// Le joueur qui commence est celui qui est demandé.
 		if( i == currentPlayer )
 			m_currentPlayer = iplayer;
-
 		i++;
 	}
 
@@ -128,12 +126,17 @@ void Game::preparePlayers( unsigned char currentPlayer ) {
 		throw logic_error( "Invalid requested current player. Corrupted save." );
 }
 
-Game::Game( std::vector<Player*>& players ): m_players( players ) {
+Game::Game( std::vector<Player*>& players, bool allegro ): m_players( players ) {
 	// On créé un nouveau plateau
 	m_board = new GameBoard();
 
+	findStartingPlayer();
+
 	// On créé l'interface de jeu
-	m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+	if( allegro )
+		m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+	else
+		m_ui = new UI::Games::CLI( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
 
 	preparePlayers();
 
@@ -151,15 +154,19 @@ Game::Game( std::vector<Player*>& players ): m_players( players ) {
 	delete m_board;
 }
 
-Game::Game() {
+Game::Game( bool allegro ) {
 	// On charge la partie
 	try {
 		Save::Save save = Save::SaveManager::load();
 		m_board = new GameBoard( save );
 		m_players = save.players;
-		m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
-		preparePlayers( save.currentPlayer );
-	} catch( exceptions::invalid_save ) {
+		findStartingPlayer( save.currentPlayer );
+		if( allegro )
+			m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+		else
+			m_ui = new UI::Games::CLI( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+		preparePlayers();
+	} catch( exceptions::invalid_save e ) {
 		throw logic_error( "Corrupted save." );
 	}
 
@@ -171,4 +178,8 @@ Game::Game() {
 
 	delete m_ui;
 	delete m_board;
+
+	for( Othello::Players::Player* player : m_players ) {
+		delete player;
+	}
 }
