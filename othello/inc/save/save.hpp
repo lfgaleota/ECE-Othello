@@ -8,12 +8,18 @@
 	#include "../board/gameboardconstants.hpp"
 	#include "../board/pun.hpp"
 
+	/// \namespace Othello
 	namespace Othello {
+	    /// \namespace Players
 		namespace Players{
+			/// \class Player
 			class Player;
 		}
 
+		/// \namespace Save
 		namespace Save {
+
+		    /// \struct Save
 			struct Save {
 				Othello::Board::Pun::Colors board[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ];
 				uint64_t emptyNeighbors;
