@@ -47,6 +47,11 @@
 					Player( std::string name, Othello::Board::Pun::Colors color );
 
 					/**
+					 * @brief Destructeur
+					 */
+					 virtual ~Player();
+
+					/**
 					 * @brief Accesseur de nom
 					 * @return Nom du joueur
 					 */

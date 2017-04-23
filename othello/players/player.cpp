@@ -51,3 +51,5 @@ bool Player::typeCheck( int typeInt ) {
 			return false;
 	}
 }
+
+Player::~Player() {}

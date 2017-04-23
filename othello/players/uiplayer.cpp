@@ -26,3 +26,5 @@ void UIPlayer::noAvailableMoves() {
 void UIPlayer::error( std::string message ) {
 	m_ui->showError( message );
 }
+
+UIPlayer::~UIPlayer() {}

@@ -73,6 +73,7 @@
 		<Unit filename="othello/board/direction_vector.cpp" />
 		<Unit filename="othello/board/gameboard.cpp" />
 		<Unit filename="othello/board/move.cpp" />
+		<Unit filename="othello/board/pun.cpp" />
 		<Unit filename="othello/board/tree/validmovenode.cpp" />
 		<Unit filename="othello/board/valid_move.cpp" />
 		<Unit filename="othello/game.cpp" />
@@ -90,30 +91,37 @@
 		<Unit filename="othello/inc/exceptions/exceptions.hpp" />
 		<Unit filename="othello/inc/exceptions/exit_game" />
 		<Unit filename="othello/inc/exceptions/invalid_move" />
+		<Unit filename="othello/inc/exceptions/invalid_save" />
 		<Unit filename="othello/inc/exceptions/no_selected_move" />
 		<Unit filename="othello/inc/game.hpp" />
 		<Unit filename="othello/inc/players/enhancedai.hpp" />
 		<Unit filename="othello/inc/players/human.hpp" />
 		<Unit filename="othello/inc/players/player.hpp" />
+		<Unit filename="othello/inc/players/randomai.hpp" />
 		<Unit filename="othello/inc/players/simpleai.hpp" />
 		<Unit filename="othello/inc/players/uiplayer.hpp" />
 		<Unit filename="othello/inc/save/save.hpp" />
 		<Unit filename="othello/inc/save/savemanager.hpp" />
+		<Unit filename="othello/inc/ui/audio/FMOD.hpp" />
 		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/gameallegroui.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
+		<Unit filename="othello/inc/ui/main/maincliui.hpp" />
 		<Unit filename="othello/players/enhancedai.cpp" />
 		<Unit filename="othello/players/human.cpp" />
 		<Unit filename="othello/players/player.cpp" />
+		<Unit filename="othello/players/randomai.cpp" />
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
 		<Unit filename="othello/save/savemanager.cpp" />
+		<Unit filename="othello/ui/audio/FMOD.cpp" />
 		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/gameallegroui.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
+		<Unit filename="othello/ui/main/maincliui.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

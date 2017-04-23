@@ -31,6 +31,10 @@
 					 */
 					UIPlayer( std::string name, Othello::Board::Pun::Colors color );
 
+					/**
+					 * @brief Destructeur
+					 */
+					virtual ~UIPlayer();
 
 					/**
 					 * @brief Mutateur de l'UI dans la classe UIPlayer
