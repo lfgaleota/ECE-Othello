@@ -20,6 +20,8 @@
 		     */
 			class Heuristics {
 				public:
+					typedef int (*evalFunctionType)( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color, Othello::Board::Pun::Colors opposite );
+
 				    static const int weightTable[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ];
 
 					/**
@@ -27,7 +29,7 @@
 					 * @details Fonction d'heuristique simple qui choisit le meilleur coup sur le critère du nombre de pièces retournées.
 					 * @return 0
 					 */
-					static int simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color );
+					static int simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color, Othello::Board::Pun::Colors opposite );
 
 					/**
 					 * @brief Heuristique avancée

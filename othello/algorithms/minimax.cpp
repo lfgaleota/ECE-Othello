@@ -12,7 +12,7 @@ const int MiniMax::DEPTH = 5;
 /**
 * @brief Constructeur de la classe MiniMax
 **/
-MiniMax::MiniMax( GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Pun::Colors color ) : m_color( color ), m_oppositeColor(  Pun::opposite( m_color ) ) {
+MiniMax::MiniMax( GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Pun::Colors color, Heuristics::evalFunctionType evalFn ) : m_color( color ), m_oppositeColor(  Pun::opposite( m_color ) ), m_evalFn( evalFn ) {
 	head->compute( m_color, 1 );
 
 	size_t nodeSize = head->m_nextNodes.size();
@@ -67,7 +67,7 @@ int MiniMax::max( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 
 	if( ref->m_board->m_validMoves.size() > 0 ) {
 		if( depth == 0 ) {
-			val = Heuristics::simple( ref->m_board, m_color );
+			val = (*m_evalFn)( ref->m_board, m_color, m_oppositeColor );
 			ref->m_eval = val;
 			return val;
 		}
@@ -126,7 +126,7 @@ int MiniMax::min( Tree::ValidMoveNode* ref, bool skipped, unsigned int depth ) {
 
 	if( ref->m_board->m_validMoves.size() > 0 ) {
 		if( depth == 0 ) {
-			val = Heuristics::simple( ref->m_board, m_oppositeColor );
+			val = (*m_evalFn)( ref->m_board, m_oppositeColor, m_color );
 			ref->m_eval = val;
 			return val;
 		}

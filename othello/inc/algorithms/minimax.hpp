@@ -16,6 +16,7 @@
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
 					Othello::Board::Pun::Colors m_color, m_oppositeColor;
+					Heuristics::evalFunctionType m_evalFn;
 
 					/// \fn max
 					/// \param {ValidMoveNode, opposite, skipped, depth}
@@ -33,7 +34,7 @@
 
 					/// \fn MinimaxDefaultConstructor
 					/// \param {ref, color}
-					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Othello::Board::Pun::Colors color );
+					MiniMax( Othello::Board::GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Othello::Board::Pun::Colors color, Heuristics::evalFunctionType evalFn );
 					/// \fn getResult
 					/// \param {No parameters}
 					Othello::Board::ValidMove* getResult();

@@ -15,7 +15,7 @@ const int Heuristics::weightTable[ Othello::Board::sizeEdge ][ Othello::Board::s
 	{ 100, -50, 11, 8, 8, 11, -50, 100 }
 };
 
-int Heuristics::simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color ) {
+int Heuristics::simple( Othello::Board::GameBoard* ref, Othello::Board::Pun::Colors color, Othello::Board::Pun::Colors opposite ) {
 	if( color == Pun::black )
 		return ref->m_count.black - ref->m_count.white;
 	else if( color == Pun::white )
