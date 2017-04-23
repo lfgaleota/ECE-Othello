@@ -67,7 +67,6 @@
 		<Unit filename="imgui/imconfig.h" />
 		<Unit filename="imgui/imgui.cpp" />
 		<Unit filename="imgui/imgui.h" />
-		<Unit filename="imgui/imgui_demo.cpp" />
 		<Unit filename="imgui/imgui_draw.cpp" />
 		<Unit filename="imgui/imgui_impl_agl.cpp" />
 		<Unit filename="imgui/imgui_impl_agl.h" />
