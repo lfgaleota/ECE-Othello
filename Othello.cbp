@@ -102,7 +102,6 @@
 		<Unit filename="othello/inc/players/uiplayer.hpp" />
 		<Unit filename="othello/inc/save/save.hpp" />
 		<Unit filename="othello/inc/save/savemanager.hpp" />
-		<Unit filename="othello/inc/ui/audio/FMOD.hpp" />
 		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/gameallegroui.hpp" />
@@ -116,7 +115,6 @@
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
 		<Unit filename="othello/save/savemanager.cpp" />
-		<Unit filename="othello/ui/audio/FMOD.cpp" />
 		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/gameallegroui.cpp" />
