@@ -2,9 +2,13 @@
 	#define ECE_OTHELLO_UI_GAMES_ALLEGRO_HPP
 
 	#include <allegro.h>
+
 	#ifdef ALLEGRO_WINDOWS
+
 		#include <winalleg.h>
+
 	#endif
+
 	#include <loadpng.h>
 	#include <jpgalleg.h>
 	#include <GL/gl.h>
@@ -56,15 +60,22 @@
 			 * @details Espace de nommage des interfaces de jeu du jeu.
 			 */
 			namespace Games {
+				/**
+				 * @brief Fonction d'animation implémentant une fonction Ease-Out
+				 * @param t Temps actuel
+				 * @param maxt Temps maximal
+				 * @return Valeur d'animation
+				 */
 				float EaseOutQuad( float t, float maxt );
 
-				/// \class ErrorPage
-				class ErrorPage;
+				class ErrorBar;
 
-                /// \class MessageBar
-                /// \brief classe gérant le barre des messages avec allegro
+				/**
+				 * @class MessageBar
+				 * @brief Barre de message graphique
+				 */
 				class MessageBar {
-					friend class ErrorBar;
+						friend class ErrorBar;
 
 					protected:
 						float t = 0;
@@ -75,35 +86,48 @@
 						std::string message;
 
 						constexpr static int widthIcon = 20, outXIcon = -16, inX = 0, height = 22, marginX = 4, marginY = 2, marginXIcon = 8, marginYIcon = 2;
-						int colorBarFront = makecol( 0, 0, 0 ), colorBarBack = makecol( 200, 200, 200 ), colorIconFront = colorBarBack, colorIconBack = colorBarFront, widthBar = SCREEN_W, outXBar = -SCREEN_W;
+						int colorBarFront = makecol( 0, 0, 0 ), colorBarBack = makecol( 200, 200,
+						                                                                200 ), colorIconFront = colorBarBack, colorIconBack = colorBarFront, widthBar = SCREEN_W, outXBar = -SCREEN_W;
 						float inTime = 15, outTime = 15;
 
-						/// \fn draw
-                        /// \param {no Parameters}
+						/**
+						 * @brief Afficheur de barre réel
+						 */
 						virtual void draw();
 
 					public:
-					    /// \fn default constructor
-                        /// \param {no Parameters}
-						MessageBar();
-						/// \fn overload Constructor
-                        /// \param {page, font}
+						/**
+						 * @brief Constructeur
+						 * @param page Bitmap sur laquelle afficher
+						 * @param font Police à utiliser
+						 */
 						MessageBar( BITMAP* page, FONT* font );
 
-                        /// \fn render
-                        /// \param {dt}
+						/**
+						 * @brief Afficheur de barre
+						 * @param dt Temps entre cette frame et la frame précédente
+						 */
 						virtual void render( float dt );
 
-                        /// \fn animateIn
-                        /// \param {message, force}
+						/**
+						 * @brief Animateur d'entrée
+						 * @details A appelé une fois pour animer l'entrée de la barre.
+						 * @param msg Message à afficher
+						 * @param force Forçage de l'apparition
+						 */
 						virtual void animateIn( std::string msg, bool force = false );
-						/// \fn animateOut
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Animateur de sortie
+						 * @details A appelé pour cacher la barre.
+						 */
 						void animateOut();
 				};
 
-				/// \class ErrorBar
-				/// \brief classe gérant la barre d'erreur avec allegro
+				/**
+				 * @class ErrorBar
+				 * @brief Barre de message d'erreur graphique
+				 */
 				class ErrorBar : public MessageBar {
 					private:
 						MessageBar* infoBar;
@@ -113,33 +137,50 @@
 						int diff;
 						int colorBarFront = makecol( 255, 255, 255 ), colorBarBack = makecol( 190, 0, 0 ), colorIconFront = makecol( 255, 255, 255 ), colorIconBack = makecol( 100, 0, 0 ), colorBarBackNoTime = makecol( 170, 0, 0 );
 
-						/// \fn draw
-                        /// \param {no Parameters}
+						/**
+						 * @brief Afficheur de barre réel
+						 */
 						void draw();
 
 					public:
-					    /// \fn default constructor
-                        /// \param {no Parameters}
+						/**
+						 * @brief Constructeur par défaut
+						 * @details Permet d'avoir un objet résidant sans pour autant fournir les arguments
+						 */
 						ErrorBar();
-						/// \fn overload constructor
-                        /// \param {page, font, infoBar}
+
+						/**
+						 * @brief Constructeur
+						 * @param page Bitmap sur laquelle afficher
+						 * @param font Police à utiliser
+						 * @param infoBar Barre à prendre en compte lors de l'affichage
+						 */
 						ErrorBar( BITMAP* page, FONT* font, MessageBar* infoBar );
 
-						/// \fn animateIn
-                        /// \param {msg, force}
+						/**
+						 * @brief Animateur d'entrée
+						 * @details A appelé une fois pour animer l'entrée de la barre.
+						 * @param msg Message à afficher
+						 * @param force Forçage de l'apparition
+						 */
 						void animateIn( std::string msg, bool force = false );
-						/// \fn render
-                        /// \param {dt}
+
+						/**
+						 * @brief Afficheur de barre
+						 * @param dt Temps entre cette frame et la frame précédente
+						 */
 						void render( float dt );
 				};
 
-				/// \class Allegro
-				/// \brief classe gérant allegro
+				/**
+				 * @class Allegro
+				 * @brief Interface de jeu graphique
+				 */
 				class Allegro : public Othello::UI::Game {
 					private:
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;
 						BITMAP* m_page;
-						FONT *m_textFont, *m_glTextFont;
+						FONT* m_textFont, * m_glTextFont;
 						ImGuiIO& m_io;
 						bool prevKeyEsc = false, keyEsc = false, prevKeyG = false, keyG = false;
 						unsigned char x = 0, y = 0;
@@ -152,89 +193,158 @@
 						bool m_pause = false, m_getMove = false;
 						Othello::UI::Audio::FMOD& m_fmod;
 
-                        /// \fn loadSprites
-                        /// \param {no Parameters}
+						/**
+						 * @brief Chargeur de sprites
+						 */
 						void loadSprites();
-						/// \fn loadFonts
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Chargeur de police
+						 * @details Charge pour Allegro et ImGui.
+						 */
 						void loadFonts();
-						/// \fn loadBackgrounds
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Chargeur de fond
+						 */
 						void loadBackgrounds();
-						/// \fn loadIMGUIStyle
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Chargeur de style de fenêtre ImGui
+						 */
 						void loadIMGUIStyle();
 
-                        /// \fn display
-                        /// \param {no Parameters}
+						/**
+						 * @brief Afficheur d'interface purement Allegro (pas AllegroGL)
+						 */
 						void display();
-						/// \fn displayBackground
-                        /// \param {no Parameters}
+
+						/**
+						 * @breif Afficheur de fond
+						 */
 						void displayBackground();
-						/// \fn displayMatrix
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Afficheur de plateau
+						 */
 						void displayMatrix();
-						/// \fn displayPlayers
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Afficheur de joueurs
+						 */
 						void displayPlayers();
-						/// \fn highlightSelectedPiece
-                        /// \param {x,y,color}
+
+						/**
+						 * @brief	Met en valeur une pièce
+						 * @details	Permet de mettre en valeur un emplacement du plateau aux coordonnées indiquées, avec la couleur fournie.
+						 * @param[in] x Coordonnée en abscisse de l'emplacement
+						 * @param[in] y Coordonnée en ordonnée de l'emplacement
+						 * @param[in] color Couleur de surimpression
+						 */
 						void highlightSelectedPiece( unsigned int x, unsigned int y, int color = COLOR_SELECTION );
 
-						/// \fn updateInputs
-                        /// \param {no Parameters}
+						/**
+						 * @brief Gestionnaire d'entrées
+						 * @details Met à jour les entrées clavier pour l'interface propre au jeu.
+						 */
 						void updateInputs();
-						/// \fn renderPause
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Afficheur de menu pause, s'il est ouvert
+						 */
 						void renderPause();
 
-						/// \fn freeBitmaps
-                        /// \param {no Parameters}
+						/**
+						 * @brief Libérateur de mémoire des bitmaps
+						 */
 						void freeBitmaps();
 
-						/// \fn getPunSprite
-                        /// \param {color}
+						/**
+						 * @brief Accesseur de sprite de pion
+						 * @details Donne la sprite associé à la couleur d'un pion.
+						 * @param color Couleur
+						 * @return Sprite
+						 */
 						BITMAP* getPunSprite( Othello::Board::Pun::Colors color ) const;
 
-						/// \fn newFrame
-                        /// \param {skipDT}
+						/**
+						 * @brief Initiateur de nouvelle frame
+						 * @param skipDT Ne pas faire le calcul du temps entre cette frame et la frame précédente
+						 */
 						void newFrame( bool skipDT = false );
-						/// \fn endFrame
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Termineur de frame
+						 */
 						void endFrame();
-						/// \fn gameDisplay
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Afficheur de jeu
+						 */
 						void gameDisplay();
 
 					public:
-						/// \fn overload constructor
-                        /// \param {oboard,board,players,currentPlayer}
+						/**
+						 * @brief Constructeur
+						 * @param oboard Objet #GameBoard originel
+						 * @param board Plateau de jeu
+						 * @param players Référence vers la liste des joueurs
+						 * @param currentPlayer Référence vers le joueur actuel
+						 * @param fmod Référence vers un objet de gestion #FMOD
+						 */
 						Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer, Othello::UI::Audio::FMOD& fmod );
-						/// \fn destructor
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Destructeur
+						 */
 						~Allegro();
 
-                        /// \fn showError
-                        /// \param {msg}
+						/**
+						 * @brief Affichage d'une erreur
+						 * @details Informe l'utilisateur d'une erreur au sein du programme. Bloque le programme en attendant une action de l'utilisateur.
+						 * @param msg Message d'erreur
+						 */
 						void showError( std::string msg );
-						/// \fn playerTurnBegin
-                        /// \param {player}
+
+						/**
+						 * @brief	Évènement début de tour
+						 * @details	Fonction appelée au début du tour d'un joueur, avant toute chose.
+						 * @param[in] player Joueur actuel
+						 */
 						void playerTurnBegin( Othello::Players::Player* player );
-						/// \fn playerTurnEnd
-                        /// \param {player}
+
+						/**
+						 * @brief	Évènement fin de tour
+						 * @details	Fonction appelée à la fin du tour d'un joueur, après toutes ses actions.
+						 * @param[in] player Joueur actuel
+						 */
 						void playerTurnEnd( Othello::Players::Player* player );
-						/// \fn victory
-                        /// \param {player}
+
+						/**
+						 * @brief	Écran de victoire
+						 * @details	Affiche un écran de victoire pour le joueur gagnant.
+						 * @param[in] player Joueur gagnant
+						 */
 						void victory( Othello::Players::Player* player );
 
-						/// \fn getmove accesseur en lecture du mouvement
-                        /// \param {no parameters}
+						/**
+						 * @brief	Évènement demande de coup
+						 * @details	Fonction appelée lorsque le jeu a besoin du coup voulu par le joueur humain. Lâche une exception #no_selected_move si le coup n'est pas sélectionné.
+						 * @return	Coup joué/demandé par le joueur
+						 */
 						Othello::Board::Move getMove();
-						/// \fn inform
-                        /// \param {msg}
+
+						/**
+						 * @brief Affichage d'un message d'information
+						 * @details Informe l'utilisateur d'une erreur au sein du programme. Non bloquant.
+						 * @param msg Message d'erreur
+						 */
 						void inform( std::string msg );
-						/// \fn informNoAvailableMoves
-                        /// \param {player}
+
+						/**
+						 * @brief Informer qu'un joueur ne peut pas jouer
+						 * @param player Joueur qui ne peut pas jouer
+						 */
 						void informNoAvailableMoves( Othello::Players::Player* player );
 
 						/**

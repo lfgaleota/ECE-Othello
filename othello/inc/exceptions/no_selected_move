@@ -1,4 +1,12 @@
+/**
+ * @class no_selected_move
+ * @brief Exception indiquant qu'un mouvement n'a pas été sélectionné
+ */
 class no_selected_move: public std::exception {
+		/**
+		 * @brief Accesseur de message
+		 * @return Message d'erreur
+		 */
 		virtual const char* what() const throw() {
 			return "No selected move.";
 		}

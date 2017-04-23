@@ -5,14 +5,25 @@
 	#include <vector>
 	#include "../gameboard.hpp"
 
-	/// \namespace Othello
+	/**
+	* @namespace Othello
+	* @details Espace de nommage du jeu.
+	*/
 	namespace Othello {
-	    /// \namespace Board
+	    /**
+	     * @namespace Board
+	     * @details Espace de nommage regroupant les éléments liés au plateau de jeu
+	     */
 		namespace Board {
-		    /// \namespace Tree
+			/**
+			 * @namespace Board
+			 * @details Espace de nommage regroupant les éléments liés au graphe des possibilités
+			 */
 			namespace Tree {
-			    /// \class ValidMoveNode validmovenode.hpp
-			    /// \brief Classe correspondant � un noeud dans l'arbre de recherche des coups pour les IA
+			    /**
+			     * @class ValidMoveNode
+			     * @brief Noeud de l'arbre des possibilités
+			     */
 				class ValidMoveNode {
 					friend class Othello::Algorithms::MiniMax;
 					friend class Othello::Algorithms::AlphaBeta;
@@ -24,32 +35,53 @@
 						int m_eval = 0;
 
 					public:
-						/// \fn ValidMoveNodeOverloadConstructor
-						/// \param {board}
+						/**
+						 * @brief Constructeur de noeud parent
+						 * @param board Plateau de référence
+						 */
 						ValidMoveNode( Othello::Board::GameBoard* board );
-						/// \fn ValidMoveNodeOverloadConstructorBis
-						/// \param {board, validMove}
+						/**
+						 * @brief Constructeur de noeud enfant
+						 * @param board Plateau de référence
+						 * @param validMove Mouvement valide associé
+						 */
 						ValidMoveNode( Othello::Board::GameBoard* board, Othello::Board::ValidMove* validMove );
-						/// \fn ValidMoveNodeDestructor
-						/// \param {no parameters}
+						/**
+						 * @brief Destructeur
+						 */
 						~ValidMoveNode();
 
-						/// \fn compute
-						/// \param {color, depth}
+						/**
+						 * @brief Calculateur d'arbre
+						 * @param color Couleur de pion ami
+						 * @param depth Profondeur souhaitée
+						 */
 						void compute( Othello::Board::Pun::Colors color, unsigned char depth );
-						/// \fn prepareBottomStage
-						/// \param {color}
+						/**
+						 * @brief Préparateur d'étage inférieur
+						 * @details Permet de préparer la profonduer inférieur enfante aux calculs
+						 * @param color Couleur de pion ami
+						 */
 						void prepareBottomStage( Othello::Board::Pun::Colors color );
-						/// \fn getBoard
-						/// \param {no parameters}
+						/**
+						 * @brief Accesseur de plateau
+						 * @return Pointeur constant vers le plateau associé
+						 */
 						const Othello::Board::GameBoard* getBoard() const;
-						/// \fn getNextNodes
-						/// \param {no parameters}
+						/**
+						 * @brief Accesseur des noeuds enfants
+						 * @return Référence vers la liste des noeuds enfants
+						 */
 						const std::list<ValidMoveNode>& getNextNodes() const;
-						/// \fn getValidMoveGetter
-						/// \param {no parameters}
+						/**
+						 * @brief Accesseur de coup valide
+						 * @return Pointeur vers le coup valide associé
+						 */
 						ValidMove* getValidMove() const;
-
+						/**
+						 * @brief Accesseur de valeur d'évaluation
+						 * @return Valeur d'évaluation du noeud
+						 */
 						int getEval() const;
 				};
 			}

@@ -1,4 +1,12 @@
+/**
+ * @class invalid_save
+ * @brief Exception indiquant qu'une sauvegarde est invalide
+ */
 class invalid_save: public std::exception {
+		/**
+		 * @brief Accesseur de message
+		 * @return Message d'erreur
+		 */
 		virtual const char* what() const throw() {
 			return "Invalid save.";
 		}

@@ -7,27 +7,54 @@
 	#include "../board/tree/validmovenode.hpp"
 	#include "heuristics.hpp"
 
-	/// \namespace Othello
+	/**
+	* @namespace Othello
+	* @details Espace de nommage du jeu.
+	*/
 	namespace Othello {
-	    /// \namespace Algorithms
+		/**
+		* @namespace Algorithms
+		* @details Espace de nommage regroupant les quelques algorithmes du jeu, en dehors de ceux du plateau et de l'interface.
+		*/
 		namespace Algorithms {
-		    /// \class AlphaBeta alphabeta.hpp
-		    /// \brief classe impl�mentant l'algorithme AlphaBeta
+			/**
+			 * @class AlphaBeta
+			 * @details Implémentation de l'algorithme AlphaBeta
+			 */
 			class AlphaBeta {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
 					Othello::Board::Pun::Colors m_color, m_oppositeColor;
 					Heuristics::evalFunctionType m_evalFn;
 
-					/// \fn max
-					/// \param {ValidMoveNode, alpha, beta, skipped, depth}
+					/**
+					 * @brief Calcul du max
+					 * @param ref Noeud de référence
+					 * @param alpha Valeur de coupe alpha
+					 * @param beta Valeur de coupe beta
+					 * @param skipped Indique si la profondeur précédente a été passée (pas de coups)
+					 * @param depth Profondeur actuelle
+					 * @return Valeur max du noeud
+					 */
 					int max( Othello::Board::Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped, unsigned int depth );
 
-					/// \fn min
-					/// \param {ValidMoveNode, alpha, beta, skipped, depth}
+					/**
+					 * @brief Calcul du min
+					 * @param ref Noeud de référence
+					 * @param alpha Valeur de coupe alpha
+					 * @param beta Valeur de coupe beta
+					 * @param skipped Indique si la profondeur précédente a été passée (pas de coups)
+					 * @param depth Profondeur actuelle
+					 * @return Valeur mmin du noeud
+					 */
 					int min( Othello::Board::Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped, unsigned int depth );
-					/// \fn runMax
-					/// \param {ValidMoveNode, val}
+
+					/**
+					 * @brief Lanceur de max
+					 * @details Utilisée par le thread pour lancer l'algorithme
+					 * @param ref Noeud de référence
+					 * @param val Pointeur vers l'endroit où stocker le max du noeud
+					 */
 					void runMax( Othello::Board::Tree::ValidMoveNode* ref, int* val );
 
 				public:
@@ -36,11 +63,19 @@
 					static const int MAX;
 					static const int DEPTH;
 
-					/// \fn AlphaBetaDefaultConstructor
-					/// \param {ref, head, color, evalFn}
+					/**
+					 * @brief Lancer d'AlphaBeta
+					 * @param ref Plateau de départ
+					 * @param head Noeud maître à utiliser
+					 * @param color Couleur du pion ami
+					 * @param evalFn Pointeur vers la fonction d'évaluation à utiliser
+					 */
 					AlphaBeta( Othello::Board::GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Othello::Board::Pun::Colors color, Heuristics::evalFunctionType evalFn );
-					/// \fn getResult
-					/// \param {No parameters}
+
+					/**
+					 * @brief Récupérateur de coup choisie
+					 * @return Coup choisie
+					 */
 					Othello::Board::ValidMove* getResult();
 			};
 		}

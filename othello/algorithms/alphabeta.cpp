@@ -9,9 +9,6 @@ const int AlphaBeta::DRAW = 0;
 const int AlphaBeta::MAX = 1000000;
 const int AlphaBeta::DEPTH = 5;
 
-/**
-* @brief Constructeur de la classe AlphaBeta
-**/
 AlphaBeta::AlphaBeta( GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Pun::Colors color, Heuristics::evalFunctionType evalFn ) : m_color( color ), m_oppositeColor(  Pun::opposite( m_color ) ), m_evalFn( evalFn ) {
 	head->compute( m_color, 1 );
 
@@ -48,18 +45,10 @@ AlphaBeta::AlphaBeta( GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head,
 		m_foundMove = &(*ref->m_validMoves.begin());
 }
 
-/**
-* @brief Fonction runmax, qui lance la recherche
-**/
 void AlphaBeta::runMax( Tree::ValidMoveNode* ref, int* val ) {
 	*val = max( ref, AlphaBeta::MIN, AlphaBeta::MAX, false, DEPTH );
 }
 
-/**
-* @brief Fonction max.
-* @details
-* @return 0 (blindage) sinon return l'heuristique le min le max...
-**/
 int AlphaBeta::max( Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped, unsigned int depth ) {
 	int val;
 
@@ -174,10 +163,6 @@ int AlphaBeta::min( Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped,
 	return 0;
 }
 
-/**
-* @brief Accesseur de la validité du mouvement
-* @return le mouvement choisi par MinMax.
-**/
 Othello::Board::ValidMove* AlphaBeta::getResult() {
 	return m_foundMove;
 }

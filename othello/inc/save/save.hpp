@@ -8,26 +8,31 @@
 	#include "../board/gameboardconstants.hpp"
 	#include "../board/pun.hpp"
 
-	/// \namespace Othello
+	/**
+	 * @namespace Othello
+	 * @details Espace de nommage du jeu.
+	 */
 	namespace Othello {
-	    /// \namespace Players
-		namespace Players{
-			/// \class Player
-			/// \brief class repr�sentant un joueur quelconque
+		namespace Players {
 			class Player;
 		}
 
-		/// \namespace Save
+		/**
+		 * @namespace Save
+		 * @details Espace de nommage regroupant les entitées liées à la sauvegarde.
+		 */
 		namespace Save {
 
-		    /// \struct Save
-		    /// \brief structure de sauvegarde
+			/**
+			 * @struct Save
+			 * @brief Structure comportant toutes les informations pour reprendre une partie
+			 */
 			struct Save {
-				Othello::Board::Pun::Colors board[ Othello::Board::sizeEdge ][ Othello::Board::sizeEdge ];
-				uint64_t emptyNeighbors;
-				Othello::Board::PunCount count;
-				std::vector<Othello::Players::Player*> players;
-				unsigned char currentPlayer;
+				Othello::Board::Pun::Colors board[Othello::Board::sizeEdge][Othello::Board::sizeEdge]; /*! < Plateau */
+				uint64_t emptyNeighbors; /*! < Voisins vides */
+				Othello::Board::PunCount count; /*! < Nombre de pions */
+				std::vector<Othello::Players::Player*> players; /*! < Joueurs */
+				unsigned char currentPlayer; /*! < Index du joueur actuel */
 			};
 		}
 	}

@@ -17,14 +17,25 @@
 	#define LOGO_WIDTH 37
 	#define LOGO_HEIGHT 7
 
-	/// \namespace Othello
+	/**
+	* @namespace Othello
+	* @details Espace de nommage du jeu.
+	*/
 	namespace Othello {
-        /// \namespace UI
+		/**
+		 * @namespace UI
+		 * @details Espace de nommage des interfaces du jeu.
+		 */
 		namespace UI {
-		    /// \namespace Main
+			/**
+			 * @namespace Main
+			 * @details Espace de nommage des interfaces du menu.
+			 */
 			namespace Main {
-			    /// \class CLI
-			    /// \brief classe d'interface permettant de charger et d'afficher le jeu
+				/**
+				  * @class Allegro
+				  * @brief Interface du menu console
+				  */
 				class CLI {
 					private:
 						std::vector<Othello::Players::Player*> m_players;
@@ -32,28 +43,42 @@
 						std::string m_logo;
 						Othello::UI::Audio::FMOD& m_fmod;
 
-                        /// \fn loadGame
-                        /// \param {no Parameters}
+						/**
+						* @brief Continueur de partie
+						*/
 						void loadGame();
-						/// \fn newGame
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Initiateur de partie
+						 */
 						void newGame();
-						/// \fn menu
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Boucle de menu
+						 */
 						void menu();
-						/// \fn newPVP
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Initiateur de partie PVP
+						 */
 						void newPVP();
-						/// \fn newPVAI
-                        /// \param {no Parameters}
+
+						/**
+						 * @brief Initiateur de partie PVAI
+						 */
 						void newPVAI();
+
 					public:
-					    /// \fn defaultConstructor
-                        /// \param {no Parameters}
+						/**
+						 * @brief Constructeur
+						 * @param fmod Référence vers un objet de gestion #FMOD
+						 */
 						CLI( Othello::UI::Audio::FMOD& fmod );
 
-                        /// \fn logo
-                        /// \param {no Parameters}
+						/**
+						 * @brief Afficheur de logo
+						 * @details Appelée par le menu pour afficher le logo
+						 */
 						static void logo();
 				};
 			}

@@ -1,5 +1,17 @@
+/**
+ * @class invalid_move
+ * @brief Exception indiquant qu'un mouvement est invalide
+ */
 class invalid_move : public std::logic_error {
 	public:
+		/**
+		 * @brief Constructeur
+		 * @param what_arg Mesage d'erreur
+		 */
 		explicit invalid_move( const std::string& what_arg ) : logic_error( what_arg ) {}
+		/**
+		 * @brief Constructeur chaine C
+		 * @param what_arg Mesage d'erreur
+		 */
 		explicit invalid_move( const char* what_arg ) : logic_error( what_arg ) {}
 };

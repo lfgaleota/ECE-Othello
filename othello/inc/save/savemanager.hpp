@@ -9,55 +9,116 @@
 	#include "../players/simpleai.hpp"
 	#include "../players/enhancedai.hpp"
 
-	/// \namespace Othello
+	/**
+	 * @namespace Othello
+	 * @details Espace de nommage du jeu.
+	 */
 	namespace Othello {
-	    /// \namespace Save
+		/**
+		 * @namespace Save
+		 * @details Espace de nommage regroupant les entitées liées à la sauvegarde.
+		 */
 		namespace Save {
-		    /// \class SaveManager
-		    /// \brief Classe repr�sentant un manager de des sauvegarde et chargements de parties enregistr�es ou en cours
+		    /**
+		     * @class SaveManager
+		     * @brief Ensemble de fonctions de sauvegarde
+		     */
 			class SaveManager {
 				private:
-					static const std::string savePath;
+					static const std::string savePath; /*! < Chemin du fichier de sauvegarde */
 
-					/// \fn dumpBoard
-					/// \param {gameboard ref, saveFile}
+					/**
+					 * @brief Sauvegarde du plateau
+					 * @details Enregistre le contenu du plateau dans le fichier de sauvegarde
+					 * @param ref Plateau
+					 * @param saveFile Référence vers le fichier de sauvegarde en écriture
+					 * @return Succès de l'opération
+					 */
 					static bool dumpBoard( Othello::Board::GameBoard* ref, std::ostream& saveFile );
-					/// \fn dumbEmptyNeighbors
-					/// \param {gameboard ref, saveFile}
+					/**
+					 * @brief Sauvegarde des voisins vides
+					 * @details Enregistre les voisins vides dans le fichier de sauvegarde
+					 * @param ref Plateau
+					 * @param saveFile Référence vers le fichier de sauvegarde en écriture
+					 * @return Succès de l'opération
+					 */
 					static bool dumpEmptyNeighbors( Othello::Board::GameBoard* ref, std::ostream& saveFile );
-					/// \fn dumpPunCounts
-					/// \param {gameboard ref, saveFile}
+					/**
+					 * @brief Sauvegarde du nombre de pions
+					 * @details Enregistre le nombre de pions dans le fichier de sauvegarde
+					 * @param ref Plateau
+					 * @param saveFile Référence vers le fichier de sauvegarde en écriture
+					 * @return Succès de l'opération
+					 */
 					static bool dumpPunCounts( Othello::Board::GameBoard* ref, std::ostream& saveFile );
-					/// \fn dumpPlayers
-					/// \param {players ref, current, saveFile}
+					/**
+					 * @brief Sauvegarde des joueurs
+					 * @details Enregistre les joueurs dans le fichier de sauvegarde
+					 * @param ref Référence vers la liste ds joueurs
+					 * @param current Itérateur pointant vers le joueur actuel
+					 * @param saveFile Référence vers le fichier de sauvegarde en écriture
+					 * @return Succès de l'opération
+					 */
 					static bool dumpPlayers( std::vector<Othello::Players::Player*>& ref, std::vector<Othello::Players::Player*>::iterator& current, std::ostream& saveFile );
 
-					/// \fn init
-					/// \param {name, color}
+					/**
+					 * @brief Créateur d'objet joueur
+					 * @param type Type de joueur
+					 * @param name Nom du joueur
+					 * @param color Couleur associé
+					 * @return Pointeur créé
+					 */
 					static Othello::Players::Player* init( Othello::Players::Player::Type type, std::string name, Othello::Board::Pun::Colors color );
 
-					/// \fn loadBoard
-					/// \param {value}
+					/**
+					 * @brief Chargeur de plateau
+					 * @param save Sauvegarde cible
+					 * @param value Valeur extraire du fichier
+					 * @return Succès de l'opération
+					 */
 					static bool loadBoard( Save& save, std::string value );
-					/// \fn loadEmptyNeighbors
-					/// \param {value}
+					/**
+					 * @brief Chargeur de voisins vides
+					 * @param save Sauvegarde cible
+					 * @param value Valeur extraire du fichier
+					 * @return Succès de l'opération
+					 */
 					static bool loadEmptyNeighbors( Save& save, std::string value );
-					/// \fn loadPunCounts
-					/// \param {value}
+					/**
+					 * @brief Chargeur du nombre de pions
+					 * @param save Sauvegarde cible
+					 * @param value Valeur extraire du fichier
+					 * @return Succès de l'opération
+					 */
 					static bool loadPunCounts( Save& save, std::string value );
-					/// \fn loadPlayers
-					/// \param {value}
+					/**
+					 * @brief Chargeur des joueurs
+					 * @param save Sauvegarde cible
+					 * @param value Valeur extraire du fichier
+					 * @return Succès de l'opération
+					 */
 					static bool loadPlayers( Save& save, std::string value );
 
 				public:
-					/// \fn load
-					/// \param {}
+					/**
+					 * @brief Chargeur de sauvegarde
+					 * @etails Charge la suavegarde depuis le ficheir. Renvoie une exception #invalid_save si elle est corrompue.
+					 * @return Sauvegarde chargée
+					 */
 					static Save load();
-					/// \fn save
-					/// \param {}
+					/**
+					 * @brief Enregistreur de partie
+					 * @etails Enregistre la parite fournie dans le fichier.
+					 * @param board Plateau de jeu
+					 * @param players Ensemble des joueurs
+					 * @param current Joueur actuel
+					 */
 					static void save( Othello::Board::GameBoard* board, std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& current );
-					/// \fn check
-					/// \param {}
+					/**
+					 * @brief Vérificateur de présence de sauvegarde
+					 * @etails Vérifie que la sauvegarde st présente. Ne vérifie pas sa validité/conformité.
+					 * @return Présence de la sauvegarde.
+					 */
 					static bool check();
 			};
 		}
