@@ -170,6 +170,7 @@ void Allegro::freeBitmaps() {
 }
 
 Allegro::~Allegro() {
+	m_fmod.stopMusic();
 	freeBitmaps();
 }
 

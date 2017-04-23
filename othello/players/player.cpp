@@ -44,6 +44,7 @@ bool Player::typeCheck( int typeInt ) {
 
 	switch( static_cast<Player::Type>( typeInt ) ) {
 		case Player::Type::Human:
+		case Player::Type::RandomAI:
 		case Player::Type::SimpleAI:
 		case Player::Type::EnhancedAI:
 			return true;

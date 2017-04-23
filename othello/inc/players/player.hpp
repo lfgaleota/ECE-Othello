@@ -32,11 +32,15 @@
 					Othello::Board::GameBoard* m_board; /*! < Pointeur vers le plateau de jeu, utile pour les IA */
 
 				public:
+					/**
+					 * @enum Type
+					 * @brief Types de joueur
+					 */
 					enum Type {
-						Human,
-						RandomAI,
-						SimpleAI,
-						EnhancedAI
+						Human, /*! < Joueur humain */
+						RandomAI, /*! < IA aléatoire */
+						SimpleAI, /*! < IA simple */
+						EnhancedAI /*! < IA normale */
 					};
 
 					/**
