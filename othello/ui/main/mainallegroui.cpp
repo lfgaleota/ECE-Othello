@@ -864,18 +864,28 @@ void Allegro::renderNewPlayer() {
 
 void Allegro::renderOptions() {
 	if( stage == Stage::Options ) {
-		float button_x;
+		float button_x, input_x;
 		renderModalShadow();
 
 		ImGui::SetNextWindowSize( ImVec2( SCREEN_W, OPTIONS_HEIGHT ), ImGuiSetCond_Appearing );
 		ImGui::SetNextWindowPosCenter();
 		ImGui::Begin( "", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
 		button_x  = ( ImGui::GetWindowWidth() - MODAL_BUTTON_WIDTH ) / 2;
+		input_x = ( ImGui::GetWindowWidth() - ImGui::CalcItemWidth() ) / 2;
 		ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "OPTIONS" ).x ) / 2 );
 		ImGui::Text( "OPTIONS" );
-		ImGui::SetCursorPosY( OPTIONS_HEIGHT - OPTIONS_WIN_MARGIN );
+		ImGui::SetCursorPosX( input_x );
+		ImGui::Checkbox( "Sons et musiques", &m_soundActivated );
+		ImGui::SetCursorPosX( input_x );
+		ImGui::SliderFloat( "Volume", &m_volume, 0, 100, "%.f");
+		if( m_soundActivated ) {
+			this->m_fmod.setMasterVolume( m_volume / 100 );
+		} else {
+			this->m_fmod.setMasterVolume( 0.0f );
+		}
+		ImGui::SetCursorPosY( OPTIONS_HEIGHT - OPTIONS_WIN_MARGIN - MODAL_BUTTON_HEIGHT );
 		ImGui::SetCursorPosX( button_x );
-		if( ImGui::Button( "ANNULER", ImVec2( MODAL_BUTTON_WIDTH, MODAL_BUTTON_HEIGHT ) ) ) {
+		if( ImGui::Button( "FERMER", ImVec2( MODAL_BUTTON_WIDTH, MODAL_BUTTON_HEIGHT ) ) ) {
 			back();
 			ImGui::GetIO().MouseReleased[ 0 ] = false;
 		}

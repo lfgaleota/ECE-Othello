@@ -256,7 +256,8 @@
 						ButtonRectangle rectCancel;
 						char player1name[ NAME_SIZE ] = { 0 }, player2name[ NAME_SIZE ] = { 0 };
 						unsigned char ai_level = 0;
-						bool isSave = false;
+						float m_volume = 100;
+						bool isSave = false, m_soundActivated = true;
 
 						/**
 						 * @enum Stage
