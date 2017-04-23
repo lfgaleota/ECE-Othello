@@ -455,7 +455,8 @@ void Allegro::handleMouse() {
 	// On teste aussi si le bouton gauche est relaché, si oui on page à la page qu'il faut
 	if( stage == Stage::New ) {
 		if( iny > 0.75 && iny < 3.75 && inz > 0 && inz < 2 ) {
-			if( inx > -3.2 && inx < -1.2 ) {
+			//if( inx > -3.2 && inx < -1.2 ) {
+			if( inx > -2.2 && inx < -0.2 ) {
 				// Rectangle Nouvelle Partie PVP
 				rectPVP.animateHoverIn();
 				rectPVP.clicked = io.MouseDown[ 0 ];
@@ -469,7 +470,8 @@ void Allegro::handleMouse() {
 				rectPVP.animateHoverOut();
 			}
 
-			if( inx > -1.0 && inx < 1.0 ) {
+			//if( inx > -1.0 && inx < 1.0 ) {
+			if( inx > 0.2f && inx < 2.2f ) {
 				// Rectangle Nouvelle Partie PVAI
 				rectPVAI.animateHoverIn();
 				rectPVAI.clicked = io.MouseDown[ 0 ];
@@ -483,19 +485,19 @@ void Allegro::handleMouse() {
 				rectPVAI.animateHoverOut();
 			}
 
-			if( inx > 1.2 && inx < 3.2 ) {
+			/*if( inx > 1.2 && inx < 3.2 ) {
 				// Rectangle Nouvelle Partie PVP réseau
 				rectPVPNet.animateHoverIn();
 				rectPVPNet.clicked = io.MouseDown[ 0 ];
 
-				/*if( io.MouseReleased[ 0 ] ) {
+				if( io.MouseReleased[ 0 ] ) {
 					rectPVPNet.animateHoverOut();
 					rectPVPNet.clicked = false;
-					forward( Stage::NewPlayer );
-				}*/
+					forward( Stage::NewPlayerNet );
+				}
 			} else {
 				rectPVPNet.animateHoverOut();
-			}
+			}*/
 		} else {
 			rectPVPNet.animateHoverOut();
 			rectPVAI.animateHoverOut();
@@ -776,24 +778,27 @@ void Allegro::renderMenu() {
 
 void Allegro::renderNew() {
 	if( stage == Stage::New || stage == Stage::NewPlayer ) {
-		glLoadIdentity();
+		/*glLoadIdentity();
 		glTranslatef( 1.2f, 0.0f, -8.0f );
-		rectPVPNet.draw();
+		rectPVPNet.draw();*/
 
 		glLoadIdentity();
-		glTranslatef( -1.0f, 0.0f, -8.0f );
+		//glTranslatef( -1.0f, 0.0f, -8.0f );
+		glTranslatef( 0.2f, 0.0f, -8.0f );
 		rectPVAI.draw();
 
 		glLoadIdentity();
-		glTranslatef( -3.2f, 0.0f, -8.0f );
+		//glTranslatef( -3.2f, 0.0f, -8.0f );
+		glTranslatef( -2.2f, 0.0f, -8.0f );
 		rectPVP.draw();
 
-		rectPVPNet.animateEntry();
+		//rectPVPNet.animateEntry();
 
-		if( t > 3.0f )
+		//if( t > 3.0f )
 			rectPVAI.animateEntry();
 
-		if( t > 6.0f )
+		//if( t > 6.0f )
+		if( t > 3.0f )
 			rectPVP.animateEntry();
 	}
 }
