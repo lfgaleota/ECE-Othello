@@ -35,6 +35,7 @@
 			}
 
 			/// \class GameBoard gameboard.hpp
+			/// \brief classe contenant la matrice de jeu et ses fonctions associées.
 			class GameBoard {
 				friend class Othello::Board::Tree::ValidMoveNode;
 				friend class Othello::Algorithms::MiniMax;

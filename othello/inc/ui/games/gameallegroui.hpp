@@ -57,8 +57,11 @@
 			namespace Games {
 				float EaseOutQuad( float t, float maxt );
 
+				/// \class ErrorPage
 				class ErrorPage;
 
+                /// \class MessageBar
+                /// \brief classe gérant le barre des messages avec allegro
 				class MessageBar {
 					friend class ErrorBar;
 
@@ -74,18 +77,32 @@
 						int colorBarFront = makecol( 0, 0, 0 ), colorBarBack = makecol( 200, 200, 200 ), colorIconFront = colorBarBack, colorIconBack = colorBarFront, widthBar = SCREEN_W, outXBar = -SCREEN_W;
 						float inTime = 15, outTime = 15;
 
+						/// \fn draw
+                        /// \param {no Parameters}
 						virtual void draw();
 
 					public:
+					    /// \fn default constructor
+                        /// \param {no Parameters}
 						MessageBar();
+						/// \fn overload Constructor
+                        /// \param {page, font}
 						MessageBar( BITMAP* page, FONT* font );
 
+                        /// \fn render
+                        /// \param {dt}
 						virtual void render( float dt );
 
+                        /// \fn animateIn
+                        /// \param {message, force}
 						virtual void animateIn( std::string msg, bool force = false );
+						/// \fn animateOut
+                        /// \param {no Parameters}
 						void animateOut();
 				};
 
+				/// \class ErrorBar
+				/// \brief classe gérant la barre d'erreur avec allegro
 				class ErrorBar : public MessageBar {
 					private:
 						MessageBar* infoBar;
@@ -95,16 +112,28 @@
 						int diff;
 						int colorBarFront = makecol( 255, 255, 255 ), colorBarBack = makecol( 190, 0, 0 ), colorIconFront = makecol( 255, 255, 255 ), colorIconBack = makecol( 100, 0, 0 ), colorBarBackNoTime = makecol( 170, 0, 0 );
 
+						/// \fn draw
+                        /// \param {no Parameters}
 						void draw();
 
 					public:
+					    /// \fn default constructor
+                        /// \param {no Parameters}
 						ErrorBar();
+						/// \fn overload constructor
+                        /// \param {page, font, infoBar}
 						ErrorBar( BITMAP* page, FONT* font, MessageBar* infoBar );
 
+						/// \fn animateIn
+                        /// \param {msg, force}
 						void animateIn( std::string msg, bool force = false );
+						/// \fn render
+                        /// \param {dt}
 						void render( float dt );
 				};
 
+				/// \class Allegro
+				/// \brief classe gérant allegro
 				class Allegro : public Othello::UI::Game {
 					private:
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;
@@ -121,39 +150,89 @@
 						AllegroValidMoveTreeViewer m_treeViewer;
 						bool m_pause = false, m_getMove = false;
 
+                        /// \fn loadSprites
+                        /// \param {no Parameters}
 						void loadSprites();
+						/// \fn loadFonts
+                        /// \param {no Parameters}
 						void loadFonts();
+						/// \fn loadBackgrounds
+                        /// \param {no Parameters}
 						void loadBackgrounds();
+						/// \fn loadIMGUIStyle
+                        /// \param {no Parameters}
 						void loadIMGUIStyle();
 
+                        /// \fn display
+                        /// \param {no Parameters}
 						void display();
+						/// \fn displayBackground
+                        /// \param {no Parameters}
 						void displayBackground();
+						/// \fn displayMatrix
+                        /// \param {no Parameters}
 						void displayMatrix();
+						/// \fn displayPlayers
+                        /// \param {no Parameters}
 						void displayPlayers();
+						/// \fn highlightSelectedPiece
+                        /// \param {x,y,color}
 						void highlightSelectedPiece( unsigned int x, unsigned int y, int color = COLOR_SELECTION );
 
+						/// \fn updateInputs
+                        /// \param {no Parameters}
 						void updateInputs();
+						/// \fn renderPause
+                        /// \param {no Parameters}
 						void renderPause();
 
+						/// \fn freeBitmaps
+                        /// \param {no Parameters}
 						void freeBitmaps();
 
+						/// \fn getPunSprite
+                        /// \param {color}
 						BITMAP* getPunSprite( Othello::Board::Pun::Colors color ) const;
 
+						/// \fn newFrame
+                        /// \param {skipDT}
 						void newFrame( bool skipDT = false );
+						/// \fn endFrame
+                        /// \param {no Parameters}
 						void endFrame();
+						/// \fn gameDisplay
+                        /// \param {no Parameters}
 						void gameDisplay();
 
 					public:
+						/// \fn overload constructor
+                        /// \param {oboard,board,players,currentPlayer}
 						Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer );
+						/// \fn destructor
+                        /// \param {no Parameters}
 						~Allegro();
 
+                        /// \fn showError
+                        /// \param {msg}
 						void showError( std::string msg );
+						/// \fn playerTurnBegin
+                        /// \param {player}
 						void playerTurnBegin( Othello::Players::Player* player );
+						/// \fn playerTurnEnd
+                        /// \param {player}
 						void playerTurnEnd( Othello::Players::Player* player );
+						/// \fn victory
+                        /// \param {player}
 						void victory( Othello::Players::Player* player );
 
+						/// \fn getmove accesseur en lecture du mouvement
+                        /// \param {no parameters}
 						Othello::Board::Move getMove();
+						/// \fn inform
+                        /// \param {msg}
 						void inform( std::string msg );
+						/// \fn informNoAvailableMoves
+                        /// \param {player}
 						void informNoAvailableMoves( Othello::Players::Player* player );
 
 						/**

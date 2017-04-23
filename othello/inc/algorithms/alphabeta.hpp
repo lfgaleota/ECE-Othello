@@ -11,7 +11,8 @@
 	namespace Othello {
 	    /// \namespace Algorithms
 		namespace Algorithms {
-		    /// \class MiniMax minimax.hpp
+		    /// \class AlphaBeta alphabeta.hpp
+		    /// \brief classe implémentant l'algorithme AlphaBeta
 			class AlphaBeta {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;
@@ -19,8 +20,11 @@
 					Heuristics::evalFunctionType m_evalFn;
 
 					/// \fn max
-					/// \param {ValidMoveNode, opposite, skipped, depth}
+					/// \param {ValidMoveNode, alpha, beta, skipped, depth}
 					int max( Othello::Board::Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped, unsigned int depth );
+
+					/// \fn min
+					/// \param {ValidMoveNode, alpha, beta, skipped, depth}
 					int min( Othello::Board::Tree::ValidMoveNode* ref, int alpha, int beta, bool skipped, unsigned int depth );
 					/// \fn runMax
 					/// \param {ValidMoveNode, val}
@@ -32,8 +36,8 @@
 					static const int MAX;
 					static const int DEPTH;
 
-					/// \fn MinimaxDefaultConstructor
-					/// \param {ref, color}
+					/// \fn AlphaBetaDefaultConstructor
+					/// \param {ref, head, color, evalFn}
 					AlphaBeta( Othello::Board::GameBoard* ref, Othello::Board::Tree::ValidMoveNode* head, Othello::Board::Pun::Colors color, Heuristics::evalFunctionType evalFn );
 					/// \fn getResult
 					/// \param {No parameters}

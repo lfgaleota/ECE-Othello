@@ -6,14 +6,17 @@
 		/// \namespace Board
 		namespace Board {
 			/// \struct PunCount
+			/// \brief structure gérant le comptage des pions de chaque couleur
 			struct PunCount {
 				unsigned char white = 0;
 				unsigned char black = 0;
 			};
 
 			/// \struct Pun
+			/// \brief structure gérant l'entité pion
 			struct Pun {
 				/// \enum Colors
+				/// \brief énumération des différents états d'un pion
 				enum Colors {
 					blank = 0,
 					black = 1,

@@ -12,6 +12,7 @@
 		    /// \namespace Tree
 			namespace Tree {
 			    /// \class ValidMoveNode validmovenode.hpp
+			    /// \brief Classe correspondant à un noeud dans l'arbre de recherche des coups pour les IA
 				class ValidMoveNode {
 					friend class Othello::Algorithms::MiniMax;
 					friend class Othello::Algorithms::AlphaBeta;

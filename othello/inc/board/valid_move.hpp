@@ -10,6 +10,7 @@
 	    /// \namespace Board
 		namespace Board {
 		    /// \struct ValidMove
+		    /// \brief structure gérant la validité d'un mouvement
 			struct ValidMove : public Move {
 				std::list<DirectionVector> directions;
 
