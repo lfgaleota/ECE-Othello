@@ -97,6 +97,11 @@
 
 					public:
 						/**
+						 * @brief Constructeur par défaut
+						 * @details Permet d'avoir un objet résidant sans pour autant fournir les arguments
+						 */
+						MessageBar();
+						/**
 						 * @brief Constructeur
 						 * @param page Bitmap sur laquelle afficher
 						 * @param font Police à utiliser

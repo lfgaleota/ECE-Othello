@@ -54,6 +54,7 @@ set(SOURCE_FILES
     othello/algorithms/alphabeta.cpp
     othello/inc/algorithms/alphabeta.hpp
     othello/inc/save/save.hpp
+    othello/inc/save/savemanager.hpp
     othello/save/savemanager.cpp
     othello/inc/save/savemanager.hpp
     othello/board/pun.cpp

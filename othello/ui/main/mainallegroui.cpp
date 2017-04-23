@@ -1078,9 +1078,3 @@ void Allegro::redirectGame() {
 		m_fmod.playMusic( "menu" );
 	}
 }
-
-void Allegro::forceMenu() {
-	stage = Stage::Menu;
-	before = clock() - 1;
-	t = 0;
-}
