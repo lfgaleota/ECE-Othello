@@ -129,11 +129,11 @@ void Game::preparePlayers( unsigned char currentPlayer ) {
 }
 
 Game::Game( std::vector<Player*>& players ): m_players( players ) {
-	// On créé l'interface de jeu
-	m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
-
 	// On créé un nouveau plateau
 	m_board = new GameBoard();
+
+	// On créé l'interface de jeu
+	m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
 
 	preparePlayers();
 

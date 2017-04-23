@@ -15,11 +15,10 @@ Othello::Save::Save SaveManager::load() {
 
 	if( saveFile.is_open() ) {
 		string line, key, value;
-		stringstream liness;
 
 		// On parcours chaque ligne. Une ligne = une variable de configuration.
 		while( getline( saveFile, line ) ) {
-			liness = stringstream( line );
+			stringstream liness( line );
 
 			// Récupération première partie de la ligne, la clé
 			if( getline( liness, key, ':' ) ) {
