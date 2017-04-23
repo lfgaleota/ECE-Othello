@@ -54,6 +54,12 @@
 					 * @return Type de joueur
 					 */
 					Type getType();
+
+					/**
+					 * @brief Informateur d'arrêt de jeu
+					 * @details Fonction appelée quand le jeu quitte, pour permettre à la classe joueur de quitter proprement si besoin.
+					 */
+					void quit();
 			};
 		}
 	}

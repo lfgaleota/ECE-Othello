@@ -5,6 +5,7 @@
 	#include <string>
 	#include <vector>
 	#include <exception>
+	#include <thread>
 	#include <atomic>
 	#include "uiplayer.hpp"
 	#include "../algorithms/alphabeta.hpp"
@@ -29,6 +30,8 @@
 				private:
 					Othello::Board::Tree::ValidMoveNode m_tree; /*!< Arbre des coups parcourus */
 					std::atomic<bool> m_done; /*! < Indicateur de fin de calcul */
+					Othello::Board::ValidMove* m_move = nullptr; /*! < Mouvement trouvé par l'algorithme */
+					std::thread th; /*! < Thread utilisé pour la recherche de coup */
 
 				public:
 					/**
@@ -62,6 +65,18 @@
 					 * @return Type de joueur
 					 */
 					Type getType();
+
+					/**
+					 * @brief Lanceur de recherche de coup
+					 * @details Lance l'algorithme de recherche de coup. Utilisé pour afficher l'itnerface et faire les calculs en parallèle.
+					 */
+					void run();
+
+					/**
+					 * @brief Informateur d'arrêt de jeu
+					 * @details Fonction appelée quand le jeu quitte, pour permettre à la classe joueur de quitter proprement si besoin.
+					 */
+					void quit();
 			};
 		}
 	}

@@ -143,6 +143,10 @@ Game::Game( std::vector<Player*>& players ): m_players( players ) {
 		victory();
 	} catch( exceptions::exit_game e ) {}
 
+	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
+		(*iplayer)->quit();
+	}
+
 	delete m_ui;
 	delete m_board;
 }

@@ -12,15 +12,20 @@ EnhancedAI::EnhancedAI( string name, Pun::Colors color ) : UIPlayer( name, color
 Move EnhancedAI::getMove() {
 	m_done = false;
 	m_tree = Tree::ValidMoveNode( m_board );
-	m_ui->setTree( &m_tree );
 
-	AlphaBeta alphabeta( m_board, &m_tree, m_color );
+	th = thread( &EnhancedAI::run, this );
 
-	ValidMove* move = alphabeta.getResult();
-	if( move == nullptr )
-		throw logic_error( "Move not found" );
-	m_done = true;
-	return *move;
+	for( ;; ) {
+		m_ui->render();
+
+		this_thread::sleep_for( chrono::milliseconds( 50 ) );
+
+		if( m_done ) {
+			th.join();
+			m_ui->setTree( &m_tree );
+			return *m_move;
+		}
+	}
 }
 
 void EnhancedAI::turnBegin() {
@@ -35,4 +40,17 @@ void EnhancedAI::turnEnd() {
 
 Player::Type EnhancedAI::getType() {
 	return Player::Type::EnhancedAI;
+}
+
+void EnhancedAI::run() {
+	AlphaBeta alphabeta( m_board, &m_tree, m_color );
+	m_move = alphabeta.getResult();
+	if( m_move == nullptr )
+		throw logic_error( "Move not found" );
+	m_done = true;
+}
+
+void EnhancedAI::quit() {
+	if( th.joinable() )
+		th.join();
 }

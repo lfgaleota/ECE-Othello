@@ -132,6 +132,12 @@
 					 virtual Type getType() = 0;
 
 					/**
+					 * @brief Informateur d'arrêt de jeu
+					 * @details Fonction appelée quand le jeu quitte, pour permettre à la classe joueur de quitter proprement si besoin.
+					 */
+					virtual void quit() = 0;
+
+					/**
 					 * @brief Vérificateur de type
 					 * @ëetails Vérifie si l'entier fournit peut être caster de manière sécurisée vers une énumération #Type.
 					 * @return Validité de l'entier

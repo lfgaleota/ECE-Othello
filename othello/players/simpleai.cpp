@@ -38,3 +38,7 @@ void SimpleAI::turnEnd() {
 Player::Type SimpleAI::getType() {
 	return Player::Type::SimpleAI;
 }
+
+void SimpleAI::quit() {
+
+}

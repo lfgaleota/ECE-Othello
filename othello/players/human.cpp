@@ -28,3 +28,7 @@ void Human::turnEnd() {
 Player::Type Human::getType() {
 	return Player::Type::Human;
 }
+
+void Human::quit() {
+
+}
