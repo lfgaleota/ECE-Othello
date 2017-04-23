@@ -230,7 +230,7 @@ void ButtonRectangle::drawReal() {
 	glEnd();
 }
 
-Allegro::Allegro( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ), rectPVP( dt, fmod ), rectPVAI( dt, fmod ), rectPVPNet( dt, fmod ), rectContinue( dt, fmod ), rectNew( dt, fmod ), rectOptions( dt, fmod ), rectQuit( dt, fmod ), rectAI1( dt, fmod ), rectAI2( dt, fmod ), rectAI3( dt, fmod ), rectCancel( dt, fmod ) {
+Allegro::Allegro( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ), rectPVP( dt, fmod ), rectPVAI( dt, fmod ), rectPVPNet( dt, fmod ), rectAI1( dt, fmod ), rectAI2( dt, fmod ), rectAI3( dt, fmod ), rectContinue( dt, fmod ), rectNew( dt, fmod ), rectOptions( dt, fmod ), rectQuit( dt, fmod ), rectCancel( dt, fmod ) {
 	initAllegro();
 	initGL();
 	ImGui_ImplAGL_Init();

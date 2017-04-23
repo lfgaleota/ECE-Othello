@@ -45,6 +45,7 @@
 			<Add library="glu32" />
 			<Add library="winmm" />
 			<Add library="gdi32" />
+			<Add library="fmod/libfmod.a" />
 		</Linker>
 		<Unit filename=".gitignore" />
 		<Unit filename="CMakeLists.txt" />
@@ -53,6 +54,14 @@
 		<Unit filename="cli/cli.hpp" />
 		<Unit filename="cli/menu/menu.cpp" />
 		<Unit filename="cli/menu/menu.hpp" />
+		<Unit filename="fmod/inc/fmod.h" />
+		<Unit filename="fmod/inc/fmod.hpp" />
+		<Unit filename="fmod/inc/fmod_codec.h" />
+		<Unit filename="fmod/inc/fmod_common.h" />
+		<Unit filename="fmod/inc/fmod_dsp.h" />
+		<Unit filename="fmod/inc/fmod_dsp_effects.h" />
+		<Unit filename="fmod/inc/fmod_errors.h" />
+		<Unit filename="fmod/inc/fmod_output.h" />
 		<Unit filename="imgui/LICENSE" />
 		<Unit filename="imgui/README.md" />
 		<Unit filename="imgui/imconfig.h" />
@@ -102,11 +111,13 @@
 		<Unit filename="othello/inc/players/uiplayer.hpp" />
 		<Unit filename="othello/inc/save/save.hpp" />
 		<Unit filename="othello/inc/save/savemanager.hpp" />
+		<Unit filename="othello/inc/ui/audio/FMOD.hpp" />
 		<Unit filename="othello/inc/ui/games/allegrovalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/clivalidmovetreeviewer.hpp" />
 		<Unit filename="othello/inc/ui/games/gameallegroui.hpp" />
 		<Unit filename="othello/inc/ui/games/gamecliui.hpp" />
 		<Unit filename="othello/inc/ui/games/gameui.hpp" />
+		<Unit filename="othello/inc/ui/main/mainallegroui.hpp" />
 		<Unit filename="othello/inc/ui/main/maincliui.hpp" />
 		<Unit filename="othello/players/enhancedai.cpp" />
 		<Unit filename="othello/players/human.cpp" />
@@ -115,10 +126,12 @@
 		<Unit filename="othello/players/simpleai.cpp" />
 		<Unit filename="othello/players/uiplayer.cpp" />
 		<Unit filename="othello/save/savemanager.cpp" />
+		<Unit filename="othello/ui/audio/FMOD.cpp" />
 		<Unit filename="othello/ui/games/allegrovalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/clivalidmovetreeviewer.cpp" />
 		<Unit filename="othello/ui/games/gameallegroui.cpp" />
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
+		<Unit filename="othello/ui/main/mainallegroui.cpp" />
 		<Unit filename="othello/ui/main/maincliui.cpp" />
 		<Extensions>
 			<code_completion />

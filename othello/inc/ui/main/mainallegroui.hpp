@@ -122,13 +122,13 @@
 						float t = 0, dt = 0;
 						time_t before;
 						GLdouble inx, iny, inz;
-						AnimatedRectangle rectPVPNet, rectPVAI, rectPVP, rectAI1, rectAI2, rectAI3;
+						Othello::UI::Audio::FMOD& m_fmod;
+						AnimatedRectangle rectPVP, rectPVAI, rectPVPNet, rectAI1, rectAI2, rectAI3;
 						MenuRectangle rectContinue, rectNew, rectOptions, rectQuit;
 						ButtonRectangle rectCancel;
 						char player1name[ NAME_SIZE ] = { 0 }, player2name[ NAME_SIZE ] = { 0 };
 						unsigned char ai_level = 0;
 						bool isSave = false;
-						Othello::UI::Audio::FMOD& m_fmod;
 
 						enum Stage {
 							Menu,
