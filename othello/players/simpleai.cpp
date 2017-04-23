@@ -1,34 +1,37 @@
 #include "../inc/players/simpleai.hpp"
 
 using namespace std;
+using namespace Othello::Algorithms;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-SimpleAI::SimpleAI( string name, Pun::Colors color ) : UIPlayer( name, color ) {}
+SimpleAI::SimpleAI( string name, Pun::Colors color ) : UIPlayer( name, color ), m_tree( nullptr ) {
+	m_done = false;
+}
 
 Move SimpleAI::getMove() {
-	// On récupère une nombre vraiment aléatoire entre 0 et m_board->m_validMoves.size() - 1, correspondant à l'index d'un élément de l'ensemble des coups valides
-	std::random_device random_device;
-	std::mt19937 engine{ random_device() };
-	std::uniform_int_distribution<unsigned int> dist( 0, m_board->m_validMoves.size() - 1 );
-	unsigned int i = 0, randval = dist( engine );
+	m_done = false;
+	m_tree = Tree::ValidMoveNode( m_board );
 
-	// On récupère le coup valide associé à l'index
-	for( ValidMove& validMove : m_board->m_validMoves ) {
-		if( i == randval )
-			// On retource ce coup valide trouvé
-			return validMove;
-		i++;
+	th = thread( &SimpleAI::run, this );
+
+	for( ;; ) {
+		m_ui->render();
+
+		this_thread::sleep_for( chrono::milliseconds( 50 ) );
+
+		if( m_done ) {
+			th.join();
+			m_ui->setTree( &m_tree );
+			return *m_move;
+		}
 	}
-
-	// S'il n'est pas trouvé, alors on retourne le premier coup valide pour éviter les problèmes.
-	return ( *m_board->m_validMoves.begin() );
 }
 
 void SimpleAI::turnBegin() {
 	UIPlayer::turnBegin();
 
-	m_ui->inform( "L'IA réfléchit..." );
+	m_ui->inform( "L'IA reflechit..." );
 }
 
 void SimpleAI::turnEnd() {
@@ -39,6 +42,15 @@ Player::Type SimpleAI::getType() {
 	return Player::Type::SimpleAI;
 }
 
-void SimpleAI::quit() {
+void SimpleAI::run() {
+	AlphaBeta alphabeta( m_board, &m_tree, m_color, &Heuristics::simple );
+	m_move = alphabeta.getResult();
+	if( m_move == nullptr )
+		throw logic_error( "Move not found" );
+	m_done = true;
+}
 
+void SimpleAI::quit() {
+	if( th.joinable() )
+		th.join();
 }

@@ -24,7 +24,7 @@
 		}
 
 		namespace Players {
-			class SimpleAI;
+			class RandomAI;
 		}
 
         /// \namespace Board
@@ -40,7 +40,7 @@
 				friend class Othello::Algorithms::MiniMax;
 				friend class Othello::Algorithms::AlphaBeta;
 				friend class Othello::Algorithms::Heuristics;
-				friend class Othello::Players::SimpleAI;
+				friend class Othello::Players::RandomAI;
 
 				private:
 					Pun::Colors m_board[ sizeEdge ][ sizeEdge ];

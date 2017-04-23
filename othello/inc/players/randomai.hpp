@@ -1,15 +1,11 @@
-#ifndef _ECE_OTHELLO_PLAYERS_SIMPLEAI_HPP_
-	#define _ECE_OTHELLO_PLAYERS_SIMPLEAI_HPP_
+#ifndef _ECE_OTHELLO_PLAYERS_RANDOMIA_HPP_
+	#define _ECE_OTHELLO_PLAYERS_RANDOMIA_HPP_
 
 	#include <iostream>
 	#include <string>
 	#include <vector>
-	#include <exception>
-	#include <thread>
-	#include <atomic>
+	#include <random>
 	#include "uiplayer.hpp"
-	#include "../algorithms/alphabeta.hpp"
-	#include "../algorithms/minimax.hpp"
 
 	/**
 	 * @namespace Othello
@@ -22,24 +18,18 @@
 		 */
 		namespace Players {
 			/**
-			 * @class SimpleAI
-			 * @brief Classe représentrant une IA améliorée simple
-			 * @details Cette IA utilise l'algorithme AlphaBeta, combinée avec une fonction d'heuristique simple, pour trouver le meilleur coup. Elle stocke l'arbre des coups parcourus une fois l'algorithme terminé et le passe à l'interface pour pouvoir l'afficher.
+			 * @class RandomAI
+			 * @brief Classe représentrant une IA aléatoire
+			 * @details Cette IA joue des coups aléatoires parmi ceux possibles.
 			 */
-			class SimpleAI : public UIPlayer {
-				private:
-					Othello::Board::Tree::ValidMoveNode m_tree; /*!< Arbre des coups parcourus */
-					std::atomic<bool> m_done; /*! < Indicateur de fin de calcul */
-					Othello::Board::ValidMove* m_move = nullptr; /*! < Mouvement trouvé par l'algorithme */
-					std::thread th; /*! < Thread utilisé pour la recherche de coup */
-
+			class RandomAI : public UIPlayer {
 				public:
 					/**
 					 * @brief Constructeur
 					 * @param name Nom du joueur
 					 * @param color Couleur de pion du joueur
 					 */
-					SimpleAI( std::string name, Othello::Board::Pun::Colors color );
+					RandomAI( std::string name, Othello::Board::Pun::Colors color );
 
 					/**
 					 * @brief Récupérateur de mouvement choisi
@@ -65,12 +55,6 @@
 					 * @return Type de joueur
 					 */
 					Type getType();
-
-					/**
-					 * @brief Lanceur de recherche de coup
-					 * @details Lance l'algorithme de recherche de coup. Utilisé pour afficher l'itnerface et faire les calculs en parallèle.
-					 */
-					void run();
 
 					/**
 					 * @brief Informateur d'arrêt de jeu

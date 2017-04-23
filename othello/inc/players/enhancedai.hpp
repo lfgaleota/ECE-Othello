@@ -23,8 +23,8 @@
 		namespace Players {
 			/**
 			 * @class EnhancedAI
-			 * @brief Classe représentrant une IA améliorée
-			 * @details Cette IA utilise l'algorithme MiniMax, combinée avec une fonction d'heuristique, pour trouver le meilleur coup. Elle stocke l'arbre des coups parcourus une fois l'algorithme terminé et le passe à l'interface pour pouvoir l'afficher.
+			 * @brief Classe représentrant une IA améliorée normale
+			 * @details Cette IA utilise l'algorithme AlphaBeta, combinée avec une fonction d'heuristique, pour trouver le meilleur coup. Elle stocke l'arbre des coups parcourus une fois l'algorithme terminé et le passe à l'interface pour pouvoir l'afficher.
 			 */
 			class EnhancedAI : public UIPlayer {
 				private:

@@ -5,6 +5,7 @@
 	#include <sstream>
 	#include "save.hpp"
 	#include "../players/human.hpp"
+	#include "../players/randomai.hpp"
 	#include "../players/simpleai.hpp"
 	#include "../players/enhancedai.hpp"
 

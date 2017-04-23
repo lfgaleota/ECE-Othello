@@ -121,6 +121,8 @@ Player* SaveManager::init( Player::Type type, string name, Pun::Colors color ) {
 	switch( type ) {
 		case Player::Type::Human:
 			return new Human( name, color );
+		case Player::Type::RandomAI:
+			return new RandomAI( name, color );
 		case Player::Type::SimpleAI:
 			return new SimpleAI( name, color );
 		case Player::Type::EnhancedAI:

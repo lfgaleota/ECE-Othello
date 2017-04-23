@@ -31,7 +31,7 @@ Move EnhancedAI::getMove() {
 void EnhancedAI::turnBegin() {
 	UIPlayer::turnBegin();
 
-	m_ui->inform( "L'IA réfléchit..." );
+	m_ui->inform( "L'IA reflechit..." );
 }
 
 void EnhancedAI::turnEnd() {
@@ -43,7 +43,7 @@ Player::Type EnhancedAI::getType() {
 }
 
 void EnhancedAI::run() {
-	AlphaBeta alphabeta( m_board, &m_tree, m_color );
+	AlphaBeta alphabeta( m_board, &m_tree, m_color, &Heuristics::normale );
 	m_move = alphabeta.getResult();
 	if( m_move == nullptr )
 		throw logic_error( "Move not found" );

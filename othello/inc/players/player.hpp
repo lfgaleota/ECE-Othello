@@ -34,6 +34,7 @@
 				public:
 					enum Type {
 						Human,
+						RandomAI,
 						SimpleAI,
 						EnhancedAI
 					};
