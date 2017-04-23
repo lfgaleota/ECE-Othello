@@ -5,8 +5,11 @@
 	#include "../../board/tree/validmovenode.hpp"
 	#include "../../../../cli/cli.hpp"
 
+    /// \namespace Othello
 	namespace Othello {
+	    /// \namespace UI
 		namespace UI {
+		    /// \namespace Games
 			namespace Games {
 				class CLIValidMoveTreeViewer {
 					private:

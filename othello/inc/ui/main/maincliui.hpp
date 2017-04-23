@@ -17,23 +17,41 @@
 	#define LOGO_WIDTH 37
 	#define LOGO_HEIGHT 7
 
+	/// \namespace Othello
 	namespace Othello {
+        /// \namespace UI
 		namespace UI {
+		    /// \namespace Main
 			namespace Main {
+			    /// \class CLI
 				class CLI {
 					private:
 						std::vector<Othello::Players::Player*> m_players;
 						Functions::CLI m_cli;
 						std::string m_logo;
 
+                        /// \fn loadGame
+                        /// \param {no Parameters}
 						void loadGame();
+						/// \fn newGame
+                        /// \param {no Parameters}
 						void newGame();
+						/// \fn menu
+                        /// \param {no Parameters}
 						void menu();
+						/// \fn newPVP
+                        /// \param {no Parameters}
 						void newPVP();
+						/// \fn newPVAI
+                        /// \param {no Parameters}
 						void newPVAI();
 					public:
+					    /// \fn defaultConstructor
+                        /// \param {no Parameters}
 						CLI();
 
+                        /// \fn logo
+                        /// \param {no Parameters}
 						static void logo();
 				};
 			}

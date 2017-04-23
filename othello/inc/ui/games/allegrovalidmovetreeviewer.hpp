@@ -25,8 +25,11 @@
 	#define VIEWER_TEXT_COLOR makecol( 255, 255, 255 )
 	#define VIEWER_TEXT_BGCOLOR makecol( 0, 0, 0 )
 
+	/// \namespace Othello
 	namespace Othello {
+		/// \namespace UI
 		namespace UI {
+		    /// \namespace Games
 			namespace Games {
 				class AllegroValidMoveTreeViewer {
 					private:
