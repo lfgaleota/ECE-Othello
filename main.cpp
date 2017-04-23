@@ -12,7 +12,7 @@ using namespace Othello::Players;
 
 
 
-int main() {
+int main( int argc, char* argv[] ) {
 	Othello::UI::Audio::FMOD fmod;
 
 	fmod.loadMusic( "menu", "musics/menu.it" );
@@ -25,7 +25,16 @@ int main() {
 	fmod.loadSound( "hoverCard", "sounds/hoverCard.wav" );
 	fmod.setMasterVolume( 1.0f );
 
-	Othello::UI::Main::Allegro allegro( fmod );
+	if( argc > 1 ) {
+		std::string arg1 = argv[ 1 ];
+
+		if( arg1 == "--cli" ) {
+			Othello::UI::Main::CLI cliui( fmod );
+			return 0;
+		}
+	}
+
+	Othello::UI::Main::Allegro allegroui( fmod );
 
 	return 0;
 }
