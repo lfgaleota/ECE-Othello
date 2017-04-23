@@ -12,6 +12,7 @@
 		    /// \namespace Games
 			namespace Games {
 			    /// \class CLIValidMoveTreeViewer
+			    /// \brief class permettant de faire l'affichage de l'arbre des possibilités concernant les IA dans l'user interface
 				class CLIValidMoveTreeViewer {
 					private:
 						Othello::Board::Tree::ValidMoveNode* m_tree;

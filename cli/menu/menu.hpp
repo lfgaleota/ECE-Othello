@@ -9,6 +9,7 @@
 	    /// \namespace CLIs
 		namespace CLIs {
 		    /// \class menu menu.hpp
+		    /// \brief fonction de menu
 			class Menu {
 				private:
 					std::string m_header;

@@ -61,6 +61,7 @@
 				class ErrorPage;
 
                 /// \class MessageBar
+                /// \brief classe gérant le barre des messages avec allegro
 				class MessageBar {
 					friend class ErrorBar;
 
@@ -101,6 +102,7 @@
 				};
 
 				/// \class ErrorBar
+				/// \brief classe gérant la barre d'erreur avec allegro
 				class ErrorBar : public MessageBar {
 					private:
 						MessageBar* infoBar;
@@ -131,6 +133,7 @@
 				};
 
 				/// \class Allegro
+				/// \brief classe gérant allegro
 				class Allegro : public Othello::UI::Game {
 					private:
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;

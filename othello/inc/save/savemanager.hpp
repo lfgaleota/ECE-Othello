@@ -14,6 +14,7 @@
 	    /// \namespace Save
 		namespace Save {
 		    /// \class SaveManager
+		    /// \brief Classe représentant un manager de des sauvegarde et chargements de parties enregistrées ou en cours
 			class SaveManager {
 				private:
 					static const std::string savePath;

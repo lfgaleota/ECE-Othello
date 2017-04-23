@@ -32,6 +32,7 @@
 		    /// \namespace Games
 			namespace Games {
 			    /// \class AllegroValidMoveTreeViewer
+			    /// \brief class permettant de faire l'affichage de l'arbre des possibilités concernant les IA
 				class AllegroValidMoveTreeViewer {
 					private:
 						Othello::Board::Tree::ValidMoveNode** m_tree;

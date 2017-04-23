@@ -24,6 +24,7 @@
 		    /// \namespace Main
 			namespace Main {
 			    /// \class CLI
+			    /// \brief classe d'interface permettant de charger et d'afficher le jeu
 				class CLI {
 					private:
 						std::vector<Othello::Players::Player*> m_players;

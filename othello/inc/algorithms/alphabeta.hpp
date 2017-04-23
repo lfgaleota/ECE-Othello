@@ -12,6 +12,7 @@
 	    /// \namespace Algorithms
 		namespace Algorithms {
 		    /// \class AlphaBeta alphabeta.hpp
+		    /// \brief classe implémentant l'algorithme AlphaBeta
 			class AlphaBeta {
 				private:
 					Othello::Board::ValidMove* m_foundMove = nullptr;

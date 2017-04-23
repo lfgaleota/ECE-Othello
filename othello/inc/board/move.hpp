@@ -8,6 +8,7 @@
 	    /// \namespace Board
 		namespace Board {
 		    /// \struct Move
+		    /// \brief structure gérant le mouvement
 			struct Move {
 				const unsigned char x;
 				const unsigned char y;
