@@ -6,13 +6,13 @@ option(GPERFTOOL_PROFILER "Activate gperftool CPU Profiler")
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-    othello/inc/players/simpleai.hpp
+    othello/inc/players/randomai.hpp
     othello/inc/board/gameboard.hpp
     othello/inc/game.hpp
     othello/inc/players/human.hpp
     othello/inc/board/pun.hpp
     othello/inc/players/player.hpp
-    othello/players/simpleai.cpp
+    othello/players/randomai.cpp
     othello/board/gameboard.cpp
     othello/game.cpp
     othello/players/human.cpp
@@ -37,6 +37,8 @@ set(SOURCE_FILES
     othello/inc/board/gameissue.hpp
     othello/players/enhancedai.cpp
     othello/inc/players/enhancedai.hpp
+    othello/players/simpleai.cpp
+    othello/inc/players/simpleai.hpp
     othello/players/uiplayer.cpp
     othello/inc/players/uiplayer.hpp
     othello/algorithms/heuristics.cpp
@@ -54,6 +56,8 @@ set(SOURCE_FILES
     othello/inc/save/savemanager.hpp
     othello/board/pun.cpp
     othello/inc/board/gameboardconstants.hpp
+    othello/ui/main/maincliui.cpp
+    othello/inc/ui/main/maincliui.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)
