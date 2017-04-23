@@ -72,14 +72,14 @@
 				 * @brief Constructeur par chargement de partie
 				 * @details Reprend partie du jeu depuis une sauvegarde.
 				 */
-				Game( bool allegro );
+				Game( Othello::UI::Audio::FMOD& fmod, bool allegro );
 
 				/**
 				 * @brief Constructeur normal
 				 * @details Initie une nouvelle partie du jeu avec les joueurs apportés.
 				 * @param players Ensemble de pointeur vers joueurs, préalablement créé.
 				 */
-				Game( std::vector<Othello::Players::Player*>& players, bool allegro );
+				Game( std::vector<Othello::Players::Player*>& players, Othello::UI::Audio::FMOD& fmod, bool allegro );
 		};
 	}
 

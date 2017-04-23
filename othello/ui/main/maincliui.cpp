@@ -3,7 +3,7 @@
 using namespace Othello;
 using namespace Othello::UI::Main;
 
-CLI::CLI() {
+CLI::CLI( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ) {
 	menu();
 }
 
@@ -60,7 +60,7 @@ void CLI::menu() {
 void CLI::loadGame() {
 	if( Othello::Save::SaveManager::check() ) {
 		try {
-			Othello::Game game2( false );
+			Othello::Game game2( m_fmod, false );
 		} catch( std::logic_error e ) {
 			std::cout << e.what() << std::endl;
 			getchar();
@@ -123,7 +123,7 @@ void CLI::newPVP() {
 	m_players.push_back( new Othello::Players::Human( nameOfPlayer, Othello::Board::Pun::Colors::white ) );
 
 	try {
-		Othello::Game game1( m_players, false );
+		Othello::Game game1( m_players, m_fmod, false );
 	} catch( std::logic_error e ) {
 		std::cout << e.what() << std::endl;
 		getchar();
@@ -184,7 +184,7 @@ void CLI::newPVAI() {
 	m_players.push_back( new Othello::Players::Human( nameOfPlayer, Othello::Board::Pun::Colors::black ) );
 
 	try {
-		Othello::Game game1( m_players, false );
+		Othello::Game game1( m_players, m_fmod, false );
 	} catch( std::logic_error e ) {
 		std::cout << e.what() << std::endl;
 		getchar();

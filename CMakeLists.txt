@@ -62,6 +62,8 @@ set(SOURCE_FILES
     othello/inc/ui/main/maincliui.hpp
     othello/ui/main/mainallegroui.cpp
     othello/inc/ui/main/mainallegroui.hpp
+    othello/ui/audio/FMOD.cpp
+    othello/inc/ui/audio/FMOD.hpp
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp)

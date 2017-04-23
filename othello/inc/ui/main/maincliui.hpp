@@ -30,6 +30,7 @@
 						std::vector<Othello::Players::Player*> m_players;
 						Functions::CLI m_cli;
 						std::string m_logo;
+						Othello::UI::Audio::FMOD& m_fmod;
 
                         /// \fn loadGame
                         /// \param {no Parameters}
@@ -49,7 +50,7 @@
 					public:
 					    /// \fn defaultConstructor
                         /// \param {no Parameters}
-						CLI();
+						CLI( Othello::UI::Audio::FMOD& fmod );
 
                         /// \fn logo
                         /// \param {no Parameters}

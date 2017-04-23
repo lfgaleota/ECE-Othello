@@ -16,6 +16,7 @@
 	#include "gameui.hpp"
 	#include "../../exceptions/exceptions.hpp"
 	#include "allegrovalidmovetreeviewer.hpp"
+	#include "../audio/FMOD.hpp"
 
 	#define PLAYER_NAME_PADDING_W 10
 	#define PLAYER_NAME_PADDING_H 2
@@ -149,6 +150,7 @@
 						ErrorBar errorBar;
 						AllegroValidMoveTreeViewer m_treeViewer;
 						bool m_pause = false, m_getMove = false;
+						Othello::UI::Audio::FMOD& m_fmod;
 
                         /// \fn loadSprites
                         /// \param {no Parameters}
@@ -207,7 +209,7 @@
 					public:
 						/// \fn overload constructor
                         /// \param {oboard,board,players,currentPlayer}
-						Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer );
+						Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer, Othello::UI::Audio::FMOD& fmod );
 						/// \fn destructor
                         /// \param {no Parameters}
 						~Allegro();

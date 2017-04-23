@@ -3,6 +3,7 @@
 
 #include "othello/inc/ui/main/mainallegroui.hpp"
 #include "othello/inc/ui/main/maincliui.hpp"
+#include "othello/inc/ui/audio/FMOD.hpp"
 
 using namespace std;
 using namespace Othello;
@@ -12,7 +13,19 @@ using namespace Othello::Players;
 
 
 int main() {
-	Othello::UI::Main::Allegro();
+	Othello::UI::Audio::FMOD fmod;
+
+	fmod.loadMusic( "menu", "musics/menu.it" );
+	fmod.loadMusic( "main1", "musics/main1.it" );
+	fmod.loadMusic( "victory", "musics/victorybg.it" );
+	fmod.loadSound( "victory", "musics/victory.it" );
+	fmod.loadSound( "back", "sounds/back.wav" );
+	fmod.loadSound( "clickNextCard", "sounds/clickNextCard.wav" );
+	fmod.loadSound( "hoverButton", "sounds/hoverButton.wav" );
+	fmod.loadSound( "hoverCard", "sounds/hoverCard.wav" );
+	fmod.setMasterVolume( 1.0f );
+
+	Othello::UI::Main::Allegro allegro( fmod );
 
 	return 0;
 }

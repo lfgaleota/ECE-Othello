@@ -25,6 +25,7 @@
 	#include "../../players/randomai.hpp"
 	#include "../../players/simpleai.hpp"
 	#include "../../players/enhancedai.hpp"
+	#include "../audio/FMOD.hpp"
 
 	#ifdef ALLEGRO_WINDOWS
 		#define COMPUTE_DT( dt ) dt = (float) ( clock() - before ) / 30;
@@ -57,16 +58,19 @@
 						float t = 0;
 						float& dt;
 						GLuint texture;
-						bool show = false, hoverIn = false, hoverOut = true, doAnimateEntry = false, doAnimateHoverIn = false, doAnimateHoverOut = false;
+						bool show = false, hoverIn = false, hoverOut = true, doAnimateEntry = false, doAnimateHoverIn = false, doAnimateHoverOut = false, sound = false;
 						constexpr static float defaultEntryRY = -60.0f, defaultEntryTime = 15.0f, defaultNormalX = 1.0f, defaultHoverX = 1.0f, defaultHoverZ = 0.5f, defaultHoverTime = 10.0f, defaultClickZ = -defaultHoverZ;
 						float entryRY = defaultEntryRY, entryTime = defaultEntryTime, normalX = defaultNormalX, hoverX = defaultHoverX, hoverZ = defaultHoverZ, hoverTime = defaultHoverTime, clickZ = defaultClickZ;
+						Othello::UI::Audio::FMOD& m_fmod;
 
 					public:
 						bool clicked = false;
 
-						AnimatedRectangle( float& dt );
+						AnimatedRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
 
 						bool loadTexture( std::string path );
+
+						virtual void playHover();
 
 						virtual void drawOutline();
 						virtual void drawReal();
@@ -87,9 +91,11 @@
 						GLuint backTexture;
 
 					public:
-						MenuRectangle( float& dt );
+						MenuRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
 
 						bool loadBackTexture( std::string path );
+
+						void playHover();
 
 						void drawOutline();
 						void drawReal();
@@ -97,7 +103,9 @@
 
 				class ButtonRectangle : public AnimatedRectangle {
 					public:
-						ButtonRectangle( float& dt );
+						ButtonRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
+
+						void playHover();
 
 						void drawOutline();
 						void drawReal();
@@ -120,6 +128,7 @@
 						char player1name[ NAME_SIZE ] = { 0 }, player2name[ NAME_SIZE ] = { 0 };
 						unsigned char ai_level = 0;
 						bool isSave = false;
+						Othello::UI::Audio::FMOD& m_fmod;
 
 						enum Stage {
 							Menu,
@@ -174,7 +183,7 @@
 
 						void freeBitmaps();
 					public:
-						Allegro();
+						Allegro( Othello::UI::Audio::FMOD& fmod );
 				};
 			}
 		}

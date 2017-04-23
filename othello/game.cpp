@@ -126,7 +126,7 @@ void Game::findStartingPlayer( unsigned char currentPlayer ) {
 		throw logic_error( "Invalid requested current player. Corrupted save." );
 }
 
-Game::Game( std::vector<Player*>& players, bool allegro ): m_players( players ) {
+Game::Game( std::vector<Player*>& players, Othello::UI::Audio::FMOD& fmod, bool allegro ): m_players( players ) {
 	// On créé un nouveau plateau
 	m_board = new GameBoard();
 
@@ -134,7 +134,7 @@ Game::Game( std::vector<Player*>& players, bool allegro ): m_players( players ) 
 
 	// On créé l'interface de jeu
 	if( allegro )
-		m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+		m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer, fmod );
 	else
 		m_ui = new UI::Games::CLI( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
 
@@ -154,7 +154,7 @@ Game::Game( std::vector<Player*>& players, bool allegro ): m_players( players ) 
 	delete m_board;
 }
 
-Game::Game( bool allegro ) {
+Game::Game( Othello::UI::Audio::FMOD& fmod, bool allegro ) {
 	// On charge la partie
 	try {
 		Save::Save save = Save::SaveManager::load();
@@ -162,7 +162,7 @@ Game::Game( bool allegro ) {
 		m_players = save.players;
 		findStartingPlayer( save.currentPlayer );
 		if( allegro )
-			m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
+			m_ui = new UI::Games::Allegro( *m_board, m_board->getBoard(), m_players, m_currentPlayer, fmod );
 		else
 			m_ui = new UI::Games::CLI( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
 		preparePlayers();

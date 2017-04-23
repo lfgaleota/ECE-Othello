@@ -144,11 +144,13 @@ void ErrorBar::animateIn( std::string msg, bool force ) {
 	MessageBar::animateIn( msg, force );
 }
 
-Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer ) : Game( board, players, currentPlayer ), m_io( ImGui::GetIO() ), m_oboard( oboard ) {
+Allegro::Allegro( Othello::Board::GameBoard& oboard, const Othello::Board::punArray board, const std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& currentPlayer, Othello::UI::Audio::FMOD& fmod ) : Game( board, players, currentPlayer ), m_io( ImGui::GetIO() ), m_oboard( oboard ), m_fmod( fmod ) {
 	loadSprites();
 	loadBackgrounds();
 	loadFonts();
 	loadIMGUIStyle();
+
+	m_fmod.playMusic( "main1" );
 
 	m_page = create_bitmap( SCREEN_W, SCREEN_H );
 
@@ -442,15 +444,26 @@ void Allegro::render() {
 }
 
 void Allegro::victory( Player* player ) {
+	m_fmod.stopMusic();
+
 	bool mouseL = false;
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	allegro_gl_set_allegro_mode();
 	stretch_blit( m_bitmaps.find( "mainBg" )->second, m_page, 0, 0, m_bitmaps.find( "mainBg" )->second->w, m_bitmaps.find( "mainBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H);
 	set_alpha_blender();
 	draw_trans_sprite( m_page, m_bitmaps.find( "youWin" )->second, ( SCREEN_W - m_bitmaps.find( "youWin" )->second->w ) / 2, VICTORY_PADDING );
-	textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H / 2, makecol( 255, 255, 255 ), -1, "Bravo %s! Tu as gagne!", player->getName().c_str() );
+	textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H / 2, makecol( 255, 255, 255 ), -1, "Bravo %s ! Tu as gagne !", player->getName().c_str() );
 	blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
-	textprintf_centre_ex( screen, m_textFont, SCREEN_W / 2, SCREEN_H - m_textFont->height - VICTORY_PADDING, makecol( 255, 255, 255 ), -1, "Continuer >" );
+	allegro_gl_unset_allegro_mode();
+	endFrame();
+
+	m_fmod.playSoundWait( "victory" );
+	m_fmod.playMusic( "victory" );
+
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	allegro_gl_set_allegro_mode();
+	textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H - m_textFont->height - VICTORY_PADDING, makecol( 255, 255, 255 ), -1, "Continuer >" );
+	blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
 	allegro_gl_unset_allegro_mode();
 	endFrame();
 
@@ -460,6 +473,8 @@ void Allegro::victory( Player* player ) {
 			loop = false;
 		mouseL = (bool) ( mouse_b & 1 );
 	}
+
+	m_fmod.stopMusic();
 }
 
 void Allegro::newFrame( bool skipDT ) {

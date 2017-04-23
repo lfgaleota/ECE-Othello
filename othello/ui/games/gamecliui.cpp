@@ -246,9 +246,9 @@ void CLI::victory( Player* player ) {
 	cli.clearScreen();
 
 	if( player != nullptr ) {
-		cout << "Le joueur " << player->getName() << " a gagné  avec " << player->getPunCount() << " pions !";
+		cout << "Le joueur " << player->getName() << " a gagné  avec " << (int) player->getPunCount() << " pions !";
 	} else {
-		cout << "Draw !";
+		cout << "Match nul !";
 	}
 
 	cli.getKey();
