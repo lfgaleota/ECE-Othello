@@ -1,0 +1,18 @@
+<map id="Othello::UI::Main::Allegro::Allegro" name="Othello::UI::Main::Allegro::Allegro">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#a6afcaa9d28d7e43538a7b9e7e6340885" title="Chargeur de texture du rectangle. " alt="" coords="180,5,391,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_main_1_1_menu_rectangle.html#ace1dfcc922902770666ab2ee5f796cfc" title="Chargeur de texture d&#39;arrière&#45;plan du rectangle. " alt="" coords="439,56,656,97"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_u_i_1_1_audio_1_1_f_m_o_d.html#a82c1a1e131528d418069d572b69fcc53" title="Lecture de son (pas de boucle) " alt="" coords="704,115,841,156"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#a9244e4d4bc412367692e4045f970986d" title="Forçage de l&#39;entrée sans animation. " alt="" coords="199,173,371,215"/>
+<area shape="rect" id="node6" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#af9f840c0d0ae1d57288d1f7c54ff747f" title="Animateur de surimpression. " alt="" coords="191,239,380,295"/>
+<area shape="rect" id="node7" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#a5c143d9a23eb461cea44011ca0afc682" title="Animateur de sortie de surimpression. " alt="" coords="191,319,380,375"/>
+<area shape="rect" id="node8" href="$class_othello_1_1_save_1_1_save_manager.html#a70ae4e6d1157bf6effeaeded2f07c887" title="Vérificateur de présence de sauvegarde &#160;Vérifie que la sauvegarde st présente. Ne vérifie pas sa vali..." alt="" coords="193,400,378,441"/>
+<area shape="rect" id="node9" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#aefe6128ca1e6088c5310a460104eaa00" title="Réinitialisateur d&#39;état du rectangle. " alt="" coords="199,465,371,507"/>
+<area shape="rect" id="node10" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#af1ce1a4889bdb22fd9b9b680b0b67262" title="Afficheur du rectangle. " alt="" coords="200,531,371,572"/>
+<area shape="rect" id="node14" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#ac68046bf1d3ec6316dda2bc818c18fa1" title="Animateur d&#39;entrée. " alt="" coords="191,597,380,653"/>
+<area shape="rect" id="node15" href="$class_othello_1_1_u_i_1_1_audio_1_1_f_m_o_d.html#ae4171bd147f0359d74c5f2ee338064c0" title="Réglage du son principal. " alt="" coords="196,677,375,719"/>
+<area shape="rect" id="node16" href="$class_othello_1_1_u_i_1_1_audio_1_1_f_m_o_d.html#a81bb5127f4fa7d1e7b98ff7c03cb3a2c" title="Lecture de musique (boucle) " alt="" coords="218,743,353,784"/>
+<area shape="rect" id="node17" href="$class_othello_1_1_u_i_1_1_audio_1_1_f_m_o_d.html#ad2db9c180c9fe2753b952577bc3cce9d" title="Arrêter les musiques. " alt="" coords="217,808,353,849"/>
+<area shape="rect" id="node11" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#a7a2089ab8e1eaff9ce44b3cd86a461cd" title="Joueur de son lors d&#39;une surimpression. " alt="" coords="448,319,647,360"/>
+<area shape="rect" id="node12" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#a5a6499674ba6242cd00236cab3e85788" title="Afficheur de la ligne de surimpression. " alt="" coords="442,499,653,540"/>
+<area shape="rect" id="node13" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html#acd61a4a55cc56654f4ebd36c02b6dd47" title="Afficheur réel du rectangle. " alt="" coords="449,564,645,605"/>
+</map>

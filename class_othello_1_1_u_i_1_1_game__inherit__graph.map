@@ -1,0 +1,4 @@
+<map id="Othello::UI::Game" name="Othello::UI::Game">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_allegro.html" title="Interface de jeu graphique. " alt="" coords="5,80,139,121"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_games_1_1_c_l_i.html" title="Classe d&#39;interface console. " alt="" coords="163,87,323,114"/>
+</map>

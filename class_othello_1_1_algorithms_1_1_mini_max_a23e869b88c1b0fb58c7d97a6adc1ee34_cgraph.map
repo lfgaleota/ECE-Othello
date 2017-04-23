@@ -1,0 +1,5 @@
+<map id="Othello::Algorithms::MiniMax::MiniMax" name="Othello::Algorithms::MiniMax::MiniMax">
+<area shape="rect" id="node2" href="$class_othello_1_1_board_1_1_tree_1_1_valid_move_node.html#a3dfe263d283b89da31bb12c47c1db272" title="Calculateur d&#39;arbre. " alt="" coords="189,5,367,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_board_1_1_game_board.html#a14f9bf442c200878102a1a138bd35295" title="Calculateur de coups valides. " alt="" coords="415,5,597,47"/>
+<area shape="rect" id="node4" href="$struct_othello_1_1_board_1_1_valid_move.html#a1eb393d6f076b4739cc9f28d4566634d" title="Ajouteur de direction. " alt="" coords="645,5,817,47"/>
+</map>

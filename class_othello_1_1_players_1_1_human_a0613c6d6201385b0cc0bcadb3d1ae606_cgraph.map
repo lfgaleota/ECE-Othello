@@ -1,0 +1,4 @@
+<map id="Othello::Players::Human::turnEnd" name="Othello::Players::Human::turnEnd">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_u_i_player.html#a40c3ecc37a10e97c606738a9fb16ce0b" title="Fin de tour. " alt="" coords="217,5,389,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_game.html#a9d956f491c19da40f329f93bde8abc74" title="Évènement fin de tour. " alt="" coords="437,5,572,47"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Othello::Game::Game" name="Othello::Game::Game">
+<area shape="rect" id="node2" href="$class_othello_1_1_save_1_1_save_manager.html#ae6b37b29c3051776e7e4ab31ba7b2a6f" title="Chargeur de sauvegarde &#160;Charge la suavegarde depuis le ficheir. Renvoie une exception #invalid_save s..." alt="" coords="203,5,388,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_board_1_1_game_board.html#a8f77c4375caae4bdcd51738bab60e3d6" title="Accesseur de plateau de jeu. " alt="" coords="204,71,387,112"/>
+</map>

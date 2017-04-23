@@ -1,0 +1,6 @@
+<map id="Othello::Players::SimpleAI::getMove" name="Othello::Players::SimpleAI::getMove">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_simple_a_i.html#ab2a65365c3073df7287f6fad816dd740" title="Lanceur de recherche de coup. " alt="" coords="216,5,379,47"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_u_i_1_1_game.html#a02b181db38239e349873a21f126eb3a7" title="Demandeur de rendue. " alt="" coords="230,71,365,112"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_u_i_1_1_game.html#ad05f0bc34090aeb4c4f19f18081182f3" title="Mutateur d&#39;arbre des coups parcourus. " alt="" coords="230,136,365,177"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_algorithms_1_1_alpha_beta.html#afb2d26f6f6a883bf5f4e161f76004f94" title="Récupérateur de coup choisie. " alt="" coords="427,5,580,47"/>
+</map>

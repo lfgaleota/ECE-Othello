@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_othello_1_1exceptions_1_1exit__game.html" title="Exception indiquant qu&#39;il faut arrêter la partie. " alt="" coords="133,5,268,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1exceptions_1_1invalid__save.html" title="Exception indiquant qu&#39;une sauvegarde est invalide. " alt="" coords="133,71,268,112"/>
+<area shape="rect" id="node4" href="$class_othello_1_1exceptions_1_1no__selected__move.html" title="Exception indiquant qu&#39;un mouvement n&#39;a pas été sélectionné " alt="" coords="132,136,269,177"/>
+</map>

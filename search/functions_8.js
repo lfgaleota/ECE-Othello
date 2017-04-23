@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['inform',['inform',['../class_othello_1_1_u_i_1_1_games_1_1_allegro.html#a14ef81d6470102f7f02bec00c0b604ad',1,'Othello::UI::Games::Allegro::inform()'],['../class_othello_1_1_u_i_1_1_games_1_1_c_l_i.html#a09cb1d9af2d217fe1a59853160d7dad2',1,'Othello::UI::Games::CLI::inform()'],['../class_othello_1_1_u_i_1_1_game.html#a3b033a0cc4c900847ce6f90643ee856c',1,'Othello::UI::Game::inform()']]],
+  ['informnoavailablemoves',['informNoAvailableMoves',['../class_othello_1_1_u_i_1_1_games_1_1_allegro.html#a81212f548827c719d8de0531a212276a',1,'Othello::UI::Games::Allegro::informNoAvailableMoves()'],['../class_othello_1_1_u_i_1_1_games_1_1_c_l_i.html#a164755bcff396872544282c1b3aa15a6',1,'Othello::UI::Games::CLI::informNoAvailableMoves()'],['../class_othello_1_1_u_i_1_1_game.html#a1501de4551a95aa863338372c9cbba27',1,'Othello::UI::Game::informNoAvailableMoves()']]],
+  ['invalid_5fmove',['invalid_move',['../class_othello_1_1exceptions_1_1invalid__move.html#a48b36c3ae4d8b05e7f3bea5d67d72bbe',1,'Othello::exceptions::invalid_move::invalid_move(const std::string &amp;what_arg)'],['../class_othello_1_1exceptions_1_1invalid__move.html#ae5d7c0f4942a02611fc14dd6a10b5689',1,'Othello::exceptions::invalid_move::invalid_move(const char *what_arg)']]],
+  ['issue',['issue',['../class_othello_1_1_board_1_1_game_board.html#a8dadb4f88e01f70db150d6f3128ea7ea',1,'Othello::Board::GameBoard']]]
+];

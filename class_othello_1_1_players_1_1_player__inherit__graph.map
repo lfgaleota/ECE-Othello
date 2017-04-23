@@ -1,0 +1,7 @@
+<map id="Othello::Players::Player" name="Othello::Players::Player">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_u_i_player.html" title="Classe représentrant un joueur utilisant l&#39;UI. " alt="" coords="213,81,385,108"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_players_1_1_enhanced_a_i.html" title="Classe représentrant une IA améliorée normale. " alt="" coords="433,5,627,32"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_players_1_1_human.html" title="Classe représentrant un joueur humain. " alt="" coords="448,56,612,83"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_players_1_1_random_a_i.html" title="Classe représentrant une IA aléatoire. " alt="" coords="439,107,621,133"/>
+<area shape="rect" id="node6" href="$class_othello_1_1_players_1_1_simple_a_i.html" title="Classe représentrant une IA améliorée simple. " alt="" coords="443,157,617,184"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Othello::UI::Games::MessageBar::render" name="Othello::UI::Games::MessageBar::render">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#a546478e064a79240f004c3d1718b0ed2" title="Animateur d&#39;entrée. " alt="" coords="200,5,367,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#a19aee746da1827adf741fc61f9336013" title="Afficheur de barre réel. " alt="" coords="214,71,353,112"/>
+</map>

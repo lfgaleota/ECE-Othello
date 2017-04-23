@@ -1,0 +1,8 @@
+<map id="ExampleAppLog" name="ExampleAppLog">
+<area shape="rect" id="node2" href="$struct_im_gui_text_buffer.html" title="ImGuiTextBuffer" alt="" coords="19,199,133,225"/>
+<area shape="rect" id="node3" href="$class_im_vector.html" title="ImVector\&lt; char \&gt;" alt="" coords="5,102,128,129"/>
+<area shape="rect" id="node4" href="$struct_im_gui_text_filter.html" title="ImGuiTextFilter" alt="" coords="175,199,286,225"/>
+<area shape="rect" id="node5" href="$class_im_vector.html" title="ImVector\&lt; ImGuiTextFilter\l::TextRange \&gt;" alt="" coords="153,95,327,136"/>
+<area shape="rect" id="node6" href="$struct_im_gui_text_filter_1_1_text_range.html" title="ImGuiTextFilter::TextRange" alt="" coords="150,5,330,32"/>
+<area shape="rect" id="node7" href="$class_im_vector.html" title="ImVector\&lt; int \&gt;" alt="" coords="311,199,423,225"/>
+</map>

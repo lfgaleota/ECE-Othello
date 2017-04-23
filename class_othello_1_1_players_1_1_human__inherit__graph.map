@@ -1,0 +1,4 @@
+<map id="Othello::Players::Human" name="Othello::Players::Human">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_u_i_player.html" title="Classe représentrant un joueur utilisant l&#39;UI. " alt="" coords="5,80,177,107"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_players_1_1_player.html" title="Classe représentrant un joueur. " alt="" coords="11,5,171,32"/>
+</map>

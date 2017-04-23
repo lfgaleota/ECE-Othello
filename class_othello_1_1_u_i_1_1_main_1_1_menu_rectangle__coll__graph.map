@@ -1,0 +1,4 @@
+<map id="Othello::UI::Main::MenuRectangle" name="Othello::UI::Main::MenuRectangle">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_main_1_1_animated_rectangle.html" title="Rectangle animé " alt="" coords="5,109,140,151"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_audio_1_1_f_m_o_d.html" title="Classe permettant de gérer FMOD. " alt="" coords="11,5,135,47"/>
+</map>

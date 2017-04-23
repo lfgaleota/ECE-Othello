@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_f_m_o_d_1_1_handle_base.html" title="FMOD.HandleBase" alt="" coords="5,208,140,235"/>
+<area shape="rect" id="node2" href="$class_f_m_o_d_1_1_channel_control.html" title="FMOD.ChannelControl" alt="" coords="190,31,342,57"/>
+<area shape="rect" id="node5" href="$class_f_m_o_d_1_1_d_s_p.html" title="FMOD.DSP" alt="" coords="221,81,311,108"/>
+<area shape="rect" id="node6" href="$class_f_m_o_d_1_1_d_s_p_connection.html" title="FMOD.DSPConnection" alt="" coords="188,132,344,159"/>
+<area shape="rect" id="node7" href="$class_f_m_o_d_1_1_geometry.html" title="FMOD.Geometry" alt="" coords="205,183,327,209"/>
+<area shape="rect" id="node8" href="$class_f_m_o_d_1_1_reverb3_d.html" title="FMOD.Reverb3D" alt="" coords="207,233,325,260"/>
+<area shape="rect" id="node9" href="$class_f_m_o_d_1_1_sound.html" title="FMOD.Sound" alt="" coords="215,284,317,311"/>
+<area shape="rect" id="node10" href="$class_f_m_o_d_1_1_sound_group.html" title="FMOD.SoundGroup" alt="" coords="198,335,334,361"/>
+<area shape="rect" id="node11" href="$class_f_m_o_d_1_1_system.html" title="FMOD.System" alt="" coords="211,385,321,412"/>
+<area shape="rect" id="node3" href="$class_f_m_o_d_1_1_channel.html" title="FMOD.Channel" alt="" coords="410,5,521,32"/>
+<area shape="rect" id="node4" href="$class_f_m_o_d_1_1_channel_group.html" title="FMOD.ChannelGroup" alt="" coords="392,56,539,83"/>
+</map>

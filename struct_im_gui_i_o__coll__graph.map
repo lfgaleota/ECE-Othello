@@ -1,0 +1,12 @@
+<map id="ImGuiIO" name="ImGuiIO">
+<area shape="rect" id="node2" href="$struct_im_vec2.html" title="ImVec2" alt="" coords="24,263,91,289"/>
+<area shape="rect" id="node3" href="$struct_im_font_atlas.html" title="ImFontAtlas" alt="" coords="304,220,396,247"/>
+<area shape="rect" id="node5" href="$struct_im_font_config.html" title="ImFontConfig" alt="" coords="837,364,935,391"/>
+<area shape="rect" id="node6" href="$struct_im_font.html" title="ImFont" alt="" coords="633,387,696,413"/>
+<area shape="rect" id="node4" href="$class_im_vector.html" title="ImVector\&lt; ImFontConfig \&gt;" alt="" coords="1037,233,1212,260"/>
+<area shape="rect" id="node11" href="$class_im_vector.html" title="ImVector\&lt; ImFont *\&gt;" alt="" coords="815,283,957,309"/>
+<area shape="rect" id="node7" href="$struct_im_font_1_1_glyph.html" title="ImFont::Glyph" alt="" coords="5,521,109,548"/>
+<area shape="rect" id="node8" href="$class_im_vector.html" title="ImVector\&lt; ImFont::Glyph \&gt;" alt="" coords="260,405,440,432"/>
+<area shape="rect" id="node9" href="$class_im_vector.html" title="ImVector\&lt; unsigned\l short \&gt;" alt="" coords="281,457,419,498"/>
+<area shape="rect" id="node10" href="$class_im_vector.html" title="ImVector\&lt; float \&gt;" alt="" coords="289,523,411,549"/>
+</map>

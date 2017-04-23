@@ -1,0 +1,7 @@
+<map id="Othello::Players::SimpleAI" name="Othello::Players::SimpleAI">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_u_i_player.html" title="Classe représentrant un joueur utilisant l&#39;UI. " alt="" coords="120,199,292,225"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_players_1_1_player.html" title="Classe représentrant un joueur. " alt="" coords="22,109,182,136"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_board_1_1_game_board.html" title="classe contenant la matrice de jeu et ses fonctions associées. " alt="" coords="5,13,188,39"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_u_i_1_1_game.html" title="Interface du jeu. " alt="" coords="215,109,341,136"/>
+<area shape="rect" id="node6" href="$class_othello_1_1_board_1_1_tree_1_1_valid_move_node.html" title="Noeud de l&#39;arbre des possibilités. " alt="" coords="213,5,351,47"/>
+</map>

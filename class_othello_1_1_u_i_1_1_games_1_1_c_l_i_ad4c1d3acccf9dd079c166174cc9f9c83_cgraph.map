@@ -1,0 +1,5 @@
+<map id="Othello::UI::Games::CLI::getMove" name="Othello::UI::Games::CLI::getMove">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_allegro.html#a14ef81d6470102f7f02bec00c0b604ad" title="Affichage d&#39;un message d&#39;information. " alt="" coords="187,39,320,80"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#aee4ff83b5598c2709abdb0907c6adcb0" title="Animateur de sortie. " alt="" coords="368,5,547,47"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#a546478e064a79240f004c3d1718b0ed2" title="Animateur d&#39;entrée. " alt="" coords="374,71,541,112"/>
+</map>

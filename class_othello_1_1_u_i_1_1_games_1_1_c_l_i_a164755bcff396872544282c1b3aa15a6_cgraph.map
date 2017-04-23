@@ -1,0 +1,6 @@
+<map id="Othello::UI::Games::CLI::informNoAvailableMoves" name="Othello::UI::Games::CLI::informNoAvailableMoves">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_allegro.html#a8dc4fec6ffb713ed86db5a0f4f28952e" title="Affichage d&#39;une erreur. " alt="" coords="273,5,409,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_players_1_1_player.html#a90a3451e98e44d31ceee243ce4b8d672" title="Accesseur de nom. " alt="" coords="261,71,421,112"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_board_1_1_game_board.html#a26878c98bafaf3761203258cd7f1aedc" title="Accesseur de coups valides. " alt="" coords="249,136,432,177"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_board_1_1_game_board.html#a2091a2c1333b143dbeb34544a0c34473" title="Compteur de pions. " alt="" coords="249,201,432,243"/>
+</map>

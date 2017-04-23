@@ -1,0 +1,4 @@
+<map id="Othello::Board::Tree::ValidMoveNode::compute" name="Othello::Board::Tree::ValidMoveNode::compute">
+<area shape="rect" id="node2" href="$class_othello_1_1_board_1_1_game_board.html#a14f9bf442c200878102a1a138bd35295" title="Calculateur de coups valides. " alt="" coords="231,5,413,47"/>
+<area shape="rect" id="node3" href="$struct_othello_1_1_board_1_1_valid_move.html#a1eb393d6f076b4739cc9f28d4566634d" title="Ajouteur de direction. " alt="" coords="461,5,633,47"/>
+</map>

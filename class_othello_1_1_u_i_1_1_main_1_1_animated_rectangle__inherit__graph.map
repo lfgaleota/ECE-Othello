@@ -1,0 +1,4 @@
+<map id="Othello::UI::Main::AnimatedRectangle" name="Othello::UI::Main::AnimatedRectangle">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_main_1_1_button_rectangle.html" title="Rectangle animé bouton. " alt="" coords="5,95,132,136"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_main_1_1_menu_rectangle.html" title="Rectangle animé servant de bouton sur le menu principal. " alt="" coords="156,95,283,136"/>
+</map>

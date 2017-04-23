@@ -1,0 +1,8 @@
+<map id="FMOD_DSP_PARAMETER_DESC" name="FMOD_DSP_PARAMETER_DESC">
+<area shape="rect" id="node2" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___d_e_s_c___d_a_t_a.html" title="FMOD_DSP_PARAMETER\l_DESC_DATA" alt="" coords="696,5,879,47"/>
+<area shape="rect" id="node3" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___d_e_s_c___f_l_o_a_t.html" title="FMOD_DSP_PARAMETER\l_DESC_FLOAT" alt="" coords="696,71,879,112"/>
+<area shape="rect" id="node4" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___f_l_o_a_t___m_a_p_p_i_n_g.html" title="FMOD_DSP_PARAMETER\l_FLOAT_MAPPING" alt="" coords="412,71,595,112"/>
+<area shape="rect" id="node5" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___f_l_o_a_t___m_a_p_p_i_n_g___p_i_e_c_e_w_i_s_e___l_i_n_e_a_r.html" title="FMOD_DSP_PARAMETER\l_FLOAT_MAPPING_PIECEWISE\l_LINEAR" alt="" coords="5,63,223,119"/>
+<area shape="rect" id="node6" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___d_e_s_c___i_n_t.html" title="FMOD_DSP_PARAMETER\l_DESC_INT" alt="" coords="696,136,879,177"/>
+<area shape="rect" id="node7" href="$struct_f_m_o_d___d_s_p___p_a_r_a_m_e_t_e_r___d_e_s_c___b_o_o_l.html" title="FMOD_DSP_PARAMETER\l_DESC_BOOL" alt="" coords="696,201,879,243"/>
+</map>

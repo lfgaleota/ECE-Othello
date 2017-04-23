@@ -1,0 +1,5 @@
+<map id="Othello::Players::RandomAI::turnBegin" name="Othello::Players::RandomAI::turnBegin">
+<area shape="rect" id="node2" href="$class_othello_1_1_players_1_1_u_i_player.html#a7cde87f664fb3146886c5633938cdbdd" title="Début de tour. " alt="" coords="224,5,396,47"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_u_i_1_1_game.html#a3b033a0cc4c900847ce6f90643ee856c" title="Affichage d&#39;un message d&#39;information. " alt="" coords="243,71,377,112"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_game.html#a123a70f97dc117fcd8032e4157bc954a" title="Évènement début de tour. " alt="" coords="444,5,579,47"/>
+</map>

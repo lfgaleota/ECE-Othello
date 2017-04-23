@@ -1,0 +1,9 @@
+<map id="Othello::UI::Games::Allegro::playerTurnBegin" name="Othello::UI::Games::Allegro::playerTurnBegin">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_error_bar.html#ad22f50c76f0590891729db1c0a420a44" title="Afficheur de barre. " alt="" coords="224,137,357,179"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_games_1_1_error_bar.html#a0f045519353e4cb3a68bc92592955d2e" title="Animateur d&#39;entrée. " alt="" coords="423,104,566,145"/>
+<area shape="rect" id="node8" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#aee4ff83b5598c2709abdb0907c6adcb0" title="Animateur de sortie. " alt="" coords="405,169,584,211"/>
+<area shape="rect" id="node4" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#a546478e064a79240f004c3d1718b0ed2" title="Animateur d&#39;entrée. " alt="" coords="641,5,807,47"/>
+<area shape="rect" id="node5" href="$class_othello_1_1_u_i_1_1_games_1_1_allegro.html#af135df81b3d9598c4a84335d2c346570" title="Constructeur. " alt="" coords="657,71,791,112"/>
+<area shape="rect" id="node6" href="$class_othello_1_1_u_i_1_1_games_1_1_message_bar.html#a83de36f86dde6a2c75b286076de5136a" title="Constructeur par défaut. " alt="" coords="632,136,816,177"/>
+<area shape="rect" id="node7" href="$class_othello_1_1_u_i_1_1_games_1_1_error_bar.html#aa2a30b7b151b62eb60fcb92d7571f253" title="Constructeur par défaut. " alt="" coords="657,201,791,243"/>
+</map>

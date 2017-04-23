@@ -1,0 +1,4 @@
+<map id="Othello::UI::Games::CLIValidMoveTreeViewer::CLIValidMoveTreeViewer" name="Othello::UI::Games::CLIValidMoveTreeViewer::CLIValidMoveTreeViewer">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_games_1_1_c_l_i_valid_move_tree_viewer.html#aeacbf1acc84148785369f02eeea0fec6" title="Afficheur de l&#39;arbre &#160;Prends le pas sur l&#39;exécution normal du code, bloque l&#39;utilisateur tant qu&#39;il n..." alt="" coords="225,5,397,61"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_board_1_1_game_board.html#aba36adfc3157ddc4fb88554f797ac7f8" title="Accesseur de plateau. " alt="" coords="445,20,647,47"/>
+</map>

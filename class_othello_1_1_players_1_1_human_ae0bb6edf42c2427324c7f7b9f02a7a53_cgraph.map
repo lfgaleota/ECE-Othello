@@ -1,0 +1,4 @@
+<map id="Othello::Players::Human::getMove" name="Othello::Players::Human::getMove">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_game.html#a02b181db38239e349873a21f126eb3a7" title="Demandeur de rendue. " alt="" coords="217,5,352,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_u_i_1_1_game.html#a43bf216602441f9ce393ff7707843bce" title="Évènement demande de coup. " alt="" coords="217,71,352,112"/>
+</map>

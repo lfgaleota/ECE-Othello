@@ -1,0 +1,4 @@
+<map id="Othello::Save::SaveManager::save" name="Othello::Save::SaveManager::save">
+<area shape="rect" id="node2" href="$class_othello_1_1_board_1_1_game_board.html#a8f77c4375caae4bdcd51738bab60e3d6" title="Accesseur de plateau de jeu. " alt="" coords="239,5,421,47"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_board_1_1_game_board.html#a2091a2c1333b143dbeb34544a0c34473" title="Compteur de pions. " alt="" coords="239,71,421,112"/>
+</map>

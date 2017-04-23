@@ -1,0 +1,4 @@
+<map id="Othello::UI::Games::CLI" name="Othello::UI::Games::CLI">
+<area shape="rect" id="node2" href="$class_othello_1_1_u_i_1_1_game.html" title="Interface du jeu. " alt="" coords="22,109,149,136"/>
+<area shape="rect" id="node3" href="$class_othello_1_1_board_1_1_tree_1_1_valid_move_node.html" title="Noeud de l&#39;arbre des possibilités. " alt="" coords="16,5,155,47"/>
+</map>
