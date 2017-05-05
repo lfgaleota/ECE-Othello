@@ -20,6 +20,7 @@ bool Othello::UI::Main::AGL_loadTexture( GLuint& texture, string path ) {
 		texture = allegro_gl_make_texture( tex );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
 		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+		destroy_bitmap( tex );
 		return true;
 	}
 
