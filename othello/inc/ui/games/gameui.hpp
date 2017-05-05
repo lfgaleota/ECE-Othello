@@ -104,6 +104,11 @@
 					void setTree( Othello::Board::Tree::ValidMoveNode* head ) {
 						m_tree = head;
 					}
+
+					/**
+					 * @brief Forceur de fermeture de l'interface
+					 */
+					virtual void forceQuit() {}
 			};
 		}
 	}

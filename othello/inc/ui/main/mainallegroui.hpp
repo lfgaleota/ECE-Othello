@@ -430,13 +430,26 @@
 						 * @brief Libérateur de mémoire des bitmaps
 						 */
 						void freeBitmaps();
+
 					public:
 						/**
 						 * @brief Constructeur
 						 * @param fmod Référence vers un objet de gestion #FMOD
 						 */
 						Allegro( Othello::UI::Audio::FMOD& fmod );
+
+						/**
+						 * @brief Forceur de fermeture de l'interface
+						 */
+						void forceQuit();
 				};
+
+				extern Allegro* currentUI; /*!< Pointeur vers l'instance d'UI actuelle */
+
+				/**
+				 * @brief Handler du bouton de fermeture
+				 */
+				void AllegroCloseHandler();
 			}
 		}
 	}

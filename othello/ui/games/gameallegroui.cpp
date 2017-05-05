@@ -487,6 +487,8 @@ void Allegro::newFrame( bool skipDT ) {
 		ImGui_ImplAGL_NewFrame( 1 / 30.0f );
 	}
 	m_fmod.update();
+	if( m_forceQuit )
+		throw exceptions::exit_game();
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
@@ -548,4 +550,8 @@ void Allegro::informNoAvailableMoves( Othello::Players::Player* player ) {
 
 void Allegro::showError( std::string msg ) {
 	errorBar.animateIn( msg );
+}
+
+void Allegro::forceQuit() {
+	m_forceQuit = true;
 }

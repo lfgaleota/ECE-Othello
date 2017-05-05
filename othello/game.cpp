@@ -5,6 +5,8 @@ using namespace Othello;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
+Othello::UI::Game* Othello::currentUI = nullptr;
+
 void Game::playerTurn() { //unfolding of a turn
 	if( m_currentPlayer == m_players.end() ) //those two lines set whose turn it is
 		m_currentPlayer = m_players.begin();
@@ -138,6 +140,8 @@ Game::Game( std::vector<Player*>& players, Othello::UI::Audio::FMOD& fmod, bool 
 	else
 		m_ui = new UI::Games::CLI( *m_board, m_board->getBoard(), m_players, m_currentPlayer );
 
+	Othello::currentUI = m_ui;
+
 	preparePlayers();
 
 	try {
@@ -149,6 +153,8 @@ Game::Game( std::vector<Player*>& players, Othello::UI::Audio::FMOD& fmod, bool 
 	for( vector<Player*>::iterator iplayer = m_players.begin(); iplayer != m_players.end(); ++iplayer ) {
 		(*iplayer)->quit();
 	}
+
+	Othello::currentUI = nullptr;
 
 	delete m_ui;
 	delete m_board;

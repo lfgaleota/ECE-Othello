@@ -81,6 +81,8 @@
 				 */
 				Game( std::vector<Othello::Players::Player*>& players, Othello::UI::Audio::FMOD& fmod, bool allegro );
 		};
+
+		extern Othello::UI::Game* currentUI; /*!< Pointeur vers l'instance d'UI actuelle */
 	}
 
 #endif

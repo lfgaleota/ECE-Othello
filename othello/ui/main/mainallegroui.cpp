@@ -5,6 +5,14 @@ using namespace Othello;
 using namespace Othello::UI::Main;
 
 const std::string Allegro::configPath = "config";
+Allegro* Othello::UI::Main::currentUI = nullptr;
+
+void Othello::UI::Main::AllegroCloseHandler() {
+	if( Othello::currentUI != nullptr )
+		Othello::currentUI->forceQuit();
+	if( Othello::UI::Main::currentUI != nullptr )
+		Othello::UI::Main::currentUI->forceQuit();
+} END_OF_FUNCTION( AllegroCloseHandler )
 
 float Othello::UI::Main::EaseOutQuad( float t, float maxt ) {
 	float sct = t / maxt;
@@ -256,7 +264,11 @@ Allegro::Allegro( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ), rectPVP( dt
 
 	m_page = create_bitmap( SCREEN_W, SCREEN_H );
 
+	currentUI = this;
+
 	menu();
+
+	currentUI = nullptr;
 
 	freeBitmaps();
 
@@ -281,6 +293,10 @@ void Allegro::initAllegro() {
 
 	// Install the timer:
 	install_timer();
+	
+	// Install the close button handler:
+	LOCK_FUNCTION( Othello::UI::Main::AllegroCloseHandler );
+	set_close_button_callback( Othello::UI::Main::AllegroCloseHandler );
 }
 
 void Allegro::initGL() {
@@ -1139,4 +1155,8 @@ void Allegro::redirectGame() {
 		back();
 		m_fmod.playMusic( "menu" );
 	}
+}
+
+void Allegro::forceQuit() {
+	quit = true;
 }

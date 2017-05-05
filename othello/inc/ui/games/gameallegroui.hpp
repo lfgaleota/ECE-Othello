@@ -197,6 +197,7 @@
 						AllegroValidMoveTreeViewer m_treeViewer;
 						bool m_pause = false, m_getMove = false;
 						Othello::UI::Audio::FMOD& m_fmod;
+						bool m_forceQuit = false;
 
 						/**
 						 * @brief Chargeur de sprites
@@ -357,6 +358,11 @@
 						 * @details	Demande à l'interface de procéder à ses fonctions.
 						 */
 						void render();
+
+						/**
+						 * @brief Forceur de fermeture de l'interface
+						 */
+						void forceQuit();
 				};
 			}
 		}
