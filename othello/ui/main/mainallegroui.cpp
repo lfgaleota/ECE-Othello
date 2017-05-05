@@ -1,7 +1,10 @@
 #include "../../inc/ui/main/mainallegroui.hpp"
 
+using namespace std;
 using namespace Othello;
 using namespace Othello::UI::Main;
+
+const std::string Allegro::configPath = "config";
 
 float Othello::UI::Main::EaseOutQuad( float t, float maxt ) {
 	float sct = t / maxt;
@@ -9,7 +12,7 @@ float Othello::UI::Main::EaseOutQuad( float t, float maxt ) {
 	return 1 - opt * opt;
 }
 
-bool Othello::UI::Main::AGL_loadTexture( GLuint& texture, std::string path ) {
+bool Othello::UI::Main::AGL_loadTexture( GLuint& texture, string path ) {
 	BITMAP *tex;
 
 	tex = load_png( path.c_str(), NULL );
@@ -35,7 +38,7 @@ void Othello::UI::Main::GL_windowToObjectf( GLfloat x, GLfloat y, GLdouble* retx
 	glReadPixels( (GLint) x, (GLint) y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &z );
 	auto success = gluUnProject( x, y, z, modelViewMatrix, projectionMatrix, viewport, retx, rety, retz );
 	if(success != GL_TRUE)
-		throw std::logic_error( "Assert failed" );
+		throw logic_error( "Assert failed" );
 	if( *retx != *retx )
 		*retx = 0;
 	if( *rety != *rety )
@@ -44,11 +47,13 @@ void Othello::UI::Main::GL_windowToObjectf( GLfloat x, GLfloat y, GLdouble* retx
 
 AnimatedRectangle::AnimatedRectangle( float& dt, Othello::UI::Audio::FMOD& fmod ) : dt( dt ), m_fmod( fmod ) {}
 
-bool AnimatedRectangle::loadTexture( std::string path ) {
+bool AnimatedRectangle::loadTexture( string path ) {
 	return AGL_loadTexture( texture, path );
 }
 
 void AnimatedRectangle::drawOutline() {
+	// Unbind texture:
+	glBindTexture( GL_TEXTURE_2D, 0 );
 	// Render the outlines
 	glLineWidth( 8 );
 	glColor3f( 1.0, 1.0, 1.0 );
@@ -61,6 +66,7 @@ void AnimatedRectangle::drawOutline() {
 }
 
 void AnimatedRectangle::drawReal() {
+	// Bind texture:
 	glBindTexture( GL_TEXTURE_2D, texture );
 	// Render the square as a quad:
 	glBegin( GL_QUADS );
@@ -173,11 +179,12 @@ MenuRectangle::MenuRectangle( float& dt, Othello::UI::Audio::FMOD& fmod ) : Anim
 	entryRY = 0.0f, entryTime = defaultEntryTime, normalX = defaultNormalX, hoverX = 1.1f, hoverZ = 0.1f, hoverTime = defaultHoverTime, clickZ = 0.04f;
 }
 
-bool MenuRectangle::loadBackTexture( std::string path ) {
+bool MenuRectangle::loadBackTexture( string path ) {
 	return AGL_loadTexture( backTexture, path );
 }
 
 void MenuRectangle::drawOutline() {
+	// Bind texture:
 	glBindTexture( GL_TEXTURE_2D, backTexture );
 	glBegin( GL_QUADS );
 	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( -1.90f, -0.21f, 0.95f );  // Bottom Left Of The Texture and Quad
@@ -188,6 +195,7 @@ void MenuRectangle::drawOutline() {
 }
 
 void MenuRectangle::drawReal() {
+	// Bind texture:
 	glBindTexture( GL_TEXTURE_2D, texture );
 	glBegin( GL_QUADS );
 	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( -1.5f, -0.2f, 1.0f );  // Bottom Left Of The Texture and Quad
@@ -210,6 +218,8 @@ void ButtonRectangle::playHover() {
 }
 
 void ButtonRectangle::drawOutline() {
+	// Unbind texture:
+	glBindTexture( GL_TEXTURE_2D, 0 );
 	glLineWidth( 2 );
 	glColor3f( 1.0, 1.0, 1.0 );
 	glBegin( GL_LINES );
@@ -221,6 +231,7 @@ void ButtonRectangle::drawOutline() {
 }
 
 void ButtonRectangle::drawReal() {
+	// Bind texture:
 	glBindTexture( GL_TEXTURE_2D, texture );
 	glBegin( GL_QUADS );
 	glTexCoord2f( 0.0f, 0.0f ); glVertex3f( -0.5f, -0.1f, 1.0f );  // Bottom Left Of The Texture and Quad
@@ -240,6 +251,7 @@ Allegro::Allegro( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ), rectPVP( dt
 	loadFonts();
 	loadIMGUIStyle();
 	loadRectangles();
+	loadConfig();
 
 	m_page = create_bitmap( SCREEN_W, SCREEN_H );
 
@@ -338,9 +350,9 @@ void Allegro::initGL() {
 }
 
 void Allegro::loadSprites() {
-	std::string path;
+	string path;
 	BITMAP* bmp;
-	std::vector<std::string> bmpNames = {
+	vector<string> bmpNames = {
 		"logo"
 	};
 
@@ -351,21 +363,21 @@ void Allegro::loadSprites() {
 
 		bmp = load_png( path.c_str(), NULL );
 		if( bmp ) {
-			m_bitmaps.insert( std::make_pair( bmpName, bmp ) );
+			m_bitmaps.insert( make_pair( bmpName, bmp ) );
 		} else {
 			path = "File not found: ";
 			path = "images/menu/";
 			path += bmpName;
 			path += ".png";
-			throw std::ios_base::failure( path );
+			throw ios_base::failure( path );
 		}
 	}
 }
 
 void Allegro::loadBackgrounds() {
-	std::string path;
+	string path;
 	BITMAP* bmp;
-	std::vector<std::string> bmpNames = {
+	vector<string> bmpNames = {
 		"menuBg",
 	    "selectBg"
 	};
@@ -377,13 +389,13 @@ void Allegro::loadBackgrounds() {
 
 		bmp = load_jpg( path.c_str(), NULL );
 		if( bmp ) {
-			m_bitmaps.insert( std::make_pair( bmpName, bmp ) );
+			m_bitmaps.insert( make_pair( bmpName, bmp ) );
 		} else {
 			path = "File not found: ";
 			path = "images/menu/";
 			path += bmpName;
 			path += ".png";
-			throw std::ios_base::failure( path );
+			throw ios_base::failure( path );
 		}
 	}
 }
@@ -391,7 +403,7 @@ void Allegro::loadBackgrounds() {
 void Allegro::loadFonts() {
 	m_textFont = load_font( "fonts/droidsans_14_mono.pcx", NULL, NULL );
 	if( !m_textFont ) {
-		throw std::ios_base::failure( "File not found: fonts/droidsans_14_mono.pcx" );
+		throw ios_base::failure( "File not found: fonts/droidsans_14_mono.pcx" );
 	}
 	font = m_textFont;
 
@@ -435,6 +447,38 @@ void Allegro::loadRectangles() {
 	rectOptions.entry();
 	rectQuit.entry();
 	rectCancel.entry();
+}
+
+void Allegro::loadConfig() {
+	ifstream configFile( configPath, ios::out );
+
+	if( configFile.is_open() ) {
+		string enabled, volume;
+		if( !getline( configFile, enabled ) )
+			return;
+		if( !getline( configFile, volume ) )
+			return;
+		stringstream volumess( volume );
+		volumess >> m_volume;
+		if( enabled == "y" ) {
+			m_soundActivated = true;
+			m_fmod.setMasterVolume( m_volume / 100 );
+		} else {
+			m_soundActivated = false;
+			m_fmod.setMasterVolume( 0.0f );
+		}
+
+		configFile.close();
+	}
+}
+
+void Allegro::saveConfig() {
+	ofstream configFile( configPath, ios::in | ios::trunc );
+
+	if( configFile.is_open() ) {
+		configFile << ( m_soundActivated ? 'y' : 'f' ) << endl << m_volume;
+		configFile.close();
+	}
 }
 
 void Allegro::freeBitmaps() {
@@ -889,6 +933,7 @@ void Allegro::renderOptions() {
 		if( ImGui::Button( "FERMER", ImVec2( MODAL_BUTTON_WIDTH, MODAL_BUTTON_HEIGHT ) ) ) {
 			back();
 			ImGui::GetIO().MouseReleased[ 0 ] = false;
+			saveConfig();
 		}
 		ImGui::End();
 
@@ -999,7 +1044,7 @@ void Allegro::loadGame() {
 	if( isSave ) {
 		try {
 			Othello::Game game( m_fmod, true );
-		} catch( std::logic_error e ) {
+		} catch( logic_error e ) {
 			error( e.what() );
 		}
 	} else {
@@ -1009,12 +1054,12 @@ void Allegro::loadGame() {
 
 void Allegro::newPlayerGame() {
 	m_players.clear();
-	m_players.push_back( new Othello::Players::Human( std::string( player1name ), Othello::Board::Pun::Colors::black ) );
-	m_players.push_back( new Othello::Players::Human( std::string( player2name ), Othello::Board::Pun::Colors::white ) );
+	m_players.push_back( new Othello::Players::Human( string( player1name ), Othello::Board::Pun::Colors::black ) );
+	m_players.push_back( new Othello::Players::Human( string( player2name ), Othello::Board::Pun::Colors::white ) );
 
 	try {
 		Othello::Game game( m_players, m_fmod, true );
-	} catch( std::logic_error e ) {
+	} catch( logic_error e ) {
 		error( e.what() );
 	}
 
@@ -1038,11 +1083,11 @@ void Allegro::newAIGame() {
 			break;
 	}
 
-	m_players.push_back( new Othello::Players::Human( std::string( player1name ), Othello::Board::Pun::Colors::black ) );
+	m_players.push_back( new Othello::Players::Human( string( player1name ), Othello::Board::Pun::Colors::black ) );
 
 	try {
 		Othello::Game game( m_players, m_fmod, true );
-	} catch( std::logic_error e ) {
+	} catch( logic_error e ) {
 		error( e.what() );
 	}
 
@@ -1051,7 +1096,7 @@ void Allegro::newAIGame() {
 	}
 }
 
-void Allegro::error( std::string message ) {
+void Allegro::error( string message ) {
 	before = clock() - 1;
 	for( bool loop = true; loop; ) {
 		newFrame();

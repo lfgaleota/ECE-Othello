@@ -258,6 +258,7 @@
 						unsigned char ai_level = 0;
 						float m_volume = 100;
 						bool isSave = false, m_soundActivated = true;
+						static const std::string configPath;
 
 						/**
 						 * @enum Stage
@@ -313,6 +314,16 @@
 						 * @brief Initialisateur des rectangles animés
 						 */
 						void loadRectangles();
+
+						/**
+						 * @brief Chargeur de configuration
+						 */
+						void loadConfig();
+
+						/**
+						 * @brief Enregistreur de configuration
+						 */
+						void saveConfig();
 
 						/**
 						 * @brief Gestionnaire d'entrées
