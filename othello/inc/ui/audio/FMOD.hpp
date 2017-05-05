@@ -36,15 +36,21 @@
 					public:
 						/**
 						 * @brief Constructeur
-						 * @etails Initialise le système audio
+						 * @details Initialise le système audio
 						 */
 						FMOD();
 
 						/**
 						 * @brief Destructeur
-						 * @etails Détruit le système audio
+						 * @details Détruit le système audio
 						 */
 						~FMOD();
+
+						/**
+						 * @brief Actualiseur
+						 * @details Actualise l'état de FMOD
+						 */
+						bool update();
 
 						/**
 						 * @brief Chargement de fichier son

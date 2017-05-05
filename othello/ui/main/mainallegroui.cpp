@@ -636,6 +636,7 @@ void Allegro::newFrame() {
 	t += dt;
 	GL_windowToObjectf( mouse_x, mouse_y, &inx, &iny, &inz );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	m_fmod.update();
 }
 
 void Allegro::endFrame() {

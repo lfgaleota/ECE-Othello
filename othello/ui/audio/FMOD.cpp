@@ -26,6 +26,10 @@ FMOD::~FMOD() {
 	FMOD_System_Release( this->m_system );
 }
 
+bool FMOD::update() {
+	return ( FMOD_System_Update( m_system ) == FMOD_OK );
+}
+
 bool FMOD::loadSound( string name, string filepath ) { //takes name and filepath in order to get the right one
 	//Load sounds, if you cannot, then leave function
 	FMOD_RESULT ret;

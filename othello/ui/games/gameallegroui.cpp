@@ -486,6 +486,7 @@ void Allegro::newFrame( bool skipDT ) {
 	} else {
 		ImGui_ImplAGL_NewFrame( 1 / 30.0f );
 	}
+	m_fmod.update();
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
