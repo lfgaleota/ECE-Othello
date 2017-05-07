@@ -18,7 +18,7 @@ Move EnhancedAI::getMove() {
 	for( ;; ) {
 		m_ui->render();
 
-		this_thread::sleep_for( chrono::milliseconds( 50 ) );
+		this_thread::sleep_for( chrono::milliseconds( 33 ) );
 
 		if( m_done ) {
 			th.join();
