@@ -789,12 +789,15 @@ void Allegro::back() {
 			stage = Stage::NewAISelect;
 			break;
 		case Stage::ContinueParty:
+			isSave = Othello::Save::SaveManager::check();
 			stage = Stage::Menu;
 			break;
 		case Stage::NewAIParty:
+			isSave = Othello::Save::SaveManager::check();
 			stage = Stage::New;
 			break;
 		case Stage::NewPlayerParty:
+			isSave = Othello::Save::SaveManager::check();
 			stage = Stage::New;
 			break;
 		default:
@@ -1141,6 +1144,7 @@ void Allegro::loadGame() {
 		try {
 			Othello::Game game( m_fmod, true );
 		} catch( logic_error e ) {
+			isSave = Othello::Save::SaveManager::check();
 			error( e.what() );
 		}
 	} else {

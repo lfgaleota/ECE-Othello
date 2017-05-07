@@ -4,6 +4,7 @@ using namespace std;
 using namespace Othello;
 using namespace Othello::Board;
 using namespace Othello::Players;
+using namespace Othello::Save;
 
 Othello::UI::Game* Othello::currentUI = nullptr;
 
@@ -13,7 +14,7 @@ void Game::playerTurn() { //unfolding of a turn
 
 	// Sauvegarde de la partie
 	try {
-		Othello::Save::SaveManager::save( m_board, m_players, m_currentPlayer );
+		SaveManager::save( m_board, m_players, m_currentPlayer );
 	} catch( exceptions::invalid_save e ) {
 		m_ui->showError( "Impossible de sauvegarder la partie." );
 	}
@@ -75,6 +76,8 @@ void Game::victory() {
 			winingPlayer = iplayer;
 		}
 	}
+
+	SaveManager::remove();
 
 	if( winingPlayer == m_players.end() )
 		m_ui->victory( nullptr );

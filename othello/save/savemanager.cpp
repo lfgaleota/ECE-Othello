@@ -79,7 +79,7 @@ Othello::Save::Save SaveManager::load() {
 		throw exceptions::invalid_save();
 	} catch( exceptions::invalid_save e ) {
 		// Si la sauvegharde est invalide, on supprime le ficheir de sauvegarde et on informe le reste.
-		remove( savePath.c_str() );
+		remove();
 		throw;
 	}
 }
@@ -286,4 +286,8 @@ bool SaveManager::check() {
 	}
 
 	return false;
+}
+
+bool SaveManager::remove() {
+	return ( std::remove( savePath.c_str() ) != 0 );
 }

@@ -102,13 +102,13 @@
 				public:
 					/**
 					 * @brief Chargeur de sauvegarde
-					 * @etails Charge la suavegarde depuis le ficheir. Renvoie une exception #invalid_save si elle est corrompue.
+					 * @details Charge la suavegarde depuis le ficheir. Renvoie une exception #invalid_save si elle est corrompue.
 					 * @return Sauvegarde chargée
 					 */
 					static Save load();
 					/**
 					 * @brief Enregistreur de partie
-					 * @etails Enregistre la parite fournie dans le fichier.
+					 * @details Enregistre la parite fournie dans le fichier.
 					 * @param board Plateau de jeu
 					 * @param players Ensemble des joueurs
 					 * @param current Joueur actuel
@@ -116,10 +116,15 @@
 					static void save( Othello::Board::GameBoard* board, std::vector<Othello::Players::Player*>& players, std::vector<Othello::Players::Player*>::iterator& current );
 					/**
 					 * @brief Vérificateur de présence de sauvegarde
-					 * @etails Vérifie que la sauvegarde st présente. Ne vérifie pas sa validité/conformité.
+					 * @details Vérifie que la sauvegarde st présente. Ne vérifie pas sa validité/conformité.
 					 * @return Présence de la sauvegarde.
 					 */
 					static bool check();
+					/**
+					 * @brief Suppresseur de sauvegarde
+					 * @return Succès de la suppression
+					 */
+					 static bool remove();
 			};
 		}
 	}
