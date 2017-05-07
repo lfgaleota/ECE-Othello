@@ -412,7 +412,8 @@ void Allegro::loadBackgrounds() {
 	BITMAP* bmp;
 	vector<string> bmpNames = {
 		"menuBg",
-	    "selectBg"
+	    "selectBg",
+	    "loadingBg"
 	};
 
 	for( const auto& bmpName : bmpNames ) {
@@ -856,7 +857,7 @@ void Allegro::display() {
 
 		blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
 	} else {
-		stretch_blit( m_bitmaps.find( "selectBg" )->second, m_page, 0, 0, m_bitmaps.find( "selectBg" )->second->w, m_bitmaps.find( "selectBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H);
+		stretch_blit( m_bitmaps.find( "selectBg" )->second, m_page, 0, 0, m_bitmaps.find( "selectBg" )->second->w, m_bitmaps.find( "selectBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H );
 		blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
 	}
 
@@ -1085,12 +1086,18 @@ void Allegro::renderNewAI() {
 }
 
 void Allegro::renderLoading() {
-	renderModalShadow();
+	allegro_gl_set_allegro_mode();
+	BITMAP* bg = m_bitmaps.find( "loadingBg" )->second;
+	stretch_blit( bg, m_page, 0, 0, bg->w, bg->h, 0, 0, SCREEN_W, SCREEN_H );
+	blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
+	allegro_gl_unset_allegro_mode();
 
 	ImGui::SetNextWindowSize( ImVec2( SCREEN_W, LOADING_HEIGHT ), ImGuiSetCond_Appearing );
 	ImGui::SetNextWindowPosCenter();
 	ImGui::Begin( "", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
-	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "CHARGEMENT..." ).x ) / 2 );
+	ImVec2 size = ImGui::CalcTextSize( "CHARGEMENT..." );
+	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - size.x ) / 2 );
+	ImGui::SetCursorPosY( ( ImGui::GetWindowHeight() - size.y ) / 2 );
 	ImGui::Text( "CHARGEMENT..." );
 	ImGui::End();
 
@@ -1211,7 +1218,6 @@ void Allegro::redirectGame() {
 	if( stage == Stage::ContinueParty ) {
 		m_fmod.stopMusic();
 		newFrame();
-		display();
 		renderLoading();
 		endFrame();
 		loadGame();
@@ -1221,7 +1227,6 @@ void Allegro::redirectGame() {
 	} else if( stage == Stage::NewPlayerParty ) {
 		m_fmod.stopMusic();
 		newFrame();
-		display();
 		renderLoading();
 		endFrame();
 		newPlayerGame();
@@ -1231,7 +1236,6 @@ void Allegro::redirectGame() {
 	} else if( stage == Stage::NewAIParty ) {
 		m_fmod.stopMusic();
 		newFrame();
-		display();
 		renderLoading();
 		endFrame();
 		newAIGame();
