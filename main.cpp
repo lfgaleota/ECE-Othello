@@ -34,7 +34,27 @@ int main( int argc, char* argv[] ) {
 		}
 	}
 
-	Othello::UI::Main::Allegro allegroui( fmod );
+	try {
+		Othello::UI::Main::Allegro allegroui( fmod );
+	} catch( runtime_error& e ) {
+		stringstream error;
+		error << "Une erreur est survenu durant l'exécution du programme." << endl << endl
+		      << "Runtime error: "
+		      << typeid( e ).name() << endl
+		      << e.what();
+		allegro_message( error.str().c_str() );
+	} catch( exception& e ) {
+		stringstream error;
+		error << "Une erreur est survenu durant l'exécution du programme." << endl << endl
+		      << "Exception: "
+		      << typeid( e ).name() << endl
+		      << e.what();
+		allegro_message( error.str().c_str() );
+	} catch( ... ) {
+		stringstream error;
+		error << "Une erreur est survenu durant l'exécution du programme.";
+		allegro_message( error.str().c_str() );
+	}
 
 	return 0;
 }

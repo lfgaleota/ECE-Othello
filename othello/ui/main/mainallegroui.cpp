@@ -315,8 +315,7 @@ void Allegro::initGL() {
 	// Create a window:
 	if( set_gfx_mode( winMode, winWidth, winHeight, 0, 0 ) ) {
 		// Error creating window:
-		allegro_message( "There was an error creating the window" );
-		exit( 1 );
+		throw runtime_error( "Mode graphique invalide. Impossible de créer la fenêtre de jeu." );
 	}
 
 	// Set window title:
