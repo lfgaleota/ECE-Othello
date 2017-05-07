@@ -13,10 +13,10 @@
 	#include <vector>
 	#include "../../board/tree/validmovenode.hpp"
 
-	#define VIEWER_MARGIN 2
+	#define VIEWER_MARGIN 4
 	#define VIEWER_CASE_SIZE 10
 	#define VIEWER_CASE_COLOR makecol( 0, 150, 0 )
-	#define VIEWER_CASE_MARGIN 1
+	#define VIEWER_CASE_MARGIN 3
 	#define VIEWER_PUN_COLOR_WHITE makecol( 255, 255, 255 )
 	#define VIEWER_PUN_COLOR_BLACK makecol( 0, 0, 0 )
 	#define VIEWER_BORDER_SIZE 2
