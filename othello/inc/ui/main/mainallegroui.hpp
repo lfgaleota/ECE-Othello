@@ -100,7 +100,7 @@
 						float& dt;
 						GLuint texture;
 						bool show = false, hoverIn = false, hoverOut = true, doAnimateEntry = false, doAnimateHoverIn = false, doAnimateHoverOut = false, sound = false;
-						constexpr static float defaultEntryRY = -60.0f, defaultEntryTime = 15.0f, defaultNormalX = 1.0f, defaultHoverX = 1.0f, defaultHoverZ = 0.5f, defaultHoverTime = 10.0f, defaultClickZ = -defaultHoverZ;
+						constexpr static float defaultEntryRY = 50.0f, defaultEntryTime = 10.0f, defaultNormalX = 1.0f, defaultHoverX = 1.0f, defaultHoverZ = 0.5f, defaultHoverTime = 10.0f, defaultClickZ = -defaultHoverZ;
 						float entryRY = defaultEntryRY, entryTime = defaultEntryTime, normalX = defaultNormalX, hoverX = defaultHoverX, hoverZ = defaultHoverZ, hoverTime = defaultHoverTime, clickZ = defaultClickZ;
 						Othello::UI::Audio::FMOD& m_fmod;
 
