@@ -241,7 +241,7 @@
 				 */
 				class Allegro {
 					private:
-						BITMAP* m_page = nullptr;
+						BITMAP* m_page = nullptr, *m_cursor = nullptr;
 						FONT* m_textFont;
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;
 						bool keyEsc = false, prevKeyEsc = false, quit = false;
@@ -402,6 +402,10 @@
 						 * @brief Afficheur de bouton de retour, s'il le faut
 						 */
 						void renderCancelButton();
+						/**
+						 * @brief Afficheur de curseur de souris
+						 */
+						void renderMouse();
 						/**
 						 * @brief Initiateur de nouvelle frame
 						 */

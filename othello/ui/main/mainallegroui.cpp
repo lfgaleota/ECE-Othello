@@ -323,9 +323,9 @@ void Allegro::initGL() {
 	set_window_title( "ECE-Othello" );
 
 	// Set cursor as hardware pointer:
-	enable_hardware_cursor();
-	select_mouse_cursor( 2 );
-	show_mouse( screen );
+	/*enable_hardware_cursor();
+	select_mouse_cursor( 2 );*/
+	//show_mouse( screen );
 
 	// Set the OpenGL viewport:
 	glViewport( 0, 0, SCREEN_W, SCREEN_H);
@@ -404,6 +404,8 @@ void Allegro::loadSprites() {
 			throw ios_base::failure( path );
 		}
 	}
+
+	m_cursor = load_png( "images/cursor.png", NULL );
 }
 
 void Allegro::loadBackgrounds() {
@@ -740,6 +742,7 @@ void Allegro::newFrame() {
 }
 
 void Allegro::endFrame() {
+	renderMouse();
 	glFlush();
 	allegro_gl_flip();
 }
@@ -1088,6 +1091,13 @@ void Allegro::renderCancelButton() {
 		glTranslatef( 0.0f, -2.25f, -8.0f );
 		rectCancel.draw();
 	}
+}
+
+void Allegro::renderMouse() {
+	allegro_gl_set_allegro_mode();
+	set_alpha_blender();
+	draw_trans_sprite( screen, m_cursor, mouse_x, mouse_y );
+	allegro_gl_unset_allegro_mode();
 }
 
 void Allegro::menu() {

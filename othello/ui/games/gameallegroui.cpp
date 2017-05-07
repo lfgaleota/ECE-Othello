@@ -201,6 +201,8 @@ void Allegro::loadSprites() {
 			throw std::ios_base::failure( path );
 		}
 	}
+
+	m_cursor = load_png( "images/cursor.png", NULL );
 }
 
 void Allegro::loadBackgrounds() {
@@ -437,6 +439,13 @@ void Allegro::gameDisplay() {
 	}
 }
 
+void Allegro::renderMouse() {
+	allegro_gl_set_allegro_mode();
+	set_alpha_blender();
+	draw_trans_sprite( screen, m_cursor, mouse_x, mouse_y );
+	allegro_gl_unset_allegro_mode();
+}
+
 void Allegro::render() {
 	newFrame( false );
 	updateInputs();
@@ -493,6 +502,7 @@ void Allegro::newFrame( bool skipDT ) {
 }
 
 void Allegro::endFrame() {
+	renderMouse();
 	glFlush();
 	allegro_gl_flip();
 }

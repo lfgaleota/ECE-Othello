@@ -184,7 +184,7 @@
 				class Allegro : public Othello::UI::Game {
 					private:
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;
-						BITMAP* m_page;
+						BITMAP* m_page, *m_cursor;
 						FONT* m_textFont, * m_glTextFont;
 						ImGuiIO& m_io;
 						bool prevKeyEsc = false, keyEsc = false, prevKeyG = false, keyG = false;
@@ -358,6 +358,11 @@
 						 * @details	Demande à l'interface de procéder à ses fonctions.
 						 */
 						void render();
+
+						/**
+						 * @brief Afficheur de curseur de souris
+						 */
+						void renderMouse();
 
 						/**
 						 * @brief Forceur de fermeture de l'interface
