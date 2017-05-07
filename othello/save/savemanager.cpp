@@ -13,69 +13,75 @@ Othello::Save::Save SaveManager::load() {
 	std::ifstream saveFile( savePath, ios::in );
 	unsigned char values = 0;
 
-	if( saveFile.is_open() ) {
-		string line, key, value;
+	try {
+		if( saveFile.is_open() ) {
+			string line, key, value;
 
-		// On parcours chaque ligne. Une ligne = une variable de configuration.
-		while( getline( saveFile, line ) ) {
-			stringstream liness( line );
+			// On parcours chaque ligne. Une ligne = une variable de configuration.
+			while( getline( saveFile, line ) ) {
+				stringstream liness( line );
 
-			// Récupération première partie de la ligne, la clé
-			if( getline( liness, key, ':' ) ) {
-				// Si on est sur la bonne clé (tableau)
-				if( key == "board" ) {
-					// On récupère la valeur et on la passe à la fonction qui la gère
-					if( getline( liness, value ) ) {
-						values++;
-						if( !loadBoard( save, value ) )
-							throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
-					} else {
-						// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
-						throw exceptions::invalid_save();
-					}
-				} else if( key == "emptyNeighbors" ) {
-					// On récupère la valeur et on la passe à la fonction qui la gère
-					if( getline( liness, value ) ) {
-						values++;
-						if( !loadEmptyNeighbors( save, value ) )
-							throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
-					} else {
-						// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
-						throw exceptions::invalid_save();
-					}
-				} else if( key == "punCounts" ) {
-					// On récupère la valeur et on la passe à la fonction qui la gère
-					if( getline( liness, value ) ) {
-						values++;
-						if( !loadPunCounts( save, value ) )
-							throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
-					} else {
-						// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
-						throw exceptions::invalid_save();
-					}
-				} else if( key == "players" ) {
-					// On récupère la valeur et on la passe à la fonction qui la gère
-					if( getline( liness, value ) ) {
-						values++;
-						if( !loadPlayers( save, value ) )
-							throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
-					} else {
-						// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
-						throw exceptions::invalid_save();
+				// Récupération première partie de la ligne, la clé
+				if( getline( liness, key, ':' ) ) {
+					// Si on est sur la bonne clé (tableau)
+					if( key == "board" ) {
+						// On récupère la valeur et on la passe à la fonction qui la gère
+						if( getline( liness, value ) ) {
+							values++;
+							if( !loadBoard( save, value ) )
+								throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
+						} else {
+							// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
+							throw exceptions::invalid_save();
+						}
+					} else if( key == "emptyNeighbors" ) {
+						// On récupère la valeur et on la passe à la fonction qui la gère
+						if( getline( liness, value ) ) {
+							values++;
+							if( !loadEmptyNeighbors( save, value ) )
+								throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
+						} else {
+							// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
+							throw exceptions::invalid_save();
+						}
+					} else if( key == "punCounts" ) {
+						// On récupère la valeur et on la passe à la fonction qui la gère
+						if( getline( liness, value ) ) {
+							values++;
+							if( !loadPunCounts( save, value ) )
+								throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
+						} else {
+							// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
+							throw exceptions::invalid_save();
+						}
+					} else if( key == "players" ) {
+						// On récupère la valeur et on la passe à la fonction qui la gère
+						if( getline( liness, value ) ) {
+							values++;
+							if( !loadPlayers( save, value ) )
+								throw exceptions::invalid_save(); // Si le chargement a échoué, on quitte.
+						} else {
+							// On a pas de valeur, on quitte: la ligne est invalide, la sauvegarde st corrompue.
+							throw exceptions::invalid_save();
+						}
 					}
 				}
 			}
+
+			saveFile.close();
+
+			// Si on a correctement chargé nos quatres éléments, la sauvegarde est valide: on continue.
+			if( values == 4 )
+				return save;
 		}
 
-		saveFile.close();
-
-		// Si on a correctement chargé nos quatres éléments, la sauvegarde est valide: on continue.
-		if( values == 4 )
-			return save;
+		// Rien ne s'est passé comme il faut, on quitte
+		throw exceptions::invalid_save();
+	} catch( exceptions::invalid_save e ) {
+		// Si la sauvegharde est invalide, on supprime le ficheir de sauvegarde et on informe le reste.
+		remove( savePath.c_str() );
+		throw;
 	}
-
-	// Rien ne s'est passé comme il faut, on quitte
-	throw exceptions::invalid_save();
 }
 
 bool SaveManager::loadBoard( Save& save, std::string value ) {
