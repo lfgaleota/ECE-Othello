@@ -42,6 +42,7 @@
 	#define OPTIONS_HEIGHT SCREEN_H - OPTIONS_WIN_MARGIN
 	#define QUIT_HEIGHT 140
 	#define NEWAI_HEIGHT 160
+	#define LOADING_HEIGHT 80
 
 	#define ERROR_WIDTH 300
 	#define ERROR_HEIGHT 100
@@ -406,6 +407,10 @@
 						 * @brief Afficheur de curseur de souris
 						 */
 						void renderMouse();
+						/**
+						 * @brief Afficheur d'écran de chargement
+						 */
+						void renderLoading();
 						/**
 						 * @brief Initiateur de nouvelle frame
 						 */

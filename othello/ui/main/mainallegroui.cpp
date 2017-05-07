@@ -1085,6 +1085,19 @@ void Allegro::renderNewAI() {
 	}
 }
 
+void Allegro::renderLoading() {
+	renderModalShadow();
+
+	ImGui::SetNextWindowSize( ImVec2( SCREEN_W, LOADING_HEIGHT ), ImGuiSetCond_Appearing );
+	ImGui::SetNextWindowPosCenter();
+	ImGui::Begin( "", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar );
+	ImGui::SetCursorPosX( ( ImGui::GetWindowWidth() - ImGui::CalcTextSize( "CHARGEMENT..." ).x ) / 2 );
+	ImGui::Text( "CHARGEMENT..." );
+	ImGui::End();
+
+	ImGui::Render();
+}
+
 void Allegro::renderCancelButton() {
 	if( stage == Stage::New || stage == Stage::NewAISelect || stage == Stage::NewPlayer || stage == Stage::NewAI ) {
 		glLoadIdentity();
@@ -1198,18 +1211,30 @@ void Allegro::error( string message ) {
 void Allegro::redirectGame() {
 	if( stage == Stage::ContinueParty ) {
 		m_fmod.stopMusic();
+		newFrame();
+		display();
+		renderLoading();
+		endFrame();
 		loadGame();
 		ImGui::GetIO().MouseReleased[ 0 ] = false;
 		back();
 		m_fmod.playMusic( "menu" );
 	} else if( stage == Stage::NewPlayerParty ) {
 		m_fmod.stopMusic();
+		newFrame();
+		display();
+		renderLoading();
+		endFrame();
 		newPlayerGame();
 		ImGui::GetIO().MouseReleased[ 0 ] = false;
 		back();
 		m_fmod.playMusic( "menu" );
 	} else if( stage == Stage::NewAIParty ) {
 		m_fmod.stopMusic();
+		newFrame();
+		display();
+		renderLoading();
+		endFrame();
 		newAIGame();
 		ImGui::GetIO().MouseReleased[ 0 ] = false;
 		back();
