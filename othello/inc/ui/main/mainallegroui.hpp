@@ -241,7 +241,7 @@
 				 */
 				class Allegro {
 					private:
-						BITMAP* m_page;
+						BITMAP* m_page = nullptr;
 						FONT* m_textFont;
 						std::unordered_map<std::string, BITMAP*> m_bitmaps;
 						bool keyEsc = false, prevKeyEsc = false, quit = false;
@@ -259,6 +259,32 @@
 						float m_volume = 100;
 						bool isSave = false, m_soundActivated = true;
 						static const std::string configPath;
+						unsigned int winMode = GFX_OPENGL_WINDOWED, winWidth = 1280, winHeight = 720;
+						int selWinMode = 0, prevSelWinMode = 0;
+
+						/**
+						 * @enum Resolution
+						 */
+						enum Resolution {
+							R800x600, /*!< */
+							R1280x720,
+							R1280x960,
+							R1280x1024,
+							R1440x900,
+							R1600x900,
+							R1600x1200,
+							R1920x1080,
+							R1920x1440
+						};
+
+						static const std::vector<std::pair<unsigned int, unsigned int>> resolutions;
+						static const char* windowModes[];
+						static const char* resolutionsNames[];
+						static const unsigned int windowModesNumber;
+						static const unsigned int resolutionsNamesNumber;
+
+						int selWinResI = 1, prevSelWinResI = 1;
+						Resolution selWinRes = R1280x720;
 
 						/**
 						 * @enum Stage
@@ -308,7 +334,7 @@
 						/**
 						 * @brief Chargeur de style de fenêtre ImGui
 						 */
-						void loadIMGUIStyle();
+						void loadIMGUI();
 
 						/**
 						 * @brief Initialisateur des rectangles animés
@@ -431,12 +457,35 @@
 						 */
 						void freeBitmaps();
 
+						/**
+						 * @brief Destructeur d'Allegro
+						 */
+						void exitAllegro();
+
+						/**
+						 * @brief Réouvreur d'Allegro
+						 */
+						void reopenAllegro();
+
+						/**
+						 * @brief Sélecteur de résolution
+						 * @param res Résolution souhaitée
+						 */
+						void resolutionSelector( Resolution res );
+
 					public:
 						/**
 						 * @brief Constructeur
+						 * @details Initialise l'interface Allegro, la configure et charge les ressources.
 						 * @param fmod Référence vers un objet de gestion #FMOD
 						 */
 						Allegro( Othello::UI::Audio::FMOD& fmod );
+
+						/**
+						 * @brief Destructeur
+						 * @details Détruit l'affichage et les ressources de l'interface.
+						 */
+						~Allegro();
 
 						/**
 						 * @brief Forceur de fermeture de l'interface

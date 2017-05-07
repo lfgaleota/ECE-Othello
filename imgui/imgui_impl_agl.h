@@ -9,3 +9,4 @@
 IMGUI_API bool        ImGui_ImplAGL_Init();
 IMGUI_API void        ImGui_ImplAGL_NewFrame( float dTime );
 IMGUI_API void        ImGui_ImplAGL_Shutdown();
+IMGUI_API void        ImGui_ImplAGL_InvalidateDeviceObjects();

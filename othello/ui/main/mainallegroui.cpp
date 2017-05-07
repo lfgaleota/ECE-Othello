@@ -7,6 +7,12 @@ using namespace Othello::UI::Main;
 const std::string Allegro::configPath = "config";
 Allegro* Othello::UI::Main::currentUI = nullptr;
 
+const std::vector<std::pair<unsigned int, unsigned int>> Allegro::resolutions = { std::make_pair<unsigned int, unsigned int>( 800, 600 ), std::make_pair<unsigned int, unsigned int>( 1280, 720 ), std::make_pair<unsigned int, unsigned int>( 1280, 960 ), std::make_pair<unsigned int, unsigned int>( 1280, 1024 ), std::make_pair<unsigned int, unsigned int>( 1440, 900 ), std::make_pair<unsigned int, unsigned int>( 1600, 900 ), std::make_pair<unsigned int, unsigned int>( 1600, 1200 ), std::make_pair<unsigned int, unsigned int>( 1920, 1080 ), std::make_pair<unsigned int, unsigned int>( 1920, 1440 ) };
+const char* Allegro::resolutionsNames[] = { "800x600", "1280x720", "1280x960", "1280x1024", "1440x900", "1600x900", "1600x1200", "1920x1080", "1920x1440" };
+const char* Allegro::windowModes[] = { "Fenêtré", "Plein écran" };
+const unsigned int Allegro::resolutionsNamesNumber = 9;
+const unsigned int Allegro::windowModesNumber = 2;
+
 void Othello::UI::Main::AllegroCloseHandler() {
 	if( Othello::currentUI != nullptr )
 		Othello::currentUI->forceQuit();
@@ -252,33 +258,22 @@ void ButtonRectangle::drawReal() {
 
 Allegro::Allegro( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ), rectPVP( dt, fmod ), rectPVAI( dt, fmod ), rectPVPNet( dt, fmod ), rectAI1( dt, fmod ), rectAI2( dt, fmod ), rectAI3( dt, fmod ), rectContinue( dt, fmod ), rectNew( dt, fmod ), rectOptions( dt, fmod ), rectQuit( dt, fmod ), rectCancel( dt, fmod ) {
 	initAllegro();
-	initGL();
-	ImGui_ImplAGL_Init();
-
-	loadSprites();
-	loadBackgrounds();
-	loadFonts();
-	loadIMGUIStyle();
-	loadRectangles();
-	loadConfig();
-
-	m_page = create_bitmap( SCREEN_W, SCREEN_H );
 
 	currentUI = this;
 
 	menu();
+}
 
+Allegro::~Allegro() {
 	currentUI = nullptr;
-
-	freeBitmaps();
-
-	ImGui_ImplAGL_Shutdown();
-
-	allegro_exit();
+	exitAllegro();
 }
 
 
 void Allegro::initAllegro() {
+	// Load configuration:
+	loadConfig();
+
 	// Initialize Allegro:
 	allegro_init();
 
@@ -293,10 +288,19 @@ void Allegro::initAllegro() {
 
 	// Install the timer:
 	install_timer();
-	
+
 	// Install the close button handler:
 	LOCK_FUNCTION( Othello::UI::Main::AllegroCloseHandler );
 	set_close_button_callback( Othello::UI::Main::AllegroCloseHandler );
+
+	initGL();
+	ImGui_ImplAGL_Init();
+
+	loadSprites();
+	loadBackgrounds();
+	loadFonts();
+	loadIMGUI();
+	loadRectangles();
 }
 
 void Allegro::initGL() {
@@ -309,7 +313,7 @@ void Allegro::initGL() {
 	allegro_gl_use_alpha_channel( true );
 
 	// Create a window:
-	if( set_gfx_mode(GFX_OPENGL_WINDOWED, 1280, 720, 0, 0 )) {
+	if( set_gfx_mode( winMode, winWidth, winHeight, 0, 0 ) ) {
 		// Error creating window:
 		allegro_message( "There was an error creating the window" );
 		exit( 1 );
@@ -364,6 +368,17 @@ void Allegro::initGL() {
 	glDepthFunc( GL_LEQUAL );                            // The Type Of Depth Testing To Do
 	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ); // Really Nice Perspective Calculations
 
+	// Init bitmap:
+	m_page = create_bitmap( SCREEN_W, SCREEN_H );
+
+}
+
+void Allegro::exitAllegro() {
+	freeBitmaps();
+
+	ImGui_ImplAGL_Shutdown();
+
+	allegro_exit();
 }
 
 void Allegro::loadSprites() {
@@ -423,13 +438,17 @@ void Allegro::loadFonts() {
 		throw ios_base::failure( "File not found: fonts/droidsans_14_mono.pcx" );
 	}
 	font = m_textFont;
-
-	ImGui::GetIO().Fonts->AddFontFromFileTTF( "fonts/DroidSans.ttf", 16.0f );
-	ImGui::GetIO().Fonts->AddFontFromFileTTF( "fonts/DroidSans.ttf", 32.0f );
-	ImGui::GetIO().FontDefault = ImGui::GetIO().Fonts->Fonts[ FONT_SIZE_16 ];
 }
 
-void Allegro::loadIMGUIStyle() {
+void Allegro::loadIMGUI() {
+	ImGuiIO& io = ImGui::GetIO();
+	io.Fonts->Clear();
+	ImGui_ImplAGL_InvalidateDeviceObjects();
+	io.Fonts->AddFontFromFileTTF( "fonts/DroidSans.ttf", 16.0f );
+	io.Fonts->AddFontFromFileTTF( "fonts/DroidSans.ttf", 32.0f );
+	io.Fonts->Build();
+	io.FontDefault = ImGui::GetIO().Fonts->Fonts[ FONT_SIZE_16 ];
+
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.Colors[ ImGuiCol_Text ]                  = ImVec4( 1.00f, 1.00f, 1.00f, 1.00f );
 	style.Colors[ ImGuiCol_WindowBg ]              = ImVec4( 0.15f, 0.20f, 0.29f, 0.94f );
@@ -470,20 +489,35 @@ void Allegro::loadConfig() {
 	ifstream configFile( configPath, ios::out );
 
 	if( configFile.is_open() ) {
-		string enabled, volume;
-		if( !getline( configFile, enabled ) )
+		string soundEnabled, volume, winModeS, winResS;
+		if( !getline( configFile, winModeS ) )
+			return;
+		if( !getline( configFile, winResS ) )
+			return;
+		if( !getline( configFile, soundEnabled ) )
 			return;
 		if( !getline( configFile, volume ) )
 			return;
-		stringstream volumess( volume );
-		volumess >> m_volume;
-		if( enabled == "y" ) {
+		stringstream volumeSS( volume ), winModeSS( winModeS ), winResSS( winResS );
+		winModeSS >> selWinMode;
+		winResSS >> selWinResI;
+		selWinRes = static_cast<Allegro::Resolution>( selWinResI );
+		if( selWinMode == 1 )
+			winMode = GFX_OPENGL_FULLSCREEN;
+		else
+			winMode = GFX_OPENGL_WINDOWED;
+		resolutionSelector( selWinRes );
+		volumeSS >> m_volume;
+		if( soundEnabled == "y" ) {
 			m_soundActivated = true;
 			m_fmod.setMasterVolume( m_volume / 100 );
 		} else {
 			m_soundActivated = false;
 			m_fmod.setMasterVolume( 0.0f );
 		}
+
+		prevSelWinMode = selWinMode;
+		prevSelWinResI = selWinResI;
 
 		configFile.close();
 	}
@@ -493,12 +527,17 @@ void Allegro::saveConfig() {
 	ofstream configFile( configPath, ios::in | ios::trunc );
 
 	if( configFile.is_open() ) {
-		configFile << ( m_soundActivated ? 'y' : 'f' ) << endl << m_volume;
+		configFile << selWinMode << endl
+				   << selWinResI << endl
+				   << ( m_soundActivated ? 'y' : 'f' ) << endl
+				   << m_volume;
 		configFile.close();
 	}
 }
 
 void Allegro::freeBitmaps() {
+	destroy_bitmap( m_page );
+
 	for( auto bmp = m_bitmaps.begin(); bmp != m_bitmaps.end(); bmp++ ) {
 		if( bmp->second != nullptr ) {
 			destroy_bitmap( bmp->second );
@@ -780,6 +819,12 @@ void Allegro::forward( Stage newStage ) {
 			stage = newStage;
 			break;
 
+		case Stage::Options:
+			prevSelWinMode = selWinMode;
+			prevSelWinResI = selWinResI;
+			stage = newStage;
+			break;
+
 		default:
 			stage = newStage;
 			break;
@@ -939,18 +984,22 @@ void Allegro::renderOptions() {
 		ImGui::SetCursorPosX( input_x );
 		ImGui::Checkbox( "Sons et musiques", &m_soundActivated );
 		ImGui::SetCursorPosX( input_x );
-		ImGui::SliderFloat( "Volume", &m_volume, 0, 100, "%.f");
+		ImGui::SliderFloat( "Volume", &m_volume, 0, 100, "%.f" );
 		if( m_soundActivated ) {
 			this->m_fmod.setMasterVolume( m_volume / 100 );
 		} else {
 			this->m_fmod.setMasterVolume( 0.0f );
 		}
+		ImGui::SetCursorPosX( input_x );
+		ImGui::ListBox( "Mode d'affichage", &selWinMode, windowModes, windowModesNumber, 2 );
+		ImGui::SetCursorPosX( input_x );
+		ImGui::ListBox( "Résolution", &selWinResI, resolutionsNames, resolutionsNamesNumber, 4 );
 		ImGui::SetCursorPosY( OPTIONS_HEIGHT - OPTIONS_WIN_MARGIN - MODAL_BUTTON_HEIGHT );
 		ImGui::SetCursorPosX( button_x );
 		if( ImGui::Button( "FERMER", ImVec2( MODAL_BUTTON_WIDTH, MODAL_BUTTON_HEIGHT ) ) ) {
+			saveConfig();
 			back();
 			ImGui::GetIO().MouseReleased[ 0 ] = false;
-			saveConfig();
 		}
 		ImGui::End();
 
@@ -1053,6 +1102,7 @@ void Allegro::menu() {
 		handleMouse();
 		renderScene();
 		endFrame();
+		reopenAllegro();
 		redirectGame();
 	}
 }
@@ -1154,6 +1204,25 @@ void Allegro::redirectGame() {
 		ImGui::GetIO().MouseReleased[ 0 ] = false;
 		back();
 		m_fmod.playMusic( "menu" );
+	}
+}
+
+void Allegro::resolutionSelector( Allegro::Resolution res ) {
+	unsigned int resI = static_cast<unsigned int>( res );
+	if( resI < resolutions.size() ) {
+		winWidth = resolutions[ resI ].first;
+		winHeight = resolutions[ resI ].second;
+	}
+}
+
+void Allegro::reopenAllegro() {
+	if( stage == Stage::Menu && ( prevSelWinMode != selWinMode || prevSelWinResI != selWinResI ) ) {
+		destroy_bitmap( m_page );
+		loadConfig();
+		initGL();
+		m_page = create_bitmap( SCREEN_W, SCREEN_H );
+		loadIMGUI();
+		loadRectangles();
 	}
 }
 
