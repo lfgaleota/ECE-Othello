@@ -182,7 +182,8 @@ void Allegro::loadSprites() {
 			"punBlack",
 			"case",
 			"caseInv",
-			"youWin"
+			"youWin",
+	        "youLose"
 	};
 
 	for( const auto& bmpName : bmpNames ) {
@@ -461,7 +462,10 @@ void Allegro::victory( Player* player ) {
 	allegro_gl_set_allegro_mode();
 	stretch_blit( m_bitmaps.find( "mainBg" )->second, m_page, 0, 0, m_bitmaps.find( "mainBg" )->second->w, m_bitmaps.find( "mainBg" )->second->h, 0, 0, SCREEN_W, SCREEN_H);
 	set_alpha_blender();
-	draw_trans_sprite( m_page, m_bitmaps.find( "youWin" )->second, ( SCREEN_W - m_bitmaps.find( "youWin" )->second->w ) / 2, VICTORY_PADDING );
+	if( player->getType() == Player::Type::Human )
+		draw_trans_sprite( m_page, m_bitmaps.find( "youWin" )->second, ( SCREEN_W - m_bitmaps.find( "youWin" )->second->w ) / 2, VICTORY_PADDING );
+	else
+		draw_trans_sprite( m_page, m_bitmaps.find( "youLose" )->second, ( SCREEN_W - m_bitmaps.find( "youLose" )->second->w ) / 2, VICTORY_PADDING );
 	textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H / 2, makecol( 255, 255, 255 ), -1, "Bravo %s ! Tu as gagne !", player->getName().c_str() );
 	blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
 	allegro_gl_unset_allegro_mode();
@@ -470,15 +474,15 @@ void Allegro::victory( Player* player ) {
 	m_fmod.playSoundWait( "victory" );
 	m_fmod.playMusic( "victory" );
 
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	allegro_gl_set_allegro_mode();
-	textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H - m_textFont->height - VICTORY_PADDING, makecol( 255, 255, 255 ), -1, "Continuer >" );
-	blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
-	allegro_gl_unset_allegro_mode();
-	endFrame();
-
 	before = clock() - 1;
 	for( bool loop = true; loop; ) {
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		allegro_gl_set_allegro_mode();
+		textprintf_centre_ex( m_page, m_textFont, SCREEN_W / 2, SCREEN_H - m_textFont->height - VICTORY_PADDING, makecol( 255, 255, 255 ), -1, "Continuer >" );
+		blit( m_page, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H );
+		allegro_gl_unset_allegro_mode();
+		endFrame();
+
 		if( mouseL )
 			loop = false;
 		mouseL = (bool) ( mouse_b & 1 );
