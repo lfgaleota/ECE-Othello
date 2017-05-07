@@ -3,11 +3,11 @@
  * @brief Exception indiquant qu'il faut arrêter la partie
  */
 class exit_game: public std::exception {
-		/**
-		 * @brief Accesseur de message
-		 * @return Message d'erreur
-		 */
-		virtual const char* what() const throw() {
-			return "Player wants to exit the game";
-		}
+	/**
+	 * @brief Accesseur de message
+	 * @return Message d'erreur
+	 */
+	virtual const char* what() const throw() {
+		return "Player wants to exit the game";
+	}
 };
