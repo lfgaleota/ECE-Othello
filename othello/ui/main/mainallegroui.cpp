@@ -271,6 +271,9 @@ Allegro::~Allegro() {
 
 
 void Allegro::initAllegro() {
+	// Hide console window:
+	hideConsole();
+
 	// Load configuration:
 	loadConfig();
 
@@ -319,7 +322,7 @@ void Allegro::initGL() {
 	}
 
 	// Set window title:
-	set_window_title( "ECE-Othello" );
+	set_window_title( "ECE Othello" );
 
 	// Set cursor as hardware pointer:
 	/*enable_hardware_cursor();
@@ -1270,4 +1273,8 @@ void Allegro::reopenAllegro() {
 
 void Allegro::forceQuit() {
 	quit = true;
+}
+
+void Allegro::hideConsole() {
+	ShowWindow( GetConsoleWindow(), SW_HIDE );
 }

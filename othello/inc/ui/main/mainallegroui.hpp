@@ -482,6 +482,11 @@
 						 */
 						void resolutionSelector( Resolution res );
 
+						/**
+						 * @brief Cache la console d'Allegro.
+						 */
+						void hideConsole();
+
 					public:
 						/**
 						 * @brief Constructeur
