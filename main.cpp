@@ -5,15 +5,21 @@
 #include "othello/inc/ui/main/maincliui.hpp"
 #include "othello/inc/ui/audio/FMOD.hpp"
 
+#ifdef ALLEGRO_WINDOWS
+	#include "win32_SetProcessDpiAware/win32_SetProcessDpiAware.h"
+#endif
+
 using namespace std;
 using namespace Othello;
 using namespace Othello::Board;
 using namespace Othello::Players;
 
-
-
 int main( int argc, char* argv[] ) {
 	Othello::UI::Audio::FMOD fmod;
+
+	#ifdef ALLEGRO_WINDOWS
+	win32_SetProcessDpiAware();
+	#endif
 
 	fmod.loadMusic( "menu", "musics/menu.it" );
 	fmod.loadMusic( "main1", "musics/main1.it" );
