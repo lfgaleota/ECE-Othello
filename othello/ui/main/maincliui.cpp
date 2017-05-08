@@ -4,6 +4,12 @@ using namespace Othello;
 using namespace Othello::UI::Main;
 
 CLI::CLI( Othello::UI::Audio::FMOD& fmod ) : m_fmod( fmod ) {
+	#ifdef WIN
+	SetConsoleTitle( "ECE Othello" );
+	HWND hWnd = GetConsoleWindow();
+	HICON hicon = (HICON) LoadIcon( GetModuleHandle( NULL ), MAKEINTRESOURCE( PROGICON ) );
+	SendMessage( hWnd, WM_SETICON, ICON_SMALL, (LPARAM) hicon );
+	#endif
 	menu();
 }
 

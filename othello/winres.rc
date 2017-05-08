@@ -1,0 +1,29 @@
+#include "inc/winres.h"
+
+MAINICON ICON "../images/icon.ico"
+PROGICON ICON "../images/icon.ico"
+ALLEGRO_ICON ICON "../images/icon.ico"
+
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040C04E4"
+    BEGIN
+      VALUE "CompanyName", "Romain Brisse, Louis-Felix Galeota"
+      VALUE "FileDescription", "Othello project made as part of a project for ECE graph theories course."
+      VALUE "FileVersion", "1.0"
+      VALUE "InternalName", "ece_othello"
+      VALUE "LegalCopyright", "Romain Brisse, Louis-Felix Galeota"
+      VALUE "OriginalFilename", "ECE_Othello.exe"
+      VALUE "ProductName", "ECE Othello"
+      VALUE "ProductVersion", "1.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x040C, 1252
+  END
+END

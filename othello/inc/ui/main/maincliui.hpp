@@ -13,6 +13,7 @@
 	#include "../../players/randomai.hpp"
 	#include "../../players/simpleai.hpp"
 	#include "../../players/enhancedai.hpp"
+	#include "../../winres.h"
 
 	#define LOGO_WIDTH 37
 	#define LOGO_HEIGHT 7

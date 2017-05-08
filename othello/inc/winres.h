@@ -1,0 +1,1 @@
+#define PROGICON 1
