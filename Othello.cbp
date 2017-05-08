@@ -132,6 +132,10 @@
 		<Unit filename="othello/ui/games/gamecliui.cpp" />
 		<Unit filename="othello/ui/main/mainallegroui.cpp" />
 		<Unit filename="othello/ui/main/maincliui.cpp" />
+		<Unit filename="win32_SetProcessDpiAware/win32_SetProcessDpiAware.c" />
+		<Unit filename="win32_SetProcessDpiAware/win32_SetProcessDpiAware.h" />
+		<Unit filename="othello/inc/winres.h" />
+		<Unit filename="othello/winres.rc" />
 		<Extensions>
 			<code_completion />
 			<envvars />
