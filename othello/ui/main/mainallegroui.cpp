@@ -298,6 +298,9 @@ void Allegro::initAllegro() {
 	set_close_button_callback( Othello::UI::Main::AllegroCloseHandler );
 
 	initGL();
+
+	renderSplashscreen();
+
 	ImGui_ImplAGL_Init();
 
 	loadSprites();
@@ -305,6 +308,8 @@ void Allegro::initAllegro() {
 	loadFonts();
 	loadIMGUI();
 	loadRectangles();
+
+	splashscreenEndLoading();
 }
 
 void Allegro::initGL() {
@@ -1109,6 +1114,24 @@ void Allegro::renderLoading() {
 	ImGui::End();
 
 	ImGui::Render();
+}
+
+void Allegro::renderSplashscreen() {
+	BITMAP* bg = load_jpg( "images/splashscreen.jpg", NULL );
+	int w = bg->w, h = bg->h;
+	allegro_gl_set_allegro_mode();
+	blit( bg, screen, 0, 0, ( SCREEN_W - w ) / 2, ( SCREEN_H - h ) / 2, w, h );
+	allegro_gl_unset_allegro_mode();
+	allegro_gl_flip();
+	destroy_bitmap( bg );
+	before = time( NULL );
+}
+
+void Allegro::splashscreenEndLoading() {
+	clock_t diff = time( NULL ) - before;
+	if( diff < SPLASHSCREEN_DURATION_MINIMUM ) {
+		std::this_thread::sleep_for( std::chrono::duration<double>( (double) ( SPLASHSCREEN_DURATION_MINIMUM - diff ) / CLOCKS_PER_SEC ) );
+	}
 }
 
 void Allegro::renderCancelButton() {

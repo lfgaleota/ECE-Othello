@@ -43,6 +43,8 @@
 	#define ERROR_WIDTH 300
 	#define ERROR_HEIGHT 100
 
+	#define SPLASHSCREEN_DURATION_MINIMUM 2 * CLOCKS_PER_SEC
+
 	/**
 	* @namespace Othello
 	* @details Espace de nommage du jeu.
@@ -245,7 +247,7 @@
 						int choice;
 						std::vector<Othello::Players::Player*> m_players;
 						float t = 0, dt = 0;
-						time_t before;
+						clock_t before;
 						GLdouble inx, iny, inz;
 						Othello::UI::Audio::FMOD& m_fmod;
 						AnimatedRectangle rectPVP, rectPVAI, rectPVPNet, rectAI1, rectAI2, rectAI3;
@@ -407,6 +409,14 @@
 						 * @brief Afficheur d'écran de chargement
 						 */
 						void renderLoading();
+						/**
+						 * @brief Afficheur d'écran de chargement au lancement de l'application
+						 */
+						void renderSplashscreen();
+						/**
+						 * @brief Prépare l'affichage de l'application
+						 */
+						void splashscreenEndLoading();
 						/**
 						 * @brief Initiateur de nouvelle frame
 						 */
