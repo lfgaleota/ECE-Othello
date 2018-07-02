@@ -24,8 +24,9 @@ SET(FMOD_INCLUDE_SEARCH_DIRS
 	"/usr/local/include/fmod"
 	"/opt/include/fmod"
 	"/opt/fmodex/include"
-	"C:\\Program Files (x86)\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\inc"
-	"C:\\Program Files\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\inc"
+	"${_PROG_FILES_W6432}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\inc"
+	"${_PROG_FILES_X86}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\inc"
+	"${_PROG_FILES}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\inc"
 	"${PROJECT_SOURCE_DIR}/lib/fmod/inc"
 	CACHE STRING ""
 )
@@ -41,8 +42,9 @@ SET(FMOD_LIBRARY_SEARCH_DIRS
 	"/opt/lib64"
 	"/opt/fmodex/lib"
 	"/opt/fmodex/lib64"
-	"C:\\Program Files (x86)\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\lib"
-	"C:\\Program Files\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\lib"
+	"${_PROG_FILES_W6432}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\lib"
+	"${_PROG_FILES_X86}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\lib"
+	"${_PROG_FILES}\\FMOD SoundSystem\\FMOD Studio API Windows\\api\\lowlevel\\lib"
 	"${PROJECT_SOURCE_DIR}/lib/fmod"
 	CACHE STRING ""
 )
