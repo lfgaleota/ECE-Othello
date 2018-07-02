@@ -557,7 +557,7 @@ void Allegro::handleMouse() {
 	// On teste si le curseur est sur les rectangles
 	// Si oui, on anime l'effet d'avancement, sinon on anime l'effet de retrait
 	// On teste aussi si le bouton gauche est enfoncé et on anime en conséquence
-	// On teste aussi si le bouton gauche est relaché, si oui on page à la page qu'il faut
+	// On teste aussi si le bouton gauche est relaché, si oui on passe à la page qu'il faut
 	if( stage == Stage::New ) {
 		if( iny > 0.75 && iny < 3.75 && inz > 0 && inz < 2 ) {
 			//if( inx > -3.2 && inx < -1.2 ) {

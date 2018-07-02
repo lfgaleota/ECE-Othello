@@ -112,7 +112,7 @@
 
 						/**
 						 * @brief Animateur d'entrée
-						 * @details A appelé une fois pour animer l'entrée de la barre.
+						 * @details A appeler une fois pour animer l'entrée de la barre.
 						 * @param msg Message à afficher
 						 * @param force Forçage de l'apparition
 						 */
@@ -120,7 +120,7 @@
 
 						/**
 						 * @brief Animateur de sortie
-						 * @details A appelé pour cacher la barre.
+						 * @details A appeler pour cacher la barre.
 						 */
 						void animateOut();
 				};
@@ -160,7 +160,7 @@
 
 						/**
 						 * @brief Animateur d'entrée
-						 * @details A appelé une fois pour animer l'entrée de la barre.
+						 * @details A appeler une fois pour animer l'entrée de la barre.
 						 * @param msg Message à afficher
 						 * @param force Forçage de l'apparition
 						 */
