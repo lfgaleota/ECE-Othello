@@ -132,10 +132,10 @@ void AnimatedRectangle::draw() {
 			glTranslatef( normalX, 0.0f, 0.0f );
 		}
 
-		if( hoverIn )
-			drawOutline();
 		if( clicked )
 			glTranslatef( 0.0f, 0.0f, clickZ );
+		if( hoverIn )
+			drawOutline();
 		drawReal();
 	}
 }
@@ -168,6 +168,7 @@ void AnimatedRectangle::animateHoverOut() {
 		hoverIn = false;
 		hoverOut = true;
 		sound = false;
+		clicked = false;
 	}
 }
 
@@ -400,7 +401,7 @@ void Allegro::loadSprites() {
 			m_bitmaps.insert( make_pair( bmpName, bmp ) );
 		} else {
 			path = "File not found: ";
-			path = "images/menu/";
+			path += "images/menu/";
 			path += bmpName;
 			path += ".png";
 			throw ios_base::failure( path );
@@ -429,7 +430,7 @@ void Allegro::loadBackgrounds() {
 			m_bitmaps.insert( make_pair( bmpName, bmp ) );
 		} else {
 			path = "File not found: ";
-			path = "images/menu/";
+			path += "images/menu/";
 			path += bmpName;
 			path += ".png";
 			throw ios_base::failure( path );
@@ -1186,7 +1187,7 @@ void Allegro::newAIGame() {
 			break;
 	}
 
-	m_players.push_back( new Othello::Players::Human( string( player1name ), Othello::Board::Pun::Colors::black ) );
+	m_players.insert( m_players.begin(), new Othello::Players::Human( string( player1name ), Othello::Board::Pun::Colors::black ) );
 
 	try {
 		Othello::Game game( m_players, m_fmod, true );
