@@ -74,6 +74,16 @@ set(SOURCE_FILES
     win32_SetProcessDpiAware/win32_SetProcessDpiAware.h
 )
 
+if(WIN32)
+    set(SOURCE_FILES
+        ${SOURCE_FILES}
+        othello/inc/winres.h
+        othello/winres.o
+        win32_SetProcessDpiAware/win32_SetProcessDpiAware.c
+        win32_SetProcessDpiAware/win32_SetProcessDpiAware.h
+    )
+endif(WIN32)
+
 add_executable(ECE_Othello ${SOURCE_FILES})
 
 if(UNIX)

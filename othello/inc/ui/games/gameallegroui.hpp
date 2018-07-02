@@ -39,11 +39,7 @@
 	#define PAUSE_BUTTON_HEIGHT 40
 	#define PAUSE_BLENDING_FACTOR 130
 
-	#ifdef ALLEGRO_WINDOWS
-		#define COMPUTE_DT( dt ) dt = (float) ( clock() - before ) / 30;
-	#else
-		#define COMPUTE_DT( dt ) dt = (float) ( clock() - before ) / 3000;
-	#endif
+	#define COMPUTE_DT( dt ) dt = (float) ( ( clock() - before ) * 30 ) / ( CLOCKS_PER_SEC );
 
 	/**
 	 * @namespace Othello

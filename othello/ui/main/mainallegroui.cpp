@@ -1276,5 +1276,7 @@ void Allegro::forceQuit() {
 }
 
 void Allegro::hideConsole() {
-	ShowWindow( GetConsoleWindow(), SW_HIDE );
+	#ifdef ALLEGRO_WINDOWS
+		ShowWindow( GetConsoleWindow(), SW_HIDE );
+	#endif
 }

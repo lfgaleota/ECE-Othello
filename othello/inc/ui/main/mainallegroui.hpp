@@ -27,11 +27,7 @@
 	#include "../../players/enhancedai.hpp"
 	#include "../audio/FMOD.hpp"
 
-	#ifdef ALLEGRO_WINDOWS
-		#define COMPUTE_DT( dt ) dt = (float) ( clock() - before ) / 30;
-	#else
-		#define COMPUTE_DT( dt ) dt = (float) ( clock() - before ) / 3000;
-	#endif
+	#define COMPUTE_DT( dt ) dt = (float) ( ( clock() - before ) * 30 ) / ( CLOCKS_PER_SEC );
 
 	#define NAME_SIZE 32
 	#define MODAL_BUTTON_WIDTH 300
