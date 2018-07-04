@@ -65,13 +65,9 @@ set(SOURCE_FILES
     othello/inc/ui/main/mainallegroui.hpp
     othello/ui/audio/FMOD.cpp
     othello/inc/ui/audio/FMOD.hpp
-    othello/inc/winres.h
-    othello/winres.o
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_impl_agl.cpp
-    win32_SetProcessDpiAware/win32_SetProcessDpiAware.c
-    win32_SetProcessDpiAware/win32_SetProcessDpiAware.h
 )
 
 if(WIN32)

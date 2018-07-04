@@ -1,9 +1,9 @@
-#ifndef _ECE_SIAM_FMOD_HPP_
-	#define _ECE_SIAM_FMOD_HPP_
+#ifndef _ECE_OTHELLO_FMOD_HPP_
+	#define _ECE_OTHELLO_FMOD_HPP_
 
 	#include <string>
 	#include <unordered_map>
-	#include "../../../../fmod/inc/fmod.h"
+	#include <fmod.h>
 
 	/**
 	 * @namespace Othello
