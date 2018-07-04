@@ -22,7 +22,7 @@ void MessageBar::draw()  {
 	textprintf_ex( page, font, xIcon + marginXIcon, y + marginYIcon, colorIconFront, -1, "i" );
 }
 
-void MessageBar::render( float dt )  {
+void MessageBar::render( double dt )  {
 	float ease;
 	if( in ) {
 		if( doAnimateIn ) {
@@ -85,10 +85,10 @@ ErrorBar::ErrorBar() {}
 
 ErrorBar::ErrorBar( BITMAP* page, FONT* font, MessageBar* infoBar ) : MessageBar( page, font ), infoBar( infoBar ) {}
 
-void ErrorBar::render( float dt ) {
+void ErrorBar::render( double dt ) {
 	float ease;
 	if( in ) {
-		diff = next - clock();
+		diff = std::chrono::duration_cast<std::chrono::duration<double, std::ratio<1>>>( next - std::chrono::high_resolution_clock::now() ).count();
 		if( doAnimateIn ) {
 			t += dt;
 			if( t < inTime - 0.1f ) {
@@ -132,14 +132,14 @@ void ErrorBar::render( float dt ) {
 
 void ErrorBar::draw() {
 	rectfill( page, xBar, y, xBar + widthBar, y + height, colorBarBackNoTime );
-	rectfill( page, xBar, y, (int) ( ( xBar + widthBar ) * (float) diff / stayTime ), y + height, colorBarBack );
+	rectfill( page, xBar, y, (int) ( ( xBar + widthBar ) * diff / stayTime.count() ), y + height, colorBarBack );
 	textprintf_ex( page, font, xBar + widthIcon + marginX, y + marginY, colorBarFront, -1, "%s", message.c_str() );
 	rectfill( page, xIcon, y, xIcon + widthIcon, y + height, colorIconBack );
 	textprintf_ex( page, font, xIcon + marginXIcon, y + marginYIcon, colorIconFront, -1, "!" );
 }
 
 void ErrorBar::animateIn( std::string msg, bool force ) {
-	before = clock();
+	before = std::chrono::high_resolution_clock::now();
 	next = before + stayTime;
 	MessageBar::animateIn( msg, force );
 }
@@ -474,7 +474,7 @@ void Allegro::victory( Player* player ) {
 	m_fmod.playSoundWait( "victory" );
 	m_fmod.playMusic( "victory" );
 
-	before = clock() - 1;
+	before = std::chrono::high_resolution_clock::now();
 	for( bool loop = true; loop; ) {
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		allegro_gl_set_allegro_mode();
@@ -491,11 +491,15 @@ void Allegro::victory( Player* player ) {
 	m_fmod.stopMusic();
 }
 
+double inline Allegro::computeDt() {
+	return std::chrono::duration_cast<std::chrono::duration<double, std::ratio<1>>>( std::chrono::high_resolution_clock::now() - before ).count();
+}
+
 void Allegro::newFrame( bool skipDT ) {
 	if( !skipDT ) {
-		COMPUTE_DT( dt )
+		dt = computeDt();
 		ImGui_ImplAGL_NewFrame( dt );
-		before = clock();
+		before = std::chrono::high_resolution_clock::now();
 	} else {
 		ImGui_ImplAGL_NewFrame( 1 / 30.0f );
 	}

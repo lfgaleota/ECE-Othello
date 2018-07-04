@@ -15,6 +15,7 @@
 	#include <GL/glu.h>
 	#include <alleggl.h>
 	#include <unordered_map>
+	#include <chrono>
 	#include "../../../../imgui/imgui.h"
 	#include "../../../../imgui/imgui_impl_agl.h"
 	#include "gameui.hpp"
@@ -38,8 +39,6 @@
 	#define PAUSE_BUTTON_WIDTH 300
 	#define PAUSE_BUTTON_HEIGHT 40
 	#define PAUSE_BLENDING_FACTOR 130
-
-	#define COMPUTE_DT( dt ) dt = (float) ( ( clock() - before ) * 30 ) / ( CLOCKS_PER_SEC );
 
 	/**
 	 * @namespace Othello
@@ -74,7 +73,7 @@
 						friend class ErrorBar;
 
 					protected:
-						float t = 0;
+						double t = 0;
 						bool in = false, doAnimateIn = false, doAnimateOut = false, shouldAnimateIn = false;
 						int xIcon, xBar, y;
 						BITMAP* page;
@@ -84,7 +83,7 @@
 						constexpr static int widthIcon = 20, outXIcon = -16, inX = 0, height = 22, marginX = 4, marginY = 2, marginXIcon = 8, marginYIcon = 2;
 						int colorBarFront = makecol( 0, 0, 0 ), colorBarBack = makecol( 200, 200,
 						                                                                200 ), colorIconFront = colorBarBack, colorIconBack = colorBarFront, widthBar = SCREEN_W, outXBar = -SCREEN_W;
-						float inTime = 15, outTime = 15;
+						double inTime = 0.5, outTime = 0.5;
 
 						/**
 						 * @brief Afficheur de barre réel
@@ -108,7 +107,7 @@
 						 * @brief Afficheur de barre
 						 * @param dt Temps entre cette frame et la frame précédente
 						 */
-						virtual void render( float dt );
+						virtual void render( double dt );
 
 						/**
 						 * @brief Animateur d'entrée
@@ -133,9 +132,9 @@
 					private:
 						MessageBar* infoBar;
 
-						constexpr static time_t stayTime = CLOCKS_PER_SEC * 4;
-						time_t before, next;
-						int diff;
+						constexpr static std::chrono::seconds stayTime = std::chrono::seconds( 4 );
+						std::chrono::time_point<std::chrono::high_resolution_clock> before, next;
+						double diff;
 						int colorBarFront = makecol( 255, 255, 255 ), colorBarBack = makecol( 190, 0, 0 ), colorIconFront = makecol( 255, 255, 255 ), colorIconBack = makecol( 100, 0, 0 ), colorBarBackNoTime = makecol( 170, 0, 0 );
 
 						/**
@@ -170,7 +169,7 @@
 						 * @brief Afficheur de barre
 						 * @param dt Temps entre cette frame et la frame précédente
 						 */
-						void render( float dt );
+						void render( double dt );
 				};
 
 				/**
@@ -185,8 +184,8 @@
 						ImGuiIO& m_io;
 						bool prevKeyEsc = false, keyEsc = false, prevKeyG = false, keyG = false;
 						unsigned char x = 0, y = 0;
-						float dt;
-						time_t before;
+						double dt;
+						std::chrono::time_point<std::chrono::high_resolution_clock> before;
 						Othello::Board::GameBoard& m_oboard;
 						MessageBar infoBar;
 						ErrorBar errorBar;
@@ -284,6 +283,11 @@
 						 * @brief Afficheur de jeu
 						 */
 						void gameDisplay();
+
+						/**
+						 * @brief Calcul l'intervalle de temps entre deux frames
+						 */
+						double inline computeDt();
 
 					public:
 						/**

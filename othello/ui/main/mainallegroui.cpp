@@ -60,7 +60,7 @@ void Othello::UI::Main::GL_windowToObjectf( GLfloat x, GLfloat y, GLdouble* retx
 		*rety = 0;
 }
 
-AnimatedRectangle::AnimatedRectangle( float& dt, Othello::UI::Audio::FMOD& fmod ) : dt( dt ), m_fmod( fmod ) {}
+AnimatedRectangle::AnimatedRectangle( double& dt, Othello::UI::Audio::FMOD& fmod ) : dt( dt ), m_fmod( fmod ) {}
 
 bool AnimatedRectangle::loadTexture( string path ) {
 	return AGL_loadTexture( texture, path );
@@ -191,7 +191,7 @@ void AnimatedRectangle::playHover() {
 	m_fmod.playSound( "hoverCard" );
 }
 
-MenuRectangle::MenuRectangle( float& dt, Othello::UI::Audio::FMOD& fmod ) : AnimatedRectangle( dt, fmod ) {
+MenuRectangle::MenuRectangle( double& dt, Othello::UI::Audio::FMOD& fmod ) : AnimatedRectangle( dt, fmod ) {
 	entryRY = 0.0f, entryTime = defaultEntryTime, normalX = defaultNormalX, hoverX = 1.1f, hoverZ = 0.1f, hoverTime = defaultHoverTime, clickZ = 0.04f;
 }
 
@@ -225,7 +225,7 @@ void MenuRectangle::playHover() {
 	m_fmod.playSound( "hoverButton" );
 }
 
-ButtonRectangle::ButtonRectangle( float& dt, Othello::UI::Audio::FMOD& fmod ) : AnimatedRectangle( dt, fmod ) {
+ButtonRectangle::ButtonRectangle( double& dt, Othello::UI::Audio::FMOD& fmod ) : AnimatedRectangle( dt, fmod ) {
 	entryRY = 0.0f, entryTime = defaultEntryTime, normalX = 0.0f, hoverX = 0.0f, hoverZ = 0.05f, hoverTime = defaultHoverTime, clickZ = -hoverZ;
 }
 
@@ -740,10 +740,14 @@ void Allegro::handleMouse() {
 	}
 }
 
+double inline Allegro::computeDt() {
+	return std::chrono::duration_cast<std::chrono::duration<double, std::ratio<1>>>( std::chrono::high_resolution_clock::now() - before ).count();
+}
+
 void Allegro::newFrame() {
-	COMPUTE_DT( dt );
+	dt = computeDt();
 	ImGui_ImplAGL_NewFrame( dt );
-	before = clock();
+	before = std::chrono::high_resolution_clock::now();
 	t += dt;
 	GL_windowToObjectf( mouse_x, mouse_y, &inx, &iny, &inz );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -784,6 +788,7 @@ void Allegro::back() {
 			stage = Stage::Menu;
 			break;
 		case Stage::NewPlayer:
+			m_fmod.playSound( "back" );
 			stage = Stage::New;
 			break;
 		case Stage::NewAISelect:
@@ -795,6 +800,7 @@ void Allegro::back() {
 			stage = Stage::New;
 			break;
 		case Stage::NewAI:
+			m_fmod.playSound( "back" );
 			stage = Stage::NewAISelect;
 			break;
 		case Stage::ContinueParty:
@@ -831,6 +837,12 @@ void Allegro::forward( Stage newStage ) {
 			rectAI2.reset();
 			rectAI3.reset();
 			t = 0;
+			stage = newStage;
+			break;
+
+		case NewPlayer:
+		case NewAI:
+			m_fmod.playSound( "clickNextCard" );
 			stage = newStage;
 			break;
 
@@ -920,7 +932,7 @@ void Allegro::renderNew() {
 			rectPVAI.animateEntry();
 
 		//if( t > 6.0f )
-		if( t > 3.0f )
+		if( t > 0.1f )
 			rectPVP.animateEntry();
 	}
 }
@@ -941,10 +953,10 @@ void Allegro::renderNewAISelect() {
 
 		rectAI3.animateEntry();
 
-		if( t > 3.0f )
+		if( t > 0.1f )
 			rectAI2.animateEntry();
 
-		if( t > 6.0f )
+		if( t > 0.2f )
 			rectAI1.animateEntry();
 	}
 }
@@ -1117,6 +1129,7 @@ void Allegro::renderLoading() {
 }
 
 void Allegro::renderSplashscreen() {
+	glClear( GL_COLOR_BUFFER_BIT );
 	BITMAP* bg = load_jpg( "images/splashscreen.jpg", NULL );
 	int w = bg->w, h = bg->h;
 	allegro_gl_set_allegro_mode();
@@ -1124,13 +1137,13 @@ void Allegro::renderSplashscreen() {
 	allegro_gl_unset_allegro_mode();
 	allegro_gl_flip();
 	destroy_bitmap( bg );
-	before = time( NULL );
+	before = std::chrono::high_resolution_clock::now();
 }
 
 void Allegro::splashscreenEndLoading() {
-	clock_t diff = time( NULL ) - before;
+	double diff = computeDt();
 	if( diff < SPLASHSCREEN_DURATION_MINIMUM ) {
-		std::this_thread::sleep_for( std::chrono::duration<double>( (double) ( SPLASHSCREEN_DURATION_MINIMUM - diff ) / CLOCKS_PER_SEC ) );
+		std::this_thread::sleep_for( std::chrono::duration<double>( SPLASHSCREEN_DURATION_MINIMUM - diff ) );
 	}
 }
 
@@ -1153,7 +1166,7 @@ void Allegro::menu() {
 	m_fmod.playMusic( "menu" );
 
 	isSave = Othello::Save::SaveManager::check();
-	before = clock() - 1;
+	before = std::chrono::high_resolution_clock::now();
 
 	while( !quit ) {
 		newFrame();
@@ -1224,7 +1237,7 @@ void Allegro::newAIGame() {
 }
 
 void Allegro::error( string message ) {
-	before = clock() - 1;
+	before = std::chrono::high_resolution_clock::now();
 	for( bool loop = true; loop; ) {
 		newFrame();
 

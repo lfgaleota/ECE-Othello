@@ -17,6 +17,7 @@
 	#include <loadpng.h>
 	#include <vector>
 	#include <ios>
+	#include <chrono>
 	#include <fstream>
 	#include <sstream>
 	#include <stdlib.h>
@@ -43,7 +44,7 @@
 	#define ERROR_WIDTH 300
 	#define ERROR_HEIGHT 100
 
-	#define SPLASHSCREEN_DURATION_MINIMUM 2 * CLOCKS_PER_SEC
+	#define SPLASHSCREEN_DURATION_MINIMUM 2
 
 	/**
 	* @namespace Othello
@@ -94,11 +95,11 @@
 				 */
 				class AnimatedRectangle {
 					protected:
-						float t = 0;
-						float& dt;
+						double t = 0;
+						double& dt;
 						GLuint texture;
 						bool show = false, hoverIn = false, hoverOut = true, doAnimateEntry = false, doAnimateHoverIn = false, doAnimateHoverOut = false, sound = false;
-						constexpr static float defaultEntryRY = 50.0f, defaultEntryTime = 10.0f, defaultNormalX = 1.0f, defaultHoverX = 1.0f, defaultHoverZ = 0.5f, defaultHoverTime = 10.0f, defaultClickZ = -defaultHoverZ;
+						constexpr static float defaultEntryRY = 50.0f, defaultEntryTime = 0.3f, defaultNormalX = 1.0f, defaultHoverX = 1.0f, defaultHoverZ = 0.5f, defaultHoverTime = 0.3f, defaultClickZ = -defaultHoverZ;
 						float entryRY = defaultEntryRY, entryTime = defaultEntryTime, normalX = defaultNormalX, hoverX = defaultHoverX, hoverZ = defaultHoverZ, hoverTime = defaultHoverTime, clickZ = defaultClickZ;
 						Othello::UI::Audio::FMOD& m_fmod;
 
@@ -125,7 +126,7 @@
 						 * @param dt Référence vers le temps entre cette frame et la frame précédente
 						 * @param fmod Référence vers un objet de gestion #FMOD
 						 */
-						AnimatedRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
+						AnimatedRectangle( double& dt, Othello::UI::Audio::FMOD& fmod );
 
 						/**
 						 * @brief Chargeur de texture du rectangle
@@ -194,7 +195,7 @@
 						 * @param dt Référence vers le temps entre cette frame et la frame précédente
 						 * @param fmod Référence vers un objet de gestion #FMOD
 						 */
-						MenuRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
+						MenuRectangle( double& dt, Othello::UI::Audio::FMOD& fmod );
 
 						/**
 						 * @brief Chargeur de texture d'arrière-plan du rectangle
@@ -231,7 +232,7 @@
 						 * @param dt Référence vers le temps entre cette frame et la frame précédente
 						 * @param fmod Référence vers un objet de gestion #FMOD
 						 */
-						ButtonRectangle( float& dt, Othello::UI::Audio::FMOD& fmod );
+						ButtonRectangle( double& dt, Othello::UI::Audio::FMOD& fmod );
 				};
 
 				/**
@@ -246,8 +247,8 @@
 						bool keyEsc = false, prevKeyEsc = false, quit = false;
 						int choice;
 						std::vector<Othello::Players::Player*> m_players;
-						float t = 0, dt = 0;
-						clock_t before;
+						double t = 0, dt = 0;
+						std::chrono::time_point<std::chrono::high_resolution_clock> before;
 						GLdouble inx, iny, inz;
 						Othello::UI::Audio::FMOD& m_fmod;
 						AnimatedRectangle rectPVP, rectPVAI, rectPVPNet, rectAI1, rectAI2, rectAI3;
@@ -492,6 +493,11 @@
 						 * @brief Cache la console d'Allegro.
 						 */
 						void hideConsole();
+
+						/**
+						 * @brief Calcul l'intervalle de temps entre deux frames
+						 */
+						double inline computeDt();
 
 					public:
 						/**
